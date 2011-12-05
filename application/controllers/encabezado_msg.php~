@@ -1,0 +1,16 @@
+<!DOCTYPE HTML PUBLIC "-/W3C/DTD HTML 4.01/EN" "http:/www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+                <link rel='shortcut icon' href='/imagenes/icons/favicon.ico' />
+		<title>Sistemas del Gobierno Bolivariano de Aragua</title>
+                <!-- Js para el Style del login -->
+                <link rel="stylesheet" type="text/css" media="all" href="/css/login/tripoli.css" />
+                <link rel="stylesheet" type="text/css" media="screen" href="/css/login/login.css" />
+                <!-- Js para levantar la ayuda, o tooltip-->
+                <script type="text/javascript"  src='/js/jquery.js'></script>
+                <link rel="stylesheet" type="text/css" media="screen" href="js/tooltip/global.css" />
+                <script type="text/javascript"  src='/js/tooltip/jtip.js'></script>
+	</head>
+	<body>
+        	<div id="cuerpo">

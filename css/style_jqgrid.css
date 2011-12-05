@@ -1,0 +1,21 @@
+/******************************************jqgrid*********************************************/
+.contenedor_800
+{
+        width:800px;
+        margin:10% auto;
+}
+.contenedor_width_auto
+{
+        width:auto;
+        margin:2% auto;
+}
+.alineacion_derecha
+{
+    text-align:right;
+}
+
+.espaciado_vertical
+{
+        margin:5px 0 0 0;
+}
+.ui_pointer{cursor:pointer;}
