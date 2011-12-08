@@ -25,7 +25,7 @@ input:focus
 
 .login-form label { display:block; margin-bottom:0.3em; font-size:1.4em; }
 .login-form li.buttons { margin-top:2em; text-align:right; }
-.login-form .btn  { font-size:1.6em; }
+/*.login-form .btn  { font-size:1.6em; }*/
 
 #bd-login-form {
   position:absolute;
@@ -73,4 +73,48 @@ input:focus
   color:#FF4500;
   font-weight:bold;
 }
+/*
+ li {
+	display: inline;
+	list-style: none;
+}*/
 
+li button {
+
+	/* Border Radius */
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+
+	/* Border Shadow */
+	-webkit-box-shadow: 1px 2px 2px rgba(0,0,0,0.6);
+	-moz-box-shadow: 1px 2px 2px rgba(0,0,0,0.6);
+	box-shadow: 1px 2px 2px rgba(0,0,0,0.6);
+
+	/* Animation (Webkit, Gecko & Mozilla) */
+	-webkit-transition-duration: 0.20s;
+	-webkit-transition-timing-function: ease-out;
+	-moz-transition-duration: 0.20s;
+	-moz-transition-timing-function: ease-out;
+
+	color: #000;
+	background: rgba(0,0,0,0.2);
+	display: inline-block;
+	padding: 5px 15px;
+	outline: none;
+	text-decoration: none;
+}
+
+	li button:hover {
+		background: rgba(0,0,0,0.5);
+		padding: 5px 25px;
+                color: #fff;
+	}
+
+	li button:active {
+		background: rgba(0,0,0,0.1);
+		-webkit-box-shadow: 1px 1px 1px rgba(0,0,0,0.4);
+		-moz-box-shadow: 1px 1px 1px rgba(0,0,0,0.4);
+		box-shadow: 1px 1px 1px rgba(0,0,0,0.4);
+	}
+        

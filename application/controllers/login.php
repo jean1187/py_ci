@@ -29,18 +29,57 @@ class login extends CI_Controller {
         parent::__construct();
         $this->load->library("encrypt");
         $this->load->model('m_login');
+        $this->msgerror="";
+        $this->msg="";
     }
-    
+  
     function index() {
-        $this->login_view();
-
+        //hocks
+        if($this->session->userdata('userLogin')!="")
+            redirect('welcome', 'refresh');
+        
+        
+        $user=$this->input->post("usuario");
+        $password=$this->input->post("clave");
+            //autenticacion
+            if(!empty ($user))
+            {
+                $resultado=$this->m_login->ValUser($user,$password);
+                 //Valido si el usuario existe
+                  if(is_array($resultado))
+                  {
+                    $this->load->library("_menu");
+                    $this->session->sess_destroy();
+                    $this->session->sess_create();
+                    $resultado["menu"]=($this->config->item("mantenimiento"))?"":$this->_menu->CrearMaquetadoMenu();
+                    $this->session->set_userdata(array('userLogin' => $resultado, 'user' => $resultado["userLogin"]));
+                    $this->m_login->HistorialLogin();
+                    redirect('welcome', 'refresh');
+                  }
+                 else 
+                  {
+                      switch ($resultado)
+                      {
+                        case 0:
+                            $this->msgerror = '<br>La combinaci&oacute;n nombre de usuario y su contrase&ntilde;a, no concuerda. Rectifique e intente de nuevo.';
+                        break;
+                        case 1:
+                            $this->msgerror = '<br>Contrase&ntilde;a, no concuerda. Rectifique e intente de nuevo.';
+                        break;
+                        case 2:
+                            $this->msg = '<br>El usuario  "'.$user.'"  se encuentra INACTIVO, por favor comuniquese con el Administrador del Sistema  <a href="mailto:'.$this->config->item('email').'?subject=Urgente para el Administrador">'.$this->config->item('email');
+                        break;                    
+                      }
+                  }
+            }
+            
+        $this->login_view($this->msgerror,$this->msg);
     }//fin index
 	    /**
 	    *function salir del sistema y destruccion de las sessiones
 	    */
     
     function login_view($msgerror='', $msg='') {
-        $this->load->view('encabezado_msg');
         $this->load->view('login', array('msgerror' => $msgerror, 'msg' => $msg));
     
     }
@@ -50,7 +89,10 @@ class login extends CI_Controller {
         redirect(base_url(), 'refresh');
     }
 
-
+    function Mantenimiento()
+    {
+        $this->cargar->menu_system("mantenimiento");
+    }
 
 //*********************
 //fin CI_Controller

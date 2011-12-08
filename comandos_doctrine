@@ -1,0 +1,9 @@
+./doctrine orm:convert-mapping  yml ./application/models/Entities --from-database    //Generar entidades de la BD a yml
+
+
+legales
+
+./doctrine orm:convert-mapping --from-database annotation ../models/generate
+./doctrine orm:generate-entities ../models
+
+//agregar a las entidades namespace models\Entities; y colocarlas todas en ese directorio

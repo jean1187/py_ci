@@ -7,6 +7,10 @@
       /**Para que haya una separacion del centro con el menu y el footter*/
       padding:20px 0 20px 0;
 }
+.oculto
+{
+        display: none;
+}
 /******************************************Header*********************************************/
 
 .header{
@@ -14,7 +18,7 @@
     background-image: -moz-linear-gradient(75%, #f60e0e,#b8a5a5);
     background-image: -webkit-gradient(radial, 20% 20%, 0, 90% 90%,15, from(#b8a5a5), to(#f60e0e));
     background-image:  linear-gradient(75%, #f60e0e,#b8a5a5);
-    height : 90px;
+    height : 100px;
     width:100%; 
 }
 .container_h { width: 100%; margin: 0 auto; }

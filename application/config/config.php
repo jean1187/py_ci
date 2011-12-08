@@ -71,6 +71,17 @@ $config['url_suffix'] = '';
 */
 $config['email'] = "jeanmendozar@gmail.com";
 
+
+/*
+|--------------------------------------------------------------------------
+| Bandera de Mantenimiento
+|--------------------------------------------------------------------------
+|
+| Coloque True o False si estara en matenimiento El sitio completo, VALOR por DEFAULT FALSE
+|
+*/
+$config['mantenimiento'] = FALSE;
+
 /*
 |--------------------------------------------------------------------------
 | Default Language
@@ -103,7 +114,8 @@ $config['charset'] = 'UTF-8';
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = FALSE;
+//$config['enable_hooks'] = FALSE;
+$config['enable_hooks'] = TRUE;
 
 
 /*

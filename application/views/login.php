@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-/W3C/DTD HTML 4.01/EN" "http:/www.w3.org/TR/html4/strict.dtd">
+<?= doctype('html4-strict')?>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -29,7 +29,7 @@
                                       <li class="buttons">
                                             <a href="/help/login/sugerencias_y_recomendaciones.html?width=500" class="jTip" id="one" name="Sugerencias y Recomendaciones:"><img src="/imagenes/icons/help.png" /></a>
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <button type="submit" id="send" class="btn"><span><span>&nbsp;Entrar&nbsp;</span></span></button>
+                                            <button type="submit" id="submit-button" class="btn"><span><span>&nbsp;Entrar&nbsp;</span></span></button>
                                       </li>
                                                      <?php
                                                         if(isset($msgerror) && $msgerror!='') echo '<div class="error">'.$msgerror.'</div>';
