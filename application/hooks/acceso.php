@@ -3,29 +3,32 @@
 class acceso{
 
     private $CI;
+    private $session;
 
     function __construct()
     {
         $this->CI = & get_instance();
+        $this->session=$this->CI->session->userdata("userLogin");
+        $this->session["menu"]=$this->CI->session->userdata("menu");
     }
     
       function  seguridad(){
           
-        $class_sin_verificar_en_menu=array("login","welcome");
+                  
+        $class_sin_verificar_en_menu=array("login","welcome","mantenimiento");
 
           //verificando que exista siempre una sesion
 
 /** 1 */         if($this->CI->router->class!="login" && $this->CI->session->userdata("user")=="" )
                             //redirect("login/restringido");
                             redirect(base_url());
-/** 2 */       else if($this->CI->session->userdata("user")!="" and $this->CI->config->item('mantenimiento') && $this->CI->router->method!="mantenimiento" and $this->CI->router->method!="salir")
-                                redirect("login/mantenimiento");
-/** 3 */          else if($this->CI->session->userdata("user")!="" && $this->CI->router->class=="login" and $this->CI->router->method!="salir" && !$this->CI->config->item('mantenimiento'))
+/** 2 */       else if($this->CI->config->item('mantenimiento')  and $this->CI->session->userdata("user")!=""  and !in_array($this->CI->router->class ,array("mantenimiento","login")) && $this->session["grupo_id"]!=1  )
+                                redirect("mantenimiento");
+/** 3 */          else if($this->CI->session->userdata("user")!="" && in_array($this->CI->router->class ,array("login")) and $this->CI->router->method!="salir" && !$this->CI->config->item('mantenimiento'))
                             redirect("welcome");
 /** 4 */            else if($this->CI->session->userdata("user")!="" && !in_array($this->CI->router->class ,$class_sin_verificar_en_menu) &&  !$this->CI->config->item('mantenimiento'))
                         { 
-                            $session=$this->CI->session->userdata("userLogin");
-                              if(!strpos($session["menu"],$this->CI->router->class))
+                              if(!strpos($this->session["menu"],$this->CI->router->class) && !strpos($this->session["url_speciales"], '"'.$this->CI->router->class.'"') && $this->session["grupo_id"]!=1 )
                                 redirect("welcome");
                         }//fin de la verficacion si existe la clase en el menu que tengo activo
 

@@ -45,6 +45,7 @@ class Cargar{
       public function encabezado($title=null){
                         $data['title'] = ($title)?$title:'Direccion de Proyectos';
                         $data['user'] = $this->CI->session->userdata('userLogin');
+                        $data['user']["menu"] = $this->CI->session->userdata('menu');
                         $this->CI->load->vars($data);
                         $this->CI->load->view("encabezado_menu");
       }

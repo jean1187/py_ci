@@ -68,5 +68,24 @@ class M_login extends CI_Model {
         $this->db->insert('historialSessions', $data);
     }//HistorialLogin
 
+    
+        /**
+	* SpecialUrl
+	*
+	* Retorna la lista de las url que son especiales osea que no estaran en el menu pero sin envargo se pogra acceder mediante links
+	*
+	* @access	public
+	* @return	array serializado
+	*/     
+    function SpecialUrl($id)
+    {
+           // $this->db->select("url");
+            $this->db->or_where(array('id_users is null' => null,"id_users like '%,".$id.",%'"=>null));            
+            $this->db->from('url_especiales');
+          return serialize($this->db->get()->result_array());
+    }//SpecialUrl
+    
+    
+    
 }
 ?>

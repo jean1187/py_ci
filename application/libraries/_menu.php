@@ -38,8 +38,14 @@ class _menu{
     function  __construct() {
         $this->CI=& get_instance();
         $this->db=$this->CI->db;
-        $this->userdata=$this->CI->session->userdata('userLogin');
-        $this->itemsMenuString="";
+        
+       /* $this->itemsMenuString="<li><a href='perfil' ><span>Perfil</span></a></li>
+            
+<li><a href='cont' ><span>Perfil</span></a></li>
+
+<li><a href='koko' ><span>Koko </span></a></li>
+";*/
+        
     }
     
     /**
@@ -48,6 +54,7 @@ class _menu{
 //---------------------------------------------------------------------------------------------------------------------------------
 
       public  function CrearMaquetadoMenu(){
+          $this->userdata=$this->CI->session->userdata('userLogin');
           //variables locales a la funcion
           foreach($this->ObternerItemsPadres() as $valor)
               $this->constructItem($valor);
@@ -56,6 +63,7 @@ class _menu{
 
       private function   constructItem($item)
       {
+            
           $hijos=$this->ObternerHijos($item["id"]);
                 if(count($hijos))
                 {
@@ -72,14 +80,15 @@ class _menu{
       
        private function   ObternerItemsPadres(){
                 $this->db->from('menu');
-                $this->db->like('grupo',$this->userdata["grupo_id"]); 
+                //if($this->userdata["grupo_id"]!=1)
+                $this->db->like('grupo',",".$this->userdata["grupo_id"].","); 
                 $this->db->where('parent is null', null);
                 return  $this->db->get()->result_array();
       }//fin padres      
 
        private function   ObternerHijos($id_parent){
                 $this->db->from('menu');
-                $this->db->like('grupo',$this->userdata["grupo_id"]); 
+                $this->db->like('grupo',",".$this->userdata["grupo_id"].","); 
                 $this->db->where('parent',$id_parent);
                 return  $this->db->get()->result_array();
       }//fin hijos

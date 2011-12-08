@@ -13,6 +13,31 @@
     {
             display: none;
     }
+    
+    /* Enlaces
+   ------------------------------------------------------------------------- */
+    a {
+      color: #1148A6;
+    }
+    a:active {
+      position: relative;
+      top: 1px;
+    }
+    
+    /* Header // encabezado
+   ------------------------------------------------------------------------- */    
+    header, header a {
+      /*color: #778;*/
+      padding-right: 1em;
+      text-decoration: none;
+    }
+    
+    header:hover a {
+      color: #1148A6;
+    }
+    header a:hover {
+      text-decoration: underline;
+    }    
 /******************************************Header*********************************************/
 
 

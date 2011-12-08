@@ -24,7 +24,7 @@
 <body>
 <div  class="container_24"><!-- cierra en pie -->
     
-        <div id="cabecera" >
+        <header id="cabecera" >
             <div class="grid_2 suffix_1">
                     <img width="70" heigth="52" src="<?=base_url()?>/imagenes/logo.png">
             </div>
@@ -33,7 +33,8 @@
             </div>    
             <div class="grid_7 omega alpha">
                     <div class="grid_7">
-                        <b>Usuario : </b><?php echo $user["nombre"]." ".$user["apellido"]?>
+                        
+                        <b>Usuario : </b><?=$user["nombre"]." ".$user["apellido"]?>
                     </div>    
                     <div class="clear"></div>
                     <div class="grid_7">
@@ -44,16 +45,11 @@
                         <b>Carga : </b>{elapsed_time}
                     </div>                    
             </div>  
-        </div>
+        </header>
        <div class="clear"></div>
                             <div id="menu" class="grid_24">
                                 <ul class="menu">
-                                    <li><a href="#" class="parent"><span>Inicio</span></a>
-                                        <div><ul>
-                                                    <li><a href="#"><span>Item1</span></a></li>
-                                                    <li><a href="#"><span>Cambio de contraseña</span></a></li>
-                                        </ul></div>
-                                    </li>
+                                    <li><a href="<?php echo base_url();?>" ><span>Inicio</span></a></li>
                                             <?php
 
                                                 echo $user["menu"]

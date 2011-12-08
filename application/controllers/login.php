@@ -48,12 +48,14 @@ class login extends CI_Controller {
                  //Valido si el usuario existe
                   if(is_array($resultado))
                   {
-                    $this->load->library("_menu");
-                    $this->session->sess_destroy();
-                    $this->session->sess_create();
-                    $resultado["menu"]=($this->config->item("mantenimiento"))?"":$this->_menu->CrearMaquetadoMenu();
-                    $this->session->set_userdata(array('userLogin' => $resultado, 'user' => $resultado["userLogin"]));
-                    $this->m_login->HistorialLogin();
+                        $this->load->library("_menu");
+                            $this->session->sess_destroy();
+                            $this->session->sess_create();
+                            $resultado["url_speciales"]=$this->m_login->SpecialUrl($resultado["id"]);
+                            $this->session->set_userdata(array('userLogin' => $resultado, 'user' => $resultado["userLogin"]));
+                            $this->session->set_userdata("menu",($this->config->item("mantenimiento") && $resultado["grupo_id"] != 1)?"":$this->_menu->CrearMaquetadoMenu());
+                            $this->m_login->HistorialLogin();
+                            
                     redirect('welcome', 'refresh');
                   }
                  else 
