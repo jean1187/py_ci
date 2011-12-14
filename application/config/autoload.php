@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array("database","session","cargar");
+$autoload['libraries'] = array("bitacora","session","database","cargar");
 
 
 /*
@@ -64,7 +64,7 @@ $autoload['libraries'] = array("database","session","cargar");
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array("url","html");
+$autoload['helper'] = array("url","html","form");
 
 
 /*
@@ -96,6 +96,7 @@ $autoload['config'] = array();
 |
 */
 
+//$autoload['language'] = array("spanish");
 $autoload['language'] = array();
 
 

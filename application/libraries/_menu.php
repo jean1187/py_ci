@@ -32,13 +32,11 @@ class _menu{
     private $userdata;
     private $itemsMenuString;
 
-
-
-
     function  __construct() {
         $this->CI=& get_instance();
         $this->db=$this->CI->db;
-        
+        $this->userdata=array();
+
        /* $this->itemsMenuString="<li><a href='perfil' ><span>Perfil</span></a></li>
             
 <li><a href='cont' ><span>Perfil</span></a></li>
@@ -53,8 +51,14 @@ class _menu{
     */
 //---------------------------------------------------------------------------------------------------------------------------------
 
-      public  function CrearMaquetadoMenu(){
+      public  function CrearMaquetadoMenu($condicion_groups=NULL){
+	  if(!$condicion_groups)
           $this->userdata=$this->CI->session->userdata('userLogin');
+	  else
+	    {
+	      $this->userdata["grupo_id"]=$condicion_groups;
+	      $this->userdata["recibido"]=true;
+	    }	
           //variables locales a la funcion
           foreach($this->ObternerItemsPadres() as $valor)
               $this->constructItem($valor);
@@ -63,18 +67,21 @@ class _menu{
 
       private function   constructItem($item)
       {
-            
+	$attr_span="";
+          $url=(isset($this->userdata["recibido"]))?'#':$item["url"];
+	  if($url==="#")
+	    $attr_span="id='".$item["id"]."'  grupo='".$item["grupo"]."' class='custom_menu'";
           $hijos=$this->ObternerHijos($item["id"]);
                 if(count($hijos))
                 {
-                  $this->itemsMenuString.="<li><a href='".$item["url"]."' class='parent'><span>".$item["nombre"]."</span></a>
+                  $this->itemsMenuString.="<li><a href='".$url."' class='parent'><span ".$attr_span.">".$item["nombre"]."</span></a>
                                             <div><ul>";
                           foreach($hijos as $valorH)
                                 $this->constructItem($valorH);
                     $this->itemsMenuString.="</ul></div></li>";                          
                 }
                 else
-                    $this->itemsMenuString.="<li><a href='".$item["url"]."' ><span>".$item["nombre"]."</span></a></li>";
+                    $this->itemsMenuString.="<li><a href='".$url."' ><span ".$attr_span." >".$item["nombre"]."</span></a></li>";
 
       }
       

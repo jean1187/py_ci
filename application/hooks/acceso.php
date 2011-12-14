@@ -24,7 +24,7 @@ class acceso{
                             redirect(base_url());
 /** 2 */       else if($this->CI->config->item('mantenimiento')  and $this->CI->session->userdata("user")!=""  and !in_array($this->CI->router->class ,array("mantenimiento","login")) && $this->session["grupo_id"]!=1  )
                                 redirect("mantenimiento");
-/** 3 */          else if($this->CI->session->userdata("user")!="" && in_array($this->CI->router->class ,array("login")) and $this->CI->router->method!="salir" && !$this->CI->config->item('mantenimiento'))
+/** 3 */          else if($this->CI->session->userdata("user")!="" && in_array($this->CI->router->class ,array("mantenimiento","login")) and $this->CI->router->method!="salir" && !$this->CI->config->item('mantenimiento'))
                             redirect("welcome");
 /** 4 */            else if($this->CI->session->userdata("user")!="" && !in_array($this->CI->router->class ,$class_sin_verificar_en_menu) &&  !$this->CI->config->item('mantenimiento'))
                         { 

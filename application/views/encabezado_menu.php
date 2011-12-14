@@ -2,23 +2,53 @@
 <html>
 	<head>
 <!-- ********************************************************************************************************** -->
-                <link rel='shortcut icon' href='/imagenes/icons/favicon.ico' />
+                <?php 
+                    echo link_tag('/imagenes/icons/favicon.ico', 'shortcut icon', 'image/ico');
+                ?>
 <!-- ********************************************************************************************************** -->
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
                 <!-- ********** Estilos y Js Generales  ***********-->
-                <link type="text/css" href="/css/style.css" media="screen" rel="stylesheet" />
+                <?php 
+                $meta = array(
+                        array('name' => 'robots', 'content' => 'no-cache'),
+                        array('name' => 'description', 'content' => 'Direccion de Proyectos Edo Aragua'),
+                        array('name' => 'keywords', 'content' => 'proyectos aragua,direccion de proyectos,edo aragua,proyectos'),
+                        array('name' => 'robots', 'content' => 'no-cache'),
+                        array('name' => 'Content-type', 'content' => 'text/html; charset=utf-8', 'type' => 'equiv')
+                    );
+
+                    echo meta($meta); 
+                
+                    echo link_tag(array(
+                                      'href' => '/css/style.css',
+                                      'rel' => 'stylesheet',
+                                      'type' => 'text/css',
+                                      'media' => 'screen'
+                                   ));
+                ?>
                 <script type="text/javascript"  src='/js/jquery.js'></script>
 <!-- ********************************************************************************************************** -->
                 <!-- ********** Js del Menu  ***********-->
-                <link type="text/css" href="/css/apycomMenu/menu.css" rel="stylesheet" />
+                <?php 
+                    echo link_tag('/css/apycomMenu/menu.css');
+                ?>                
                 <script type="text/javascript" src="/js/apycomMenu/menu.js"></script>
 <!-- ********************************************************************************************************** -->
                  <!-- ********** 960 Grid  ***********-->
-                 <link type="text/css" href="/css/960Grid/reset.css" media="screen" rel="stylesheet" />
-                 <link type="text/css" href="/css/960Grid/text.css" media="screen" rel="stylesheet" />
-                 <link type="text/css" href="/css/960Grid/960_24_col.css" media="screen" rel="stylesheet" />
+                <?php 
+                    echo link_tag('/css/960Grid/reset.css');
+                    echo link_tag('/css/960Grid/text.css');
+                    echo link_tag('/css/960Grid/960_24_col.css');
+                ?>                     
                 
 <!-- ********************************************************************************************************** -->
+
+                 <!-- ********** achtung ***********-->
+                <?php  echo link_tag('/css/achtung/ui.achtung-min.css');  ?>                     
+                 <script type="text/javascript"  src='/js/achtung/ui.achtung-min.js'></script>
+                 
+                 <!-- ********** achtung ***********-->
+                 <script type="text/javascript"  src='/js/global.js'></script>
+                 
     <title><?=$title?></title>
 </head>
 <body>
@@ -47,7 +77,7 @@
             </div>  
         </header>
        <div class="clear"></div>
-                            <div id="menu" class="grid_24">
+                            <div class="grid_24 container_menu">
                                 <ul class="menu">
                                     <li><a href="<?php echo base_url();?>" ><span>Inicio</span></a></li>
                                             <?php

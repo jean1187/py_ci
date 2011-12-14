@@ -20,7 +20,7 @@
  */
 
 /* menu::base */
-div#menu {
+div.container_menu {
 	background: transparent url(images/menu_m.png) repeat-x scroll 0 0;
 	/*position: absolute;*/
 	top: 0;
@@ -39,7 +39,7 @@ ul.menu {
 	position: relative;
 }
 
-div#menu ul {
+div.container_menu ul {
 	margin: 0px;
 	padding: 0px;
 	list-style: none;
@@ -48,7 +48,7 @@ div#menu ul {
 	position: relative;
 }
 
-div#menu li {
+div.container_menu li {
 	position: relative;
 	margin: 0px;
 	padding: 0px;
@@ -59,7 +59,7 @@ div#menu li {
 	z-index: 3;
 }
 /* menu::level1 */
-div#menu li a {
+div.container_menu li a {
 	height: 30px;
 	display: block;
 	float: left;
@@ -71,7 +71,7 @@ div#menu li a {
   position: relative;
 }
 
-div#menu li span {  
+div.container_menu li span {  
 	color: #333; 
 	display: block;
 	padding: 0 15px;
@@ -81,7 +81,7 @@ div#menu li span {
 	position: relative;
 }
 
-div#menu li span.bg { 
+div.container_menu li span.bg { 
 	display: block;
   background: transparent url('images/menu_level1_item.png') repeat-x scroll 0pt 100%;
   padding: 0;
@@ -91,16 +91,16 @@ div#menu li span.bg {
   float: left;
 }
 
-div#menu li.current {  
+div.container_menu li.current {  
 	font-weight: bold;
 }
 
-div#menu li.current ul {  
+div.container_menu li.current ul {  
 	font-weight: normal;
 }
 
 /* menu::level2 */
-div#menu ul.menu ul {
+div.container_menu ul.menu ul {
 	padding: 0px 0px 10px;
 	background: transparent url('images/menu_dropdown_bg.png') no-repeat scroll 0pt 100%; 
 	_background: transparent url('images/menu_dropdown_bg.gif') no-repeat scroll 0pt 100%;	
@@ -110,20 +110,20 @@ div#menu ul.menu ul {
 	top: 30px;
 }
 
-div#menu li:hover ul, div#menu li.sfhover ul { 
+div.container_menu li:hover ul, div.container_menu li.sfhover ul { 
 	left: 0px; 
 	z-index: 100;
 	visibility: visible; 
 }
 
-div#menu li li { 
+div.container_menu li li { 
 	width: 100%; 
 	text-indent: 0px;
 	float: none; 
 	height: auto;
 }
 
-div#menu li li a, div#menu li li span.separator { 
+div.container_menu li li a, div.container_menu li li span.separator { 
 	margin: 0px 1px;
 	padding: 0px; 
 	background: url('images/menu_level2_item.gif') no-repeat scroll 100% bottom;
@@ -134,31 +134,31 @@ div#menu li li a, div#menu li li span.separator {
 	width: 163px;
 }
 
-div#menu li li a.parent { 
+div.container_menu li li a.parent { 
 	background: url('images/menu_level2_item_parent.gif') no-repeat scroll 100% bottom;
 }
 
 /* menu::level3 */
-div#menu li ul ul { 
+div.container_menu li ul ul { 
 	margin: -31px 0 0 164px;
 }
 
-div#menu li:hover ul ul, div#menu li.sfhover ul ul { 
+div.container_menu li:hover ul ul, div.container_menu li.sfhover ul ul { 
 	border-top: 1px solid #ccc; 
 }
 
-div#menu li:hover ul ul, div#menu li.sfhover ul ul, div#menu li:hover ul ul ul, div#menu li.sfhover ul ul ul, div#menu li:hover ul ul ul ul, div#menu li.sfhover ul ul ul ul { 
+div.container_menu li:hover ul ul, div.container_menu li.sfhover ul ul, div.container_menu li:hover ul ul ul, div.container_menu li.sfhover ul ul ul, div.container_menu li:hover ul ul ul ul, div.container_menu li.sfhover ul ul ul ul { 
 	left: -999em; 
 }
-div#menu li li:hover ul, div#menu li li.sfhover ul, div#menu li li li:hover ul, div#menu li li li.sfhover ul, div#menu li li li li:hover ul, div#menu li li li li.sfhover ul { left: 0pt; z-index: 100; }
+div.container_menu li li:hover ul, div.container_menu li li.sfhover ul, div.container_menu li li li:hover ul, div.container_menu li li li.sfhover ul, div.container_menu li li li li:hover ul, div.container_menu li li li li.sfhover ul { left: 0pt; z-index: 100; }
 
-div#menu a:hover {
+div.container_menu a:hover {
 	color: #FFF;
 }
-div#menu span:hover {
+div.container_menu span:hover {
 	color: #FFF;
 }
-div#menu li ul span:hover {
+div.container_menu li ul span:hover {
 	color: #FFFFFF;
 }
  

@@ -1,0 +1,48 @@
+<?php
+/**
+ * Library
+ *
+ * Library que genera el menu general, y el menu para cada sistema
+ *
+ * @package             GBA
+ * @author              Gobierno Bolivariano de Aragua
+ * @copyright   Copyright (c) 2009 - 2010, Gobierno Bolivariano de Aragua.
+ * @link                http://www.aragua.gob.ve
+ * @filesource		./application/libraries/cargar.php
+ */
+// ------------------------------------------------------------------------
+
+/**
+ * Clase carga
+ * 
+ * Generacion del menu
+ * 
+ * @package		GBA
+  * @category    principal
+ * @author	Jean Mendoza
+ * @fecha	25-11-2010
+ */
+class _global{
+
+    //private $CI;
+
+    function  __construct() {
+       
+        
+    }
+  
+    function array_merge_key_values($array,$campos)
+    {
+            $retorno=array();
+            foreach ($array as $valor)
+                $retorno[$valor[$campos[0]]]=$valor[$campos[1]];
+            return $retorno;
+    }//fin array_merge_key_values
+
+//*********************
+//fin library
+//*********************
+}
+/** End of file _global.php */
+/** Location: ./application/libraries/_global.php */
+?>

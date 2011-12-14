@@ -80,6 +80,7 @@ $config['email'] = "jeanmendozar@gmail.com";
 | Coloque True o False si estara en matenimiento El sitio completo, VALOR por DEFAULT FALSE
 |
 */
+//$config['mantenimiento'] = TRUE;
 $config['mantenimiento'] = FALSE;
 
 /*
