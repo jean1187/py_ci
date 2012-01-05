@@ -89,14 +89,14 @@ class _menu{
                 $this->db->from('menu');
                 //if($this->userdata["grupo_id"]!=1)
                 $this->db->like('grupo',",".$this->userdata["grupo_id"].","); 
-                $this->db->where('parent is null', null);
+                $this->db->where(array('parent is null'=>null,"delete <>"=>1));
                 return  $this->db->get()->result_array();
       }//fin padres      
 
        private function   ObternerHijos($id_parent){
                 $this->db->from('menu');
                 $this->db->like('grupo',",".$this->userdata["grupo_id"].","); 
-                $this->db->where('parent',$id_parent);
+                $this->db->where(array('parent'=>$id_parent,"delete <>"=>1));
                 return  $this->db->get()->result_array();
       }//fin hijos
       //            

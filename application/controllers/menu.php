@@ -8,23 +8,48 @@ class Menu extends CI_Controller {
             parent::__construct();
             $this->load->model('m_menu');
             $this->load->library("_global");
+            $this->load->library("jqgrid");
         }
   
     
 	public function index()
 	{
-            $data["grupos"]=$this->_global->array_merge_key_values($this->m_menu->Grupos(),array("id","nombre"));
-            $this->load->vars($data);
-            $this->cargar->menu_system("menu/index","Configuración del Menu");
+            $data['grid_index'] = $this->jqgrid->grid_index('#cargos_grid', base_url(). 'js/controllers/menu/index.js');
+            $data['ruta_ejecutor'] =form_hidden("ruta_ejecutor",current_url()).form_hidden("nombre_programa","Configuración del Menu");
+                $this->load->vars($data);
+                $this->cargar->menu_system("menu/index","Configuración del Menu");
 	}//fin index
         
         
         function operacion() 
         {
-            if($this->validacion_form())
-            {
-                $this->m_menu->add();
-            }
+        
+            switch ($this->input->post('oper')) 
+             {
+                case 'json':
+                      //echo $this->jqgrid->armado_inicial(array("id","nombre","url","parent","grupo"),"menu","","","",true);
+                    echo $this->jqgrid->armado_inicial(array("id","nombre","url","parent","grupo"),"menu","","SELECT * FROM menu where menu.id in (SELECT id FROM menu where menu.delete<>1)","",true);
+                break;
+                case 'add':
+                   if($this->validacion_form())
+                    $this->m_menu->add();
+                break;
+                case 'edit':
+                    if($this->validacion_form())
+                    $this->m_menu->editar();
+                break;
+                case 'del':
+                     $this->m_menu->delete();
+                break;
+                case 'search_edit':
+                    echo json_encode($this->jqgrid->buscar_para_editar("id,nombre,url,grupo","", "","SELECT parent.id as idparent,parent.nombre as nombreparent,parent.grupo as groupParentDiv,child.nombre,child.url,child.grupo FROM menu as parent,menu child
+                                                                                                        where parent.id = child.parent AND parent.nombre <> child.nombre and child.id=".$this->input->post("id")));
+                break;                
+                case 'search_edit_parent':
+                    echo json_encode($this->jqgrid->buscar_para_editar("id,nombre,url,grupo",$this->input->post("id"), "menu"));
+                break;
+             }
+
         }//fin operation
         
         function validacion_form(){
@@ -44,7 +69,14 @@ class Menu extends CI_Controller {
                         else
                             return true;
             }//fin validacion_form        
-        
+   
+            function grid_form() 
+            {
+                     $data["grupos"]=$this->_global->array_merge_key_values($this->m_menu->Grupos(),array("id","nombre"));
+                     $this->load->vars($data);
+                     //$this->cargar->menu_system("menu/form","Configuración del Menu");
+                     $this->load->view("menu/form");
+            }//function grid_form() 
 
 	  function menu_select()
 	  {

@@ -39,7 +39,22 @@
                     echo link_tag('/css/960Grid/text.css');
                     echo link_tag('/css/960Grid/960_24_col.css');
                 ?>                     
+
+                 
+<!-- ********************************************************************************************************** -->          
+
+                <!-- ********** jquery  ***********-->
+                <link type="text/css" href="<?=base_url()?>css/jquery_ui/jquery-ui.css" media="screen" rel="stylesheet" />
+                <script type="text/javascript"  src='<?=base_url()?>js/jquery_ui/jquery-ui.js'></script>                
+
+                <!-- ********** jqgrid  ***********-->                
+                <link type="text/css" href="<?=base_url()?>css/estilos.css" media="screen" rel="stylesheet" />
+                <script type="text/javascript"  src='<?=base_url()?>js/jqgrid/js/language/grid_locale_sp.js'></script>
+                <script type="text/javascript"  src='<?=base_url()?>js/jqgrid/js/jqgrid.js'></script>
                 
+                <link type="text/css" href="<?=base_url()?>js/jqgrid/css/ui_jqgrid.css" media="screen" rel="stylesheet" />
+                <script type="text/javascript"  src='<?=base_url()?>js/global_jqgrid.js'></script>                
+                 
 <!-- ********************************************************************************************************** -->
 
                  <!-- ********** achtung ***********-->
@@ -89,3 +104,4 @@
                             </div>
 
                             <div id="copyright">Copyright &copy; 2011 <a href="http://apycom.com/">Apycom jQuery Menus</a></div>
+                            <br/><br/><br/>
