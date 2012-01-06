@@ -1,4 +1,4 @@
-function formulario(tabla,form,base_url,nombre_programa,width,heigth){
+function formulario(clase,form,base_url,nombre_programa,width,heigth,position){
   //  inicializando variables
     w=width;
     h=heigth;
@@ -10,7 +10,8 @@ function formulario(tabla,form,base_url,nombre_programa,width,heigth){
     $("#accordion").accordion();
 
     $("input[id*='agregar']").click(function(){
-        //reestablecer();
+        $(".reset").resetear();
+        
         $(form).dialog("open");
         oper="add";
     });
@@ -34,24 +35,24 @@ var date_options={
     yearRange: '1900:2020',
 };
 
+var buttons={
+                "Cerrar": function(){$(form).dialog("close");},
+                "Reestablecer":function(){$(".reset").resetear();},
+                "Guardar":function(){$.guardar("#"+clase+"_grid",base_url);}
+            };
+            
     $(form)
     .load(base_url+'/grid_form')
     .dialog
         ({
             autoOpen: false,
-            buttons: {
-                "Cerrar": function(){$(form).dialog("close");},
-                "Reestablecer":function(){reestablecer();},
-                "Guardar":function(){ //guardar("#"+tabla+"_grid",base_url);
-                    $.guardar("#"+tabla+"_grid",base_url);
-                }
-            },
+            buttons: buttons,
             dialogClass: "ui-state-hover",
             closeOnEscape: true,
             draggable: false,
             modal: true,
             title:nombre_programa,
-            position: ["center", 40],
+            position: ["center", position],
             resizable: false,
             width: w,
             height: h,
@@ -66,7 +67,7 @@ var date_options={
 
 
     $("input[id*='eliminar']").click(function(){
-        $.peticion_delete("#"+tabla+"_grid",base_url,"");
+        $.peticion_delete("#"+clase+"_grid",base_url,"");
     });
 
     jQuery.peticion_delete = function(grid,base_url,datos) {
@@ -102,9 +103,9 @@ var date_options={
     }//peticion_delete
     
     $("input[id*='modificar']").click(function(){
-        $.peticion_ajax_edit("#"+tabla+"_grid",base_url,form);
+        $.peticion_ajax_edit("#"+clase+"_grid",base_url,form);
         /*var datos="";
-        gr = $("#"+tabla+"_grid").jqGrid('getGridParam','selrow');        
+        gr = $("#"+clase+"_grid").jqGrid('getGridParam','selrow');        
             if( gr != null ){
                 $.ajax({
                     type: "POST",
@@ -165,16 +166,6 @@ var date_options={
             }*/
     });
 
-}
-
-function reestablecer(){
-    $('input').each(function(index){
-        if (($(this)[0].type!='submit')&&($(this)[0].type!='button')&&($(this)[0].className!='ui-pg-input')&&($(this)[0].type!='hidden'))
-            $(this)[0].value="";
-    });
-    $('select').each(function(index){
-        $(this)[0].value="";
-    });
 }
 
 
@@ -274,3 +265,63 @@ function reestablecer(){
     jQuery.rell_campos_especificos = function(datos) {
 
     };//fin rellenar campos especificos
+    
+
+    jQuery.fn.resetear = function(){
+        this.each( function(){
+            switch(this.tagName)
+             {
+                    case 'INPUT':
+                        switch(this.type)
+                            {
+                                case 'text':
+                                    this.value="";
+                                break;
+                            }
+                    break;
+                    case 'TEXTAREA':
+                        this.value="";
+                    break;
+                    case 'SELECT':
+                    break;
+             }
+        });
+    }//reset
+    
+    
+    jQuery.init_jqgrid = function(clase,colNames,colModel,rowNum,rowList,width,height) {
+        
+        base_url=$("input[name=ruta_ejecutor]").val();
+        
+        nombre_programa=$("input[name=nombre_programa]").val();
+        
+        rowList=(rowList=="")?new Array(5,10,15):new Array(15,30,60);
+        
+        rowNum=(rowNum=="")?5:15;
+        
+        colNames=(colNames=="")?new Array("id","Nombre"):colNames;
+        
+        colModel=(colModel=="")?[{name:'id',index:'id',width:15,sorttype:"int",hidden:true},{name:'nombre',index:'nombre', width:55, align:"left"}]:colModel;
+        
+                $("#"+clase+"_grid").jqGrid({
+                    url: base_url+'/operacion',
+                    mtype : "post",
+                    datatype: "json",
+                    //nombre    que aparecera en jqgrid
+                    colNames:colNames,
+                    colModel:colModel,
+                    rowNum:rowNum,
+                    postData:{
+                        oper:'json'
+                    },
+                    width: width,
+                    height:height,       
+                    rowList:rowList,
+                    pager: "#"+clase+"_pager",
+                    sortname: 'id',
+                    hidegrid: false,
+                    viewrecords: true,
+                    editurl:base_url+'/operacion',
+                    caption:nombre_programa
+            });
+    };//instanciar jqgrid

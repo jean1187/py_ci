@@ -142,7 +142,7 @@ function grid_index($div,$path) {
         
         <script language="javascript" type="text/javascript" src="{$path}"></script>        
         <div id='formulario'></div>
-        <div class="espaciado_vertical_botones alineacion_derecha ui-widget-content">
+        <div class="ui-widget-content" style="text-align:right">
             <input type="button" name="formagregar_{$div}" id="formagregar_{$div}" value="Agregar" class="ui-state-default" />
             <input type="button" name="formmodificar_{$div}" id="formmodificar_{$div}" value="Modificar" class="ui-state-default" />
             <input type="button" name="eliminar_{$div}" id="eliminar_{$div}" value="Eliminar" class="ui-state-default" />

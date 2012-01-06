@@ -1,8 +1,8 @@
-<?=$ruta_ejecutor?>
+<?=$hidden?>
 <div class="contenedor ui-state-default ui-corner-all">
-    <div class="texto_cuerpo alineacion_centrado">
-        <table id="cargos_grid"></table><!--Grid table-->
-        <div id="cargos_pager"></div><!--pagination div-->
+    <div >
+        <table id="<?=$clase?>_grid"></table><!--Grid table-->
+        <div id="<?=$clase?>_pager"></div><!--pagination div-->
         <?=$grid_index?>
     </div>
 </div>

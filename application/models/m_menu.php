@@ -44,7 +44,7 @@ class M_menu extends CI_Model {
             $this->db->where('id', $this->input->post("id"));
             $this->db->update($this->table, array("delete"=>true));
             /// * No modificar esta linea
-            $this->bitacora->crear();        
+            $this->bitacora->crear();
         }
     }
     function Grupos()

@@ -14,8 +14,9 @@ class Menu extends CI_Controller {
     
 	public function index()
 	{
-            $data['grid_index'] = $this->jqgrid->grid_index('#cargos_grid', base_url(). 'js/controllers/menu/index.js');
-            $data['ruta_ejecutor'] =form_hidden("ruta_ejecutor",current_url()).form_hidden("nombre_programa","Configuración del Menu");
+            $data['grid_index'] = $this->jqgrid->grid_index('#'.$this->router->class.'_grid', base_url(). 'js/controllers/'.$this->router->class.'/index.js');
+            $data['hidden'] =form_hidden("ruta_ejecutor",current_url()).form_hidden("nombre_programa","Gestión de Cargos").form_hidden("clase",$this->router->class);
+            $data['clase'] =$this->router->class;
                 $this->load->vars($data);
                 $this->cargar->menu_system("menu/index","Configuración del Menu");
 	}//fin index
@@ -90,5 +91,5 @@ class Menu extends CI_Controller {
 	  }
 }//fin class
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+/* End of file menu.php */
+/* Location: ./application/controllers/menu.php */

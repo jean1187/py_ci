@@ -1,47 +1,31 @@
-/************No modificar estas lineas!!!************/
-base_url=$("input[name=ruta_ejecutor]").val();
-nombre_programa=$("input[name=nombre_programa]").val();
-/****************************************************/
+
 $(document).ready(function() {
-    $("#cargos_grid").jqGrid({
-        url: base_url+'/operacion',
-        mtype : "post",
-        datatype: "json",
-        //nombre    que aparecera en jqgrid
-        colNames:['id','Nombre','url','parent','grupo'],
-        colModel:[
-            {name:'id',index:'id',width:15,sorttype:"int",hidden:true},
-            {name:'nombre',index:'nombre', width:55, align:"left"},
-            {name:'url',index:'url', width:55, align:"left"},
-            {name:'parent',index:'parent', width:55, align:"left"},
-            {name:'grupo',index:'grupo', width:55, align:"left"},
-            
-        ],
-        rowNum:15,
-        postData:{
-            oper:'json'
-        },
-        width: 950,
-        height:$(window).height()/2,       
-        rowList:[15,30,60],
-        pager: '#cargos_pager',
-        sortname: 'id',
-        hidegrid: false,
-        viewrecords: true,
-        editurl:base_url+'/operacion',
-        caption:nombre_programa
-    });
-    $("#cargos_grid").jqGrid('navGrid','#cargos_pager',{edit:false,add:false,del:false},{}, {},{}, {multipleSearch:true});
-    $("#cargos_grid").jqGrid('navButtonAdd','#cargos_pager',{
+    
+    
+    var colNames=new Array('id','Nombre','url','parent','grupo');
+    var colModel=[
+                    {name:'id',index:'id',width:15,sorttype:"int",hidden:true},
+                    {name:'nombre',index:'nombre', width:55, align:"left"},
+                    {name:'url',index:'url', width:55, align:"left"},
+                    {name:'parent',index:'parent', width:55, align:"left"},
+                    {name:'grupo',index:'grupo', width:55, align:"left"},
+                ];
+    var rowList=new Array(15,30,60);
+    var clase=$("input[name=clase]").val();
+    
+    $.init_jqgrid(clase,colNames,colModel,15,rowList,950,$(window).height()/2);
+
+    $("#"+clase+"_grid").jqGrid('navGrid',"#"+clase+"_pager",{edit:false,add:false,del:false},{}, {},{}, {multipleSearch:true});
+    $("#"+clase+"_grid").jqGrid('navButtonAdd',"#"+clase+"_pager",{
         caption: "Columnas",
         title: "Mostrar/Ocultar Columnas",
         onClickButton : function (){
-            jQuery("#cargos_grid").jqGrid('setColumns');
+            jQuery("#"+clase+"_grid").jqGrid('setColumns');
         }
     });
     
 
-       formulario("cargos","",base_url,nombre_programa,960,400);
+    formulario(clase,"",base_url,nombre_programa,960,400,40);
 
 
         //SobreEscritura a la hora de buscar
@@ -61,7 +45,7 @@ $(document).ready(function() {
                                 $("#groupParentDiv").text(result)
                                 //$("#groupParentDiv").text(datos[0]["groupParentDiv"]);
                             }//fin if
-                        else {$(":radio[name='parent'][value='']").attr("checked","checked"); $("#hijo").hide();}
+                        else {$(":radio[name='parent'][value='']").attr("checked","checked");$("#hijo").hide();}
                  };//fin rellenar campos especificos
              ///////////////////////////////////////////////
                 $.busqueda (grid,base_url,form,case_server);
@@ -69,8 +53,10 @@ $(document).ready(function() {
         };//fin peticion ajax edit 
 
 
-
-
-
+    jQuery.hacer_antes_De_Abrir = function() {
+        $("input[type='text']").val("");
+        $(":radio[name='parent'][value='']").attr("checked","checked");$("#hijo").hide();
+    };//fin hacer antes De Abrir
+    
 });//fin $(document).ready(function() {
 
