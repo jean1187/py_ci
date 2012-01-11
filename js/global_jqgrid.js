@@ -12,6 +12,8 @@ function formulario(clase,form,base_url,nombre_programa,width,heigth,position){
     $("input[id*='agregar']").click(function(){
         $(".reset").resetear();
         
+        $.hacer_antes();
+        
         $(form).dialog("open");
         oper="add";
     });
@@ -267,6 +269,11 @@ var buttons={
     };//fin rellenar campos especificos
     
 
+    jQuery.hacer_antes = function() {
+
+    };//fin hacer_antes
+
+
     jQuery.fn.resetear = function(){
         this.each( function(){
             switch(this.tagName)
@@ -283,6 +290,7 @@ var buttons={
                         this.value="";
                     break;
                     case 'SELECT':
+                        this.options[0].selected=true;
                     break;
              }
         });

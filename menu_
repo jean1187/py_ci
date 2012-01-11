@@ -1,0 +1,13 @@
+MENU (SUPER_ADMIN)
+
+
+	NOMBRE
+	=======
+	Mantenimiento (#)
+
+		Menu (menu)
+		Tablas Sistema (#)
+				Organos (organos)
+				Cargos (cargos)
+				Representantes (representantes)
+		

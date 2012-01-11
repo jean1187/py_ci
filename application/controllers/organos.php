@@ -1,12 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Cargos extends CI_Controller {
+class Organos extends CI_Controller {
 
     
         function  __construct() 
         {
             parent::__construct();
-            $this->load->model('m_cargos',"modelo");
+            $this->load->model('m_organos','modelo');
             $this->load->library("jqgrid");
         }
   
@@ -14,10 +14,10 @@ class Cargos extends CI_Controller {
 	public function index()
 	{
             $data['grid_index'] = $this->jqgrid->grid_index('#'.$this->router->class.'_grid', base_url(). 'js/controllers/'.$this->router->class.'/index.js');
-            $data['hidden'] =form_hidden("ruta_ejecutor",current_url()).form_hidden("nombre_programa","Gestión de Cargos").form_hidden("clase",$this->router->class);
+            $data['hidden'] =form_hidden("ruta_ejecutor",current_url()).form_hidden("nombre_programa","Gestión de Organos").form_hidden("clase",$this->router->class);
             $data['clase'] =$this->router->class;
                 $this->load->vars($data);
-                $this->cargar->menu_system($this->router->class."/index","Gestión de Cargos");
+                $this->cargar->menu_system($this->router->class."/index","Gestión de Organos");
 	}//fin index
         
          function operacion() 
@@ -26,7 +26,7 @@ class Cargos extends CI_Controller {
             switch ($this->input->post('oper')) 
              {
                 case 'json':
-                    echo $this->jqgrid->armado_inicial(array("id","nombre"),"cargos","","SELECT * FROM cargos where cargos.delete<>1");
+                    echo $this->jqgrid->armado_inicial(array("id","nombre"),"organo","","SELECT * FROM organo where organo.delete<>1");
                 break;
                 case 'add':
                    if($this->validacion_form())
@@ -40,7 +40,7 @@ class Cargos extends CI_Controller {
                      $this->modelo->delete();
                 break;
                 case 'search_edit':
-                    echo json_encode($this->jqgrid->buscar_para_editar("","", "","SELECT * FROM cargos where cargos.id=".$this->input->post("id")));
+                    echo json_encode($this->jqgrid->buscar_para_editar("","", "","SELECT * FROM organo where organo.id=".$this->input->post("id")));
                 break;                
              }
 
@@ -72,5 +72,5 @@ class Cargos extends CI_Controller {
                
 }//fin class
 
-/* End of file cargos.php */
-/* Location: ./application/controllers/cargos.php */
+/* End of file organos.php */
+/* Location: ./application/controllers/organos.php */

@@ -6,7 +6,7 @@ class Menu extends CI_Controller {
         function  __construct() 
         {
             parent::__construct();
-            $this->load->model('m_menu');
+            $this->load->model('m_menu','modelo');
             $this->load->library("_global");
             $this->load->library("jqgrid");
         }
@@ -33,14 +33,14 @@ class Menu extends CI_Controller {
                 break;
                 case 'add':
                    if($this->validacion_form())
-                    $this->m_menu->add();
+                    $this->modelo->add();
                 break;
                 case 'edit':
                     if($this->validacion_form())
-                    $this->m_menu->editar();
+                    $this->modelo->editar();
                 break;
                 case 'del':
-                     $this->m_menu->delete();
+                     $this->modelo->delete();
                 break;
                 case 'search_edit':
                     echo json_encode($this->jqgrid->buscar_para_editar("id,nombre,url,grupo","", "","SELECT parent.id as idparent,parent.nombre as nombreparent,parent.grupo as groupParentDiv,child.nombre,child.url,child.grupo FROM menu as parent,menu child
@@ -73,7 +73,7 @@ class Menu extends CI_Controller {
    
             function grid_form() 
             {
-                     $data["grupos"]=$this->_global->array_merge_key_values($this->m_menu->Grupos(),array("id","nombre"));
+                     $data["grupos"]=$this->_global->array_merge_key_values($this->modelo->Grupos(),array("id","nombre"));
                      $this->load->vars($data);
                      //$this->cargar->menu_system("menu/form","Configuración del Menu");
                      $this->load->view("menu/form");

@@ -12,6 +12,7 @@ USE `py_new` ;
 CREATE  TABLE IF NOT EXISTS `py_new`.`municipio` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(45) NOT NULL ,
+  `delete` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
@@ -23,6 +24,7 @@ CREATE  TABLE IF NOT EXISTS `py_new`.`parroquia` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(45) NOT NULL ,
   `municipio_id` INT NOT NULL ,
+  `delete` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_parroquia_municipio` (`municipio_id` ASC) ,
   CONSTRAINT `fk_parroquia_municipio`
@@ -30,7 +32,7 @@ CREATE  TABLE IF NOT EXISTS `py_new`.`parroquia` (
     REFERENCES `py_new`.`municipio` (`id` )
     ON DELETE RESTRICT
     ON UPDATE RESTRICT)
-ENGINE = InnoDB
+ENGINE = InnoDB, 
 COMMENT = 'Parroquias de acuerdo a un municipio' ;
 
 
@@ -40,6 +42,7 @@ COMMENT = 'Parroquias de acuerdo a un municipio' ;
 CREATE  TABLE IF NOT EXISTS `py_new`.`organo` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(45) NOT NULL ,
+  `delete` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
@@ -51,6 +54,7 @@ CREATE  TABLE IF NOT EXISTS `py_new`.`entidad` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(45) NOT NULL ,
   `organo_id` INT NOT NULL ,
+  `delete` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_entidad_organo1` (`organo_id` ASC) ,
   CONSTRAINT `fk_entidad_organo1`
@@ -67,6 +71,7 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `py_new`.`areaInversion` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(45) NOT NULL ,
+  `delete` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
@@ -78,6 +83,7 @@ CREATE  TABLE IF NOT EXISTS `py_new`.`categoria` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(45) NOT NULL ,
   `areaInversion_id` INT NOT NULL ,
+  `delete` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_categoria_areaInversion1` (`areaInversion_id` ASC) ,
   CONSTRAINT `fk_categoria_areaInversion1`
@@ -95,6 +101,7 @@ CREATE  TABLE IF NOT EXISTS `py_new`.`tipoProyecto` (
   `id` INT NOT NULL ,
   `nombre` VARCHAR(45) NOT NULL ,
   `categoria_id` INT NOT NULL ,
+  `delete` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_tipoProyecto_categoria1` (`categoria_id` ASC) ,
   CONSTRAINT `fk_tipoProyecto_categoria1`
@@ -111,6 +118,7 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `py_new`.`cargos` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(45) NOT NULL ,
+  `delete` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
@@ -121,6 +129,7 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `py_new`.`directriz` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(45) NOT NULL ,
+  `delete` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
@@ -132,6 +141,7 @@ CREATE  TABLE IF NOT EXISTS `py_new`.`objetivo` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(45) NOT NULL ,
   `directriz_id` INT NOT NULL ,
+  `delete` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_objetivo_directriz1` (`directriz_id` ASC) ,
   CONSTRAINT `fk_objetivo_directriz1`
@@ -148,7 +158,15 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `py_new`.`estrategia` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(45) NOT NULL ,
-  PRIMARY KEY (`id`) )
+  `directriz_id` INT NOT NULL ,
+  `delete` TINYINT(1)  NOT NULL DEFAULT false ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_estrategia_directriz1` (`directriz_id` ASC) ,
+  CONSTRAINT `fk_estrategia_directriz1`
+    FOREIGN KEY (`directriz_id` )
+    REFERENCES `py_new`.`directriz` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -158,14 +176,15 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `py_new`.`politica` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(45) NOT NULL ,
-  `directriz_id` INT NOT NULL ,
+  `estrategia_id` INT NOT NULL ,
+  `delete` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`id`) ,
-  INDEX `fk_politica_directriz1` (`directriz_id` ASC) ,
-  CONSTRAINT `fk_politica_directriz1`
-    FOREIGN KEY (`directriz_id` )
-    REFERENCES `py_new`.`directriz` (`id` )
-    ON DELETE RESTRICT
-    ON UPDATE RESTRICT)
+  INDEX `fk_politica_estrategia1` (`estrategia_id` ASC) ,
+  CONSTRAINT `fk_politica_estrategia1`
+    FOREIGN KEY (`estrategia_id` )
+    REFERENCES `py_new`.`estrategia` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -175,6 +194,7 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `py_new`.`lineaEstrategica` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(45) NULL ,
+  `delete` TINYINT(1)  NOT NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
@@ -185,6 +205,7 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `py_new`.`objetivosDelMilenio` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(250) NOT NULL ,
+  `delete` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
@@ -202,6 +223,7 @@ CREATE  TABLE IF NOT EXISTS `py_new`.`responsable` (
   `cargos_id` INT NOT NULL ,
   `entidad_id` INT NULL ,
   `organo_id` INT NOT NULL ,
+  `delete` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_responsable_cargos1` (`cargos_id` ASC) ,
   INDEX `fk_responsable_entidad1` (`entidad_id` ASC) ,
@@ -226,26 +248,91 @@ COMMENT = 'Persona responsable del proyecto' ;
 
 
 -- -----------------------------------------------------
--- Table `py_new`.`estrategia_objetivo`
+-- Table `py_new`.`grupo`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `py_new`.`estrategia_objetivo` (
+CREATE  TABLE IF NOT EXISTS `py_new`.`grupo` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `estrategia_id` INT NOT NULL ,
-  `objetivo_id` INT NOT NULL ,
-  PRIMARY KEY (`id`, `estrategia_id`, `objetivo_id`) ,
-  INDEX `fk_estrategia_has_objetivo_objetivo1` (`objetivo_id` ASC) ,
-  INDEX `fk_estrategia_has_objetivo_estrategia1` (`estrategia_id` ASC) ,
-  CONSTRAINT `fk_estrategia_has_objetivo_estrategia1`
-    FOREIGN KEY (`estrategia_id` )
-    REFERENCES `py_new`.`estrategia` (`id` )
-    ON DELETE RESTRICT
-    ON UPDATE RESTRICT,
-  CONSTRAINT `fk_estrategia_has_objetivo_objetivo1`
-    FOREIGN KEY (`objetivo_id` )
-    REFERENCES `py_new`.`objetivo` (`id` )
+  `nombre` VARCHAR(60) NOT NULL ,
+  `delete` TINYINT(1)  NOT NULL DEFAULT false ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB, 
+COMMENT = 'Grupo de usuarios, por medio de los grupos sacare el menu' ;
+
+
+-- -----------------------------------------------------
+-- Table `py_new`.`categoriaStatus`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `py_new`.`categoriaStatus` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `nombre` VARCHAR(60) NOT NULL ,
+  `delete` TINYINT(1)  NOT NULL DEFAULT false ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB, 
+COMMENT = 'aqui estaran todas las categorias de los estatus, por ejempl' /* comment truncated */ ;
+
+
+-- -----------------------------------------------------
+-- Table `py_new`.`status`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `py_new`.`status` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `nombre` VARCHAR(60) NOT NULL ,
+  `categoriaStatus_id` INT NOT NULL ,
+  `delete` TINYINT(1)  NOT NULL DEFAULT false ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_status_categoriaStatus1` (`categoriaStatus_id` ASC) ,
+  CONSTRAINT `fk_status_categoriaStatus1`
+    FOREIGN KEY (`categoriaStatus_id` )
+    REFERENCES `py_new`.`categoriaStatus` (`id` )
     ON DELETE RESTRICT
     ON UPDATE RESTRICT)
-ENGINE = InnoDB;
+ENGINE = InnoDB, 
+COMMENT = 'Estatus de acuerdo a una categoria dada, por tabla' ;
+
+
+-- -----------------------------------------------------
+-- Table `py_new`.`users`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `py_new`.`users` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `userLogin` VARCHAR(45) NOT NULL ,
+  `passwordLogin` VARCHAR(250) NOT NULL ,
+  `nombre` VARCHAR(60) NOT NULL ,
+  `apellido` VARCHAR(60) NOT NULL ,
+  `correo` VARCHAR(80) NOT NULL ,
+  `lastLogin` DATETIME NULL COMMENT 'Como ya tenemos un historial,\neste campo no es tan necesario,\nsolo lo conservo pra tener una \ninformacion extra de cuando fue la ultima vez que logueo este registro' ,
+  `organo_id` INT NOT NULL ,
+  `entidad_id` INT NULL ,
+  `grupo_id` INT NOT NULL ,
+  `status_id` INT NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_users_organo1` (`organo_id` ASC) ,
+  INDEX `fk_users_entidad1` (`entidad_id` ASC) ,
+  INDEX `fk_users_grupo1` (`grupo_id` ASC) ,
+  UNIQUE INDEX `userLogin_UNIQUE` (`userLogin` ASC) ,
+  INDEX `fk_users_status1` (`status_id` ASC) ,
+  CONSTRAINT `fk_users_organo1`
+    FOREIGN KEY (`organo_id` )
+    REFERENCES `py_new`.`organo` (`id` )
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `fk_users_entidad1`
+    FOREIGN KEY (`entidad_id` )
+    REFERENCES `py_new`.`entidad` (`id` )
+    ON DELETE RESTRICT
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_users_grupo1`
+    FOREIGN KEY (`grupo_id` )
+    REFERENCES `py_new`.`grupo` (`id` )
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `fk_users_status1`
+    FOREIGN KEY (`status_id` )
+    REFERENCES `py_new`.`status` (`id` )
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT)
+ENGINE = InnoDB, 
+COMMENT = 'Usuarios que podran accesar al sistema' ;
 
 
 -- -----------------------------------------------------
@@ -275,11 +362,10 @@ CREATE  TABLE IF NOT EXISTS `py_new`.`proyecto` (
   `comunidadConcComunal` VARCHAR(250) NULL ,
   `norte` VARCHAR(19) NULL COMMENT 'latitud' ,
   `este` VARCHAR(19) NULL COMMENT 'longitud' ,
-  `politica` TEXT NULL COMMENT 'Aqui tendremos el array serializado con los id de las politicas seleccionadas\n' ,
-  `estrategia_objetivo_id` INT NOT NULL ,
+  `politica_id` INT NOT NULL COMMENT 'de Acuerdo a Líneas Generales del Plan de Desarrollo\nEconómico y Social de la Nación 2007 - 2013\n\n' ,
+  `objetivo_id` INT NOT NULL COMMENT 'de Acuerdo a Líneas Generales del Plan de Desarrollo\nEconómico y Social de la Nación 2007 - 2013' ,
   `tiempoEstimado` INT NOT NULL COMMENT 'Timepo estimado para la culminacion del proyecto en meses\n' ,
   `monto` DECIMAL(15,2)  NOT NULL ,
-  `fechaCreacion` DATETIME NOT NULL ,
   `impactoSocial` TEXT NOT NULL ,
   `poblacionBenef` INT NOT NULL ,
   `porcentajeAvanceF` INT NOT NULL COMMENT 'Porcentaje Fisico del proyecto' ,
@@ -363,6 +449,11 @@ CREATE  TABLE IF NOT EXISTS `py_new`.`proyecto` (
   `doceavo11` DECIMAL(15,2)  NULL ,
   `doceavo12` DECIMAL(15,2)  NULL ,
   `porcentajeEjecucion` VARCHAR(200) NULL ,
+  `user_creador` INT NOT NULL COMMENT 'Que usuario creo el proyecto' ,
+  `fechaCreacion` DATETIME NOT NULL ,
+  `user_modificador` INT NOT NULL COMMENT 'quien fue el ultimo que modifico' ,
+  `fechaModificacion` DATETIME NOT NULL ,
+  `delete` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_proyecto_organo1` (`organoCreador_id` ASC) ,
   INDEX `fk_proyecto_entidad1` (`entidadCreador_id` ASC) ,
@@ -371,7 +462,10 @@ CREATE  TABLE IF NOT EXISTS `py_new`.`proyecto` (
   INDEX `fk_proyecto_tipoProyecto1` (`tipoProyecto_id` ASC) ,
   INDEX `fk_proyecto_responsable1` (`responsableProyecto_id` ASC) ,
   INDEX `fk_proyecto_parroquia1` (`parroquia_id` ASC) ,
-  INDEX `fk_proyecto_estrategia_objetivo1` (`estrategia_objetivo_id` ASC) ,
+  INDEX `fk_proyecto_objetivo1` (`objetivo_id` ASC) ,
+  INDEX `fk_proyecto_politica1` (`politica_id` ASC) ,
+  INDEX `fk_proyecto_users1` (`user_creador` ASC) ,
+  INDEX `fk_proyecto_users2` (`user_modificador` ASC) ,
   CONSTRAINT `fk_proyecto_organo1`
     FOREIGN KEY (`organoCreador_id` )
     REFERENCES `py_new`.`organo` (`id` )
@@ -407,98 +501,28 @@ CREATE  TABLE IF NOT EXISTS `py_new`.`proyecto` (
     REFERENCES `py_new`.`parroquia` (`id` )
     ON DELETE RESTRICT
     ON UPDATE RESTRICT,
-  CONSTRAINT `fk_proyecto_estrategia_objetivo1`
-    FOREIGN KEY (`estrategia_objetivo_id` )
-    REFERENCES `py_new`.`estrategia_objetivo` (`id` )
+  CONSTRAINT `fk_proyecto_objetivo1`
+    FOREIGN KEY (`objetivo_id` )
+    REFERENCES `py_new`.`objetivo` (`id` )
     ON DELETE RESTRICT
-    ON UPDATE RESTRICT)
+    ON UPDATE RESTRICT,
+  CONSTRAINT `fk_proyecto_politica1`
+    FOREIGN KEY (`politica_id` )
+    REFERENCES `py_new`.`politica` (`id` )
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `fk_proyecto_users1`
+    FOREIGN KEY (`user_creador` )
+    REFERENCES `py_new`.`users` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_proyecto_users2`
+    FOREIGN KEY (`user_modificador` )
+    REFERENCES `py_new`.`users` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB, 
 COMMENT = 'Tabla general de proyectos' ;
-
-
--- -----------------------------------------------------
--- Table `py_new`.`grupo`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `py_new`.`grupo` (
-  `id` INT NOT NULL AUTO_INCREMENT ,
-  `nombre` VARCHAR(60) NOT NULL ,
-  PRIMARY KEY (`id`) )
-ENGINE = InnoDB, 
-COMMENT = 'Grupo de usuarios, por medio de los grupos sacare el menu' ;
-
-
--- -----------------------------------------------------
--- Table `py_new`.`categoriaStatus`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `py_new`.`categoriaStatus` (
-  `id` INT NOT NULL AUTO_INCREMENT ,
-  `nombre` VARCHAR(60) NOT NULL ,
-  PRIMARY KEY (`id`) )
-ENGINE = InnoDB, 
-COMMENT = 'aqui estaran todas las categorias de los estatus, por ejempl' /* comment truncated */ ;
-
-
--- -----------------------------------------------------
--- Table `py_new`.`status`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `py_new`.`status` (
-  `id` INT NOT NULL AUTO_INCREMENT ,
-  `nombre` VARCHAR(60) NOT NULL ,
-  `categoriaStatus_id` INT NOT NULL ,
-  PRIMARY KEY (`id`) ,
-  INDEX `fk_status_categoriaStatus1` (`categoriaStatus_id` ASC) ,
-  CONSTRAINT `fk_status_categoriaStatus1`
-    FOREIGN KEY (`categoriaStatus_id` )
-    REFERENCES `py_new`.`categoriaStatus` (`id` )
-    ON DELETE RESTRICT
-    ON UPDATE RESTRICT)
-ENGINE = InnoDB, 
-COMMENT = 'Estatus de acuerdo a una categoria dada, por tabla' ;
-
-
--- -----------------------------------------------------
--- Table `py_new`.`users`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `py_new`.`users` (
-  `id` INT NOT NULL AUTO_INCREMENT ,
-  `userLogin` VARCHAR(45) NOT NULL ,
-  `passwordLogin` VARCHAR(250) NOT NULL ,
-  `nombre` VARCHAR(60) NOT NULL ,
-  `apellido` VARCHAR(60) NOT NULL ,
-  `correo` VARCHAR(80) NOT NULL ,
-  `lastLogin` DATETIME NOT NULL COMMENT 'Como ya tenemos un historial,\neste campo no es tan necesario,\nsolo lo conservo pra tener una \ninformacion extra de cuando fue la ultima vez que logueo este registro' ,
-  `organo_id` INT NOT NULL ,
-  `entidad_id` INT NULL ,
-  `grupo_id` INT NOT NULL ,
-  `status_id` INT NOT NULL ,
-  PRIMARY KEY (`id`) ,
-  INDEX `fk_users_organo1` (`organo_id` ASC) ,
-  INDEX `fk_users_entidad1` (`entidad_id` ASC) ,
-  INDEX `fk_users_grupo1` (`grupo_id` ASC) ,
-  UNIQUE INDEX `userLogin_UNIQUE` (`userLogin` ASC) ,
-  INDEX `fk_users_status1` (`status_id` ASC) ,
-  CONSTRAINT `fk_users_organo1`
-    FOREIGN KEY (`organo_id` )
-    REFERENCES `py_new`.`organo` (`id` )
-    ON DELETE RESTRICT
-    ON UPDATE RESTRICT,
-  CONSTRAINT `fk_users_entidad1`
-    FOREIGN KEY (`entidad_id` )
-    REFERENCES `py_new`.`entidad` (`id` )
-    ON DELETE RESTRICT
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_users_grupo1`
-    FOREIGN KEY (`grupo_id` )
-    REFERENCES `py_new`.`grupo` (`id` )
-    ON DELETE RESTRICT
-    ON UPDATE RESTRICT,
-  CONSTRAINT `fk_users_status1`
-    FOREIGN KEY (`status_id` )
-    REFERENCES `py_new`.`status` (`id` )
-    ON DELETE RESTRICT
-    ON UPDATE RESTRICT)
-ENGINE = InnoDB, 
-COMMENT = 'Usuarios que podran accesar al sistema' ;
 
 
 -- -----------------------------------------------------
@@ -506,9 +530,6 @@ COMMENT = 'Usuarios que podran accesar al sistema' ;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `py_new`.`bitacora` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `idRegistro` INT NOT NULL ,
-  `tabla` VARCHAR(60) NOT NULL ,
-  `accion` TINYINT NOT NULL COMMENT '1 = Añadir \n2= Modificar\n3 = Eliminar' ,
   `fecha` DATETIME NOT NULL COMMENT 'Fecha de la accion' ,
   `sql` TEXT NOT NULL ,
   `users_id_responsable` INT NOT NULL ,
@@ -532,6 +553,7 @@ CREATE  TABLE IF NOT EXISTS `py_new`.`menu` (
   `url` VARCHAR(50) NULL DEFAULT '#' ,
   `parent` INT NULL ,
   `grupo` TEXT NULL ,
+  `delete` TINYINT(1)  NOT NULL DEFAULT false COMMENT 'Este campo se utilizara para las eliminaciones logicas' ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_menu_menu1` (`parent` ASC) ,
   CONSTRAINT `fk_menu_menu1`
@@ -575,6 +597,18 @@ CREATE  TABLE IF NOT EXISTS `py_new`.`historialSessions` (
     ON UPDATE RESTRICT)
 ENGINE = InnoDB, 
 COMMENT = 'Se guardara un registro por cada session del usuario y con e' /* comment truncated */ ;
+
+
+-- -----------------------------------------------------
+-- Table `py_new`.`url_especiales`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `py_new`.`url_especiales` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `url` VARCHAR(50) NOT NULL ,
+  `id_users` TEXT NULL COMMENT 'Si este campo esta en NULL\ntodos los usuarios podran ver el \ncontenido del controlador' ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB, 
+COMMENT = 'Aqui estara la direccion de los controladores, que no estara' /* comment truncated */ ;
 
 
 

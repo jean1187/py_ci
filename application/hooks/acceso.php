@@ -18,7 +18,7 @@ class acceso{
         $class_sin_verificar_en_menu=array("login","welcome","mantenimiento");
 
           //verificando que exista siempre una sesion
-
+//if($this->CI->router->class!="fixtures")
 /** 1 */         if($this->CI->router->class!="login" && $this->CI->session->userdata("user")=="" )
                             //redirect("login/restringido");
                             redirect(base_url());
