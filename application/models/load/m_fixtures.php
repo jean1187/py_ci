@@ -462,5 +462,6 @@ class M_fixtures extends CI_Model {
           $result.=$this->db->last_query()."\n";
         return $result;
     }
+    
 }//fin class
 ?>
