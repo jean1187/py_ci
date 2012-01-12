@@ -23,16 +23,9 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `py_new`.`parroquia` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(45) NOT NULL ,
-  `municipio_id` INT NOT NULL ,
   `delete` TINYINT(1)  NOT NULL DEFAULT false ,
-  PRIMARY KEY (`id`) ,
-  INDEX `fk_parroquia_municipio` (`municipio_id` ASC) ,
-  CONSTRAINT `fk_parroquia_municipio`
-    FOREIGN KEY (`municipio_id` )
-    REFERENCES `py_new`.`municipio` (`id` )
-    ON DELETE RESTRICT
-    ON UPDATE RESTRICT)
-ENGINE = InnoDB, 
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB
 COMMENT = 'Parroquias de acuerdo a un municipio' ;
 
 
@@ -98,7 +91,7 @@ ENGINE = InnoDB;
 -- Table `py_new`.`tipoProyecto`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `py_new`.`tipoProyecto` (
-  `id` INT NOT NULL ,
+  `id` INT NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(45) NOT NULL ,
   `categoria_id` INT NOT NULL ,
   `delete` TINYINT(1)  NOT NULL DEFAULT false ,
@@ -248,6 +241,30 @@ COMMENT = 'Persona responsable del proyecto' ;
 
 
 -- -----------------------------------------------------
+-- Table `py_new`.`municipio_parroquia`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `py_new`.`municipio_parroquia` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `municipio_id` INT NOT NULL ,
+  `parroquia_id` INT NOT NULL ,
+  PRIMARY KEY (`id`, `municipio_id`, `parroquia_id`) ,
+  INDEX `fk_parroquia_has_municipio_municipio1` (`municipio_id` ASC) ,
+  INDEX `fk_parroquia_has_municipio_parroquia1` (`parroquia_id` ASC) ,
+  CONSTRAINT `fk_parroquia_has_municipio_parroquia1`
+    FOREIGN KEY (`parroquia_id` )
+    REFERENCES `py_new`.`parroquia` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_parroquia_has_municipio_municipio1`
+    FOREIGN KEY (`municipio_id` )
+    REFERENCES `py_new`.`municipio` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB, 
+COMMENT = 'Esta tabla salio, por que existe la opcion que un proyecto e' /* comment truncated */ ;
+
+
+-- -----------------------------------------------------
 -- Table `py_new`.`grupo`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `py_new`.`grupo` (
@@ -358,7 +375,7 @@ CREATE  TABLE IF NOT EXISTS `py_new`.`proyecto` (
   `fase` INT NOT NULL ,
   `tipoProyecto_id` INT NOT NULL ,
   `responsableProyecto_id` INT NOT NULL ,
-  `parroquia_id` INT NOT NULL ,
+  `minicipio_parroquia_id` INT NOT NULL ,
   `comunidadConcComunal` VARCHAR(250) NULL ,
   `norte` VARCHAR(19) NULL COMMENT 'latitud' ,
   `este` VARCHAR(19) NULL COMMENT 'longitud' ,
@@ -453,6 +470,7 @@ CREATE  TABLE IF NOT EXISTS `py_new`.`proyecto` (
   `fechaCreacion` DATETIME NOT NULL ,
   `user_modificador` INT NOT NULL COMMENT 'quien fue el ultimo que modifico' ,
   `fechaModificacion` DATETIME NOT NULL ,
+  `numeracion_cfg` VARCHAR(45) NULL COMMENT 'Esta es la numeracion que lleva el consejo federal de gobierno' ,
   `delete` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_proyecto_organo1` (`organoCreador_id` ASC) ,
@@ -461,7 +479,7 @@ CREATE  TABLE IF NOT EXISTS `py_new`.`proyecto` (
   INDEX `fk_proyecto_objtivosDelMilenio1` (`objetivosDelMilenio_id` ASC) ,
   INDEX `fk_proyecto_tipoProyecto1` (`tipoProyecto_id` ASC) ,
   INDEX `fk_proyecto_responsable1` (`responsableProyecto_id` ASC) ,
-  INDEX `fk_proyecto_parroquia1` (`parroquia_id` ASC) ,
+  INDEX `fk_proyecto_parroquia1` (`minicipio_parroquia_id` ASC) ,
   INDEX `fk_proyecto_objetivo1` (`objetivo_id` ASC) ,
   INDEX `fk_proyecto_politica1` (`politica_id` ASC) ,
   INDEX `fk_proyecto_users1` (`user_creador` ASC) ,
@@ -497,8 +515,8 @@ CREATE  TABLE IF NOT EXISTS `py_new`.`proyecto` (
     ON DELETE RESTRICT
     ON UPDATE RESTRICT,
   CONSTRAINT `fk_proyecto_parroquia1`
-    FOREIGN KEY (`parroquia_id` )
-    REFERENCES `py_new`.`parroquia` (`id` )
+    FOREIGN KEY (`minicipio_parroquia_id` )
+    REFERENCES `py_new`.`municipio_parroquia` (`id` )
     ON DELETE RESTRICT
     ON UPDATE RESTRICT,
   CONSTRAINT `fk_proyecto_objetivo1`

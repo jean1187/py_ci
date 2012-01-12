@@ -62,6 +62,27 @@ class M_fixtures extends CI_Model {
          $this->db->truncate('directriz');
          $result.=$this->db->last_query()."\n";
          
+         $this->db->truncate('municipio_parroquia');
+         $result.=$this->db->last_query()."\n";
+         
+         $this->db->truncate('parroquia');
+         $result.=$this->db->last_query()."\n";
+         
+         $this->db->truncate('municipio');
+         $result.=$this->db->last_query()."\n";
+         
+         $this->db->truncate('lineaEstrategica');
+         $result.=$this->db->last_query()."\n";
+         
+         $this->db->truncate('tipoProyecto');
+         $result.=$this->db->last_query()."\n";
+         
+         $this->db->truncate('categoria');
+         $result.=$this->db->last_query()."\n";
+         
+         $this->db->truncate('areaInversion');
+         $result.=$this->db->last_query()."\n";
+         
          
          
         $this->db->insert('categoriaStatus', array("nombre"=>"user"));
@@ -515,6 +536,394 @@ class M_fixtures extends CI_Model {
           
           $this->db->insert_batch('politica', $politica);
           $result.=$this->db->last_query()."\n";
+          
+          
+          /******************************************************************/
+          
+          $municipio=array(
+                      array("nombre"=>"Bolívar"),
+                      array("nombre"=>"Camatagua"),
+                      array("nombre"=>"Francisco Linares Alcántara"),
+                      array("nombre"=>"Girardot"),
+                      array("nombre"=>"José Ángel Lamas"),
+                      array("nombre"=>"José Félix Ribas"),
+                      array("nombre"=>"José Rafael Revenga"),
+                      array("nombre"=>"Libertador"),
+                      array("nombre"=>"Mario Briceño Iragorry"),
+                      array("nombre"=>"Ocumare de la Costa de Oro"),
+                      array("nombre"=>"San Casimiro"),
+                      array("nombre"=>"San Sebastián"),
+                      array("nombre"=>"Santiago Mariño"),
+                      array("nombre"=>"Santos Michelena"),
+                      array("nombre"=>"Sucre"),
+                      array("nombre"=>"Tovar"),
+                      array("nombre"=>"Urdaneta"),
+                      array("nombre"=>"Zamora"),
+                      array("nombre"=>"Varios Municipios"),              
+          );
+          
+          $this->db->insert_batch('municipio', $municipio);
+          $result.=$this->db->last_query()."\n";
+          
+          $parroquias=array(
+                            array("nombre"=>"San Mateo"),
+                            array("nombre"=>"Carmen de Cura"),
+                            array("nombre"=>"Camatagua"),
+                            array("nombre"=>"Santa Rita"),
+                            array("nombre"=>"Monseñor Feliciano González"),
+                            array("nombre"=>"Francisco de Miranda"),
+                            array("nombre"=>"Los Tacariguas"),
+                            array("nombre"=>"Pedro Jose Ovalles"),
+                            array("nombre"=>"Madre María de San José"),
+                            array("nombre"=>"José Casanova Godoy"),
+                            array("nombre"=>"Las Delicias"),
+                            array("nombre"=>"Joaquín Crespo"),
+                            array("nombre"=>"Choroní"),
+                            array("nombre"=>"Andrés Eloy Blanco"),
+                            array("nombre"=>"Santa Cruz"),
+                            array("nombre"=>"Las Guacamayas"),
+                            array("nombre"=>"Zuata"),
+                            array("nombre"=>"La Victoria"),
+                            array("nombre"=>"Pao de Zárate"),
+                            array("nombre"=>"Castor Nieves Ríos"),
+                            array("nombre"=>"El Consejo"),
+                            array("nombre"=>"San Martín de Porres"),
+                            array("nombre"=>"Palo Negro"),
+                            array("nombre"=>"El Limón"),
+                            array("nombre"=>"Caña de Azúcar"),
+                            array("nombre"=>"Ocumare de la Costa"),
+                            array("nombre"=>"San Casimiro"),
+                            array("nombre"=>"Valle Morin"),
+                            array("nombre"=>"Guiripa"),
+                            array("nombre"=>"Ollas de Caramacate"),
+                            array("nombre"=>"San Sebastián"),
+                            array("nombre"=>"Alfredo Pacheco Miranda"),
+                            array("nombre"=>"Samán de Guere"),
+                            array("nombre"=>"Arévalo Aponte o Rosario de Paya"),
+                            array("nombre"=>"Chuao"),
+                            array("nombre"=>"Turmero"),
+                            array("nombre"=>"Las Tejerías"),
+                            array("nombre"=>"Tiara"),
+                            array("nombre"=>"Bella Vista"),
+                            array("nombre"=>"Cagua"),
+                            array("nombre"=>"Colonia Tovar"),
+                            array("nombre"=>"Taguay"),
+                            array("nombre"=>"Las Peñitas"),
+                            array("nombre"=>"Barbacoas"),
+                            array("nombre"=>"San Francisco de Cara"),
+                            array("nombre"=>"Villa de Cura"),
+                            array("nombre"=>"San Francisco de Asís"),
+                            array("nombre"=>"Augusto Mijares"),
+                            array("nombre"=>"Magdaleno"),
+                            array("nombre"=>"Valles de Tucutunemo"),
+                            array("nombre"=>"Varias Parroquias"),
+                            
+          );
+          
+          $this->db->insert_batch('parroquia', $parroquias);
+          $result.=$this->db->last_query()."\n";
+          
+          
+          //Relacion entre las parrouias y los municipios
+          
+          $relacion_pquia_municipio=array(
+                            array("municipio_id"=>1,"parroquia_id"=>1),
+                            array("municipio_id"=>1,"parroquia_id"=>51),
+                            
+
+                            array("municipio_id"=>2,"parroquia_id"=>2),
+                            array("municipio_id"=>2,"parroquia_id"=>3),
+                            array("municipio_id"=>2,"parroquia_id"=>51),
+
+                            array("municipio_id"=>3,"parroquia_id"=>4),
+                            array("municipio_id"=>3,"parroquia_id"=>5),
+                            array("municipio_id"=>3,"parroquia_id"=>6),
+                            array("municipio_id"=>3,"parroquia_id"=>51),
+
+                            array("municipio_id"=>4,"parroquia_id"=>7),
+                            array("municipio_id"=>4,"parroquia_id"=>8),
+                            array("municipio_id"=>4,"parroquia_id"=>9),
+                            array("municipio_id"=>4,"parroquia_id"=>10),
+                            array("municipio_id"=>4,"parroquia_id"=>11),
+                            array("municipio_id"=>4,"parroquia_id"=>12),
+                            array("municipio_id"=>4,"parroquia_id"=>13),
+                            array("municipio_id"=>4,"parroquia_id"=>14),
+                            array("municipio_id"=>4,"parroquia_id"=>51),
+
+                            array("municipio_id"=>5,"parroquia_id"=>15),
+                            array("municipio_id"=>5,"parroquia_id"=>51),
+              
+                            array("municipio_id"=>6,"parroquia_id"=>16),
+                            array("municipio_id"=>6,"parroquia_id"=>17),
+                            array("municipio_id"=>6,"parroquia_id"=>18),
+                            array("municipio_id"=>6,"parroquia_id"=>19),
+                            array("municipio_id"=>6,"parroquia_id"=>20),
+                            array("municipio_id"=>6,"parroquia_id"=>51),
+              
+                            array("municipio_id"=>7,"parroquia_id"=>21),
+                            array("municipio_id"=>7,"parroquia_id"=>51),
+              
+                            array("municipio_id"=>8,"parroquia_id"=>22),
+                            array("municipio_id"=>8,"parroquia_id"=>23),
+                            array("municipio_id"=>8,"parroquia_id"=>51),
+              
+                            array("municipio_id"=>9,"parroquia_id"=>24),
+                            array("municipio_id"=>9,"parroquia_id"=>25),
+                            array("municipio_id"=>9,"parroquia_id"=>51),
+              
+                            array("municipio_id"=>10,"parroquia_id"=>26),
+                            array("municipio_id"=>10,"parroquia_id"=>51),
+              
+                            array("municipio_id"=>11,"parroquia_id"=>27),
+                            array("municipio_id"=>11,"parroquia_id"=>28),
+                            array("municipio_id"=>11,"parroquia_id"=>29),
+                            array("municipio_id"=>11,"parroquia_id"=>30),
+                            array("municipio_id"=>11,"parroquia_id"=>51),
+              
+                            array("municipio_id"=>12,"parroquia_id"=>31),
+                            array("municipio_id"=>12,"parroquia_id"=>51),
+              
+                            array("municipio_id"=>13,"parroquia_id"=>32),
+                            array("municipio_id"=>13,"parroquia_id"=>33),
+                            array("municipio_id"=>13,"parroquia_id"=>34),
+                            array("municipio_id"=>13,"parroquia_id"=>35),
+                            array("municipio_id"=>13,"parroquia_id"=>36),
+                            array("municipio_id"=>13,"parroquia_id"=>51),
+              
+                            array("municipio_id"=>14,"parroquia_id"=>37),
+                            array("municipio_id"=>14,"parroquia_id"=>38),
+                            array("municipio_id"=>14,"parroquia_id"=>51),
+              
+                            array("municipio_id"=>15,"parroquia_id"=>39),
+                            array("municipio_id"=>15,"parroquia_id"=>40),
+                            array("municipio_id"=>15,"parroquia_id"=>51),
+
+                            array("municipio_id"=>16,"parroquia_id"=>41),
+                            array("municipio_id"=>16,"parroquia_id"=>51),
+              
+                            array("municipio_id"=>17,"parroquia_id"=>42),
+                            array("municipio_id"=>17,"parroquia_id"=>43),
+                            array("municipio_id"=>17,"parroquia_id"=>44),
+                            array("municipio_id"=>17,"parroquia_id"=>45),
+                            array("municipio_id"=>17,"parroquia_id"=>51),
+              
+                            array("municipio_id"=>18,"parroquia_id"=>46),
+                            array("municipio_id"=>18,"parroquia_id"=>47),
+                            array("municipio_id"=>18,"parroquia_id"=>48),
+                            array("municipio_id"=>18,"parroquia_id"=>49),
+                            array("municipio_id"=>18,"parroquia_id"=>50),
+                            array("municipio_id"=>18,"parroquia_id"=>51),
+              
+                            array("municipio_id"=>19,"parroquia_id"=>51),
+          );
+          
+          
+          $this->db->insert_batch('municipio_parroquia', $relacion_pquia_municipio);
+          $result.=$this->db->last_query()."\n";
+          
+          $lineaEstrategica=array(
+                              array("nombre"=>"ConstrucciÃ³n dinÃ¡mica del poder popular hacia el socialismo en el espacio regionalitario de Aragua"),
+                              array("nombre"=>"Fortalecimiento del sistema educativo participativo bolivariano como continuo humano y la nueva racionalidad del metabolismo regionalitario"),
+                              array("nombre"=>"PromociÃ³n de la vida y la salud como unidad mente-cuerpo-espÃ­Â­ritu, para toda la existencia en los espacios localitarios de Aragua"),
+                              array("nombre"=>"CreaciÃ³n del ambiente ecogeogrÃ¡fico para superar la escisiÃ³n sociedad-naturaleza en el espacio regionalitario de Aragua"),
+                              array("nombre"=>"CreaciÃ³n de la dinÃ¡mica regionalitaria para superar la contradicciÃ³n capital-trabajo"),
+                              array("nombre"=>"ConstrucciÃ³n regionalitaria de la uniÃ³n Estado-Sociedad como superaciÃ³n de la escisiÃ³n pÃºblico-privado"),
+                              array("nombre"=>"TransformaciÃ³n de la dinÃ¡mica estructural urbana y estructural regionalitaria de Aragua que oriente soluciones de los desequilibrios y asimetrÃ­as"),
+                              array("nombre"=>"ConstrucciÃ³n la nueva geometrÃ­a polÃ­tica de la comuna en la dinÃ¡mica regionalitaria"),
+                              array("nombre"=>"CreaciÃ³n de la racionalidad revolucionaria para el desarrollo espiritual del ser social en la nueva dinÃ¡mica regionalitaria"),
+              
+          );
+          
+          $this->db->insert_batch('lineaEstrategica', $lineaEstrategica);
+          $result.=$this->db->last_query()."\n";
+          
+          
+          $areaInversion=array(
+                            array("nombre"=>"ADQUISICION Y DOTACIONES"),
+                            array("nombre"=>"INFRAESTRUCTURA"),
+                            array("nombre"=>"Socio Productivo"),
+          );
+          
+          $this->db->insert_batch('areaInversion', $areaInversion);
+          $result.=$this->db->last_query()."\n";
+          
+          
+          
+          $categoria=array(
+                            array("nombre"=>"DEPORTE","areaInversion_id"=>1),
+                            array("nombre"=>"EDUCACION Y CULTURA","areaInversion_id"=>1),
+                            array("nombre"=>"MAQUINARIAS E IMPLEMENTOS","areaInversion_id"=>1),
+                            array("nombre"=>"SALUD","areaInversion_id"=>1),
+                            array("nombre"=>"SEGURIDAD","areaInversion_id"=>1),
+                            array("nombre"=>"TRANSPORTE","areaInversion_id"=>1),
+              
+                            array("nombre"=>"Agricola","areaInversion_id"=>2),
+                            array("nombre"=>"Alimentacion","areaInversion_id"=>2),
+                            array("nombre"=>"Ambiente","areaInversion_id"=>2),
+                            array("nombre"=>"Deportes","areaInversion_id"=>2),
+                            array("nombre"=>"Educación y Cultura","areaInversion_id"=>2),
+                            array("nombre"=>"Patrimonio Historico y Cultural","areaInversion_id"=>2),
+                            array("nombre"=>"Recreación","areaInversion_id"=>2),
+                            array("nombre"=>"Salud","areaInversion_id"=>2),
+                            array("nombre"=>"Servicios Basicos","areaInversion_id"=>2),
+                            array("nombre"=>"Transporte","areaInversion_id"=>2),
+                            array("nombre"=>"Turismo","areaInversion_id"=>2),
+                            array("nombre"=>"Vialidad","areaInversion_id"=>2),
+                            array("nombre"=>"Vivienda","areaInversion_id"=>2),
+              
+                            array("nombre"=>"Manufactura","areaInversion_id"=>3),
+                            array("nombre"=>"Producción Primaria","areaInversion_id"=>3),
+                            array("nombre"=>"Servicios","areaInversion_id"=>3),
+          );
+          
+          $this->db->insert_batch('categoria', $categoria);
+          $result.=$this->db->last_query()."\n";
+
+          $tipoProyecto=array(
+                            array("nombre"=>"Equipos e insumos deportivos","categoria_id"=>1),
+              
+                            array("nombre"=>"Producción Primaria","categoria_id"=>2),
+                            array("nombre"=>"Equipos, materiales y mobiliarios para centros educativos","categoria_id"=>2),
+                            array("nombre"=>"Materiales e instrumentos para centros culturales","categoria_id"=>2),
+              
+                            array("nombre"=>"Compactadoras de basura","categoria_id"=>3),
+                            array("nombre"=>"Equipos de limpieza (vactor y barredoras mecanicas)","categoria_id"=>3),
+                            array("nombre"=>"Maquinaria menor y pesada","categoria_id"=>3),
+                            array("nombre"=>"Plantas electricas","categoria_id"=>3),
+              
+                            array("nombre"=>"Ambulancias terrestres o fluviales","categoria_id"=>4),
+                            array("nombre"=>"Equipos e instrumentos medicos","categoria_id"=>4),
+                            array("nombre"=>"Equipos e insumos para Consultorios populares,ambulatorios y hospitales","categoria_id"=>4),
+
+                            array("nombre"=>"Equipos de seguridad y Proteccion Ciudadana","categoria_id"=>5),
+                            array("nombre"=>"Vehiculos de  seguridad y Proteccion Ciudadana","categoria_id"=>5),
+              
+                            array("nombre"=>"medios de transporte fluvial  y motores fuera de borda","categoria_id"=>6),
+                            array("nombre"=>"unidades de transporte colectivo social","categoria_id"=>6),
+              
+                            array("nombre"=>"Construccion o Rehabilitacion Infraestructura agricola","categoria_id"=>7),
+                            array("nombre"=>"Creaci&oacute;n de Viveros o semilleros agroforestales","categoria_id"=>7),
+                            array("nombre"=>"Sistema de Riego","categoria_id"=>7),
+              
+                            array("nombre"=>"Construccion o Rehabilitacion de Casa de Alimentos","categoria_id"=>8),
+                            array("nombre"=>"Construccion o Rehabilitacion de Comedores Escolares","categoria_id"=>8),
+                            array("nombre"=>"Construccion o Rehabilitacion de los Centros de Acopio Regionales y Locales","categoria_id"=>8),
+                            array("nombre"=>"Construccion o Rehabilitacion de Mataderos Comunales y/o Municipal","categoria_id"=>8),
+                            array("nombre"=>"Construccion o Rehabilitacion de Mercado Municipal y/o Comunal","categoria_id"=>8),
+                            array("nombre"=>"Construccion o Rehabilitacion de Mercalito o Pdvalito","categoria_id"=>8),
+              
+                            array("nombre"=>"Construccion o Rehabilitacion de Cementerios","categoria_id"=>9),
+                            array("nombre"=>"Embaulamiento de Quebradas","categoria_id"=>9),
+                            array("nombre"=>"Obras de Saneamiento Ambiental","categoria_id"=>9),
+                            array("nombre"=>"Restauraci&oacute;n de espacios degradados","categoria_id"=>9),
+
+                            array("nombre"=>"Construccion o Rehabilitacion de Canchas Deportivas","categoria_id"=>10),
+                            array("nombre"=>"Construccion o Rehabilitacion de Complejos Deportivos","categoria_id"=>10),
+                            array("nombre"=>"Construccion o Rehabilitacion de Estadium","categoria_id"=>10),
+              
+                            array("nombre"=>"Construccion o Rehabilitacion de Bibliotecas y Salas de Lectura","categoria_id"=>11),
+                            array("nombre"=>"Construccion o Rehabilitacion de Sedes  y Centros Culturales ","categoria_id"=>11),
+                            array("nombre"=>"Construccion, Rehabilitacion de Sedes y Centros Culturales","categoria_id"=>11),
+                            array("nombre"=>"Construccion, Rehabilitacion o Ampliacion de Escuelas, Liceos, Universidades, Preescolar","categoria_id"=>11),
+                            array("nombre"=>"Construccion, Rehabilitacion o Ampliacion de Laboratorios de Computacion","categoria_id"=>11),
+                            array("nombre"=>"Construccion, Rehabilitacion o Ampliacion de Sedes de Artes y Oficios","categoria_id"=>11),
+                            array("nombre"=>"Instalacion y Operacionalizaci&oacute;n de Servicios Culturales","categoria_id"=>11),
+                            array("nombre"=>"Proyectos de Atenci&oacute;n a la Poblacion mas Vulnerable","categoria_id"=>11),
+
+                            array("nombre"=>"Rehabilitaci&oacute;n de Casco Hist&oacute;rico","categoria_id"=>12),
+                            array("nombre"=>"Rehabilitaci&oacute;n o conservaci&oacute;n de edificacion declaradas como patrimonio cultural","categoria_id"=>12),
+
+                            array("nombre"=>"Construcci&oacute;n o Rehabilitaci&oacute;n de Parques","categoria_id"=>13),
+                            array("nombre"=>"Construcci&oacute;n o Rehabilitaci&oacute;n de Plazas","categoria_id"=>13),
+                            array("nombre"=>"Ornato y Embellecimiento","categoria_id"=>13),
+
+                            array("nombre"=>"Construcci&oacute;n o Rehabilitaci&oacute;n de Ambulatorios, Consultorios Populares, Farmacias Populares y Hospitales","categoria_id"=>14),
+
+                            array("nombre"=>"Acueductos","categoria_id"=>15),
+                            array("nombre"=>"Construcci&oacute;n de Canales de Drenaje","categoria_id"=>15),
+                            array("nombre"=>"Construcci&oacute;n o Ampliaci&oacute;n de Tendidos o Bancadas Eléctricas y alumbrado Público","categoria_id"=>15),
+                            array("nombre"=>"Desechos S&oacute;lidos","categoria_id"=>15),              
+                            array("nombre"=>"Lagunas de Oxidaci&oacute;n","categoria_id"=>15),
+                            array("nombre"=>"Perforaci&oacute;n de Pozos","categoria_id"=>15),
+                            array("nombre"=>"Plantas de Tratamiento","categoria_id"=>15),
+                            array("nombre"=>"Pozos Sépticos","categoria_id"=>15),
+                            array("nombre"=>"Saneamiento de Rellenos Sanitarios y Vertederos","categoria_id"=>15),
+                            array("nombre"=>"Sistemas de Alcantarillas","categoria_id"=>15),
+                            array("nombre"=>"Sistemas de Cloacas","categoria_id"=>15),
+                            array("nombre"=>"Sistemas de Electrificaci&oacute;n Rurales","categoria_id"=>15),
+                            array("nombre"=>"Tanques de Agua","categoria_id"=>15),
+              
+                            array("nombre"=>"Construcci&oacute;n o Rehabilitaci&oacute;n de Paradas de Autobuses","categoria_id"=>16),
+                            array("nombre"=>"Semaforizaci&oacute;n, nomenclatura o señalizaci&oacute;n urbana","categoria_id"=>16),
+                            array("nombre"=>"Terminales de Pasajeros","categoria_id"=>16),
+              
+                            array("nombre"=>"Construcci&oacute;n o Rehabilitacion de Centros Turísticos","categoria_id"=>17),
+                            array("nombre"=>"Construcci&oacute;n o Rehabilitaci&oacute;n de Hoteles","categoria_id"=>17),
+                            array("nombre"=>"Construcci&oacute;n o Rehabilitaci&oacute;n de Posadas","categoria_id"=>17),
+              
+                            array("nombre"=>"Bacheo","categoria_id"=>18),
+                            array("nombre"=>"Construcci&oacute;n de Obras de Contenci&oacute;n (Muros y Pantallas)","categoria_id"=>18),
+                            array("nombre"=>"construcci&oacute;n o Rehabilitaci&oacute;n de Aceras, Brocales y Cunetas","categoria_id"=>18),
+                            array("nombre"=>"Construcci&oacute;n o Rehabilitaci&oacute;n de Autopistas","categoria_id"=>18),
+                            array("nombre"=>"Construccion o Rehabilitacion de Caminerias y Boulevard","categoria_id"=>18),
+                            array("nombre"=>"Construcci&oacute;n o Rehabilitaci&oacute;n de Distribuidores","categoria_id"=>18),
+                            array("nombre"=>"Construcci&oacute;n o Rehabilitaci&oacute;n de Pasarelas o Puentes Peatonales","categoria_id"=>18),
+                            array("nombre"=>"Construcci&oacute;n o Rehabilitaci&oacute;n de Puentes y Pontones","categoria_id"=>18),
+                            array("nombre"=>"Construcci&oacute;n o Rehabilitaci&oacute;n de Vías Agrícolas","categoria_id"=>18),
+                            array("nombre"=>"Pavimentaci&oacute;n Asfáltica de Vías de Comunicaci&oacute;n ","categoria_id"=>18),
+                            array("nombre"=>"Pavimentaci&oacute;n de Concreto de Vías de Comunicaci&oacute;n ","categoria_id"=>18),
+
+                            array("nombre"=>"Autoconstrucci&oacute;n de Viviendas","categoria_id"=>19),
+                            array("nombre"=>"Construcci&oacute;n de Centros Comunitarios","categoria_id"=>19),
+                            array("nombre"=>"Construcci&oacute;n o Rehabilitaci&oacute;n de areas sanitarias de las viviendas","categoria_id"=>19),
+                            array("nombre"=>"Construcci&oacute;n o Rahabilitaci&oacute;n de Centros de Atenci&oacute;n al Anciano","categoria_id"=>19),
+                            array("nombre"=>"Construcci&oacute;n o Rahabilitaci&oacute;n de Viviendas","categoria_id"=>19),
+                            array("nombre"=>"Sustituci&oacute;n de Ranchos por Vivienda","categoria_id"=>19),
+                            array("nombre"=>"Urbanismo","categoria_id"=>19),
+
+                            array("nombre"=>"Producci&oacute;n, Distribuci&oacute;n y/o comercializaci&oacute;n  de madera, Papel y Cart&oacute;n","categoria_id"=>20),
+                            array("nombre"=>"Producci&oacute;n, Distribuci&oacute;n y/o comercializaci&oacute;n  de materiales de construcci&oacute;n","categoria_id"=>20),
+                            array("nombre"=>"Producci&oacute;n, Distribuci&oacute;n y/o comercializaci&oacute;n  de Productos Alimenticios","categoria_id"=>20),
+                            array("nombre"=>"Producci&oacute;n, Distribuci&oacute;n y/o comercializaci&oacute;n  de Productos de Barro, Loza y Porcelana","categoria_id"=>20),
+                            array("nombre"=>"Producci&oacute;n, Distribuci&oacute;n y/o comercializaci&oacute;n  de Productos de Cuero","categoria_id"=>20),
+                            array("nombre"=>"Producci&oacute;n, Distribuci&oacute;n y/o comercializaci&oacute;n  de Productos Metálicos","categoria_id"=>20),
+                            array("nombre"=>"Producci&oacute;n, Distribuci&oacute;n y/o comercializaci&oacute;n  de Productos de Vidrio","categoria_id"=>20),
+                            array("nombre"=>"Producci&oacute;n, Distribuci&oacute;n y/o comercializaci&oacute;n  de Productos Químicos derivados","categoria_id"=>20),
+                            array("nombre"=>"Producci&oacute;n, Distribuci&oacute;n y/o comercializaci&oacute;n  de Textiles y Vestuarios","categoria_id"=>20),
+
+              
+                            array("nombre"=>"Producci&oacute;n, Distribuci&oacute;n y/o comercializaci&oacute;n  Agroforestales","categoria_id"=>21),
+                            array("nombre"=>"Producci&oacute;n, Procesamiento, Distribuci&oacute;n y/o Comercializaci&oacute;n Acuícola","categoria_id"=>21),
+                            array("nombre"=>"Producci&oacute;n, Procesamiento, Distribuci&oacute;n y/o Comercializaci&oacute;n Agrícola","categoria_id"=>21),
+                            array("nombre"=>"Producci&oacute;n, Procesamiento, Distribuci&oacute;n y/o Comercializaci&oacute;n Apícola","categoria_id"=>21),
+                            array("nombre"=>"Producci&oacute;n, Procesamiento, Distribuci&oacute;n y/o Comercializaci&oacute;n Pecuaria","categoria_id"=>21),
+                            array("nombre"=>"Producci&oacute;n, Procesamiento, Distribuci&oacute;n y/o Comercializaci&oacute;n Pesquera","categoria_id"=>21),
+                          
+                            array("nombre"=>"Desarrollos Turísticos","categoria_id"=>22),
+                            array("nombre"=>"Limpieza y Mantenimiento General","categoria_id"=>22),
+                            array("nombre"=>"Mantenimiento y Reparaci&oacute;n de equipos de Informática y/o equipos electr&oacute;nicos","categoria_id"=>22),
+                            array("nombre"=>"Mantenimiento y Reparaci&oacute;n de Instalaciones Eléctricas","categoria_id"=>22),
+                            array("nombre"=>"Mantenimiento y Reparaci&oacute;n de Maquinarias Pesadas y Menores","categoria_id"=>22),
+                            array("nombre"=>"Mantenimiento y Reparaci&oacute;n de Vehículos","categoria_id"=>22),
+          );
+          
+          $this->db->insert_batch('tipoProyecto', $tipoProyecto);
+          $result.=$this->db->last_query()."\n";
+
+        $objDelMilenio=array(  
+                            array("nombre"=>"Erradicar la pobreza extrema y el hambre"),
+                            array("nombre"=>"Lograr la enseÃ±anza primaria universal"),
+                            array("nombre"=>"Promover la igualdad entre los gÃ©neros y la autonomÃ­a de la mujer"),
+                            array("nombre"=>"Reducir la mortalidad infantil"),
+                            array("nombre"=>"Mejorar la salud materna"),
+                            array("nombre"=>"Combatir el VIH/SIDA, el paludismo y otras enfermedades"),
+                            array("nombre"=>"Garantizar la sostenibilidad del medio ambiente"),
+                            array("nombre"=>"Fomentar la asociaciÃ³n mundial para el desarrollo"),
+          );
+          
+          $this->db->insert_batch('objetivosDelMilenio', $objDelMilenio);
+          $result.=$this->db->last_query()."\n";
+          
         return $result;
     }
     
