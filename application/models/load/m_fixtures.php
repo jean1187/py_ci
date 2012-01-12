@@ -254,6 +254,203 @@ class M_fixtures extends CI_Model {
                       array("nombre"=>"Promover el desarrollo humano familiar y socio-laboral","estrategia_id"=>4),
                       array("nombre"=>"Fortalecer la accesibilidad a los alimentos","estrategia_id"=>4),
                       array("nombre"=>"Brindar atención integral a la población con discapacidades","estrategia_id"=>4),
+              
+                      array("nombre"=>"Expandir y consolidar los servicios de salud de forma oportuna y gratuita","estrategia_id"=>5),
+                      array("nombre"=>"Expandir y consolidar los servicios de salud de forma oportuna y gratuita","estrategia_id"=>5),
+                      array("nombre"=>"Fortalecer la prevención y control de enfermedades","estrategia_id"=>5),
+                      array("nombre"=>"Propiciar la seguridad y soberanía farmacéutica","estrategia_id"=>5),
+                      array("nombre"=>"Incrementar la prevención de accidentes y de hechos violentos","estrategia_id"=>5),
+                      array("nombre"=>"Optimizar la prevención del consumo de drogas y asegurar el tratamiento y la rehabilitación","estrategia_id"=>5),
+              
+                      array("nombre"=>"Garantizar la tenencia de la tierra","estrategia_id"=>6),
+                      array("nombre"=>"Promover el acceso a los servicios básicos","estrategia_id"=>6),
+                      array("nombre"=>"Promover mayor acceso al crédito habitacional","estrategia_id"=>6),
+                      array("nombre"=>"Promover mayor acceso al crédito habitacional","estrategia_id"=>6),
+                      
+                      array("nombre"=>"Extender la cobertura de la matrícula escolar a toda la población, con énfasis en los excluidos","estrategia_id"=>7),
+                      array("nombre"=>"Garantizar la permanencia y prosecución en el sistema educativo","estrategia_id"=>7),
+                      array("nombre"=>"Fortalecer y promover la educación ambiental, la identidad cultural, la salud y la participación comunitaria","estrategia_id"=>7),
+                      array("nombre"=>"Ampliar la infraestructura y la dotación escolar y deportiva","estrategia_id"=>7),
+                      array("nombre"=>"Adecuar el sistema educativo al modelo productivo socialista","estrategia_id"=>7),
+                      array("nombre"=>"Fortalecer e incentivar la investigación en el proceso educativo","estrategia_id"=>7),
+                      array("nombre"=>"Incorporar las tecnologías de la información y la comunicación al proceso educativo","estrategia_id"=>7),
+                      array("nombre"=>"Desarrollar la educación intercultural bilingüe","estrategia_id"=>7),
+                      array("nombre"=>"Garantizar los accesos al conocimiento para universalizar la educación superior con pertinencia","estrategia_id"=>7),
+
+                      array("nombre"=>"Salvaguardar y socializar el patrimonio cultural","estrategia_id"=>8),
+                      array("nombre"=>"Insertar el movimiento cultural en los distintos espacios sociales","estrategia_id"=>8),
+                      array("nombre"=>"Promover el potencial socio-cultural y económico de las diferentes manifestaciones del arte","estrategia_id"=>8),
+                      array("nombre"=>"Promover el diálogo intercultural con los pueblos y culturas del mundo","estrategia_id"=>8),
+                      array("nombre"=>"Fomentar la actualización permanente de nuestro pueblo en el entendimiento del mundo contemporáneo","estrategia_id"=>8),
+
+                      array("nombre"=>"Avanzar en la garantía de prestaciones básicas universales","estrategia_id"=>9),
+                      array("nombre"=>"Fortalecer los mecanismos institucionales del mercado de trabajo","estrategia_id"=>9),
+                      array("nombre"=>"Apoyar la organización y la participación de los trabajadores en la gestión de las empresas","estrategia_id"=>9),
+
+                      array("nombre"=>"Incentivar un modelo de producción y consumo ambientalmente sustentable","estrategia_id"=>10),
+                      array("nombre"=>"Fomentar la gestión integral de los residuos, sustancias y desechos sólidos y peligrosos","estrategia_id"=>10),
+                      array("nombre"=>"Garantizar la conservación y uso sustentable del recurso hídrico","estrategia_id"=>10),
+                      array("nombre"=>"Propiciar la recuperación de áreas naturales","estrategia_id"=>10),
+                      array("nombre"=>"Democratizar la propiedad de la tierra de los pueblos indígenas","estrategia_id"=>10),
+              
+                      array("nombre"=>"Apoyar la auto elevación del nivel de conciencia del pueblo en torno a la construcción de la estructura económica socialista","estrategia_id"=>11),
+                      array("nombre"=>"Establecer mecanismos administrativos y control socialistas que puedan ser apropiados por el pueblo","estrategia_id"=>11),              
+                      array("nombre"=>"Apoyar la participación equilibrada de productores, poder popular y Estado en la toma de decisiones, la gestión económica y en la distribución de excedentes","estrategia_id"=>11),              
+              
+                      array("nombre"=>"Difundir experiencias organizativas comunitarias","estrategia_id"=>12),
+                      array("nombre"=>"Promover la formación de la organización social","estrategia_id"=>12),
+                      array("nombre"=>"Crear canales efectivos para la contraloría social","estrategia_id"=>12),
+              
+                      array("nombre"=>"Impulsar e incentivar la formación docente","estrategia_id"=>13),
+                      array("nombre"=>"Promover la participación escolar en actividades de la comunidad","estrategia_id"=>13),
+                      array("nombre"=>"Incentivar el comportamiento y los valores democráticos","estrategia_id"=>13),
+              
+                      array("nombre"=>"Fortalecer la red de medios de comunicación alternativos","estrategia_id"=>14),
+                      array("nombre"=>"Incentivar la creación y el fortalecimiento de vínculos y comunicación entre organizaciones sociales","estrategia_id"=>14),
+                      array("nombre"=>"Promover canales de educación no tradicionales","estrategia_id"=>14),
+              
+                      array("nombre"=>"Crear canales regulares directos entre el poder popular y el resto de los poderes","estrategia_id"=>15),
+                      array("nombre"=>"Fortalecer y crear mecanismos institucionales que privilegien la participación popular","estrategia_id"=>15),
+
+                      array("nombre"=>"Identificar y responder a las necesidades no atendidas de la población","estrategia_id"=>16),
+                      array("nombre"=>"Mejorar y fortalecer los instrumentos legales y los mecanismos institucionales de participación ciudadana ya establecidos","estrategia_id"=>16),
+                      array("nombre"=>"Diseñar y consolidar nuevos mecanismos institucionales para la participación ciudadana en el sector público","estrategia_id"=>16),
+              
+                      array("nombre"=>"Propiciar la coherencia organizativa, funcional, procedimental y sistémica de los órganos públicos","estrategia_id"=>17),
+                      array("nombre"=>"Incrementar los niveles de capacidad y conocimiento del funcionario público","estrategia_id"=>17),
+                      array("nombre"=>"Implementar la simplificación de trámites administrativos a todos los niveles","estrategia_id"=>17),
+                      array("nombre"=>"Instaurar y aplicar sistemas de evaluación de gestión de organismos y funcionarios","estrategia_id"=>17),
+                      array("nombre"=>"Promover los principios de coordinación y cooperación inter-orgánica de la administración pública a todos los niveles","estrategia_id"=>17),
+
+                      array("nombre"=>"Crear estímulos a los servidores públicos","estrategia_id"=>18),
+                      array("nombre"=>"Ofrecer formación para su mejoramiento","estrategia_id"=>18),
+                      array("nombre"=>"Cambiar la cultura actual del servidor público","estrategia_id"=>18),
+              
+                      array("nombre"=>"Garantizar la transparencia y democratización de la información","estrategia_id"=>19),
+                      array("nombre"=>"Fortalecer y articular mecanismos internos y externos de seguimiento y control sobre la gestión pública","estrategia_id"=>19),
+                      array("nombre"=>"Promover la corresponsabilidad de todos los agentes sociales y económicos","estrategia_id"=>19),
+              
+                      array("nombre"=>"Utilizar los medios de comunicación como instrumento de formación en valores ciudadanos","estrategia_id"=>20),
+                      array("nombre"=>"Educar en la utilización responsable y crítica de los medios de comunicación","estrategia_id"=>20),
+                      array("nombre"=>"Promover el control social de la población hacia los medios de comunicación masivos","estrategia_id"=>20),
+              
+                      array("nombre"=>"Facilitar el acceso de la población excluida a los medios de comunicación","estrategia_id"=>21),
+                      array("nombre"=>"Estimular la participación ciudadana en la defensa de sus derechos y el cumplimiento de los deberes comunicacionales","estrategia_id"=>21),
+              
+                      array("nombre"=>"Fomentar el hábito de la lectura, el uso responsable de Internet y otras formas informáticas de comunicación e información","estrategia_id"=>22),
+                      array("nombre"=>"Facilitar el acceso de las comunidades a los medios de comunicación","estrategia_id"=>22),
+                      array("nombre"=>"Facilitar condiciones tecnológicas, educativas y financieras a los nuevos emprendedores comunicacionales","estrategia_id"=>22),
+                      array("nombre"=>"Establecer como obligatorio la utilización de códigos especiales de comunicación para los discapacitados","estrategia_id"=>22),
+                      array("nombre"=>"Fortalecer los medios de comunicación e información del Estado y democratizar sus espacios de comunicación","estrategia_id"=>22),
+
+                      array("nombre"=>"Proyectar el patrimonio cultural, geográfico, turístico y ambiental de Venezuela","estrategia_id"=>23),
+                      array("nombre"=>"Construir redes de comunicación y medios de expresión de la palabra, la imagen y las voces de nuestros pueblos","estrategia_id"=>23),
+                      array("nombre"=>"Crear un ente internacional centrado en la organización de los medios comunitarios alternativos","estrategia_id"=>23),
+
+                      array("nombre"=>"Mejorar el poder adquisitivo y el nivel económico de las familias de ingresos bajos y medios","estrategia_id"=>24),
+                      array("nombre"=>"Abatir la inflación de manera consistente","estrategia_id"=>24),
+                      array("nombre"=>"Reducir el desempleo y la informalidad","estrategia_id"=>24),
+                      array("nombre"=>"Promover el ahorro interno con equidad","estrategia_id"=>24),
+              
+                      array("nombre"=>"Fortalecer los mecanismos de creación y desarrollo de EPS y de redes en la Economía Social","estrategia_id"=>25),
+                      array("nombre"=>"Fortalecer la sostenibilidad de la Economía Social","estrategia_id"=>25),
+                      array("nombre"=>"Estimular diferentes formas de propiedad social","estrategia_id"=>25),
+                      array("nombre"=>"Transformar empresas del Estado en EPS","estrategia_id"=>25),
+              
+                      array("nombre"=>"Aplicar estímulos financieros y fiscales diferenciados","estrategia_id"=>26),
+                      array("nombre"=>"Estimular la utilización del capital privado internamente","estrategia_id"=>26),
+                      array("nombre"=>"Concentrar esfuerzos en las cadenas productivas con ventajas comparativas","estrategia_id"=>26),
+                      array("nombre"=>"Promover el aumento de la productividad","estrategia_id"=>26),
+              
+
+                      array("nombre"=>"Promover la estabilidad y sostenibilidad del gasto","estrategia_id"=>27),
+                      array("nombre"=>"Reordenar el sistema tributario","estrategia_id"=>27),
+                      array("nombre"=>"Aumentar la inversión en actividades estratégicas","estrategia_id"=>27),
+              
+                      array("nombre"=>"Coordinar la acción del Estado para el desarrollo regional y local","estrategia_id"=>28),
+                      array("nombre"=>"Promover el desarrollo del tejido industrial","estrategia_id"=>28),
+                      array("nombre"=>"Aplicar una política comercial exterior e interior consistentes con el desarrollo endógeno","estrategia_id"=>28),
+              
+                      array("nombre"=>"Focalizar la acción sectorial del Estado","estrategia_id"=>29),
+                      array("nombre"=>"Establecer espacios de concertación","estrategia_id"=>29),
+
+                      array("nombre"=>"Culminar el catastro de tierras","estrategia_id"=>30),
+                      array("nombre"=>"Expropiar y rescatar tierras ociosas o sin propiedad fundamentada","estrategia_id"=>30),
+                      array("nombre"=>"Incorporar tierras a la producción y orientar su usol","estrategia_id"=>30),
+                      array("nombre"=>"Aplicar el impuesto predial","estrategia_id"=>30),
+
+                      array("nombre"=>"Financiar en condiciones preferenciales la inversión y la producción","estrategia_id"=>31),
+                      array("nombre"=>"Promover un intercambio comercial acorde con el desarrollo agrícola endógeno","estrategia_id"=>31),
+                      array("nombre"=>"Capacitar y apoyar a los productores para la agricultura sustentable y el desarrollo endógeno","estrategia_id"=>31),
+                      array("nombre"=>"Dotar de maquinarias, insumos y servicios para la producción","estrategia_id"=>31),
+                      array("nombre"=>"Mejorar los servicios de sanidad agropecuaria y de los alimentos","estrategia_id"=>31),
+              
+                      array("nombre"=>"Rescatar, ampliar y desarrollar el riego y saneamiento","estrategia_id"=>32),
+                      array("nombre"=>"Ampliar y mantener la vialidad, transporte y conservación","estrategia_id"=>32),
+                      array("nombre"=>"Consolidar la capacidad del Estado en procesamiento y servicios y transformarla en Economía Social","estrategia_id"=>32),
+                      array("nombre"=>"Desarrollar los centros poblados","estrategia_id"=>32),
+              
+                      array("nombre"=>"Fomentar la investigación y desarrollo para la soberanía alimentaria","estrategia_id"=>33),
+                      array("nombre"=>"Incrementar la infraestructura tecnológica","estrategia_id"=>33),
+                      array("nombre"=>"Apoyar la pequeña y mediana industria y las cooperativas","estrategia_id"=>33),
+                      array("nombre"=>"Propiciar la diversificación productiva en la actividad manufacturera, minera y forestal","estrategia_id"=>33),
+                      array("nombre"=>"Resguardar el conocimiento colectivo de los pueblos originarios","estrategia_id"=>33),
+              
+                      array("nombre"=>"Fortalecer centros de investigación y desarrollo en las regiones","estrategia_id"=>34),
+                      array("nombre"=>"Apoyar y fortalecer la prosecución de carreras científicas y posgrados, y garantizar el mejoramiento de los docentes","estrategia_id"=>34),
+                      array("nombre"=>"Apoyar la conformación de redes científicas nacionales, regionales e internacionales privilegiando las prioridades del país","estrategia_id"=>34),
+                      array("nombre"=>"Generar vínculos entre los investigadores universitarios y las unidades de investigación de las empresas productivas","estrategia_id"=>34),
+                      array("nombre"=>"Identificar los retornos de los resultados de las investigaciones, a traves de indicadores que consideren el impacto en la solución de problemas","estrategia_id"=>34),
+                      array("nombre"=>"Crear y aplicar contenidos programáticos para el uso de tecnologías de información y comunicación","estrategia_id"=>34),
+
+                      array("nombre"=>"Programar y aplicar incentivos hacia las propuestas innovadoras de los grupos excluidos","estrategia_id"=>35),
+                      array("nombre"=>"Crear seguridad social y estímulo para los jóvenes que se dediquen a la investigación","estrategia_id"=>35),
+                      array("nombre"=>"Crear sistemas de evaluación, certificación, promoción y divulgación de los hallazgos e innovaciones","estrategia_id"=>35),
+                      array("nombre"=>"Potenciar redes de conocimiento y de capacitación para el trabajo en todos los niveles educativos","estrategia_id"=>35),
+                      array("nombre"=>"Identificar y utilizar las fortalezas del talento humano nacional","estrategia_id"=>35),
+                      array("nombre"=>"Crear plataformas tecnológicas para el acceso del ciudadano común","estrategia_id"=>35),
+
+                      array("nombre"=>"Simplificar los trámites para la obtención de patentes y reducir costos","estrategia_id"=>36),
+                      array("nombre"=>"Vincular las potencialidades humanas con las necesidades nacionales y regionales","estrategia_id"=>36),
+                      array("nombre"=>"Garantizar la distribución generalizada de tecnología de la información y la comunicación en todo el territorio nacional","estrategia_id"=>36),
+                      array("nombre"=>"Divulgar y adoptar las normas de calidad internacional que permitan ofrecer propuestas competitivas","estrategia_id"=>36),
+                      array("nombre"=>"Actualizar el banco de patentes y modernizar los sistemas de información","estrategia_id"=>36),
+                      array("nombre"=>"Divulgar los resultados de los esfuerzos de innovación para lograr visibilidad, impacto y estímulo","estrategia_id"=>36),
+
+                      array("nombre"=>"Ampliar la accesibilidad con la fachada andina","estrategia_id"=>37),
+                      array("nombre"=>"Reforzar la accesibilidad hacia las fachadas amazónica y caribeña","estrategia_id"=>37),
+                      array("nombre"=>"Fortalecer la presencia del Estado en las Zonas de Integración Fronteriza","estrategia_id"=>37),
+              
+                      array("nombre"=>"Dinamizar las regiones en base a complementariedades y articulación de espacios productivos","estrategia_id"=>38),
+                      array("nombre"=>"Desarrollar sinergias entre sistemas de producción social","estrategia_id"=>38),
+                      array("nombre"=>"Alcanzar la integración territorial de la nación mediante los corredores de infraestructuras que conformarán ejes de integracióny desarrollo","estrategia_id"=>38),
+              
+                      array("nombre"=>"Conservar las cuencas hidrográficas y la biodiversidad","estrategia_id"=>39),
+                      array("nombre"=>"Formular los planes de ordenación del territorio","estrategia_id"=>39),
+                      array("nombre"=>"Disminuir la vulnerabilidad de la población tomando en cuenta las zonas de riesgo","estrategia_id"=>39),
+              
+                      array("nombre"=>"Orientar y apoyar la prestación de servicios públicos con énfasis en reducción del impacto ambiental","estrategia_id"=>40),
+                      array("nombre"=>"Aplicar impuestos por mejoras y a los terrenos ociosos o subutilizados","estrategia_id"=>40),
+                      array("nombre"=>"Rehabilitar áreas centrales deterioradas","estrategia_id"=>40),
+              
+                      array("nombre"=>"Alcanzar la complementaridad funcional entre ciudades intermedias en el Eje Norte Llanero","estrategia_id"=>41),
+                      array("nombre"=>"Generar una estructura urbana incluyente en los centros intermedios","estrategia_id"=>41),
+              
+                      array("nombre"=>"Restringir las actividades en áreas de preservación","estrategia_id"=>42),
+                      array("nombre"=>"Reforzar las prácticas conservacionistas de los pueblos indígenas en sus territorios ancestrales","estrategia_id"=>42),
+                      array("nombre"=>"Manejar adecuadamente las Áreas Bajo Régimen de Administración Especial y demás áreas protegidas","estrategia_id"=>42),
+                      array("nombre"=>"Recuperar y mejorar los principales lagos y sus afluentes","estrategia_id"=>42),
+                      array("nombre"=>"Intervenir lo rural amigable con el ambiente","estrategia_id"=>42),              
+
+                      array("nombre"=>"Promover la ciudad compacta con alta densidad y baja altura","estrategia_id"=>43),
+                      array("nombre"=>"Incrementar el uso de sistemas de transporte eficientes en energía y tiempo","estrategia_id"=>43),
+                      array("nombre"=>"Promover una ciudad energéticamente eficiente","estrategia_id"=>43),
+                      array("nombre"=>"Incorporar tecnologías de construcción compatibles con el ambiente","estrategia_id"=>43),
+
+                      array("nombre"=>"Promover la incorporación de energías alternativas basadas en recursos renovables","estrategia_id"=>44),
+                      array("nombre"=>"Incidir en el cambio del patrón productivo hacia tecnologías verdes","estrategia_id"=>44),
+                      array("nombre"=>"Promover patrones sostenibles de consumo","estrategia_id"=>44),
+                      array("nombre"=>"Reinvertir los beneficios de la explotación de recursos no renovables en el incremento de la inversión en investigación y desarrollo","estrategia_id"=>44),
               /*
                       array("nombre"=>"Desarrollar","estrategia_id"=>4),
                       array("nombre"=>"Desarrollar","estrategia_id"=>4),
