@@ -118,13 +118,17 @@ class M_fixtures extends CI_Model {
          $this->db->insert_batch('menu', $menues);
           $result.=$this->db->last_query()."\n";
           
-          $this->db->insert('organo', array("nombre"=>"Gobernacion"));
+          $this->db->insert('organo', array("nombre"=>"Proyectos"));
          $result.=$this->db->last_query()."\n";
          
           $this->db->insert('cargos', array("nombre"=>"Programador Web"));
          $result.=$this->db->last_query()."\n";
          
-          $this->db->insert('users', array("userLogin"=>"admin","passwordLogin"=>"VqN3dmdcRki+6mClS6aKJTs+Pus4t9nANXtKAuLJzDyAmyuNshQ5hHhOOGgC+MnqFZog+5XkE5k5IRs/4HyfnA==","nombre"=>"Jean C","apellido"=>"Mendoza","correo"=>"jeanmendozar@gmail.com","organo_id"=>1,"grupo_id"=>1,"status_id"=>1));
+            $users=array(
+                        array("userLogin"=>"admin","passwordLogin"=>"VqN3dmdcRki+6mClS6aKJTs+Pus4t9nANXtKAuLJzDyAmyuNshQ5hHhOOGgC+MnqFZog+5XkE5k5IRs/4HyfnA==","nombre"=>"Jean C","apellido"=>"Mendoza","correo"=>"jeanmendozar@gmail.com","organo_id"=>1,"grupo_id"=>1,"status_id"=>1),
+                        array("userLogin"=>"jefa","passwordLogin"=>"HgmG3DIw5t+yax0hUp0+GrL8fFMRbmlA0e3qWN4JsZ21Y/ecHJq6/s9fcCeEwAuTwe4ibO7OV+9dHD9O3Ol1Rg==","nombre"=>"Maria","apellido"=>"Gregori","correo"=>"dgp.aragua@gmail.com","organo_id"=>1,"grupo_id"=>2,"status_id"=>1),
+            ); 
+          $this->db->insert_batch('users', $users);
            $result.=$this->db->last_query()."\n";
           
            

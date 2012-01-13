@@ -466,11 +466,11 @@ CREATE  TABLE IF NOT EXISTS `py_new`.`proyecto` (
   `doceavo11` DECIMAL(15,2)  NULL ,
   `doceavo12` DECIMAL(15,2)  NULL ,
   `porcentajeEjecucion` VARCHAR(200) NULL ,
+  `numeracion_cfg` VARCHAR(45) NULL COMMENT 'Esta es la numeracion que lleva el consejo federal de gobierno' ,
   `user_creador` INT NOT NULL COMMENT 'Que usuario creo el proyecto' ,
   `fechaCreacion` DATETIME NOT NULL ,
-  `user_modificador` INT NOT NULL COMMENT 'quien fue el ultimo que modifico' ,
-  `fechaModificacion` DATETIME NOT NULL ,
-  `numeracion_cfg` VARCHAR(45) NULL COMMENT 'Esta es la numeracion que lleva el consejo federal de gobierno' ,
+  `user_modificador` INT NULL DEFAULT NULL COMMENT 'quien fue el ultimo que modifico' ,
+  `fechaModificacion` DATETIME NULL DEFAULT NULL ,
   `delete` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_proyecto_organo1` (`organoCreador_id` ASC) ,
@@ -627,6 +627,72 @@ CREATE  TABLE IF NOT EXISTS `py_new`.`url_especiales` (
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB, 
 COMMENT = 'Aqui estara la direccion de los controladores, que no estara' /* comment truncated */ ;
+
+
+-- -----------------------------------------------------
+-- Table `py_new`.`planInversion`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `py_new`.`planInversion` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `organo_id` INT NOT NULL ,
+  `lineaEstrategica_id` INT NOT NULL ,
+  `justificacion` VARCHAR(500) NULL ,
+  `necesidades` VARCHAR(500) NULL ,
+  `potencialidades` VARCHAR(500) NULL ,
+  `objetivo_id` INT NOT NULL ,
+  `estrategia_id` INT NOT NULL ,
+  `plan_estadal` VARCHAR(150) NULL ,
+  `fecha_estadal` DATETIME NULL ,
+  `inver_estadal` VARCHAR(150) NULL COMMENT 'Inversion estadal' ,
+  `plan_municipal` VARCHAR(150) NULL ,
+  `fecha_municipal` DATETIME NULL ,
+  `inver_municipal` VARCHAR(150) NULL ,
+  `formulacion` VARCHAR(100) NULL COMMENT '3.3.-ARTICULACIÓN CON EL PLAN DE DESARROLLO COMUNAL (LINEAMIENTOS): ' ,
+  `integracion` VARCHAR(100) NULL COMMENT '3.4.- INTEGRACIÓN CON EL DISTRITO MOTOR DE DESARROLLO (LINEAMIENTOS): ' ,
+  `valorPorcentaje` INT NULL ,
+  `observaciones` VARCHAR(45) NULL ,
+  `user_creador` INT NOT NULL ,
+  `fechaCreacion` DATETIME NOT NULL ,
+  `user_modificador` INT NULL DEFAULT NULL ,
+  `fechaModificacion` DATETIME NULL DEFAULT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_planInversion_organo1` (`organo_id` ASC) ,
+  INDEX `fk_planInversion_lineaEstrategica1` (`lineaEstrategica_id` ASC) ,
+  INDEX `fk_planInversion_objetivo1` (`objetivo_id` ASC) ,
+  INDEX `fk_planInversion_estrategia1` (`estrategia_id` ASC) ,
+  INDEX `fk_planInversion_users1` (`user_creador` ASC) ,
+  INDEX `fk_planInversion_users2` (`user_modificador` ASC) ,
+  CONSTRAINT `fk_planInversion_organo1`
+    FOREIGN KEY (`organo_id` )
+    REFERENCES `py_new`.`organo` (`id` )
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `fk_planInversion_lineaEstrategica1`
+    FOREIGN KEY (`lineaEstrategica_id` )
+    REFERENCES `py_new`.`lineaEstrategica` (`id` )
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `fk_planInversion_objetivo1`
+    FOREIGN KEY (`objetivo_id` )
+    REFERENCES `py_new`.`objetivo` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_planInversion_estrategia1`
+    FOREIGN KEY (`estrategia_id` )
+    REFERENCES `py_new`.`estrategia` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_planInversion_users1`
+    FOREIGN KEY (`user_creador` )
+    REFERENCES `py_new`.`users` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_planInversion_users2`
+    FOREIGN KEY (`user_modificador` )
+    REFERENCES `py_new`.`users` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 
 

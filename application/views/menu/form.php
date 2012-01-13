@@ -1,7 +1,7 @@
 
 
 <div class="grid_24 ">
-        <?php  echo form_open('menu/operacion').br(1)?>
+        <?php  echo form_open('menu/operacion',array("autocomplete"=>"off")).br(1)?>
                         <!-- Nombre del item -->
                     <div class="grid_6 suffix_1" >
                         <?php echo form_label('<b>Nombre del Item :</b>', 'nombre').form_input(array('name'=> 'nombre','id'=> 'nombre','value'=>'','maxlength'=>'60'));?>
