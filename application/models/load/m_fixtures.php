@@ -461,7 +461,7 @@ class M_fixtures extends CI_Model {
           $this->db->insert_batch('politica', $politica);
           $result.=$this->db->last_query()."\n";
         return $result;
-    }
+    }//aa
     
 }//fin class
 ?>
