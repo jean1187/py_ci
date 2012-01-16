@@ -67,7 +67,7 @@
     <title><?=$title?></title>
 </head>
 <body>
-<div  class="container_24"><!-- cierra en pie -->
+<div  class="container_24 container_principal"><!-- cierra en pie -->
     
         <header id="cabecera" >
             <div class="grid_2 suffix_1">
