@@ -1,1 +1,1 @@
-<textarea rows="30" cols="135"><?php echo $sql?></textarea>
+<textarea rows="40" cols="188"><?php echo $sql?></textarea>

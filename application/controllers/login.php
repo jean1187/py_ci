@@ -37,8 +37,7 @@ class login extends CI_Controller {
         //hocks
         if($this->session->userdata('userLogin')!="")
             redirect('welcome', 'refresh');
-        
-        
+       
         $user=$this->input->post("usuario");
         $password=$this->input->post("clave");
             //autenticacion

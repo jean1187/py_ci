@@ -16,7 +16,7 @@ class Fixtures extends CI_Controller {
 
         $this->load->vars($data);
 
-        $this->cargar->menu_system("load/fixtures/index","Cargando Fixtures");
+        $this->load->view("load/fixtures/index","Cargando Fixtures");
 
 
     }//fin index

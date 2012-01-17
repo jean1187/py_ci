@@ -12,59 +12,80 @@ class M_fixtures extends CI_Model {
     function cargar_datos_basicos_logueo()
     {
         $result="";
-        $this->db->truncate('bitacora'); 
+        $this->db->truncate('bitacora');
          $result.=$this->db->last_query()."\n";
         
-        $this->db->truncate('historialSessions'); 
-         $result.=$this->db->last_query()."\n"; 
-         
-        $this->db->truncate('proyecto'); 
-         $result.=$this->db->last_query()."\n";  
-        
-         $this->db->truncate('responsable'); 
+        $this->db->truncate('historialSessions');
          $result.=$this->db->last_query()."\n";
          
-        $this->db->truncate('users'); 
-         $result.=$this->db->last_query()."\n";  
-         
-        $this->db->truncate('status'); 
-         $result.=$this->db->last_query()."\n"; 
-         
-        $this->db->truncate('categoriaStatus'); 
+        $this->db->truncate('proyecto');
          $result.=$this->db->last_query()."\n";
         
-         $this->db->truncate('grupo'); 
+         $this->db->truncate('responsable');
          $result.=$this->db->last_query()."\n";
          
-         $this->db->truncate('menu'); 
+        $this->db->truncate('users');
+         $result.=$this->db->last_query()."\n";
+         
+        $this->db->truncate('status');
+         $result.=$this->db->last_query()."\n";
+         
+        $this->db->truncate('categoriaStatus');
+         $result.=$this->db->last_query()."\n";
+        
+         $this->db->truncate('grupo');
+         $result.=$this->db->last_query()."\n";
+         
+         $this->db->truncate('menu');
          $result.=$this->db->last_query()."\n";
 
-         $this->db->truncate('entidad'); 
+         $this->db->truncate('entidad');
          $result.=$this->db->last_query()."\n";
          
-         $this->db->truncate('organo'); 
-         $result.=$this->db->last_query()."\n";
-         
-         
-         $this->db->truncate('cargos'); 
+         $this->db->truncate('organo');
          $result.=$this->db->last_query()."\n";
          
          
-         $this->db->truncate('politica'); 
-         $result.=$this->db->last_query()."\n";
-         
-         $this->db->truncate('estrategia'); 
-         $result.=$this->db->last_query()."\n";
-         
-         $this->db->truncate('objetivo'); 
-         $result.=$this->db->last_query()."\n";
-         
-         $this->db->truncate('directriz'); 
+         $this->db->truncate('cargos');
          $result.=$this->db->last_query()."\n";
          
          
+         $this->db->truncate('politica');
+         $result.=$this->db->last_query()."\n";
          
-        $this->db->insert('categoriaStatus', array("nombre"=>"user")); 
+         $this->db->truncate('estrategia');
+         $result.=$this->db->last_query()."\n";
+         
+         $this->db->truncate('objetivo');
+         $result.=$this->db->last_query()."\n";
+         
+         $this->db->truncate('directriz');
+         $result.=$this->db->last_query()."\n";
+         
+         $this->db->truncate('municipio_parroquia');
+         $result.=$this->db->last_query()."\n";
+         
+         $this->db->truncate('parroquia');
+         $result.=$this->db->last_query()."\n";
+         
+         $this->db->truncate('municipio');
+         $result.=$this->db->last_query()."\n";
+         
+         $this->db->truncate('lineaEstrategica');
+         $result.=$this->db->last_query()."\n";
+         
+         $this->db->truncate('tipoProyecto');
+         $result.=$this->db->last_query()."\n";
+         
+         $this->db->truncate('categoria');
+         $result.=$this->db->last_query()."\n";
+         
+         $this->db->truncate('areaInversion');
+         $result.=$this->db->last_query()."\n";
+         
+         
+         
+        $this->db->insert('categoriaStatus', array("nombre"=>"user"));
          $result.=$this->db->last_query()."\n";
          
          
@@ -83,7 +104,7 @@ class M_fixtures extends CI_Model {
             );
          
          $this->db->insert_batch('grupo', $grupos);
-          $result.=$this->db->last_query()."\n";    
+          $result.=$this->db->last_query()."\n";
 
         $menues=array(
                     array("nombre"=>"Mantenimiento","url"=>"#","parent"=>NULL,"grupo"=>",1,"),
@@ -92,18 +113,26 @@ class M_fixtures extends CI_Model {
                     array("nombre"=>"Organos","url"=>"organos","parent"=>3,"grupo"=>",1,"),
                     array("nombre"=>"Cargos","url"=>"cargos","parent"=>3,"grupo"=>",1,"),
                     array("nombre"=>"Representantes","url"=>"representantes","parent"=>3,"grupo"=>",1,"),
+            
+                    array("nombre"=>"Proyectos","url"=>"proyectos","parent"=>NULL,"grupo"=>",2,"),
+                    array("nombre"=>"Nuevo","url"=>"proyectos/nuevo","parent"=>7,"grupo"=>",2,"),
+            
             );
          
          $this->db->insert_batch('menu', $menues);
-          $result.=$this->db->last_query()."\n"; 
+          $result.=$this->db->last_query()."\n";
           
-          $this->db->insert('organo', array("nombre"=>"Gobernacion")); 
+          $this->db->insert('organo', array("nombre"=>"Proyectos"));
          $result.=$this->db->last_query()."\n";
          
-          $this->db->insert('cargos', array("nombre"=>"Programador Web")); 
+          $this->db->insert('cargos', array("nombre"=>"Programador Web"));
          $result.=$this->db->last_query()."\n";
          
-          $this->db->insert('users', array("userLogin"=>"admin","passwordLogin"=>"VqN3dmdcRki+6mClS6aKJTs+Pus4t9nANXtKAuLJzDyAmyuNshQ5hHhOOGgC+MnqFZog+5XkE5k5IRs/4HyfnA==","nombre"=>"Jean C","apellido"=>"Mendoza","correo"=>"jeanmendozar@gmail.com","organo_id"=>1,"grupo_id"=>1,"status_id"=>1));
+            $users=array(
+                        array("userLogin"=>"admin","passwordLogin"=>"VqN3dmdcRki+6mClS6aKJTs+Pus4t9nANXtKAuLJzDyAmyuNshQ5hHhOOGgC+MnqFZog+5XkE5k5IRs/4HyfnA==","nombre"=>"Jean C","apellido"=>"Mendoza","correo"=>"jeanmendozar@gmail.com","organo_id"=>1,"grupo_id"=>1,"status_id"=>1),
+                        array("userLogin"=>"jefa","passwordLogin"=>"HgmG3DIw5t+yax0hUp0+GrL8fFMRbmlA0e3qWN4JsZ21Y/ecHJq6/s9fcCeEwAuTwe4ibO7OV+9dHD9O3Ol1Rg==","nombre"=>"Maria","apellido"=>"Gregori","correo"=>"dgp.aragua@gmail.com","organo_id"=>1,"grupo_id"=>2,"status_id"=>1),
+            ); 
+          $this->db->insert_batch('users', $users);
            $result.=$this->db->last_query()."\n";
           
            
@@ -118,7 +147,7 @@ class M_fixtures extends CI_Model {
             );
            
           $this->db->insert_batch('directriz', $directriz);
-          $result.=$this->db->last_query()."\n"; 
+          $result.=$this->db->last_query()."\n";
          
           $obj=array(
                   array("nombre"=>"Refundar ética y moralmente la Nación","directriz_id"=>1),
@@ -155,11 +184,11 @@ class M_fixtures extends CI_Model {
                   array("nombre"=>"Propiciar, un cambio radical hacia la generación térmica de energía eléctrica adicional con base en el gas y otras fuentes de energía alternativas","directriz_id"=>6),
                   array("nombre"=>"Diversificar las relaciones políticas, económicas y culturales, de acuerdo con el establecimiento de áreas de interés geoestratégicas","directriz_id"=>7),
                   array("nombre"=>"Profundizar el dialogo fraterno entre los pueblos, el respeto de las libertade","directriz_id"=>7),
-                  array("nombre"=>"Fortalecer la soberanía nacional vigorizando y ampliando las alianzas orientadasa la conformación del bloque geopolítico regional y de un mundo multipolar","directriz_id"=>7),              
+                  array("nombre"=>"Fortalecer la soberanía nacional vigorizando y ampliando las alianzas orientadasa la conformación del bloque geopolítico regional y de un mundo multipolar","directriz_id"=>7),
             );
           
           $this->db->insert_batch('objetivo', $obj);
-          $result.=$this->db->last_query()."\n"; 
+          $result.=$this->db->last_query()."\n";
           
           
           $estrategia=array(
@@ -233,7 +262,7 @@ class M_fixtures extends CI_Model {
                      );
           
           $this->db->insert_batch('estrategia', $estrategia);
-          $result.=$this->db->last_query()."\n"; 
+          $result.=$this->db->last_query()."\n";
           
           $politica=array(
                       array("nombre"=>"Rescatar los valores de la solidaridad humana","estrategia_id"=>1),
@@ -294,8 +323,8 @@ class M_fixtures extends CI_Model {
                       array("nombre"=>"Democratizar la propiedad de la tierra de los pueblos indígenas","estrategia_id"=>10),
               
                       array("nombre"=>"Apoyar la auto elevación del nivel de conciencia del pueblo en torno a la construcción de la estructura económica socialista","estrategia_id"=>11),
-                      array("nombre"=>"Establecer mecanismos administrativos y control socialistas que puedan ser apropiados por el pueblo","estrategia_id"=>11),              
-                      array("nombre"=>"Apoyar la participación equilibrada de productores, poder popular y Estado en la toma de decisiones, la gestión económica y en la distribución de excedentes","estrategia_id"=>11),              
+                      array("nombre"=>"Establecer mecanismos administrativos y control socialistas que puedan ser apropiados por el pueblo","estrategia_id"=>11),
+                      array("nombre"=>"Apoyar la participación equilibrada de productores, poder popular y Estado en la toma de decisiones, la gestión económica y en la distribución de excedentes","estrategia_id"=>11),
               
                       array("nombre"=>"Difundir experiencias organizativas comunitarias","estrategia_id"=>12),
                       array("nombre"=>"Promover la formación de la organización social","estrategia_id"=>12),
@@ -440,7 +469,7 @@ class M_fixtures extends CI_Model {
                       array("nombre"=>"Reforzar las prácticas conservacionistas de los pueblos indígenas en sus territorios ancestrales","estrategia_id"=>42),
                       array("nombre"=>"Manejar adecuadamente las Áreas Bajo Régimen de Administración Especial y demás áreas protegidas","estrategia_id"=>42),
                       array("nombre"=>"Recuperar y mejorar los principales lagos y sus afluentes","estrategia_id"=>42),
-                      array("nombre"=>"Intervenir lo rural amigable con el ambiente","estrategia_id"=>42),              
+                      array("nombre"=>"Intervenir lo rural amigable con el ambiente","estrategia_id"=>42),
 
                       array("nombre"=>"Promover la ciudad compacta con alta densidad y baja altura","estrategia_id"=>43),
                       array("nombre"=>"Incrementar el uso de sistemas de transporte eficientes en energía y tiempo","estrategia_id"=>43),
@@ -451,17 +480,460 @@ class M_fixtures extends CI_Model {
                       array("nombre"=>"Incidir en el cambio del patrón productivo hacia tecnologías verdes","estrategia_id"=>44),
                       array("nombre"=>"Promover patrones sostenibles de consumo","estrategia_id"=>44),
                       array("nombre"=>"Reinvertir los beneficios de la explotación de recursos no renovables en el incremento de la inversión en investigación y desarrollo","estrategia_id"=>44),
-              /*
-                      array("nombre"=>"Desarrollar","estrategia_id"=>4),
-                      array("nombre"=>"Desarrollar","estrategia_id"=>4),
-               * 
-               */
+              
+                      array("nombre"=>"Potenciar e incrementar la capacidad de producción de los hidrocarburos","estrategia_id"=>45),
+                      array("nombre"=>"Aumentar la capacidad de refinación de los petróleos no convencionales","estrategia_id"=>45),
+                      array("nombre"=>"Desarrollar la industria del gas natural libre","estrategia_id"=>45),
+                      array("nombre"=>"Asegurar la soberanía en el negocio de los hidrocarburos","estrategia_id"=>45),
+                      array("nombre"=>"Consolidar la red interna de producción de hidrocarburos y sus derivados","estrategia_id"=>45),
+                      array("nombre"=>"Fomentar el desarrollo de Empresas de Producción Social (EPS) relacionadas productivamente con la industria de los hidrocarburos","estrategia_id"=>45),
+              
+                      array("nombre"=>"Ampliar y mejorar la red de transmisión y distribución de la electricidad","estrategia_id"=>46),
+                      array("nombre"=>"Completar el desarrollo del potencial hidroeléctrico del país","estrategia_id"=>46),
+                      array("nombre"=>"Sanear las empresas públicas del sector eléctrico y mejorar la eficiencia y la calidad de su servicio","estrategia_id"=>46),
+              
+                      array("nombre"=>"Incentivar la generación de fuentes alternas de energía","estrategia_id"=>47),
+                      array("nombre"=>"Incrementar la generación de electricidad con energía no convencional y combustibles no hidrocarburos","estrategia_id"=>47),
+                      array("nombre"=>"Aplicar fuentes alternas como complemento a las redes principales y en la electrificación de zonas aisladas","estrategia_id"=>47),
+              
+                      array("nombre"=>"Introducir la tecnología que permita la mayor producción de electricidad por unidad de energía primaria utilizada","estrategia_id"=>48),
+                      array("nombre"=>"Mejorar el uso de la red de distribución y comercialización de la energía","estrategia_id"=>48),
+                      array("nombre"=>"Establecer precios relativos de las diferentes formas de energía considerando su costo de oportunidad","estrategia_id"=>48),
+                      array("nombre"=>"Racionalizar el consumo de energía","estrategia_id"=>48),
+              
+                      array("nombre"=>"Perfeccionar las alianzas estratégicas","estrategia_id"=>49),
+                      array("nombre"=>"Mejorar de los procesos administrativos internos de la industria","estrategia_id"=>49),
+                      array("nombre"=>"Fortalecer la contribución fiscal en la industria de los hidrocarburos","estrategia_id"=>49),
+              
+                      array("nombre"=>"Desarrollar proyectos petroleros, gasíferos y petroquímicos ambientalmente sustentables","estrategia_id"=>50),
+                      array("nombre"=>"Preservar y fortalecer las actividades productivas tradicionales y endógenas","estrategia_id"=>50),
+                      array("nombre"=>"Mejorar de las condiciones de vida de los centros poblados adyacentes a las actividades del sector","estrategia_id"=>50),
+                      array("nombre"=>"Utilizar racionalmente los recursos en función del desarrollo urbano-regional desconcentrado","estrategia_id"=>50),
+              
+              
+                      array("nombre"=>"Desarrollar las alianzas energéticas en el contexto de la integración regional: Petrosur y Petrocaribe","estrategia_id"=>51),
+                      array("nombre"=>"Desarrollar y consolidar regionalmente los procesos asociados al desarrollo endógeno del sector","estrategia_id"=>51),
+                      array("nombre"=>"Consolidar las alianzas con Estados de las áreas de interés estratégico","estrategia_id"=>51),
+
+                      array("nombre"=>"Apoyar proyectos de investigación en los centros de estudios a nivel nacional así como la investigación dentro de la propia industria","estrategia_id"=>52),
+                      array("nombre"=>"Apoyar la investigación para mejorar la producción y distribución de hidrocarburos","estrategia_id"=>52),
+                      array("nombre"=>"Apoyar la investigación para el desarrollo de insumos de la industria petrolera y para el mejoramiento de sus productos","estrategia_id"=>52),
+              
+                      array("nombre"=>"Avanzar en una acción decidida por la transformación de la ONU, junto con diversos movimientos internacionales que propugnenesta iniciativa","estrategia_id"=>53),
+                      array("nombre"=>"Formar el recurso humano necesario para la atención de las áreas de interés geoestratégicas","estrategia_id"=>53),
+              
+                      array("nombre"=>"Sentar las bases de la autonomía financiera regional a través de la creación del sistema financiero del Sur","estrategia_id"=>54),
+                      array("nombre"=>"Promover la formación de un fondo social orientado a financiar los planes de lucha contra la pobreza y exclusión social, en el ámbito regional y mundial","estrategia_id"=>54),
+                      array("nombre"=>"Impulsar nuevos esquemas de cooperación económica y financiera para el apalancamiento del desarrollo integral y el establecimiento del comercio justo","estrategia_id"=>54),
+                      array("nombre"=>"Transformar el ahorro de la región en inversión productiva","estrategia_id"=>54),
+
+                      array("nombre"=>"Establecer redes de comunicación alternativas con movimientos sociales de apoyo al comercio justo y la solidaridad de los pueblos","estrategia_id"=>55),
+                      array("nombre"=>"Fortalecer relaciones e intercambio Sur-Sur","estrategia_id"=>55),
+
+                      array("nombre"=>"Estimular relaciones económicas autodeterminadas","estrategia_id"=>56),
+                      array("nombre"=>"Promover internacionalmente la protección de los derechos humanos y el ambiente","estrategia_id"=>56),
+
+                      array("nombre"=>"Conformar alianzas con países que comparten reservas acuíferas y energéticas con Venezuela","estrategia_id"=>57),
+                      array("nombre"=>"Promover la integración militar suramericana","estrategia_id"=>57),
+                      array("nombre"=>"Impulsar selectivamente la Alternativa Bolivariana para América como alternativa al Área de Libre Comercio de las Américas","estrategia_id"=>57),
+                      array("nombre"=>"Favorecer alianzas para el crecimiento económico y social equilibrados","estrategia_id"=>57),
+                      array("nombre"=>"Operativizar el principio de solidaridad usando recursos y asistencia para enfrentar desastres naturales y pandemias","estrategia_id"=>57),
+                      array("nombre"=>"Participar en la construcción del nuevo MERCOSUR hacia la conformación de la CSAN sobre la base de la reorientación de los contenidos de la integración","estrategia_id"=>57),
+
               );
           
           $this->db->insert_batch('politica', $politica);
           $result.=$this->db->last_query()."\n";
+          
+          
+          /******************************************************************/
+          
+          $municipio=array(
+                      array("nombre"=>"Bolívar"),
+                      array("nombre"=>"Camatagua"),
+                      array("nombre"=>"Francisco Linares Alcántara"),
+                      array("nombre"=>"Girardot"),
+                      array("nombre"=>"José Ángel Lamas"),
+                      array("nombre"=>"José Félix Ribas"),
+                      array("nombre"=>"José Rafael Revenga"),
+                      array("nombre"=>"Libertador"),
+                      array("nombre"=>"Mario Briceño Iragorry"),
+                      array("nombre"=>"Ocumare de la Costa de Oro"),
+                      array("nombre"=>"San Casimiro"),
+                      array("nombre"=>"San Sebastián"),
+                      array("nombre"=>"Santiago Mariño"),
+                      array("nombre"=>"Santos Michelena"),
+                      array("nombre"=>"Sucre"),
+                      array("nombre"=>"Tovar"),
+                      array("nombre"=>"Urdaneta"),
+                      array("nombre"=>"Zamora"),
+                      array("nombre"=>"Varios Municipios"),              
+          );
+          
+          $this->db->insert_batch('municipio', $municipio);
+          $result.=$this->db->last_query()."\n";
+          
+          $parroquias=array(
+                            array("nombre"=>"San Mateo"),
+                            array("nombre"=>"Carmen de Cura"),
+                            array("nombre"=>"Camatagua"),
+                            array("nombre"=>"Santa Rita"),
+                            array("nombre"=>"Monseñor Feliciano González"),
+                            array("nombre"=>"Francisco de Miranda"),
+                            array("nombre"=>"Los Tacariguas"),
+                            array("nombre"=>"Pedro Jose Ovalles"),
+                            array("nombre"=>"Madre María de San José"),
+                            array("nombre"=>"José Casanova Godoy"),
+                            array("nombre"=>"Las Delicias"),
+                            array("nombre"=>"Joaquín Crespo"),
+                            array("nombre"=>"Choroní"),
+                            array("nombre"=>"Andrés Eloy Blanco"),
+                            array("nombre"=>"Santa Cruz"),
+                            array("nombre"=>"Las Guacamayas"),
+                            array("nombre"=>"Zuata"),
+                            array("nombre"=>"La Victoria"),
+                            array("nombre"=>"Pao de Zárate"),
+                            array("nombre"=>"Castor Nieves Ríos"),
+                            array("nombre"=>"El Consejo"),
+                            array("nombre"=>"San Martín de Porres"),
+                            array("nombre"=>"Palo Negro"),
+                            array("nombre"=>"El Limón"),
+                            array("nombre"=>"Caña de Azúcar"),
+                            array("nombre"=>"Ocumare de la Costa"),
+                            array("nombre"=>"San Casimiro"),
+                            array("nombre"=>"Valle Morin"),
+                            array("nombre"=>"Guiripa"),
+                            array("nombre"=>"Ollas de Caramacate"),
+                            array("nombre"=>"San Sebastián"),
+                            array("nombre"=>"Alfredo Pacheco Miranda"),
+                            array("nombre"=>"Samán de Guere"),
+                            array("nombre"=>"Arévalo Aponte o Rosario de Paya"),
+                            array("nombre"=>"Chuao"),
+                            array("nombre"=>"Turmero"),
+                            array("nombre"=>"Las Tejerías"),
+                            array("nombre"=>"Tiara"),
+                            array("nombre"=>"Bella Vista"),
+                            array("nombre"=>"Cagua"),
+                            array("nombre"=>"Colonia Tovar"),
+                            array("nombre"=>"Taguay"),
+                            array("nombre"=>"Las Peñitas"),
+                            array("nombre"=>"Barbacoas"),
+                            array("nombre"=>"San Francisco de Cara"),
+                            array("nombre"=>"Villa de Cura"),
+                            array("nombre"=>"San Francisco de Asís"),
+                            array("nombre"=>"Augusto Mijares"),
+                            array("nombre"=>"Magdaleno"),
+                            array("nombre"=>"Valles de Tucutunemo"),
+                            array("nombre"=>"Varias Parroquias"),
+                            
+          );
+          
+          $this->db->insert_batch('parroquia', $parroquias);
+          $result.=$this->db->last_query()."\n";
+          
+          
+          //Relacion entre las parrouias y los municipios
+          
+          $relacion_pquia_municipio=array(
+                            array("municipio_id"=>1,"parroquia_id"=>1),
+                            array("municipio_id"=>1,"parroquia_id"=>51),
+                            
+
+                            array("municipio_id"=>2,"parroquia_id"=>2),
+                            array("municipio_id"=>2,"parroquia_id"=>3),
+                            array("municipio_id"=>2,"parroquia_id"=>51),
+
+                            array("municipio_id"=>3,"parroquia_id"=>4),
+                            array("municipio_id"=>3,"parroquia_id"=>5),
+                            array("municipio_id"=>3,"parroquia_id"=>6),
+                            array("municipio_id"=>3,"parroquia_id"=>51),
+
+                            array("municipio_id"=>4,"parroquia_id"=>7),
+                            array("municipio_id"=>4,"parroquia_id"=>8),
+                            array("municipio_id"=>4,"parroquia_id"=>9),
+                            array("municipio_id"=>4,"parroquia_id"=>10),
+                            array("municipio_id"=>4,"parroquia_id"=>11),
+                            array("municipio_id"=>4,"parroquia_id"=>12),
+                            array("municipio_id"=>4,"parroquia_id"=>13),
+                            array("municipio_id"=>4,"parroquia_id"=>14),
+                            array("municipio_id"=>4,"parroquia_id"=>51),
+
+                            array("municipio_id"=>5,"parroquia_id"=>15),
+                            array("municipio_id"=>5,"parroquia_id"=>51),
+              
+                            array("municipio_id"=>6,"parroquia_id"=>16),
+                            array("municipio_id"=>6,"parroquia_id"=>17),
+                            array("municipio_id"=>6,"parroquia_id"=>18),
+                            array("municipio_id"=>6,"parroquia_id"=>19),
+                            array("municipio_id"=>6,"parroquia_id"=>20),
+                            array("municipio_id"=>6,"parroquia_id"=>51),
+              
+                            array("municipio_id"=>7,"parroquia_id"=>21),
+                            array("municipio_id"=>7,"parroquia_id"=>51),
+              
+                            array("municipio_id"=>8,"parroquia_id"=>22),
+                            array("municipio_id"=>8,"parroquia_id"=>23),
+                            array("municipio_id"=>8,"parroquia_id"=>51),
+              
+                            array("municipio_id"=>9,"parroquia_id"=>24),
+                            array("municipio_id"=>9,"parroquia_id"=>25),
+                            array("municipio_id"=>9,"parroquia_id"=>51),
+              
+                            array("municipio_id"=>10,"parroquia_id"=>26),
+                            array("municipio_id"=>10,"parroquia_id"=>51),
+              
+                            array("municipio_id"=>11,"parroquia_id"=>27),
+                            array("municipio_id"=>11,"parroquia_id"=>28),
+                            array("municipio_id"=>11,"parroquia_id"=>29),
+                            array("municipio_id"=>11,"parroquia_id"=>30),
+                            array("municipio_id"=>11,"parroquia_id"=>51),
+              
+                            array("municipio_id"=>12,"parroquia_id"=>31),
+                            array("municipio_id"=>12,"parroquia_id"=>51),
+              
+                            array("municipio_id"=>13,"parroquia_id"=>32),
+                            array("municipio_id"=>13,"parroquia_id"=>33),
+                            array("municipio_id"=>13,"parroquia_id"=>34),
+                            array("municipio_id"=>13,"parroquia_id"=>35),
+                            array("municipio_id"=>13,"parroquia_id"=>36),
+                            array("municipio_id"=>13,"parroquia_id"=>51),
+              
+                            array("municipio_id"=>14,"parroquia_id"=>37),
+                            array("municipio_id"=>14,"parroquia_id"=>38),
+                            array("municipio_id"=>14,"parroquia_id"=>51),
+              
+                            array("municipio_id"=>15,"parroquia_id"=>39),
+                            array("municipio_id"=>15,"parroquia_id"=>40),
+                            array("municipio_id"=>15,"parroquia_id"=>51),
+
+                            array("municipio_id"=>16,"parroquia_id"=>41),
+                            array("municipio_id"=>16,"parroquia_id"=>51),
+              
+                            array("municipio_id"=>17,"parroquia_id"=>42),
+                            array("municipio_id"=>17,"parroquia_id"=>43),
+                            array("municipio_id"=>17,"parroquia_id"=>44),
+                            array("municipio_id"=>17,"parroquia_id"=>45),
+                            array("municipio_id"=>17,"parroquia_id"=>51),
+              
+                            array("municipio_id"=>18,"parroquia_id"=>46),
+                            array("municipio_id"=>18,"parroquia_id"=>47),
+                            array("municipio_id"=>18,"parroquia_id"=>48),
+                            array("municipio_id"=>18,"parroquia_id"=>49),
+                            array("municipio_id"=>18,"parroquia_id"=>50),
+                            array("municipio_id"=>18,"parroquia_id"=>51),
+              
+                            array("municipio_id"=>19,"parroquia_id"=>51),
+          );
+          
+          
+          $this->db->insert_batch('municipio_parroquia', $relacion_pquia_municipio);
+          $result.=$this->db->last_query()."\n";
+          
+          $lineaEstrategica=array(
+                              array("nombre"=>"Construcción dinámica del poder popular hacia el socialismo en el espacio regionalitario de Aragua"),
+                              array("nombre"=>"Fortalecimiento del sistema educativo participativo bolivariano como continuo humano y la nueva racionalidad del metabolismo regionalitario"),
+                              array("nombre"=>"Promoción de la vida y la salud como unidad mente-cuerpo-espÃ­Â­ritu, para toda la existencia en los espacios localitarios de Aragua"),
+                              array("nombre"=>"Creación del ambiente ecogeográfico para superar la escisión sociedad-naturaleza en el espacio regionalitario de Aragua"),
+                              array("nombre"=>"Creación de la dinámica regionalitaria para superar la contradicción capital-trabajo"),
+                              array("nombre"=>"Construcción regionalitaria de la unión Estado-Sociedad como superación de la escisión pÃºblico-privado"),
+                              array("nombre"=>"Transformación de la dinámica estructural urbana y estructural regionalitaria de Aragua que oriente soluciones de los desequilibrios y asimetrÃ­as"),
+                              array("nombre"=>"Construcción la nueva geometrÃ­a polÃ­tica de la comuna en la dinámica regionalitaria"),
+                              array("nombre"=>"Creación de la racionalidad revolucionaria para el desarrollo espiritual del ser social en la nueva dinámica regionalitaria"),
+              
+          );
+          
+          $this->db->insert_batch('lineaEstrategica', $lineaEstrategica);
+          $result.=$this->db->last_query()."\n";
+          
+          
+          $areaInversion=array(
+                            array("nombre"=>"ADQUISICION Y DOTACIONES"),
+                            array("nombre"=>"INFRAESTRUCTURA"),
+                            array("nombre"=>"Socio Productivo"),
+          );
+          
+          $this->db->insert_batch('areaInversion', $areaInversion);
+          $result.=$this->db->last_query()."\n";
+          
+          
+          
+          $categoria=array(
+                            array("nombre"=>"DEPORTE","areaInversion_id"=>1),
+                            array("nombre"=>"EDUCACION Y CULTURA","areaInversion_id"=>1),
+                            array("nombre"=>"MAQUINARIAS E IMPLEMENTOS","areaInversion_id"=>1),
+                            array("nombre"=>"SALUD","areaInversion_id"=>1),
+                            array("nombre"=>"SEGURIDAD","areaInversion_id"=>1),
+                            array("nombre"=>"TRANSPORTE","areaInversion_id"=>1),
+              
+                            array("nombre"=>"Agricola","areaInversion_id"=>2),
+                            array("nombre"=>"Alimentacion","areaInversion_id"=>2),
+                            array("nombre"=>"Ambiente","areaInversion_id"=>2),
+                            array("nombre"=>"Deportes","areaInversion_id"=>2),
+                            array("nombre"=>"Educación y Cultura","areaInversion_id"=>2),
+                            array("nombre"=>"Patrimonio Historico y Cultural","areaInversion_id"=>2),
+                            array("nombre"=>"Recreación","areaInversion_id"=>2),
+                            array("nombre"=>"Salud","areaInversion_id"=>2),
+                            array("nombre"=>"Servicios Basicos","areaInversion_id"=>2),
+                            array("nombre"=>"Transporte","areaInversion_id"=>2),
+                            array("nombre"=>"Turismo","areaInversion_id"=>2),
+                            array("nombre"=>"Vialidad","areaInversion_id"=>2),
+                            array("nombre"=>"Vivienda","areaInversion_id"=>2),
+              
+                            array("nombre"=>"Manufactura","areaInversion_id"=>3),
+                            array("nombre"=>"Producción Primaria","areaInversion_id"=>3),
+                            array("nombre"=>"Servicios","areaInversion_id"=>3),
+          );
+          
+          $this->db->insert_batch('categoria', $categoria);
+          $result.=$this->db->last_query()."\n";
+
+          $tipoProyecto=array(
+                            array("nombre"=>"Equipos e insumos deportivos","categoria_id"=>1),
+              
+                            array("nombre"=>"Producción Primaria","categoria_id"=>2),
+                            array("nombre"=>"Equipos, materiales y mobiliarios para centros educativos","categoria_id"=>2),
+                            array("nombre"=>"Materiales e instrumentos para centros culturales","categoria_id"=>2),
+              
+                            array("nombre"=>"Compactadoras de basura","categoria_id"=>3),
+                            array("nombre"=>"Equipos de limpieza (vactor y barredoras mecanicas)","categoria_id"=>3),
+                            array("nombre"=>"Maquinaria menor y pesada","categoria_id"=>3),
+                            array("nombre"=>"Plantas electricas","categoria_id"=>3),
+              
+                            array("nombre"=>"Ambulancias terrestres o fluviales","categoria_id"=>4),
+                            array("nombre"=>"Equipos e instrumentos medicos","categoria_id"=>4),
+                            array("nombre"=>"Equipos e insumos para Consultorios populares,ambulatorios y hospitales","categoria_id"=>4),
+
+                            array("nombre"=>"Equipos de seguridad y Proteccion Ciudadana","categoria_id"=>5),
+                            array("nombre"=>"Vehiculos de  seguridad y Proteccion Ciudadana","categoria_id"=>5),
+              
+                            array("nombre"=>"medios de transporte fluvial  y motores fuera de borda","categoria_id"=>6),
+                            array("nombre"=>"unidades de transporte colectivo social","categoria_id"=>6),
+              
+                            array("nombre"=>"Construccion o Rehabilitacion Infraestructura agricola","categoria_id"=>7),
+                            array("nombre"=>"Creaci&oacute;n de Viveros o semilleros agroforestales","categoria_id"=>7),
+                            array("nombre"=>"Sistema de Riego","categoria_id"=>7),
+              
+                            array("nombre"=>"Construccion o Rehabilitacion de Casa de Alimentos","categoria_id"=>8),
+                            array("nombre"=>"Construccion o Rehabilitacion de Comedores Escolares","categoria_id"=>8),
+                            array("nombre"=>"Construccion o Rehabilitacion de los Centros de Acopio Regionales y Locales","categoria_id"=>8),
+                            array("nombre"=>"Construccion o Rehabilitacion de Mataderos Comunales y/o Municipal","categoria_id"=>8),
+                            array("nombre"=>"Construccion o Rehabilitacion de Mercado Municipal y/o Comunal","categoria_id"=>8),
+                            array("nombre"=>"Construccion o Rehabilitacion de Mercalito o Pdvalito","categoria_id"=>8),
+              
+                            array("nombre"=>"Construccion o Rehabilitacion de Cementerios","categoria_id"=>9),
+                            array("nombre"=>"Embaulamiento de Quebradas","categoria_id"=>9),
+                            array("nombre"=>"Obras de Saneamiento Ambiental","categoria_id"=>9),
+                            array("nombre"=>"Restauraci&oacute;n de espacios degradados","categoria_id"=>9),
+
+                            array("nombre"=>"Construccion o Rehabilitacion de Canchas Deportivas","categoria_id"=>10),
+                            array("nombre"=>"Construccion o Rehabilitacion de Complejos Deportivos","categoria_id"=>10),
+                            array("nombre"=>"Construccion o Rehabilitacion de Estadium","categoria_id"=>10),
+              
+                            array("nombre"=>"Construccion o Rehabilitacion de Bibliotecas y Salas de Lectura","categoria_id"=>11),
+                            array("nombre"=>"Construccion o Rehabilitacion de Sedes  y Centros Culturales ","categoria_id"=>11),
+                            array("nombre"=>"Construccion, Rehabilitacion de Sedes y Centros Culturales","categoria_id"=>11),
+                            array("nombre"=>"Construccion, Rehabilitacion o Ampliacion de Escuelas, Liceos, Universidades, Preescolar","categoria_id"=>11),
+                            array("nombre"=>"Construccion, Rehabilitacion o Ampliacion de Laboratorios de Computacion","categoria_id"=>11),
+                            array("nombre"=>"Construccion, Rehabilitacion o Ampliacion de Sedes de Artes y Oficios","categoria_id"=>11),
+                            array("nombre"=>"Instalacion y Operacionalizaci&oacute;n de Servicios Culturales","categoria_id"=>11),
+                            array("nombre"=>"Proyectos de Atenci&oacute;n a la Poblacion mas Vulnerable","categoria_id"=>11),
+
+                            array("nombre"=>"Rehabilitaci&oacute;n de Casco Hist&oacute;rico","categoria_id"=>12),
+                            array("nombre"=>"Rehabilitaci&oacute;n o conservaci&oacute;n de edificacion declaradas como patrimonio cultural","categoria_id"=>12),
+
+                            array("nombre"=>"Construcci&oacute;n o Rehabilitaci&oacute;n de Parques","categoria_id"=>13),
+                            array("nombre"=>"Construcci&oacute;n o Rehabilitaci&oacute;n de Plazas","categoria_id"=>13),
+                            array("nombre"=>"Ornato y Embellecimiento","categoria_id"=>13),
+
+                            array("nombre"=>"Construcci&oacute;n o Rehabilitaci&oacute;n de Ambulatorios, Consultorios Populares, Farmacias Populares y Hospitales","categoria_id"=>14),
+
+                            array("nombre"=>"Acueductos","categoria_id"=>15),
+                            array("nombre"=>"Construcci&oacute;n de Canales de Drenaje","categoria_id"=>15),
+                            array("nombre"=>"Construcci&oacute;n o Ampliaci&oacute;n de Tendidos o Bancadas Eléctricas y alumbrado Público","categoria_id"=>15),
+                            array("nombre"=>"Desechos S&oacute;lidos","categoria_id"=>15),              
+                            array("nombre"=>"Lagunas de Oxidaci&oacute;n","categoria_id"=>15),
+                            array("nombre"=>"Perforaci&oacute;n de Pozos","categoria_id"=>15),
+                            array("nombre"=>"Plantas de Tratamiento","categoria_id"=>15),
+                            array("nombre"=>"Pozos Sépticos","categoria_id"=>15),
+                            array("nombre"=>"Saneamiento de Rellenos Sanitarios y Vertederos","categoria_id"=>15),
+                            array("nombre"=>"Sistemas de Alcantarillas","categoria_id"=>15),
+                            array("nombre"=>"Sistemas de Cloacas","categoria_id"=>15),
+                            array("nombre"=>"Sistemas de Electrificaci&oacute;n Rurales","categoria_id"=>15),
+                            array("nombre"=>"Tanques de Agua","categoria_id"=>15),
+              
+                            array("nombre"=>"Construcci&oacute;n o Rehabilitaci&oacute;n de Paradas de Autobuses","categoria_id"=>16),
+                            array("nombre"=>"Semaforizaci&oacute;n, nomenclatura o señalizaci&oacute;n urbana","categoria_id"=>16),
+                            array("nombre"=>"Terminales de Pasajeros","categoria_id"=>16),
+              
+                            array("nombre"=>"Construcci&oacute;n o Rehabilitacion de Centros Turísticos","categoria_id"=>17),
+                            array("nombre"=>"Construcci&oacute;n o Rehabilitaci&oacute;n de Hoteles","categoria_id"=>17),
+                            array("nombre"=>"Construcci&oacute;n o Rehabilitaci&oacute;n de Posadas","categoria_id"=>17),
+              
+                            array("nombre"=>"Bacheo","categoria_id"=>18),
+                            array("nombre"=>"Construcci&oacute;n de Obras de Contenci&oacute;n (Muros y Pantallas)","categoria_id"=>18),
+                            array("nombre"=>"construcci&oacute;n o Rehabilitaci&oacute;n de Aceras, Brocales y Cunetas","categoria_id"=>18),
+                            array("nombre"=>"Construcci&oacute;n o Rehabilitaci&oacute;n de Autopistas","categoria_id"=>18),
+                            array("nombre"=>"Construccion o Rehabilitacion de Caminerias y Boulevard","categoria_id"=>18),
+                            array("nombre"=>"Construcci&oacute;n o Rehabilitaci&oacute;n de Distribuidores","categoria_id"=>18),
+                            array("nombre"=>"Construcci&oacute;n o Rehabilitaci&oacute;n de Pasarelas o Puentes Peatonales","categoria_id"=>18),
+                            array("nombre"=>"Construcci&oacute;n o Rehabilitaci&oacute;n de Puentes y Pontones","categoria_id"=>18),
+                            array("nombre"=>"Construcci&oacute;n o Rehabilitaci&oacute;n de Vías Agrícolas","categoria_id"=>18),
+                            array("nombre"=>"Pavimentaci&oacute;n Asfáltica de Vías de Comunicaci&oacute;n ","categoria_id"=>18),
+                            array("nombre"=>"Pavimentaci&oacute;n de Concreto de Vías de Comunicaci&oacute;n ","categoria_id"=>18),
+
+                            array("nombre"=>"Autoconstrucci&oacute;n de Viviendas","categoria_id"=>19),
+                            array("nombre"=>"Construcci&oacute;n de Centros Comunitarios","categoria_id"=>19),
+                            array("nombre"=>"Construcci&oacute;n o Rehabilitaci&oacute;n de areas sanitarias de las viviendas","categoria_id"=>19),
+                            array("nombre"=>"Construcci&oacute;n o Rahabilitaci&oacute;n de Centros de Atenci&oacute;n al Anciano","categoria_id"=>19),
+                            array("nombre"=>"Construcci&oacute;n o Rahabilitaci&oacute;n de Viviendas","categoria_id"=>19),
+                            array("nombre"=>"Sustituci&oacute;n de Ranchos por Vivienda","categoria_id"=>19),
+                            array("nombre"=>"Urbanismo","categoria_id"=>19),
+
+                            array("nombre"=>"Producci&oacute;n, Distribuci&oacute;n y/o comercializaci&oacute;n  de madera, Papel y Cart&oacute;n","categoria_id"=>20),
+                            array("nombre"=>"Producci&oacute;n, Distribuci&oacute;n y/o comercializaci&oacute;n  de materiales de construcci&oacute;n","categoria_id"=>20),
+                            array("nombre"=>"Producci&oacute;n, Distribuci&oacute;n y/o comercializaci&oacute;n  de Productos Alimenticios","categoria_id"=>20),
+                            array("nombre"=>"Producci&oacute;n, Distribuci&oacute;n y/o comercializaci&oacute;n  de Productos de Barro, Loza y Porcelana","categoria_id"=>20),
+                            array("nombre"=>"Producci&oacute;n, Distribuci&oacute;n y/o comercializaci&oacute;n  de Productos de Cuero","categoria_id"=>20),
+                            array("nombre"=>"Producci&oacute;n, Distribuci&oacute;n y/o comercializaci&oacute;n  de Productos Metálicos","categoria_id"=>20),
+                            array("nombre"=>"Producci&oacute;n, Distribuci&oacute;n y/o comercializaci&oacute;n  de Productos de Vidrio","categoria_id"=>20),
+                            array("nombre"=>"Producci&oacute;n, Distribuci&oacute;n y/o comercializaci&oacute;n  de Productos Químicos derivados","categoria_id"=>20),
+                            array("nombre"=>"Producci&oacute;n, Distribuci&oacute;n y/o comercializaci&oacute;n  de Textiles y Vestuarios","categoria_id"=>20),
+
+              
+                            array("nombre"=>"Producci&oacute;n, Distribuci&oacute;n y/o comercializaci&oacute;n  Agroforestales","categoria_id"=>21),
+                            array("nombre"=>"Producci&oacute;n, Procesamiento, Distribuci&oacute;n y/o Comercializaci&oacute;n Acuícola","categoria_id"=>21),
+                            array("nombre"=>"Producci&oacute;n, Procesamiento, Distribuci&oacute;n y/o Comercializaci&oacute;n Agrícola","categoria_id"=>21),
+                            array("nombre"=>"Producci&oacute;n, Procesamiento, Distribuci&oacute;n y/o Comercializaci&oacute;n Apícola","categoria_id"=>21),
+                            array("nombre"=>"Producci&oacute;n, Procesamiento, Distribuci&oacute;n y/o Comercializaci&oacute;n Pecuaria","categoria_id"=>21),
+                            array("nombre"=>"Producci&oacute;n, Procesamiento, Distribuci&oacute;n y/o Comercializaci&oacute;n Pesquera","categoria_id"=>21),
+                          
+                            array("nombre"=>"Desarrollos Turísticos","categoria_id"=>22),
+                            array("nombre"=>"Limpieza y Mantenimiento General","categoria_id"=>22),
+                            array("nombre"=>"Mantenimiento y Reparaci&oacute;n de equipos de Informática y/o equipos electr&oacute;nicos","categoria_id"=>22),
+                            array("nombre"=>"Mantenimiento y Reparaci&oacute;n de Instalaciones Eléctricas","categoria_id"=>22),
+                            array("nombre"=>"Mantenimiento y Reparaci&oacute;n de Maquinarias Pesadas y Menores","categoria_id"=>22),
+                            array("nombre"=>"Mantenimiento y Reparaci&oacute;n de Vehículos","categoria_id"=>22),
+          );
+          
+          $this->db->insert_batch('tipoProyecto', $tipoProyecto);
+          $result.=$this->db->last_query()."\n";
+
+        $objDelMilenio=array(  
+                            array("nombre"=>"Erradicar la pobreza extrema y el hambre"),
+                            array("nombre"=>"Lograr la enseÃ±anza primaria universal"),
+                            array("nombre"=>"Promover la igualdad entre los gÃ©neros y la autonomÃ­a de la mujer"),
+                            array("nombre"=>"Reducir la mortalidad infantil"),
+                            array("nombre"=>"Mejorar la salud materna"),
+                            array("nombre"=>"Combatir el VIH/SIDA, el paludismo y otras enfermedades"),
+                            array("nombre"=>"Garantizar la sostenibilidad del medio ambiente"),
+                            array("nombre"=>"Fomentar la asociación mundial para el desarrollo"),
+          );
+          
+          $this->db->insert_batch('objetivosDelMilenio', $objDelMilenio);
+          $result.=$this->db->last_query()."\n";
+          
         return $result;
-    }//aa
+    }
     
 }//fin class
 ?>
