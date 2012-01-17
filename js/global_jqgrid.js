@@ -257,7 +257,7 @@ var buttons={
                             }//fin if
                             
                         else{
-                                $("#"+valor.id+" option[value='"+datos[0][valor.id]+"']").attr('selected', 'selected');
+                                $("select[name='"+valor.name+"'] option[value='"+datos[0][valor.name]+"']").attr('selected', 'selected');
                             }//fin else
                             
         });//fin each select

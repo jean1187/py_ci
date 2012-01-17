@@ -113,6 +113,10 @@ class M_fixtures extends CI_Model {
                     array("nombre"=>"Organos","url"=>"organos","parent"=>3,"grupo"=>",1,"),
                     array("nombre"=>"Cargos","url"=>"cargos","parent"=>3,"grupo"=>",1,"),
                     array("nombre"=>"Representantes","url"=>"representantes","parent"=>3,"grupo"=>",1,"),
+            
+                    array("nombre"=>"Proyectos","url"=>"proyectos","parent"=>NULL,"grupo"=>",2,"),
+                    array("nombre"=>"Nuevo","url"=>"proyectos/nuevo","parent"=>7,"grupo"=>",2,"),
+            
             );
          
          $this->db->insert_batch('menu', $menues);
@@ -726,15 +730,15 @@ class M_fixtures extends CI_Model {
           $result.=$this->db->last_query()."\n";
           
           $lineaEstrategica=array(
-                              array("nombre"=>"ConstrucciÃ³n dinÃ¡mica del poder popular hacia el socialismo en el espacio regionalitario de Aragua"),
+                              array("nombre"=>"Construcción dinámica del poder popular hacia el socialismo en el espacio regionalitario de Aragua"),
                               array("nombre"=>"Fortalecimiento del sistema educativo participativo bolivariano como continuo humano y la nueva racionalidad del metabolismo regionalitario"),
-                              array("nombre"=>"PromociÃ³n de la vida y la salud como unidad mente-cuerpo-espÃ­Â­ritu, para toda la existencia en los espacios localitarios de Aragua"),
-                              array("nombre"=>"CreaciÃ³n del ambiente ecogeogrÃ¡fico para superar la escisiÃ³n sociedad-naturaleza en el espacio regionalitario de Aragua"),
-                              array("nombre"=>"CreaciÃ³n de la dinÃ¡mica regionalitaria para superar la contradicciÃ³n capital-trabajo"),
-                              array("nombre"=>"ConstrucciÃ³n regionalitaria de la uniÃ³n Estado-Sociedad como superaciÃ³n de la escisiÃ³n pÃºblico-privado"),
-                              array("nombre"=>"TransformaciÃ³n de la dinÃ¡mica estructural urbana y estructural regionalitaria de Aragua que oriente soluciones de los desequilibrios y asimetrÃ­as"),
-                              array("nombre"=>"ConstrucciÃ³n la nueva geometrÃ­a polÃ­tica de la comuna en la dinÃ¡mica regionalitaria"),
-                              array("nombre"=>"CreaciÃ³n de la racionalidad revolucionaria para el desarrollo espiritual del ser social en la nueva dinÃ¡mica regionalitaria"),
+                              array("nombre"=>"Promoción de la vida y la salud como unidad mente-cuerpo-espÃ­Â­ritu, para toda la existencia en los espacios localitarios de Aragua"),
+                              array("nombre"=>"Creación del ambiente ecogeográfico para superar la escisión sociedad-naturaleza en el espacio regionalitario de Aragua"),
+                              array("nombre"=>"Creación de la dinámica regionalitaria para superar la contradicción capital-trabajo"),
+                              array("nombre"=>"Construcción regionalitaria de la unión Estado-Sociedad como superación de la escisión pÃºblico-privado"),
+                              array("nombre"=>"Transformación de la dinámica estructural urbana y estructural regionalitaria de Aragua que oriente soluciones de los desequilibrios y asimetrÃ­as"),
+                              array("nombre"=>"Construcción la nueva geometrÃ­a polÃ­tica de la comuna en la dinámica regionalitaria"),
+                              array("nombre"=>"Creación de la racionalidad revolucionaria para el desarrollo espiritual del ser social en la nueva dinámica regionalitaria"),
               
           );
           
@@ -922,7 +926,7 @@ class M_fixtures extends CI_Model {
                             array("nombre"=>"Mejorar la salud materna"),
                             array("nombre"=>"Combatir el VIH/SIDA, el paludismo y otras enfermedades"),
                             array("nombre"=>"Garantizar la sostenibilidad del medio ambiente"),
-                            array("nombre"=>"Fomentar la asociaciÃ³n mundial para el desarrollo"),
+                            array("nombre"=>"Fomentar la asociación mundial para el desarrollo"),
           );
           
           $this->db->insert_batch('objetivosDelMilenio', $objDelMilenio);

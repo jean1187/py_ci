@@ -48,7 +48,7 @@
     header a:hover {
       text-decoration: underline;
     }    
-/******************************************Header*********************************************/
+/******************************************Fin Header*********************************************/
 
 
 /******************************************Cuerpo**********************************************/
@@ -71,4 +71,14 @@ footer
         text-align: center;
         height: 4em;
 }
+
+/******************************************clases para simular tablas con colores alternos*********************************************/
+
+.fondo_gris{ background-color: #F4F4F4;}
+.fondo_gris_oscuro{ background-color: #E3E3E6; } 
+.borde{
+        border-width:1px;
+        border-style:dotted solid;
+        border-color: #999998;
+       }
 
