@@ -68,7 +68,7 @@ class _menu{
       private function   constructItem($item)
       {
 	$attr_span="";
-          $url=(isset($this->userdata["recibido"]))?'#':$item["url"];
+          $url=(isset($this->userdata["recibido"]))?'#':site_url($item["url"]);
 	  if($url==="#")
 	    $attr_span="id='".$item["id"]."'  grupo='".$item["grupo"]."' class='custom_menu'";
           $hijos=$this->ObternerHijos($item["id"]);

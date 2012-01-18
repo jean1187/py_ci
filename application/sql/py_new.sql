@@ -63,7 +63,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `py_new`.`areaInversion` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `nombre` VARCHAR(45) NOT NULL ,
+  `nombre` VARCHAR(200) NOT NULL ,
   `delete` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
@@ -74,7 +74,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `py_new`.`categoria` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `nombre` VARCHAR(45) NOT NULL ,
+  `nombre` VARCHAR(200) NOT NULL ,
   `areaInversion_id` INT NOT NULL ,
   `delete` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`id`) ,
@@ -92,7 +92,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `py_new`.`tipoProyecto` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `nombre` VARCHAR(45) NOT NULL ,
+  `nombre` VARCHAR(200) NOT NULL ,
   `categoria_id` INT NOT NULL ,
   `delete` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`id`) ,
@@ -186,7 +186,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `py_new`.`lineaEstrategica` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `nombre` VARCHAR(45) NULL ,
+  `nombre` VARCHAR(300) NULL ,
   `delete` TINYINT(1)  NOT NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
@@ -387,7 +387,7 @@ CREATE  TABLE IF NOT EXISTS `py_new`.`proyecto` (
   `poblacionBenef` INT NOT NULL ,
   `porcentajeAvanceF` INT NOT NULL COMMENT 'Porcentaje Fisico del proyecto' ,
   `porcentajeAvanceFinan` INT NOT NULL COMMENT 'avance financiero del proyecto\n\nesto lo que se ha aportado al proyecto' ,
-  `empleoDirectos` INT NULL ,
+  `empleosDirectos` INT NULL ,
   `empleosIndirectos` INT NULL ,
   `formulacion` VARCHAR(250) NULL ,
   `metas` VARCHAR(20) NULL ,

@@ -45,7 +45,7 @@
 
                 <!-- ********** jquery  ***********-->
                 <link type="text/css" href="<?=base_url()?>css/jquery_ui/jquery-ui.css" media="screen" rel="stylesheet" />
-                <script type="text/javascript"  src='<?=base_url()?>js/jquery_ui/jquery-ui.js'></script>                
+                <script type="text/javascript"  src='<?=base_url()?>js/jquery_ui/jquery-ui.js'></script>
 
                 <!-- ********** jqgrid  ***********-->                
                 <link type="text/css" href="<?=base_url()?>css/estilos.css" media="screen" rel="stylesheet" />

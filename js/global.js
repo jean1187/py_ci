@@ -42,4 +42,13 @@ $(document).ready(function() {
        //return data.code;
         
     };
-
+    //rellenar combos select
+    jQuery.rellenar_combo = function(ruta,var_envio,select_victima) {
+      $.post(ruta,var_envio,function(data){
+          $(select_victima).html("");
+          data=JSON.parse(data);
+          $.each(data,function(key,val){
+              $(select_victima).append(new Option(val,key));
+            });
+      });
+    };//fin rellenar_combo

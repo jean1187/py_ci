@@ -115,7 +115,8 @@ class M_fixtures extends CI_Model {
                     array("nombre"=>"Representantes","url"=>"representantes","parent"=>3,"grupo"=>",1,"),
             
                     array("nombre"=>"Proyectos","url"=>"proyectos","parent"=>NULL,"grupo"=>",2,"),
-                    array("nombre"=>"Nuevo","url"=>"proyectos/nuevo","parent"=>7,"grupo"=>",2,"),
+                    array("nombre"=>"Nuevo","url"=>"nuevo_proyecto","parent"=>7,"grupo"=>",2,"),
+                    array("nombre"=>"Nuevo","url"=>"modificar_proyecto","parent"=>7,"grupo"=>",2,"),
             
             );
          
