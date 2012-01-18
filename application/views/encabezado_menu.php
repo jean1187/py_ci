@@ -76,6 +76,7 @@
             <div class="grid_14">
                 <h3><?=$title?></h3>
             </div>    
+            <!--
             <div class="grid_7 omega alpha">
                     <div class="grid_7">
                         
@@ -90,6 +91,7 @@
                         <b>Carga : </b>{elapsed_time}
                     </div>                    
             </div>  
+            -->
         </header>
        <div class="clear"></div>
                             <div class="grid_24 container_menu">

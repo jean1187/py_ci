@@ -116,14 +116,59 @@ class M_fixtures extends CI_Model {
             
                     array("nombre"=>"Proyectos","url"=>"proyectos","parent"=>NULL,"grupo"=>",2,"),
                     array("nombre"=>"Nuevo","url"=>"nuevo_proyecto","parent"=>7,"grupo"=>",2,"),
-                    array("nombre"=>"Nuevo","url"=>"modificar_proyecto","parent"=>7,"grupo"=>",2,"),
+                    array("nombre"=>"Modificar","url"=>"modificar_proyecto","parent"=>7,"grupo"=>",2,"),
             
             );
          
          $this->db->insert_batch('menu', $menues);
           $result.=$this->db->last_query()."\n";
           
-          $this->db->insert('organo', array("nombre"=>"Proyectos"));
+          $organo=array(
+                          array("nombre"=>"SECRETARÃA SECTORIAL DEL PODER POPULAR PARA EL FORTALECIMIENTO DEL PODER POPULAR."),
+                          array("nombre"=>"SECRETARÃA SECTORIAL DEL PODER POPULAR PARA EL TURISMO."),
+                          array("nombre"=>"SECRETARÃA SECTORIAL DEL PODER POPULAR PARA LA CULTURA."),
+                          array("nombre"=>"SECRETARÃA SECTORIAL DEL PODER POPULAR PARA LA EDUCACIÃ“N."),
+                          array("nombre"=>"SECRETARÃA SECTORIAL DEL PODER POPULAR PARA LA PREVENCIÃ“N Y SEGURIDAD CIUDADANA."),
+                          array("nombre"=>"SECRETARÃA SECTORIAL DEL PODER POPULAR PARA LA PROTECCIÃ“N AMBIENTAL Y EL ORDENAMIENTO TERRITORIAL"),
+                          array("nombre"=>"SECRETARÃA SECTORIAL DEL PODER POPULAR PARA LA PROTECCIÃ“N Y EL DESARROLLO SOCIAL."),
+                          array("nombre"=>"SECRETARÃA SECTORIAL DEL PODER POPULAR PARA LA SALUD."),
+                          array("nombre"=>"SECRETARÃA SECTORIAL DEL PODER POPULAR PARA EL DESARROLLO AGRARIO."),
+                          array("nombre"=>"SECRETARÃA SECTORIAL DEL PODER POPULAR PARA EL DESARROLLO ECONÃ“MICO"),
+                          array("nombre"=>"SECRETARÃA SECTORIAL DEL PODER POPULAR PARA LA HACIENDA,ADMINISTRACIÃ“N Y FINANZAS"),
+                          array("nombre"=>"SECRETARÃA SECTORIAL DEL PODER POPULAR PARA LA INFRAESTRUCTURA Y EL DESARROLLO URBANÃSTICO."),
+                          array("nombre"=>"SECRETARIA DE ESTADO DE PATRIMONIO HISTORICO"),
+                          array("nombre"=>"DIRECCION DE PROYECTOS"),
+                          array("nombre"=>"SECRETARIA DE ESTADO PARA LA VIVIENDA Y HABITAT"),
+                          array("nombre"=>"OTROS ENTES ADSCRITOS"),
+                          array("nombre"=>"DIRECCION DE TECNOLOGIA Y SISTEMA"),
+                          array("nombre"=>"CORPOSALUD"),
+                          array("nombre"=>"CONSEJO LEGISLATIVO DEL ESTADO ARAGUA"),
+                          array("nombre"=>"INSTITUTO REGIONAL DEL DEPORTE DE ARAGUA (IRDA)"),
+                          array("nombre"=>"SECRETARIA DE ESTADO PARA MEDIOS COMUNITARIOS Y ALTERNATIVOS"),
+                          array("nombre"=>"MINARSA"),
+                          array("nombre"=>"A.C. BIBLIOTECAS VIRTUALES ARAGUA"),
+                          array("nombre"=>"FUNDACION MISION ARAGUA EN MARCHA BICENTENARIA"),
+                        );
+          $this->db->insert_batch('organo', $organo);
+         $result.=$this->db->last_query()."\n";
+         
+         $entidad=array(
+                    array("nombre"=>"SERVICIO AUTONÃ“MO PROTECCIÃ“N CIVIL Y ADMINISTRACIÃ“N DE DESASTRES ARAGUA","organo_id"=>5),
+                    array("nombre"=>"SISTEMA INTEGRADO DE EMERGENCIA 171 ARAGUA","organo_id"=>5),
+                    array("nombre"=>"DIRECCION GENERAL DE PREFECTURAS DEL ESTADO ARAGUA","organo_id"=>5),
+                    array("nombre"=>"CUERPO DE BOMBEROS DEL ESTADO ARAGUA","organo_id"=>5),
+                    array("nombre"=>"INSTITUTO DE LA POLICIA DEL ESTADO ARAGUA (INPO ARAGUA)","organo_id"=>5),
+                    array("nombre"=>"SAPANNA","organo_id"=>7),
+                    array("nombre"=>"INSTITUTO DE LA MUJER DE ARAGUA","organo_id"=>7),
+                    array("nombre"=>"INSTITUTO ARAGUEÃ‘O DE LA JUVENTUD (INSAJUV)","organo_id"=>7),
+                    array("nombre"=>"ARAGUA  TURISTICA, S.A (ARATUR)","organo_id"=>12),
+                    array("nombre"=>"TRASARAGUA SA","organo_id"=>12),
+                    array("nombre"=>"INSTITUTO DEL PODER POPULAR PARA LA VIVIENDA Y HÃBITAT DIGNO DEL ESTADO ARAGUA (V.I.D.A)","organo_id"=>15),
+                    array("nombre"=>"FUNDACION REGIONAL EL NIÃ‘O SIMON DE ARAGUA ","organo_id"=>16),
+                    array("nombre"=>"SERVICIO AUTONOMO DE ALIMENTACION Y NUTRICION DE ARAGUA (SAANA)","organo_id"=>18),
+                );
+         
+         $this->db->insert_batch('entidad', $entidad);
          $result.=$this->db->last_query()."\n";
          
           $this->db->insert('cargos', array("nombre"=>"Programador Web"));
@@ -131,7 +176,7 @@ class M_fixtures extends CI_Model {
          
             $users=array(
                         array("userLogin"=>"admin","passwordLogin"=>"VqN3dmdcRki+6mClS6aKJTs+Pus4t9nANXtKAuLJzDyAmyuNshQ5hHhOOGgC+MnqFZog+5XkE5k5IRs/4HyfnA==","nombre"=>"Jean C","apellido"=>"Mendoza","correo"=>"jeanmendozar@gmail.com","organo_id"=>1,"grupo_id"=>1,"status_id"=>1),
-                        array("userLogin"=>"jefa","passwordLogin"=>"HgmG3DIw5t+yax0hUp0+GrL8fFMRbmlA0e3qWN4JsZ21Y/ecHJq6/s9fcCeEwAuTwe4ibO7OV+9dHD9O3Ol1Rg==","nombre"=>"Maria","apellido"=>"Gregori","correo"=>"dgp.aragua@gmail.com","organo_id"=>1,"grupo_id"=>2,"status_id"=>1),
+                        array("userLogin"=>"py","passwordLogin"=>"n968kWg51kmoVOrGibeyQMrWU7xOLDLiz+GSEeEInGkUjwDUvMgXSmDCMYGh94weZUoAFIVsYgN6eSnCsQmjuw==","nombre"=>"Proyectos","apellido"=>"Prueba","correo"=>"dgparagua@gmail.com","organo_id"=>1,"grupo_id"=>2,"status_id"=>1),
             ); 
           $this->db->insert_batch('users', $users);
            $result.=$this->db->last_query()."\n";

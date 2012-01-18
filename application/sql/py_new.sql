@@ -11,7 +11,7 @@ USE `py_new` ;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `py_new`.`municipio` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `nombre` VARCHAR(45) NOT NULL ,
+  `nombre` VARCHAR(100) NOT NULL ,
   `delete` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
@@ -22,10 +22,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `py_new`.`parroquia` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `nombre` VARCHAR(45) NOT NULL ,
+  `nombre` VARCHAR(100) NOT NULL ,
   `delete` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`id`) )
-ENGINE = InnoDB
+ENGINE = InnoDB, 
 COMMENT = 'Parroquias de acuerdo a un municipio' ;
 
 
@@ -34,7 +34,7 @@ COMMENT = 'Parroquias de acuerdo a un municipio' ;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `py_new`.`organo` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `nombre` VARCHAR(45) NOT NULL ,
+  `nombre` VARCHAR(200) NOT NULL ,
   `delete` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
@@ -45,7 +45,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `py_new`.`entidad` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `nombre` VARCHAR(45) NOT NULL ,
+  `nombre` VARCHAR(200) NOT NULL ,
   `organo_id` INT NOT NULL ,
   `delete` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`id`) ,
@@ -132,7 +132,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `py_new`.`objetivo` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `nombre` VARCHAR(45) NOT NULL ,
+  `nombre` VARCHAR(200) NOT NULL ,
   `directriz_id` INT NOT NULL ,
   `delete` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`id`) ,
@@ -150,7 +150,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `py_new`.`estrategia` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `nombre` VARCHAR(45) NOT NULL ,
+  `nombre` VARCHAR(200) NOT NULL ,
   `directriz_id` INT NOT NULL ,
   `delete` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`id`) ,
@@ -168,7 +168,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `py_new`.`politica` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `nombre` VARCHAR(45) NOT NULL ,
+  `nombre` VARCHAR(200) NOT NULL ,
   `estrategia_id` INT NOT NULL ,
   `delete` TINYINT(1)  NOT NULL DEFAULT false ,
   PRIMARY KEY (`id`) ,
