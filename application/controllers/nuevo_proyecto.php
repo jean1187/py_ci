@@ -28,12 +28,13 @@ class Nuevo_proyecto extends CI_Controller {
                 $this->googlemaps->add_marker($marker);
             /* fin funciones para google maps*/
                
-              $lineasEstrategicas=$this->_global->array_merge_key_values($this->modelo->resultTable("lineaEstrategica"),array("id","nombre")); $this->_global->array_unshift_assoc($lineasEstrategicas,"0","- Seleccione -");     
-              $odm=$this->_global->array_merge_key_values($this->modelo->resultTable("objetivosDelMilenio"),array("id","nombre")); $this->_global->array_unshift_assoc($odm,"0","- Seleccione -");     
-              $organo=$this->_global->array_merge_key_values($this->modelo->resultTable("organo"),array("id","nombre")); $this->_global->array_unshift_assoc($organo,"0","- Seleccione -");
-              $areaInversion=$this->_global->array_merge_key_values($this->modelo->resultTable("areaInversion"),array("id","nombre")); $this->_global->array_unshift_assoc($areaInversion,"0","- Seleccione -");
-              $municipio=$this->_global->array_merge_key_values($this->modelo->resultTable("municipio"),array("id","nombre")); $this->_global->array_unshift_assoc($municipio,"0","- Seleccione -");
-              $directriz=$this->_global->array_merge_key_values($this->modelo->resultTable("directriz"),array("id","nombre")); $this->_global->array_unshift_assoc($directriz,"0","- Seleccione -");
+              $lineasEstrategicas=$this->_global->array_merge_key_values($this->modelo->resultTable("lineaestada"),array("id","opcion")); $this->_global->array_unshift_assoc($lineasEstrategicas,"0","- Seleccione -");     
+              $odm=$this->_global->array_merge_key_values($this->modelo->resultTable("odm"),array("id","opcion")); $this->_global->array_unshift_assoc($odm,"0","- Seleccione -");     
+              $organo=$this->_global->array_merge_key_values($this->modelo->resultTable("organo"),array("id","opcion")); $this->_global->array_unshift_assoc($organo,"0","- Seleccione -");
+              $areaInversion=$this->_global->array_merge_key_values($this->modelo->resultTable("area"),array("id","opcion")); $this->_global->array_unshift_assoc($areaInversion,"0","- Seleccione -");
+              $politica=$this->_global->array_merge_key_values($this->modelo->resultTable("polidos"),array("id","opcion")); $this->_global->array_unshift_assoc($politica,"0","- Seleccione -");
+              $municipio=$this->_global->array_merge_key_values($this->modelo->resultTable("municipio"),array("id","opcion")); $this->_global->array_unshift_assoc($municipio,"0","- Seleccione -");
+              $directriz=$this->_global->array_merge_key_values($this->modelo->resultTable("lineas"),array("id","opcion")); $this->_global->array_unshift_assoc($directriz,"0","- Seleccione -");
               $fases=$this->selectMesesPorcentaje(null,7,true);
                 
             $data['map'] = $this->googlemaps->create_map();
@@ -49,7 +50,7 @@ class Nuevo_proyecto extends CI_Controller {
             $data['directriz']=$directriz;
             $data['objetivo']=$this->seleccione;
             $data['estrategia']=$this->seleccione;
-            $data['politica']=$this->seleccione;
+            $data['politica']=$politica;
             $data['tiempoEstimado']=$this->selectMesesPorcentaje(true,24);
             $data['fases']=$fases;
             $data['class']=$this->router->class;
@@ -66,31 +67,31 @@ class Nuevo_proyecto extends CI_Controller {
             switch ($this->input->post("oper"))
             {
                 case "combo_categoria": 
-                    $this->echoSelectJson($this->modelo->resultTable_Where("categoria",array("areaInversion_id"=>$this->input->post("id_area"))));
+                    $this->echoSelectJson($this->modelo->resultTable_Where("catego",array("relacion"=>$this->input->post("id_area"))));
                 break;
                 case "combo_tipo":
-                    $this->echoSelectJson($this->modelo->resultTable_Where("tipoProyecto",array("categoria_id"=>$this->input->post("id_categoria"))));
+                    $this->echoSelectJson($this->modelo->resultTable_Where("tipoin",array("relacion"=>$this->input->post("id_categoria"))));
                 break;
                 case "combo_parroquia":
-                    $this->echoSelectJson($this->modelo->resultParroquias($this->input->post("id_municipio")));
+                    $this->echoSelectJson($this->modelo->resultTable_Where("parroquia",array("relacion"=>$this->input->post("id_municipio"))));
                 break;
                 case "combo_objetivo":
-                    $this->echoSelectJson($this->modelo->resultTable_Where("objetivo",array("directriz_id"=>$this->input->post("id_directriz"))));
+                    $this->echoSelectJson($this->modelo->resultTable_Where("objedos",array("relacion"=>$this->input->post("id_directriz"))));
                 break;
                 case "combo_estrategia":
-                    $this->echoSelectJson($this->modelo->resultTable_Where("estrategia",array("directriz_id"=>$this->input->post("id_directriz"))));
+                    $this->echoSelectJson($this->modelo->resultTable_Where("estrados",array("relacion"=>$this->input->post("id_objetivo"))));
                 break;
-                case "combo_politica":
-                    $this->echoSelectJson($this->modelo->resultTable_Where("politica",array("estrategia_id"=>$this->input->post("id_estrategia"))));
-                break;
+               /* case "combo_politica":
+                    $this->echoSelectJson($this->modelo->resultTable_Where("polidos",array("relacion"=>$this->input->post("id_estrategia"))));
+                break;*/
                 case "combo_entes":
-                    $this->echoSelectJson($this->modelo->resultTable_Where("entidad",array("organo_id"=>$this->input->post("id_organo"))));
+                    $this->echoSelectJson($this->modelo->resultTable_Where("ente",array("relacion"=>$this->input->post("id_organo"))));
                 break;
             }//fin switch
         }//fin operacion
         
         
-        function echoSelectJson($array_result,$datos=array("id","nombre"))
+        function echoSelectJson($array_result,$datos=array("id","opcion"))
         {
             $result=$this->_global->array_merge_key_values($array_result,$datos); $this->_global->array_unshift_assoc($result,"0",$this->seleccione[0]);
             $this->output->set_content_type('application/json')->set_output(json_encode($result));
