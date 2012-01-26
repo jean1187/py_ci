@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = '123';
-$db['default']['database'] = 'py_new';
+$db['default']['hostname'] = '192.168.2.171';
+$db['default']['username'] = 'py_user';
+$db['default']['password'] = 'py*_2012full.';
+$db['default']['database'] = 'proyectos';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

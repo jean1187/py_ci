@@ -22,7 +22,7 @@ class M_login extends CI_Model {
     function ValUser($user,$password)
     {
     
-        $this->db->select($this->table.'.*,organo.nombre as organo');
+        $this->db->select($this->table.'.*,organo.opcion as organo');
         $this->db->from($this->table);
         $this->db->join('organo', 'users.organo_id = organo.id', 'left');
         $this->db->where($this->table.".userLogin",$user);
