@@ -17,25 +17,39 @@ $(document).ready(function() {
   
   
   $("select[name='directriz']").change(function(){
-      //$("select[name='politica']").html(new Option("- Seleccione -",0));
-      $("select[name='estrategia']").html(new Option("- Seleccione -",0));
+      $("select[name='politica']").html(new Option("- Seleccione -",0));
+      //$("select[name='estrategia']").html(new Option("- Seleccione -",0));
       $.rellenar_combo(base_url+"/operacion", {oper:"combo_objetivo","id_directriz":this.value},"select[name='objetivo']");
+      $.rellenar_combo(base_url+"/operacion", {oper:"combo_estrategia","id_directriz":this.value},"select[name='estrategia']");
   });//fin cambio en los objetivos 
   
-  $("select[name='objetivo']").change(function(){
+ /* $("select[name='objetivo']").change(function(){
     $.rellenar_combo(base_url+"/operacion", {oper:"combo_estrategia","id_objetivo":this.value},"select[name='estrategia']");
   });//fin cambio en  estrategias
-  /*$("select[name='estrategia']").change(function(){
+  */
+  $("select[name='estrategia']").change(function(){
       $.rellenar_combo(base_url+"/operacion", {oper:"combo_politica","id_estrategia":this.value},"select[name='politica']");
   });//fin cambio en las politicas
-*/
-  $("select[name='organo']").change(function(){
+
+  /*$("select[name='organo']").change(function(){
       $.rellenar_combo(base_url+"/operacion", {oper:"combo_entes","id_organo":this.value},"select[name='ente']");
   });//fin cambio en las entes
+  */
   
   
-  $("form").submit(function(){
-      alert("Guardando");
-     return false; 
+  $("form").submit(function(event){
+      $.ajax({
+            type: "POST",
+            url: base_url+'/operacion',
+            data: $("form").serialize()+"&oper=add",
+            success: function(data){
+               $.mesages_validation(data);
+                //    $.msj_success(data,"");
+            },//fin success
+            error:function(data){
+                $.achtung({message: data.responseText,timeout:5});
+            }
+        }); //fin ajax
+     event.preventDefault(); 
   });
 });//fin $(document).ready(function() {

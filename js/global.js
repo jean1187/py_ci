@@ -27,14 +27,17 @@ $(document).ready(function() {
     
  }//fin botones
 */
+ 
     //inicio mesages_validation
     jQuery.mesages_validation = function(data) {
-        if(!data)
+        if(data.indexOf("login-form")!=-1)
+            window.locationf="";
+        else if(!data)
             $.achtung({message: 'El dato fue guardado', timeout:5});
         
         else
         {
-            data=JSON.parse(data);  
+            data=JSON.parse(data);
             $.each(data,function(key,val){
                 $.achtung({message: val, timeout:5});
             });
@@ -52,3 +55,43 @@ $(document).ready(function() {
             });
       });
     };//fin rellenar_combo
+    
+     $.ajaxSetup({
+        /*error: function(jqXHR, exception) {
+            alert(exception)
+            if (jqXHR.status === 0) {
+                alert('Not connect.\n Verify Network.');
+            } else if (jqXHR.status == 404) {
+                alert('Requested page not found. [404]');
+            } else if (jqXHR.status == 500) {
+                alert('Internal Server Error [500].');
+            } else if (exception === 'parsererror') {
+                alert('Requested JSON parse failed.');
+            } else if (exception === 'timeout') {
+                alert('Time out error.');
+            } else if (exception === 'abort') {
+                alert('Ajax request aborted.');
+            } else {
+                alert('Uncaught Error.\n' + jqXHR.responseText);
+            }
+        },
+        error:function(e, xhr, settings) {
+            alert(xhr.status)
+                    if (xhr.status == "401")
+                        alert("You are not logged into the remote page!");
+                    if (xhr.status == "404")
+                        alert("The remote page could not be found: '"+settings.url+"'(status code: "+xhr.status+")");
+        },*/
+        complete: function(xhr, exito)
+        {
+            if(xhr.responseText.indexOf("login-form")==987)
+                {
+                    alert("    Su sesión ha expirado\nPor favor ingrese de nuevo")
+                    window.location.href="";    
+                    //window.location.reload();  
+                }
+        }//fin complete
+    });
+  
+
+

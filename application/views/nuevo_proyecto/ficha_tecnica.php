@@ -13,10 +13,10 @@
             </div>
         <div class="clear"></div>
             <div class="grid_11 omega" >
-                <?php echo form_label('<b>Nombre del proyecto :</b>').form_textarea(array('name'=> 'nombre','id'=> 'nombre','value'=>'','rows'=>'2',"cols"=>55));?>
+                <req>*</req><?php echo form_label('<b>Nombre del proyecto :</b>').form_textarea(array('name'=> 'nombre','id'=> 'nombre','value'=>'','rows'=>'2',"cols"=>55));?>
             </div>    
             <div class="grid_13 alpha" >
-                <?php echo form_label('<b>Descripción del proyecto :</b>').form_textarea(array('name'=> 'nombre','id'=> 'nombre','value'=>'','rows'=>'2',"cols"=>55));?>
+                <req>*</req><?php echo form_label('<b>Descripción del proyecto :</b>').form_textarea(array('name'=> 'descripcion','id'=> 'descripcion','value'=>'','rows'=>'2',"cols"=>55));?>
             </div> 
 
         <div class="clear"></div>
@@ -180,10 +180,10 @@
         <div class="clear"></div>
 
             <div class="grid_6 fondo_gris_oscuro espacio-arriba" >
-                <?php echo form_label('<b>Impacto Social :</b>').br(1).form_textarea(array('name'=> 'nombre','id'=> 'nombre','value'=>'','rows'=>'1',"cols"=>30));?>
+                <?php echo form_label('<b>Impacto Social :</b>').br(1).form_textarea(array('name'=> 'impsoc','id'=> 'impsoc','value'=>'','rows'=>'1',"cols"=>30));?>
             </div>    
             <div class="grid_6 fondo_gris_oscuro espacio-arriba" >
-                <?php echo form_label('<b>Poblacion Beneficiada :</b>').br(1).form_textarea(array('name'=> 'nombre','id'=> 'nombre','value'=>'','rows'=>'1',"cols"=>30));?>
+                <?php echo form_label('<b>Poblacion Beneficiada :</b>').br(1).form_input(array('name'=>'poblacionBeneficiada','id'=>'poblacionBeneficiada','value'=> '','maxlength'=> '10','size'=>'19'));?> 
             </div>  
             <div class="grid_6   fondo_gris_oscuro espacio-arriba" >
                 <?php echo form_label('<b>Avance Fisico :</b>').br(1).form_input(array('name'=>'porcentajeAvanceF','id'=>'porcentajeAvanceF','value'=> '','maxlength'=> '5','size'=>'10'));?>%
@@ -193,7 +193,7 @@
             </div> 
         <div class="clear"></div>
             <div class="grid_12  fondo_gris_oscuro" >
-                <?php echo form_label('<b>Indicador :</b>').br(1).form_label('Formulacion ').form_textarea(array('name'=> 'nombre','id'=> 'nombre','value'=>'','rows'=>'1',"cols"=>52)).br(1).form_label('Metas ').form_textarea(array('name'=> 'nombre','id'=> 'nombre','value'=>'','rows'=>'1',"cols"=>57));?>
+                <?php echo form_label('<b>Indicador :</b>').br(1).form_label('Formulacion ').form_textarea(array('name'=> 'formulacion','id'=> 'formulacion','value'=>'','rows'=>'1',"cols"=>52)).br(1).form_label('Metas ').form_textarea(array('name'=> 'metas','id'=> 'metas','value'=>'','rows'=>'1',"cols"=>57));?>
             </div>    
             <div class="grid_12   fondo_gris_oscuro" >
                 <?php echo form_label('<b>Nº de Empleos Generados :</b>').br(1).form_label('Directos').form_input(array('name'=>'empleosDirectos','id'=>'empleosDirectos','value'=> '','maxlength'=> '100','size'=>'26')).br(1).form_label('Indirectos').form_input(array('name'=>'empleosIndirectos','id'=>'empleosIndirectos','value'=> '','maxlength'=> '100','size'=>'25'));?> 
@@ -204,7 +204,7 @@
             </div>
         <div class="clear"></div>
             <div class="grid_24" >
-                <?php echo br(1).form_textarea(array('name'=> 'nombre','id'=> 'nombre','value'=>'','rows'=>'2',"cols"=>132));?> 
+                <?php echo br(1).form_textarea(array('name'=> 'articulacionConOtrosEntes','id'=> 'articulacionConOtrosEntes','value'=>'','rows'=>'2',"cols"=>132));?> 
             </div>
         <div class="clear"></div>
 
@@ -213,7 +213,7 @@
             </div>
         <div class="clear"></div>
           <div class="grid_24" >
-                <?php echo br(1).form_textarea(array('name'=> 'nombre','id'=> 'nombre','value'=>'','rows'=>'2',"cols"=>132));?> 
+                <?php echo br(1).form_textarea(array('name'=> 'competencias','id'=> 'competencias','value'=>'','rows'=>'2',"cols"=>132));?> 
             </div>
         <div class="clear"></div>
         

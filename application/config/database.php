@@ -48,7 +48,7 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '192.168.2.171';
+$db['default']['hostname'] = '192.168.1.47';
 $db['default']['username'] = 'py_user';
 $db['default']['password'] = 'py*_2012full.';
 $db['default']['database'] = 'proyectos';
@@ -64,6 +64,22 @@ $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
+
+$db['prueba']['hostname'] = '192.168.1.47';
+$db['prueba']['username'] = 'py_user';
+$db['prueba']['password'] = 'py*_2012full.';
+$db['prueba']['database'] = 'py_origin';
+$db['prueba']['dbdriver'] = 'mysql';
+$db['prueba']['dbprefix'] = '';
+$db['prueba']['pconnect'] = TRUE;
+$db['prueba']['db_debug'] = TRUE;
+$db['prueba']['cache_on'] = FALSE;
+$db['prueba']['cachedir'] = '';
+$db['prueba']['char_set'] = 'utf8';
+$db['prueba']['dbcollat'] = 'utf8_general_ci';
+$db['prueba']['swap_pre'] = '';
+$db['prueba']['autoinit'] = TRUE;
+$db['prueba']['stricton'] = FALSE;
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */

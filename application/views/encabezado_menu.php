@@ -26,6 +26,7 @@
                                    ));
                 ?>
                 <script type="text/javascript"  src='/js/jquery.js'></script>
+                <script type="text/javascript"  src='/js/jsonvalidator.js'></script>
 <!-- ********************************************************************************************************** -->
                 <!-- ********** Js del Menu  ***********-->
                 <?php 
@@ -35,7 +36,7 @@
 <!-- ********************************************************************************************************** -->
                  <!-- ********** 960 Grid  ***********-->
                 <?php 
-                    echo link_tag('/css/960Grid/reset.css');
+                   // echo link_tag('/css/960Grid/reset.css');
                     echo link_tag('/css/960Grid/text.css');
                     echo link_tag('/css/960Grid/960_24_col.css');
                 ?>                     

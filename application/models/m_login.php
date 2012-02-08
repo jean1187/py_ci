@@ -22,8 +22,9 @@ class M_login extends CI_Model {
     function ValUser($user,$password)
     {
     
-        $this->db->select($this->table.'.*,organo.opcion as organo');
+        $this->db->select($this->table.'.*,organo.opcion as organo,grupo.nombre as grupo,grupo.url_index as url_grupo');
         $this->db->from($this->table);
+        $this->db->join('grupo', 'users.grupo_id = grupo.id', 'left');
         $this->db->join('organo', 'users.organo_id = organo.id', 'left');
         $this->db->where($this->table.".userLogin",$user);
         $query = $this->db->get();
