@@ -22,6 +22,8 @@ class Proyectos extends CI_Controller {
                 $config['trafficOverlay'] = TRUE;
                 $config['map_type'] = 'HYBRID';
                 $this->googlemaps->initialize($config);
+                $i=0;
+                
                   foreach($this->modelo->proyectos_mapa($this->user["cod"]) as $valor)
                   {
                       //echo $this->db->last_query();exit;
@@ -30,8 +32,11 @@ class Proyectos extends CI_Controller {
                         $marker = array();
                         $marker['position'] = $valor["norte"].','.$valor["este"];
                         $marker['draggable'] = false;
-                        $marker['infowindow_content'] = "<img src='/imagenes/logo_gober_30X30.png'  /> ".$valor["id"]." <br>Cod de Proyecto:&nbsp; ".$valor["id"]."  <br><a href='#' rel=".$valor["id"]."'>Resumen de la Ficha T&eacute;cnica</a>";
+                        $marker['infowindow_content'] = "<img src='".base_url()."/imagenes/logo_gober_30X30.png'  /> ".str_replace('"','\"',cambia_char($valor["nopro"]))." <br>Cod de Proyecto:&nbsp; ".$valor["id"]."<br> <a href='#' nom_py='".str_replace('"','\"',cambia_char($valor["nopro"]))."' pquia='".str_replace('"','\"',cambia_char($valor["pquia"]))."' muni='".str_replace('"','\"',cambia_char($valor["muni"]))."'  descr_py='".str_replace('"','\"',cambia_char($valor["descr"]))."'  monto_py='".number_format($valor["monto"])."'   class='resumen_ficha_map' rel=".$valor["id"].">Resumen de la Ficha T&eacute;cnica</a>";
                         $this->googlemaps->add_marker($marker);
+                        /*if($i==4)
+                            break;
+                        $i++;*/
                       //}
                   }//fin markas para el mapa
             /* fin funciones para google maps*/      
@@ -40,8 +45,19 @@ class Proyectos extends CI_Controller {
                 
                 $data["total"]=$this->modelo->TotalProyectos($this->user["cod"]);
                 $data["PlandeInversion_FCI"]=$this->modelo->PlandeInversion_FCI($this->user["cod"]);
+                $data["ListaPlandeInversion_Situado"]=$this->modelo->ListaPlandeInversion_Situado($this->user["cod"]);
+                $data["ListaPlandeInversion_OtraFuente"]=$this->modelo->ListaPlandeInversion_OtraFuente($this->user["cod"]);
                 $data["ListaPlandeInversion_FCI"]=$this->modelo->ListaPlandeInversion_FCI($this->user["cod"]);
+                $data["ListaPlandeInversion_SinPropuesta"]=$this->modelo->ListaPlandeInversion_SinPropuesta($this->user["cod"]);
                 $data['map'] = $this->googlemaps->create_map();
+                $data['cod']=$this->user["cod"];
+                $data['m_situado']=$this->modelo->Monto_situado($this->user["cod"]);
+                $data['otra_fuente']=$this->modelo->OtraFuente($this->user["cod"]);
+                $data['SinPropuesta']=$this->modelo->SinPropuesta($this->user["cod"]);
+                $data['nombre_completo']=$this->user["nombre"]." ".$this->user["apellido"];
+                
+                
+                
                 
                 
                 $this->load->vars($data);

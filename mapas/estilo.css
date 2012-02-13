@@ -1,0 +1,44 @@
+input.mayusculas{text-transform:uppercase;}
+.saltopagina {  page-break-after: always;   } 
+BODY{font-size:12px; font-family:arial; color:#000;} 
+.tabla{border-color:#666 ; background-color: #E3E3E6; font-family: arial; color:#000;} 
+.tabla1{border-color:#666 ; background-color: #E3E3E6; font-family: arial; color:#000; font-size: 10px;}
+.titulorojo{border-color: #000; font-size: 20px; border-width: 1px; background-color: #F00 ; font-family: arial; color:#000;}
+.error{font-size: 10px; border-width: 0px;border-color: ; font-family: arial; color:#000;}
+.fonplan12{font-size: 15px; border-width: 0px;border-color: ; background-color: #0099FF; font-family: arial; color:#000;}
+.Estilo9 {color: #990000}
+.fc_main { background: #DDDDDD; border: 1px solid #000000; font-family: Verdana; font-size: 10px; }
+.fc_date { border: 1px solid #D9D9D9;  cursor:pointer; font-size: 10px; text-align: center;}
+.fc_dateHover, TD.fc_date:hover { cursor:pointer; border-top: 1px solid #FFFFFF; border-left: 1px solid #FFFFFF; border-right: 1px solid #999999; border-bottom: 1px solid #999999; background: #E7E7E7; font-size: 10px; text-align: center; }
+.fc_wk {font-family: Verdana; font-size: 10px; text-align: center;}
+.fc_wknd { color: #FF0000; font-weight: bold; font-size: 10px; text-align: center;}
+.fc_head { background: #000066; color: #FFFFFF; font-weight:bold; text-align: left;  font-size: 11px; }
+#iframe { overflow:auto; width:550px; height:100px;}
+.titulogris{border-color: #000; font-size: 15px; border-width: 1px; background-color: #999 ; font-family: arial; color:#000;}
+.titulogrisclaro{border-color: #000; font-size: 17px; border-width: 1px; background-color: #EEEEEE ; font-family: arial; color:#000;}
+.fonplan12b{font-size: 15px; border-width: 0px;border-color: ; background-color: #F4F4F4; font-family: arial; color:#000;}
+.menucontrol{font-size: 15px; border-width: 0px;border-color: ; background-color: #F4F4F4; font-family: arial; color:#000;}		
+.scroll {
+height: 100px;
+
+overflow-x:hidden; overflow-y:scroll;
+border: 1px solid #666;
+background-color: #FFF;
+padding: 8px;
+}
+.scrollv {
+overflow: auto;
+border: 1px solid #666;
+background-color: #FFF;
+padding: 8px;
+}
+.scrollm {
+overflow: auto;
+border: 1px solid #666;
+background-color: #FFF;
+padding: 8px;
+}
+.cuerporojo{border-color: #000; font-size: 15px; border-width: 1px;  font-family: arial; color:#F00;}
+.fondogris{ background-color:#CCC; border-color:#CCC}
+.fondogrisclaro{border-color:#666 ; background-color: #EEE; font-family: arial; color:#000; font-size: 16px;}
+.fonplan12b{font-size: 15px; border-width: 0px;border-color: ; background-color: #F4F4F4; font-family: arial; color:#000;}

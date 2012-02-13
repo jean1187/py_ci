@@ -39,8 +39,29 @@ if ( ! function_exists('arabigo2romano'))
 	}
 }
 
+if ( ! function_exists('cambia_char'))
+{
 
+function cambia_char($str)
+    {
+    return str_replace(array("Ã’","Ã‰","Ã","Ãš","Ã“","Ã‘","Ã","Ãœ","Ã¡","Ã³","Ã©","Ã¨","Ãº","Ã±","Ã¼","Ã","â€",'“',"\n","\r\n","\r"), array("Ó","É","Í","Ú","Ó","Ñ","Á","Ü","á","ó","é","é","ú","ñ","ü","í","-",'-',"","",""), $str);
+     /*$str = strtolower($str);
+     $buscar = array('á', 'é', 'í', 'ó', 'ú', 'ñ', 'Ã¡', 'Ã©', 'Ã­', 'Ã³', 'Ãº', 'ä', 'ë', 'ï', 'ö', 'ü', 'Ã¤', 'Ã«', 'Ã¯', 'Ã¶', 'Ã¼', 'Ã', 'Ã‰', 'Ã', 'Ã“', 'Ãš', 'Ã„', 'Ã‹', 'Ã', 'Ã–', 'Ãœ', 'Ã±');
+   $repl = array('a', 'e', 'i', 'o', 'u', 'n', 'a',  'e',  'i',  'o',  'u',  'a', 'e', 'i', 'o', 'u', 'a',  'e',  'i',  'o',  'u',  'a',  'e',  'i',  'o',  'u',  'a',  'e',  'i',  'o',  'u',  'n');
+   $str = str_replace($buscar, $repl, $str);
+   // Añadimos los guiones
+   $buscar = array(' ', '&', '\r\n', '\n', '+', '_');
+   $str = str_replace($buscar, '-', $str);
+   
+   
+   $buscar = array('/[^a-z0-9\-<>]/', '/[\-]+/', '/<[^>]*>/');
+   $repl = array('a', '-', '.');
+   $str = preg_replace ($buscar, $repl, $str);
+   
+        return str_replace(array("Ã’","Ã‰","Ã","Ãš","Ã“","Ã‘","Ã","Ãœ","Ã¡","Ã³","Ã©","Ã¨","Ãº","Ã±","Ã¼","Ã","â€",'“'), array("Ó","É","Í","Ú","Ó","Ñ","Á","Ü","á","ó","é","é","ú","ñ","ü","í","-",'-'), $str);*/
+    }
 
+}
 
 /* End of file url_helper.php */
 /* Location: ./system/helpers/romano2arabigo_helper.php */

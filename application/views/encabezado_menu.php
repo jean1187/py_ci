@@ -25,20 +25,20 @@
                                       'media' => 'screen'
                                    ));
                 ?>
-                <script type="text/javascript"  src='/js/jquery.js'></script>
-                <script type="text/javascript"  src='/js/jsonvalidator.js'></script>
+                <script type="text/javascript"  src='<?php echo base_url()?>/js/jquery.js'></script>
+                <script type="text/javascript"  src='<?php echo base_url()?>/js/jsonvalidator.js'></script>
 <!-- ********************************************************************************************************** -->
                 <!-- ********** Js del Menu  ***********-->
                 <?php 
-                    echo link_tag('/css/apycomMenu/menu.css');
+                    echo link_tag(base_url()."/css/apycomMenu/menu.css");
                 ?>                
-                <script type="text/javascript" src="/js/apycomMenu/menu.js"></script>
+                <script type="text/javascript" src="<?php echo base_url()?>/js/apycomMenu/menu.js"></script>
 <!-- ********************************************************************************************************** -->
                  <!-- ********** 960 Grid  ***********-->
                 <?php 
                    // echo link_tag('/css/960Grid/reset.css');
-                    echo link_tag('/css/960Grid/text.css');
-                    echo link_tag('/css/960Grid/960_24_col.css');
+                    echo link_tag(base_url().'/css/960Grid/text.css');
+                    echo link_tag(base_url().'/css/960Grid/960_24_col.css');
                 ?>                     
 
                  
@@ -59,11 +59,11 @@
 <!-- ********************************************************************************************************** -->
 
                  <!-- ********** achtung ***********-->
-                <?php  echo link_tag('/css/achtung/ui.achtung-min.css');  ?>                     
+                <?php  echo link_tag(base_url().'/css/achtung/ui.achtung-min.css');  ?>                     
                  <script type="text/javascript"  src='/js/achtung/ui.achtung-min.js'></script>
                  
                  <!-- ********** achtung ***********-->
-                 <script type="text/javascript"  src='/js/global.js'></script>
+                 <script type="text/javascript"  src='<?=base_url()?>/js/global.js'></script>
                  
     <title><?=$title?></title>
 </head>
@@ -94,15 +94,16 @@
             </div>  
             -->
         </header>
+
        <div class="clear"></div>
                             <div class="grid_24 container_menu">
                                 <ul class="menu">
-                                    <li><a href="<?php echo base_url();?>" ><span>Inicio</span></a></li>
+                                    <li><a href="<?php if($user["url_index"]!="") echo $user["url_index"]; else if($user["url_grupo"]!="") echo $user["url_grupo"]; else echo base_url();?>" ><span>Inicio</span></a></li>
                                             <?php
 
                                                 echo $user["menu"]
                                             ?>
-                                    <li class="last"><a href="/login/salir"><span>salir</span></a></li>
+                                    <li class="last"><a href="<?=site_url('login/salir')?>"><span>salir</span></a></li>
                                 </ul>
                             </div>
 

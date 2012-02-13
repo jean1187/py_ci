@@ -3,7 +3,7 @@
 class Nuevo_proyecto extends CI_Controller {
     
     
-        function  __construct() 
+        function __construct()
         {
             parent::__construct();
             $this->load->model('m_'.$this->router->class,"modelo");
@@ -13,7 +13,7 @@ class Nuevo_proyecto extends CI_Controller {
   
        
         public function index()
-	{
+{ 
             /*funciones para google maps*/
                 $this->load->library('googlemaps');
                 $config['center'] = '10.254103525868485,-67.59247183799744';
@@ -28,12 +28,12 @@ class Nuevo_proyecto extends CI_Controller {
                     $this->googlemaps->add_marker($marker);
             /* fin funciones para google maps*/
                
-              $lineasEstrategicas=$this->_global->array_merge_key_values($this->modelo->resultTable("lineaestada"),array("id","opcion")); $this->_global->array_unshift_assoc($lineasEstrategicas,"","- Seleccione -");     
-              $odm=$this->_global->array_merge_key_values($this->modelo->resultTable("odm"),array("id","opcion")); $this->_global->array_unshift_assoc($odm,"","- Seleccione -");     
+              $lineasEstrategicas=$this->_global->array_merge_key_values($this->modelo->resultTable("lineaestada"),array("id","opcion")); $this->_global->array_unshift_assoc($lineasEstrategicas,"","- Seleccione -");
+              $odm=$this->_global->array_merge_key_values($this->modelo->resultTable("odm"),array("id","opcion")); $this->_global->array_unshift_assoc($odm,"","- Seleccione -");
               $organo=$this->_global->array_merge_key_values($this->modelo->resultTable_Where("organo",array("opcion <>"=>""),"concat( 'o_', id ) AS id, opcion"),array("id","opcion"));
               $ente=$this->_global->array_merge_key_values($this->modelo->resultTable_Where("ente",array("opcion <>"=>"","id <>"=>0),"concat( 'e_', id ) AS id, opcion"),array("id","opcion"));
               $areaInversion=$this->_global->array_merge_key_values($this->modelo->resultTable("area"),array("id","opcion")); $this->_global->array_unshift_assoc($areaInversion,"","- Seleccione -");
-              $politica=$this->_global->array_merge_key_values($this->modelo->resultTable("polidos"),array("id","opcion")); $this->_global->array_unshift_assoc($politica,"","- Seleccione -");
+              //$politica=$this->_global->array_merge_key_values($this->modelo->resultTable("polidos"),array("id","opcion")); $this->_global->array_unshift_assoc($politica,"","- Seleccione -");
               $municipio=$this->_global->array_merge_key_values($this->modelo->resultTable("municipio"),array("id","opcion")); $this->_global->array_unshift_assoc($municipio,"","- Seleccione -");
               $directriz=$this->_global->array_merge_key_values($this->modelo->resultTable("lineas"),array("id","opcion")); $this->_global->array_unshift_assoc($directriz,"","- Seleccione -");
               $fases=$this->selectMesesPorcentaje(null,7,true);
@@ -51,7 +51,7 @@ class Nuevo_proyecto extends CI_Controller {
             $data['directriz']=$directriz;
             $data['objetivo']=$this->seleccione;
             $data['estrategia']=$this->seleccione;
-            $data['politica']=$politica;
+            $data['politica']=$this->seleccione;
             $data['tiempoEstimado']=$this->selectMesesPorcentaje(true,24);
             $data['fases']=$fases;
             $data['class']=$this->router->class;
@@ -59,7 +59,7 @@ class Nuevo_proyecto extends CI_Controller {
             
             $this->load->vars($data);
                 $this->cargar->menu_system($this->router->class."/ficha_tecnica","Nuevo Proyecto");
-	}//fin index
+}//fin index
         
         
         
@@ -75,7 +75,7 @@ class Nuevo_proyecto extends CI_Controller {
                 break;
                 
                 
-                case "combo_categoria": 
+                case "combo_categoria":
                     $this->echoSelectJson($this->modelo->resultTable_Where("catego",array("relacion"=>$this->input->post("id_area"))));
                 break;
                 case "combo_tipo":
@@ -94,8 +94,8 @@ class Nuevo_proyecto extends CI_Controller {
                     $this->echoSelectJson($this->modelo->resultTable_Where("polidos",array("relacion"=>$this->input->post("id_estrategia"))));
                 break;
                 /*case "combo_entes":
-                    $this->echoSelectJson($this->modelo->resultTable_Where("ente",array("relacion"=>$this->input->post("id_organo"))));
-                break;*/
+$this->echoSelectJson($this->modelo->resultTable_Where("ente",array("relacion"=>$this->input->post("id_organo"))));
+break;*/
             }//fin switch
         }//fin operacion
         
@@ -112,7 +112,7 @@ class Nuevo_proyecto extends CI_Controller {
         
         function selectMesesPorcentaje($meses=null,$final=100,$fase=null)
         {
-           
+           $this->load->helper("romano");
             
             $result=array();
             for($i=1;$i<=$final;$i++)
@@ -121,11 +121,11 @@ class Nuevo_proyecto extends CI_Controller {
                 if(!is_null($meses) && is_null($fase))
                 {
                   $plural=($i>1)?"es":"";
-                  $valor.=nbs(8)."Mes".$plural;  
+                  $valor.=nbs(8)."Mes".$plural;
                 }
                 else if(is_null($meses) && !is_null($fase))
-                    $valor=$this->_global->arabigo2romano($i);  
-              $result[$i]=$valor;  
+                    $valor=arabigo2romano($i);
+              $result[$i]=$valor;
             }
             return $result;
         }//fin selectMesesPorcentaje

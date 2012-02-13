@@ -5,12 +5,12 @@
                 <link rel='shortcut icon' href='<?php echo base_url()?>/imagenes/icons/favicon.ico' />
 		<title>Direccion de Proyectos del Edo. Aragua</title>
                 <!-- Js para el Style del login -->
-                <link rel="stylesheet" type="text/css" media="all" href="/css/login/tripoli.css" />
-                <link rel="stylesheet" type="text/css" media="screen" href="/css/login/login.css" />
+                <link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url()?>/css/login/tripoli.css" />
+                <link rel="stylesheet" type="text/css" media="screen" href="<?php echo base_url()?>/css/login/login.css" />
                 <!-- Js para levantar la ayuda, o tooltip-->
-                <script type="text/javascript"  src='/js/jquery.js'></script>
-                <link rel="stylesheet" type="text/css" media="screen" href="js/tooltip/global.css" />
-                <script type="text/javascript"  src='/js/tooltip/jtip.js'></script>
+                <script type="text/javascript"  src='<?php echo base_url()?>/js/jquery.js'></script>
+                <link rel="stylesheet" type="text/css" media="screen" href="<?php echo base_url()?>/js/tooltip/global.css" />
+                <script type="text/javascript"  src='<?php echo base_url()?>/js/tooltip/jtip.js'></script>
 	</head>
 	<body>
         	<div id="cuerpo">
@@ -27,7 +27,7 @@
                                         <input type="password"  name="clave"   title="Esriba su clave personal." id="signin_password"/>
                                       </li>
                                       <li class="buttons">
-                                            <a href="/help/login/sugerencias_y_recomendaciones.html?width=500" class="jTip" id="one" name="Sugerencias y Recomendaciones:"><img src="/imagenes/icons/help.png" /></a>
+                                            <a href="<?php echo base_url()?>/help/login/sugerencias_y_recomendaciones.html?width=500" class="jTip" id="one" name="Sugerencias y Recomendaciones:"><img src="/imagenes/icons/help.png" /></a>
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <button type="submit" id="submit-button" class="btn"><span><span>&nbsp;Entrar&nbsp;</span></span></button>
                                       </li>

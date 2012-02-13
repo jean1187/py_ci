@@ -48,7 +48,7 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '192.168.1.47';
+$db['default']['hostname'] = '192.168.1.205';
 $db['default']['username'] = 'py_user';
 $db['default']['password'] = 'py*_2012full.';
 $db['default']['database'] = 'proyectos';
@@ -65,7 +65,7 @@ $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
 
-$db['prueba']['hostname'] = '192.168.1.47';
+$db['prueba']['hostname'] = '192.168.1.205';
 $db['prueba']['username'] = 'py_user';
 $db['prueba']['password'] = 'py*_2012full.';
 $db['prueba']['database'] = 'py_origin';

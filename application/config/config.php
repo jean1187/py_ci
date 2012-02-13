@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= '';
+//$config['base_url']	= 'http://localhost/py_ci_BD_VIEJA/';
 //$config['base_url']	= '';
 $config['base_url']     = 'http://'.$_SERVER['SERVER_NAME'];
 /*
@@ -27,7 +27,7 @@ $config['base_url']     = 'http://'.$_SERVER['SERVER_NAME'];
 | variable so that it is blank.
 |
 */
-//$config['index_page'] = 'index.php';
+//$config['index_page'] = 'index.php?';
 $config['index_page'] = '';
 
 /*

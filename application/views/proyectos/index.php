@@ -1,31 +1,70 @@
 <?php echo $map['js']; ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Direcci&oacute;n de Proyectos" content="text/html; charset=iso-8859-1" />
-<title>Direcci&oacute;n de Proyectos</title>
-<link rel="shortcut icon" href="images/logo_gobernacion.ico" />
-<link href="estilo.css" rel="stylesheet" type="text/css" />
+<script lang="javascript">
+    $(document).ready(function(){
+        $( "#dialog:ui-dialog" ).dialog( "destroy" );
+        $( "#dialog-modal" ).dialog({
+	        autoOpen: false,
+			height: 'auto',
+			width:  'auto',
+			modal: true,
+			resizable: false
+        });
+                
+        $(".resumen_ficha_map").live("click", function(event){
+               $("#nombre_py").text($(this).attr("nom_py"));
+			   $("#descr_py").text($(this).attr("descr_py"));
+			   $("#monto_py").text($(this).attr("monto_py"));
+			   $("#municipio_py").text($(this).attr("muni"));
+			   $("#parroquia_py").text($(this).attr("pquia"));			   
+			   $( "#dialog-modal" ).dialog("open");	
+              event.preventDefault();
+            });
+    });//fin document ready
+    
+</script>
 <style type="text/css">
-a:link {
-	color: #FFF;
-}
-a:visited {
-	color: #FFF;
-}
-a:hover {
-	color: #FFF;
-}
-a:active {
-	color: #FFF;
+    a{
+        text-decoration:none;
+    }
+.resumen_ficha_map{
+    color: #000;
+    text-decoration:underline;
 }
 </style>
-</head>
-<body>
 
-
+<div id="dialog-modal" title="DETALLE DEL PROYECTO">
+	<center>
+	<table width="700" border="0">
+      <tr>
+        <td ><div align="left"><strong>Nombre del Proyecto</strong></div><div id="nombre_py" align="justify"></div></td>    
+      </tr>
+     <tr>
+       <td ><div align="left"><strong>Descripci&oacute;n del Proyecto</strong></div><div id="descr_py"></div></td>
+     </tr>
+     <tr>
+  
+      <td >
+      <div align="left"><strong>Municipio</strong></div><div id="municipio_py"></div></td>
+      
+    </tr>
+     <tr>
+ 
+      <td ><div align="left"><strong>Parroquia</strong></div><div id="parroquia_py"></div></td>
+      
+    </tr>
     
-<h1 align="center">Bienvenido(a)</h1>
+     <tr>
+   
+      <td ><div align="left"><strong>Monto</strong></div><div id="monto_py"></div></td>
+      
+    
+      
+    </tr>
+  </table></center>
+	
+</div>
+    
+<h1 align="center">Bienvenido(a)  <?php echo $nombre_completo?></h1>
 <br />
 <p>NOTA: Debido a cambio en la &aacute;rea de inversi&oacute;n del Consejo Federal  de Gobierno &nbsp;deben &nbsp;de volver a seleccionar los campos <br />
   Gracias&hellip;
@@ -45,7 +84,7 @@ a:active {
   </table><table width="100%" border="1">
   <tr>
     <td >
-      <div align="left"><a href="newproyectos/resumen.php" target="_new"><span style="color:#000"><div align="center"><strong>Nueva Ficha T&eacute;cnica de Proyectos</strong></div>
+      <div align="left"><a href="<?php echo site_url("nuevo_proyecto")?>" ><span style="color:#000"><div align="center"><strong>Nueva Ficha T&eacute;cnica de Proyectos</strong></div>
         
       </span>
       <span style="color:#000">Nota:  Verifique si la ficha a ingresar no se encuentre en la sabana. Al llenar las Fichas para que salga en la sabana debe actualizar esta p&aacute;gina.
@@ -91,8 +130,9 @@ Ir&aacute; al formulario de modificaci&oacute;n donde cambiara los datos por cad
 
 <table width="100%" border="2">
   <tr>
-    <td><div align="center"><?php echo $map['html']; ?>      </div></td>
+      <td><div align="center"><?php echo $map["html"]?></div></td>
   </tr>
+  
 </table>
 
 </td>
@@ -183,44 +223,44 @@ Ir&aacute; al formulario de modificaci&oacute;n donde cambiara los datos por cad
 						<td height="99" colspan='1' ><div class="scrollv1">
 						  <div align="center"><a href="newproyectosm/resumenvista.php?id="  title="hacer clip"><span style="color:#F00"><?php echo $valor["id"]?></span></a></div>
 						</div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["observa"] ?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["nopro"] ?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["observa"]) ?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["nopro"] )?></div></td>
 						<td colspan='1' ><div class="scrollv1"><?php echo $valor["area"] ?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["organ"] ?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["ejecu"] ?></div></td> 
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["descr"] ?></div></td> 
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["organ"]) ?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["ejecu"]) ?></div></td> 
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["descr"]) ?></div></td> 
 						<td colspan='1' ><div class="scrollv1"><?php if($valor["etapa1"]) echo "Preinversi&oacute;n<br>";if($valor["etapa2"]) echo "Proyecto Nuevo<br>";if($valor["etapa3"]) echo "Ampliaci&oacute;n o Modificaci&oacute;n<br>";if($valor["etapa4"]) echo "Culminaci&oacute;n<br>"; ?></div></td> 
 						<td colspan='1' ><div class="scrollv1"><?php echo arabigo2romano($valor["fase"])?></div></td> 
 						<td colspan='1' ><div class="scrollv1"><?php echo $valor["tipo_py"]?></div></td> 
 						<td colspan='1' ><div class="scrollv1"><?php echo $valor["categoria"]?></div></td>
 						<td colspan='1' ><div class="scrollv1"><?php echo $valor["area"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["norespro"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["unidad"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["norespro"])?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["unidad"])?></div></td>
 						<td colspan='1' ><div class="scrollv1"><?php echo $valor["cargo"]?></div></td>
 						<td colspan='1' ><div class="scrollv1"><?php echo $valor["correo"]?></div></td>
 						<td colspan='1' ><div class="scrollv1"><?php echo $valor["telf"]?></div></td>
 						<td colspan='1' ><div class="scrollv1"><?php echo $valor["fax"]?></div></td>
 						<td colspan='1' ><div class="scrollv1"><?php echo $valor["municipio"]?></div></td>
 						<td colspan='1' ><div class="scrollv1"><?php echo $valor["parroquia"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["cocomu"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["cocomu"])?></div></td>
 						<td colspan='1' ><div class="scrollv1"><?php echo $valor["norte"]?></div></td>
 						<td colspan='1' ><div class="scrollv1"><?php echo $valor["este"]?></div></td>
 						<td colspan='1' ><div class="scrollv1"><?php echo $valor["lineas"]?></div></td>
 						<td colspan='1' ><div class="scrollv1"><?php echo $valor["objedos"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"></div></td>
-						<td colspan='1' ><div class="scrollv1"></div></td>
-						<td colspan='1' ><div class="scrollv1"></div></td>
-						<td colspan='1' ><div class="scrollv1"></div></td>
-						<td colspan='1' ><div class="scrollv1"></div></td>
-						<td colspan='1' ><div class="scrollv1"></div></td>
-						<td colspan='1' ><div class="scrollv1"></div></td> 
-						<td colspan='1' ><div class="scrollv1"></div></td>
-						<td colspan='1' ><div class="scrollv1"></div></td>
-						<td colspan='1' ><div class="scrollv1"></div></td>
-						<td colspan='1' ><div class="scrollv1"></div></td>
-						<td colspan='1' ><div class="scrollv1"></div></td>
-						<td colspan='1' ><div class="scrollv1"></div></td>
-						<td colspan='1' ><div class="scrollv1"></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["estrados"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["polidos"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["tiempo"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["monto"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["otra"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["impsoc"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["pobl"]?></div></td> 
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["avafisico"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["avafinanc"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["empdirec"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["empindi"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["articu"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["compone"])?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["observa"])?></div></td>
 						</TR>
 
            <?php }    ?> 
@@ -241,14 +281,13 @@ Ir&aacute; al formulario de modificaci&oacute;n donde cambiara los datos por cad
   <tr>
     <td style="background-color:#F2F2F2"><div align="left">Total de Proyectos </div></td>
     <td><div align="center">
-      <?php /*	$result = mysql_query("SELECT COUNT(cod),sum(monto) FROM resumen where aprobado=1 and factible=1 and situadoc!=0  and cod='$sum' "); 
- while ($row = mysql_fetch_row($result)){ echo $s=$row['0'];*/ ?>
+      <?php echo  number_format($m_situado["total"], 2, ',', '.')?> 
       </div></td>
     <td><div align="right">
-      <?php /* $s1=$row['1'];echo number_format($row['1'], 2, ',', '.');}*/ ?>
+      <?php echo number_format($m_situado["monto"], 2, ',', '.')?>
       </div></td>
   </tr>
-  
+  <?php if($m_situado["total"]!=0){?>
 </table>
       <TABLE border="">
           <TR class="tabla">
@@ -299,138 +338,56 @@ resumen.estrategia=estrados.id and resumen.politica=polidos.id and aprobado=1 an
 cod like '$sum' ORDER BY `resumen`.`id` ASC");*/ ?>
          
 		 
-		<?php /* while ($row = mysql_fetch_row($result)){  */ ?>
-            <TR>
-<td height="99" colspan='1' ><div class="scrollv1">
-  <div align="center"><a href="newproyectosm/resumenvista.php?id=<?php /* echo $row['0']; */ ?>" target="_new" title="hacer clip"><span style="color:#F00"> <?php /* echo $row['0']; */ ?></span></a></div>
-</div></td> 
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['1']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['2']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['3']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['4']; */ ?></div></td> 
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['5']; */ ?></div></td> 
-<td colspan='1' ><div class="scrollv1">
-<?php /*  
-switch ( $row['6']){
-	case 1:
-	print "<div align='left'>Preinversi&oacute;n</div>";
-   	break;
-	
-	case 0: 
-	print " ";
-   	break;}
+		                   <?php  
+				   
+				   foreach ($ListaPlandeInversion_Situado as $key=>$valor) { ?> 
+									<TR>
+						<td height="99" colspan='1' ><div class="scrollv1">
+						  <div align="center"><a href="newproyectosm/resumenvista.php?id="  title="hacer clip"><span style="color:#F00"><?php echo $valor["id"]?></span></a></div>
+						</div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["observa"]) ?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["nopro"] )?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["area"] ?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["organ"]) ?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["ejecu"]) ?></div></td> 
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["descr"]) ?></div></td> 
+						<td colspan='1' ><div class="scrollv1"><?php if($valor["etapa1"]) echo "Preinversi&oacute;n<br>";if($valor["etapa2"]) echo "Proyecto Nuevo<br>";if($valor["etapa3"]) echo "Ampliaci&oacute;n o Modificaci&oacute;n<br>";if($valor["etapa4"]) echo "Culminaci&oacute;n<br>"; ?></div></td> 
+						<td colspan='1' ><div class="scrollv1"><?php echo arabigo2romano($valor["fase"])?></div></td> 
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["tipo_py"]?></div></td> 
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["categoria"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["area"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["norespro"])?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["unidad"])?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["cargo"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["correo"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["telf"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["fax"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["municipio"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["parroquia"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["cocomu"])?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["norte"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["este"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["lineas"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["objedos"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["estrados"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["polidos"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["tiempo"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["monto"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["otra"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["impsoc"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["pobl"]?></div></td> 
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["avafisico"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["avafinanc"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["empdirec"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["empindi"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["articu"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["compone"])?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["observa"])?></div></td>
+						</TR>
 
-*/ ?>
-<br />
-<?php /*  
-switch ( $row['7']){
-	case 1:
-	print "<div align='left'>Proyecto Nuevo</div>";
-   	break;
-	
-	case 0:
-	print " ";
-   	break;}
-
-*/ ?><br />
-<?php /*  
-switch ( $row['8']){
-	case 1:
-	print "<div align='left'>Ampliaci&oacute;n o Modificaci&oacute;n</div>";
-   	break;
-	
-	case 0:
-	print " ";
-   	break;}
-
-*/ ?><br />
-<?php /*  
-switch ( $row['9']){
-	case 1:
-	print "<div align='left'>Culminaci&oacute;n</div>";
-   	break;
-	
-	case 0:
-	print " ";
-   	break;}
-
-*/ ?></div></td> 
-<td colspan='1' ><div class="scrollv1">
- <?php /*      
-      switch ($row[10]){
-	case 1:
-	print "I";
-   	break;
-	
-	
-	case 2:
-	print "II";
-   	break;
-	
-	
-	case 3:
-	print "III";
-   	break;
-	
-	
-	case 4:
-	print "IV";
-   	break;
-	
-	case 5:
-	print "V";
-   	break;
-	
-	
-	case 6:
-	print "VI";
-   	break;
-	
-	
-	case 7:
-	print "VII";
-   	break;
-	
-	
-	
-	}
-
-*/ ?></div></td> 
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['11']; */ ?></div></td> 
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['12']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['13']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['14']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['15']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['16']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['17']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['18']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['19']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['20']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['21']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['22']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['23']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['24']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['25']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['26']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['27']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['28']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['29']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /*  $a=$row['30'];echo  $a=number_format($a, 2, ',', '.'); */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['31']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['32']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['33']; */ ?></div></td> 
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['34']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['35']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['36']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['37']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['38']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['39']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['40']; */ ?></div></td>
-</TR>
-
-           <?php /* }    */ ?> 
-                    
+           <?php }    ?> 
 </TABLE>
+<?php } //fin if   ?> 
 ------------------------------------------------------------------------------
 <strong>LISTA DE PROYECTOS PROPUESTA PARA OTRA FUENTE  PARA 2012</strong>
 <table width="385" border="0">
@@ -446,14 +403,14 @@ switch ( $row['9']){
   <tr>
     <td style="background-color:#F2F2F2"><div align="left">Total de Proyectos </div></td>
     <td><div align="center">
-      <?php /*	$result = mysql_query("SELECT COUNT(cod),sum(monto) FROM resumen where aprobado=1 and factible=1 and otrafuente!=0  and cod='$sum' "); 
- while ($row = mysql_fetch_row($result)){ echo $s=$row['0'];*/ ?>
+      <?php echo  number_format($otra_fuente["total"], 2, ',', '.')?>
       </div></td>
     <td><div align="right">
-      <?php /* $s1=$row['1'];echo number_format($row['1'], 2, ',', '.');}*/ ?>
+      <?php echo  number_format($otra_fuente["monto"], 2, ',', '.')?>
       </div></td>
   </tr>
   
+<?php if($otra_fuente["total"]!=0){?>
 </table>
       <TABLE border="">
           <TR class="tabla">
@@ -496,146 +453,59 @@ switch ( $row['9']){
                 <td><div align="center">Competencias a Transferir</div></td>
                 <td><div align="center">Observaciones</div></td>
   </TR>
-        <?php /* 
-		
- $result = mysql_query("SELECT  resumen. id,nopro,lineaestada.opcion,organ,ejecu,descr,etapa1,etapa2,etapa3,etapa4,fase,tipoin.opcion,catego.opcion,area.opcion,norespro,unidad,cargo,correo,telf,fax,municipio.opcion, parroquia.opcion,cocomu,norte,este,lineas.opcion,objedos.opcion,estrados.opcion,polidos.opcion,tiempo,monto,otra,impsoc,pobl,avafisico,avafinanc,empdirec,empindi,articu,compone,observa FROM resumen,lineaestada,tipoin,catego,area,municipio,parroquia,lineas,objedos,estrados,polidos WHERE  resumen.lineaesta=lineaestada.id and resumen.ti_pro=tipoin.id and resumen.ti_cate=catego.id and resumen.ti_are=area.id and resumen.munici=municipio.id and resumen.parroq=parroquia.id  and 
-resumen.directriz=lineas.id and resumen.objetivo=objedos.id and
-resumen.estrategia=estrados.id and resumen.politica=polidos.id and aprobado=1 and factible=1 and otrafuente!=0 and
-cod like '$sum' ORDER BY `resumen`.`id` ASC");*/ ?>
-         
-		 
-		<?php /* while ($row = mysql_fetch_row($result)){  */ ?>
-            <TR>
-<td height="99" colspan='1' ><div class="scrollv1">
-  <div align="center"><a href="newproyectosm/resumenvista.php?id=<?php /* echo $row['0']; */ ?>" target="_new" title="hacer clip"><span style="color:#F00"><?php /* echo $row['0']; */ ?> </span></a></div>
-</div></td> 
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['1']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['2']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['3']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['4']; */ ?></div></td> 
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['5']; */ ?></div></td> 
-<td colspan='1' ><div class="scrollv1">
-<?php /*  
-switch ( $row['6']){
-	case 1:
-	print "<div align='left'>Preinversi&oacute;n</div>";
-   	break;
-	
-	case 0: 
-	print " ";
-   	break;}
+       <?php  
+				   
+				   foreach ($ListaPlandeInversion_OtraFuente as $key=>$valor) { ?> 
+									<TR>
+						<td height="99" colspan='1' ><div class="scrollv1">
+						  <div align="center"><a href="newproyectosm/resumenvista.php?id="  title="hacer clip"><span style="color:#F00"><?php echo $valor["id"]?></span></a></div>
+						</div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["observa"]) ?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["nopro"] )?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["area"] ?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["organ"]) ?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["ejecu"]) ?></div></td> 
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["descr"]) ?></div></td> 
+						<td colspan='1' ><div class="scrollv1"><?php if($valor["etapa1"]) echo "Preinversi&oacute;n<br>";if($valor["etapa2"]) echo "Proyecto Nuevo<br>";if($valor["etapa3"]) echo "Ampliaci&oacute;n o Modificaci&oacute;n<br>";if($valor["etapa4"]) echo "Culminaci&oacute;n<br>"; ?></div></td> 
+						<td colspan='1' ><div class="scrollv1"><?php echo arabigo2romano($valor["fase"])?></div></td> 
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["tipo_py"]?></div></td> 
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["categoria"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["area"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["norespro"])?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["unidad"])?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["cargo"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["correo"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["telf"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["fax"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["municipio"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["parroquia"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["cocomu"])?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["norte"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["este"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["lineas"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["objedos"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["estrados"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["polidos"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["tiempo"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["monto"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["otra"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["impsoc"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["pobl"]?></div></td> 
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["avafisico"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["avafinanc"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["empdirec"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["empindi"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["articu"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["compone"])?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["observa"])?></div></td>
+						</TR>
 
-*/ ?>
-<br />
-<?php /*  
-switch ( $row['7']){
-	case 1:
-	print "<div align='left'>Proyecto Nuevo</div>";
-   	break;
-	
-	case 0:
-	print " ";
-   	break;}
-
-*/ ?><br />
-<?php /*  
-switch ( $row['8']){
-	case 1:
-	print "<div align='left'>Ampliaci&oacute;n o Modificaci&oacute;n</div>";
-   	break;
-	
-	case 0:
-	print " ";
-   	break;}
-
-*/ ?><br />
-<?php /*  
-switch ( $row['9']){
-	case 1:
-	print "<div align='left'>Culminaci&oacute;n</div>";
-   	break;
-	
-	case 0:
-	print " ";
-   	break;}
-
-*/ ?></div></td> 
-<td colspan='1' ><div class="scrollv1">
- <?php /*      
-      switch ($row[10]){
-	case 1:
-	print "I";
-   	break;
-	
-	
-	case 2:
-	print "II";
-   	break;
-	
-	
-	case 3:
-	print "III";
-   	break;
-	
-	
-	case 4:
-	print "IV";
-   	break;
-	
-	case 5:
-	print "V";
-   	break;
-	
-	
-	case 6:
-	print "VI";
-   	break;
-	
-	
-	case 7:
-	print "VII";
-   	break;
-	
-	
-	
-	}
-
-*/ ?></div></td> 
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['11']; */ ?></div></td> 
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['12']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['13']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['14']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['15']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['16']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['17']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['18']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['19']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['20']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['21']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['22']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['23']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['24']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['25']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['26']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['27']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['28']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['29']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /*  $a=$row['30'];echo  $a=number_format($a, 2, ',', '.'); */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['31']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['32']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['33']; */ ?></div></td> 
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['34']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['35']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['36']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['37']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['38']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['39']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['40']; */ ?></div></td>
-</TR>
-
-           <?php /* }    */ ?> 
+           <?php }    ?> 
+           
                     
 </TABLE>
+
+<?php  }   //fin if ?> 
 ------------------------------------------------------------------------------
 <strong>LISTA DE PROYECTOS  SIN PROPUESTA</strong>
 <table width="385" border="0">
@@ -651,11 +521,10 @@ switch ( $row['9']){
   <tr>
     <td style="background-color:#F2F2F2"><div align="left">Total de Proyectos </div></td>
     <td><div align="center">
-      <?php /*	$result = mysql_query("SELECT COUNT(cod),sum(monto) FROM resumen where aprobado=0  and cod='$sum' "); 
- while ($row = mysql_fetch_row($result)){ echo $s=$row['0'];*/ ?>
+      <?php echo  number_format($SinPropuesta["total"], 2, ',', '.')?>
       </div></td>
     <td><div align="right">
-      <?php /* $s1=$row['1'];echo number_format($row['1'], 2, ',', '.');}*/ ?>
+     <?php echo  number_format($SinPropuesta["monto"], 2, ',', '.')?>
       </div></td>
   </tr>
   
@@ -701,152 +570,60 @@ switch ( $row['9']){
                 <td><div align="center">Competencias a Transferir</div></td>
                 <td><div align="center">Observaciones</div></td>
   </TR>
-        <?php /* 
-		
- $result = mysql_query("SELECT  resumen. id,nopro,lineaestada.opcion,organ,ejecu,descr,etapa1,etapa2,etapa3,etapa4,fase,tipoin.opcion,catego.opcion,area.opcion,norespro,unidad,cargo,correo,telf,fax,municipio.opcion, parroquia.opcion,cocomu,norte,este,lineas.opcion,objedos.opcion,estrados.opcion,polidos.opcion,tiempo,monto,otra,impsoc,pobl,avafisico,avafinanc,empdirec,empindi,articu,compone,observa FROM resumen,lineaestada,tipoin,catego,area,municipio,parroquia,lineas,objedos,estrados,polidos WHERE  resumen.lineaesta=lineaestada.id and resumen.ti_pro=tipoin.id and resumen.ti_cate=catego.id and resumen.ti_are=area.id and resumen.munici=municipio.id and resumen.parroq=parroquia.id  and 
-resumen.directriz=lineas.id and resumen.objetivo=objedos.id and
-resumen.estrategia=estrados.id and resumen.politica=polidos.id and aprobado=0  and
-cod like '$sum' ORDER BY `resumen`.`id` ASC");*/ ?>
-         
-		 
-		<?php /* while ($row = mysql_fetch_row($result)){  */ ?>
-            <TR>
-<td height="99" colspan='1' ><div class="scrollv1">
-  <div align="center"><a href="newproyectosm/resumenvista.php?id=<?php /* echo $row['0']; */ ?>" target="_new" title="hacer clip"><span style="color:#F00"> <?php /* echo $row['0']; */ ?></span></a></div>
-</div></td> 
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['1']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['2']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['3']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['4']; */ ?></div></td> 
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['5']; */ ?></div></td> 
-<td colspan='1' ><div class="scrollv1">
-<?php /*  
-switch ( $row['6']){
-	case 1:
-	print "<div align='left'>Preinversi&oacute;n</div>";
-   	break;
-	
-	case 0: 
-	print " ";
-   	break;}
+        <?php  
+				   
+				   foreach ($ListaPlandeInversion_OtraFuente as $key=>$valor) { ?> 
+									<TR>
+						<td height="99" colspan='1' ><div class="scrollv1">
+						  <div align="center"><a href="newproyectosm/resumenvista.php?id="  title="hacer clip"><span style="color:#F00"><?php echo $valor["id"]?></span></a></div>
+						</div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["observa"]) ?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["nopro"] )?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["area"] ?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["organ"]) ?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["ejecu"]) ?></div></td> 
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["descr"]) ?></div></td> 
+						<td colspan='1' ><div class="scrollv1"><?php if($valor["etapa1"]) echo "Preinversi&oacute;n<br>";if($valor["etapa2"]) echo "Proyecto Nuevo<br>";if($valor["etapa3"]) echo "Ampliaci&oacute;n o Modificaci&oacute;n<br>";if($valor["etapa4"]) echo "Culminaci&oacute;n<br>"; ?></div></td> 
+						<td colspan='1' ><div class="scrollv1"><?php echo arabigo2romano($valor["fase"])?></div></td> 
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["tipo_py"]?></div></td> 
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["categoria"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["area"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["norespro"])?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["unidad"])?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["cargo"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["correo"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["telf"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["fax"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["municipio"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["parroquia"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["cocomu"])?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["norte"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["este"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["lineas"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["objedos"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["estrados"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["polidos"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["tiempo"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["monto"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["otra"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["impsoc"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["pobl"]?></div></td> 
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["avafisico"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["avafinanc"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["empdirec"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["empindi"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo $valor["articu"]?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["compone"])?></div></td>
+						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["observa"])?></div></td>
+						</TR>
 
-*/ ?>
-<br />
-<?php /*  
-switch ( $row['7']){
-	case 1:
-	print "<div align='left'>Proyecto Nuevo</div>";
-   	break;
-	
-	case 0:
-	print " ";
-   	break;}
-
-*/ ?><br />
-<?php /*  
-switch ( $row['8']){
-	case 1:
-	print "<div align='left'>Ampliaci&oacute;n o Modificaci&oacute;n</div>";
-   	break;
-	
-	case 0:
-	print " ";
-   	break;}
-
-*/ ?><br />
-<?php /*  
-switch ( $row['9']){
-	case 1:
-	print "<div align='left'>Culminaci&oacute;n</div>";
-   	break;
-	
-	case 0:
-	print " ";
-   	break;}
-
-*/ ?></div></td> 
-<td colspan='1' ><div class="scrollv1">
- <?php /*      
-      switch ($row[10]){
-	case 1:
-	print "I";
-   	break;
-	
-	
-	case 2:
-	print "II";
-   	break;
-	
-	
-	case 3:
-	print "III";
-   	break;
-	
-	
-	case 4:
-	print "IV";
-   	break;
-	
-	case 5:
-	print "V";
-   	break;
-	
-	
-	case 6:
-	print "VI";
-   	break;
-	
-	
-	case 7:
-	print "VII";
-   	break;
-	
-	
-	
-	}
-
-*/ ?></div></td> 
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['11']; */ ?></div></td> 
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['12']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['13']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['14']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['15']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['16']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['17']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['18']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['19']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['20']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['21']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['22']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['23']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['24']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['25']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['26']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['27']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['28']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['29']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /*  $a=$row['30'];echo  $a=number_format($a, 2, ',', '.'); */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['31']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['32']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['33']; */ ?></div></td> 
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['34']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['35']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['36']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['37']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['38']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['39']; */ ?></div></td>
-<td colspan='1' ><div class="scrollv1"><?php /* echo $row['40']; */ ?></div></td>
-</TR>
-
-
+           <?php }    ?> 
+           
                     
 </TABLE>
 
 </td>
   </tr>
 </table>
---asasas
-</p>
 
-</body>
-</html>
+</p>

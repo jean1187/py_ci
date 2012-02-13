@@ -27,15 +27,58 @@ class M_proyectos extends CI_Model {
     
    function ListaPlandeInversion_FCI($cod)
    {
-            return $this->db->query("SELECT  resumen.id,nopro,lineaestada.opcion,organ,ejecu,descr,etapa1,etapa2,etapa3,etapa4,fase,tipoin.opcion as tipo_py,catego.opcion as categoria,area.opcion as area,norespro,unidad,cargo,correo,telf,fax,municipio.opcion as municipio, parroquia.opcion as parroquia,cocomu,norte,este,lineas.opcion as lineas,objedos.opcion as objedos,estrados.opcion,polidos.opcion,tiempo,monto,otra,impsoc,pobl,avafisico,avafinanc,empdirec,empindi,articu,compone,observa,nota FROM resumen,lineaestada,tipoin,catego,area,municipio,parroquia,lineas,objedos,estrados,polidos WHERE  resumen.lineaesta=lineaestada.id and resumen.ti_pro=tipoin.id and resumen.ti_cate=catego.id and resumen.ti_are=area.id and resumen.munici=municipio.id and resumen.parroq=parroquia.id  and 
+            return $this->db->query("SELECT  resumen.id,nopro,lineaestada.opcion,organ,ejecu,descr,etapa1,etapa2,etapa3,etapa4,fase,tipoin.opcion as tipo_py,catego.opcion as categoria,area.opcion as area,norespro,unidad,cargo,correo,telf,fax,municipio.opcion as municipio, parroquia.opcion as parroquia,cocomu,norte,este,lineas.opcion as lineas,objedos.opcion as objedos,estrados.opcion as estrados,polidos.opcion as polidos,tiempo,monto,otra,impsoc,pobl,avafisico,avafinanc,empdirec,empindi,articu,compone,observa,nota FROM resumen,lineaestada,tipoin,catego,area,municipio,parroquia,lineas,objedos,estrados,polidos WHERE
+                resumen.lineaesta=lineaestada.id and resumen.ti_pro=tipoin.id and resumen.ti_cate=catego.id and resumen.ti_are=area.id and resumen.munici=municipio.id and resumen.parroq=parroquia.id  and 
         resumen.directriz=lineas.id and resumen.objetivo=objedos.id and
-        resumen.estrategia=estrados.id and resumen.politica=polidos.id and aprobado=1 and factible=1 and fondoci!=0 and
+        resumen.estrategia=estrados.id and resumen.politica=polidos.id  and aprobado=1 and factible=1 and fondoci!=0  and 
         cod =".$cod." ORDER BY `resumen`.`id` ASC")->result_array();
    }
-    
+   
+   function ListaPlandeInversion_Situado($cod)
+   {
+            return $this->db->query("SELECT  resumen.id,nopro,lineaestada.opcion,organ,ejecu,descr,etapa1,etapa2,etapa3,etapa4,fase,tipoin.opcion as tipo_py,catego.opcion as categoria,area.opcion as area,norespro,unidad,cargo,correo,telf,fax,municipio.opcion as municipio, parroquia.opcion as parroquia,cocomu,norte,este,lineas.opcion as lineas,objedos.opcion as objedos,estrados.opcion as estrados,polidos.opcion as polidos,tiempo,monto,otra,impsoc,pobl,avafisico,avafinanc,empdirec,empindi,articu,compone,observa,nota FROM resumen,lineaestada,tipoin,catego,area,municipio,parroquia,lineas,objedos,estrados,polidos WHERE  resumen.lineaesta=lineaestada.id and resumen.ti_pro=tipoin.id and resumen.ti_cate=catego.id and resumen.ti_are=area.id and resumen.munici=municipio.id and resumen.parroq=parroquia.id  and 
+        resumen.directriz=lineas.id and resumen.objetivo=objedos.id and
+        resumen.estrategia=estrados.id and resumen.politica=polidos.id  and aprobado=1 and factible=1 and situadoc!=0 and  
+        cod =".$cod." ORDER BY `resumen`.`id` ASC")->result_array();
+   }
+   
+   function ListaPlandeInversion_OtraFuente($cod)
+   {
+            return $this->db->query("SELECT  resumen.id,nopro,lineaestada.opcion,organ,ejecu,descr,etapa1,etapa2,etapa3,etapa4,fase,tipoin.opcion as tipo_py,catego.opcion as categoria,area.opcion as area,norespro,unidad,cargo,correo,telf,fax,municipio.opcion as municipio, parroquia.opcion as parroquia,cocomu,norte,este,lineas.opcion as lineas,objedos.opcion as objedos,estrados.opcion as estrados,polidos.opcion as polidos,tiempo,monto,otra,impsoc,pobl,avafisico,avafinanc,empdirec,empindi,articu,compone,observa,nota FROM resumen,lineaestada,tipoin,catego,area,municipio,parroquia,lineas,objedos,estrados,polidos WHERE  resumen.lineaesta=lineaestada.id and resumen.ti_pro=tipoin.id and resumen.ti_cate=catego.id and resumen.ti_are=area.id and resumen.munici=municipio.id and resumen.parroq=parroquia.id  and 
+        resumen.directriz=lineas.id and resumen.objetivo=objedos.id and
+        resumen.estrategia=estrados.id and resumen.politica=polidos.id  and aprobado=1 and factible=1 and otrafuente!=0 and  
+        cod =".$cod." ORDER BY `resumen`.`id` ASC")->result_array();
+   }
+   
+   function ListaPlandeInversion_SinPropuesta($cod)
+   {
+            return $this->db->query("SELECT  resumen.id,nopro,lineaestada.opcion,organ,ejecu,descr,etapa1,etapa2,etapa3,etapa4,fase,tipoin.opcion as tipo_py,catego.opcion as categoria,area.opcion as area,norespro,unidad,cargo,correo,telf,fax,municipio.opcion as municipio, parroquia.opcion as parroquia,cocomu,norte,este,lineas.opcion as lineas,objedos.opcion as objedos,estrados.opcion as estrados,polidos.opcion as polidos,tiempo,monto,otra,impsoc,pobl,avafisico,avafinanc,empdirec,empindi,articu,compone,observa,nota FROM resumen,lineaestada,tipoin,catego,area,municipio,parroquia,lineas,objedos,estrados,polidos WHERE  resumen.lineaesta=lineaestada.id and resumen.ti_pro=tipoin.id and resumen.ti_cate=catego.id and resumen.ti_are=area.id and resumen.munici=municipio.id and resumen.parroq=parroquia.id  and 
+        resumen.directriz=lineas.id and resumen.objetivo=objedos.id and
+        resumen.estrategia=estrados.id and resumen.politica=polidos.id  and aprobado=0 and
+        cod =".$cod." ORDER BY `resumen`.`id` ASC")->result_array();
+   }
+   
+
    function proyectos_mapa($cod)
    {
-       return $this->db->query("SELECT id,organ,norte,este,nopro FROM resumen where cod=".$cod)->result_array();
+       return $this->db->query("SELECT resumen.id,organ,norte,este,nopro,descr,monto,parroquia.opcion as pquia,municipio.opcion as muni FROM resumen,municipio,parroquia where resumen.munici=municipio.id and resumen.parroq=parroquia.id and cod=".$cod)->result_array();
+   }
+   
+   function Monto_situado($cod)
+   {
+       return $this->db->query("SELECT COUNT(cod) as total,sum(monto) as monto FROM resumen where aprobado=1 and factible=1 and situadoc!=0  and cod='$cod' ")->row_array();
+   }
+   
+   function OtraFuente($cod)
+   {
+       return $this->db->query("SELECT COUNT(cod) as total ,sum(monto) as monto FROM resumen where aprobado=1 and factible=1 and otrafuente!=0  and cod='$cod' ")->row_array();
+       
+   }
+   
+   function SinPropuesta($cod)
+   {
+       return $this->db->query("SELECT COUNT(cod) as total ,sum(monto) as monto FROM resumen where aprobado=0  and cod='$cod' ")->row_array();
+       
    }
    
    function cambio_estrados()
