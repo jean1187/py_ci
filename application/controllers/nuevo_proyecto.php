@@ -12,7 +12,7 @@ class Nuevo_proyecto extends CI_Controller {
         }
   
        
-        public function index()
+        public function index($solo=false)
 { 
             /*funciones para google maps*/
                 $this->load->library('googlemaps');
@@ -55,10 +55,12 @@ class Nuevo_proyecto extends CI_Controller {
             $data['tiempoEstimado']=$this->selectMesesPorcentaje(true,24);
             $data['fases']=$fases;
             $data['class']=$this->router->class;
-            $data['hidden'] =form_hidden("ruta_ejecutor",current_url());
+            $data['hidden'] =form_hidden("ruta_ejecutor",($solo)?base_url()."/nuevo_proyecto/operacion":current_url());
             
             $this->load->vars($data);
+            if(!$solo)
                 $this->cargar->menu_system($this->router->class."/ficha_tecnica","Nuevo Proyecto");
+            else $this->load->view($this->router->class."/ficha_tecnica");
 }//fin index
         
         

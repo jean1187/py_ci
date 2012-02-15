@@ -30,14 +30,14 @@ $(document).ready(function() {
  
     //inicio mesages_validation
     jQuery.mesages_validation = function(data) {
-        if(data.indexOf("login-form")!=-1)
+       /* if(data.indexOf("login-form")!=-1)
             window.locationf="";
-        else if(!data)
+        else*/ if(!data)
             $.achtung({message: 'El dato fue guardado', timeout:5});
         
         else
         {
-            data=JSON.parse(data);
+            //data=JSON.parse(data);
             $.each(data,function(key,val){
                 $.achtung({message: val, timeout:5});
             });
@@ -48,8 +48,9 @@ $(document).ready(function() {
     //rellenar combos select
     jQuery.rellenar_combo = function(ruta,var_envio,select_victima) {
       $.post(ruta,var_envio,function(data){
+          //alert(data)
           $(select_victima).html("");
-          data=JSON.parse(data);
+          //data=JSON.parse(data);
           $.each(data,function(key,val){
               $(select_victima).append(new Option(val,key));
             });
@@ -83,10 +84,10 @@ $(document).ready(function() {
                         alert("The remote page could not be found: '"+settings.url+"'(status code: "+xhr.status+")");
         },*/
         complete: function(xhr, exito)
-        {
-            if(xhr.responseText.indexOf("login-form")==987)
-                {
-                    alert("    Su sesión ha expirado\nPor favor ingrese de nuevo")
+        {//alert(xhr.responseText.indexOf('id="bd-login-form"'))
+            if(xhr.responseText.indexOf('id="bd-login-form"')==1061)
+                {//return false;
+                    alert(".    Su sesión ha expirado\nPor favor ingrese de nuevo  .")
                     window.location.href="";    
                     //window.location.reload();  
                 }

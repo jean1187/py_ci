@@ -1,14 +1,16 @@
 <?php echo form_open('email/send');?>
-
-        <?php echo $hidden?>
+        
+        <input type="hidden" name="id_py" id="id_py" />
+        <?php 
+        echo $hidden?>
 
         <script type="text/javascript" src="/js/controllers/<?=$class?>/accion.js"></script>
-        <?php echo $map['js']; ?>
+        <?php //echo $map['js']; ?>
             <div class="grid_16 prefix_8 fondo_gris_oscuro borde omega alpha" >
-                <?php echo heading(' Ficha Técnica del Proyecto!',3);?>    
+                <?php echo heading(' Ficha Técnica del Proyecto!',3, 'class="pink"');?>    
             </div>
         <div class="clear"></div>
-           <div class="grid_24 omega alpha ui-state-highlight ui-corner-all" style="margin-top: 20px;margin-bottom: 20px;" >
+           <div  class="grid_24 omega alpha ui-state-highlight ui-corner-all pink" style="margin-top: 20px;margin-bottom: 20px;" >
                 <span style="float: left; margin-right: .3em;" class="ui-icon ui-icon-info"></span><strong>Hey!</strong> los Campos Marcados con <req>*</req> son <strong>REQUERIDOS</strong>
             </div>
         <div class="clear"></div>
@@ -20,21 +22,21 @@
             </div> 
 
         <div class="clear"></div>
-            <div class="grid_24 omega fondo_gris_oscuro espacio-arriba" >
-                <req>*</req><?php echo form_label('<b>¿ Qué Área del Plan de Desarrollo se Apalancará con este Plan de Inversión ? :</b>').br(1).form_dropdown('lineaEstrategica', $lineasEstrategicas, null,"style='width:950px'");?>
+            <div class="grid_24 omega fondo_gris_oscuro espacio-arriba " >
+                <req>*</req><?php echo form_label('<b>¿ Qué Área del Plan de Desarrollo se Apalancará con este Plan de Inversión ? :</b>').br(1).form_dropdown('lineaEstrategica', $lineasEstrategicas, null,"style='width:950px' id='lineaEstrategica'");?>
             </div>   
         <div class="clear"></div>
             <div class="grid_24 omega fondo_gris_oscuro" >
-                <req>*</req><?php echo form_label('<b>Objetivos del Milenio (ODM) :</b>').br(1).form_dropdown('objetivosDelMileniun', $odm);?> 
+                <req>*</req><?php echo form_label('<b>Objetivos del Milenio (ODM) :</b>').br(1).form_dropdown('objetivosDelMileniun', $odm,null,"id='objetivosDelMileniun'");?> 
             </div> 
         <div class="clear"></div>
 
             <div class="grid_24  fondo_gris_oscuro espacio-arriba" >
-                <?php echo form_label('<b>Organismo Responsable :</b>').br(1).form_dropdown('organo', $organo, null,"style='max-width:950px;min-width:60px'");?>  
+                <?php echo form_label('<b>Organismo Responsable :</b>').br(1).form_dropdown('organo', $organo, null,"style='max-width:950px;min-width:60px' id='organo'");?>  
             </div>  
         <div class="clear"></div>
             <div class="grid_24  fondo_gris_oscuro" >
-                <?php echo form_label('<b>Ente  Ejecutor:</b>').br(1).form_dropdown('ente', $ente, null,"style='max-width:950px;min-width:60px'");?> 
+                <?php echo form_label('<b>Ente  Ejecutor:</b>').br(1).form_dropdown('ente', $ente, null,"style='max-width:950px;min-width:60px' id='ente'");?> 
             </div> 
         <div class="clear "></div>
             <div class="grid_14 omega espacio-arriba" >
@@ -47,15 +49,15 @@
 
             </div>  
             <div class="grid_10 alpha espacio-arriba" >
-                <?php echo form_label('<b>Fase del Proyecto:</b>').br(1).form_dropdown('fases', $fases).br(1);?>         
+                <?php echo form_label('<b>Fase del Proyecto:</b>').br(1).form_dropdown('fases', $fases,null,"id='fases'").br(1);?>         
             </div>
         <div class="clear"></div>
-            <div class="grid_16 prefix_8 fondo_gris_oscuro borde espacio-arriba" >
+            <div class="grid_16 prefix_8 fondo_gris_oscuro borde espacio-arriba pink" >
                 <?php echo form_label('<b> Área de Inversión de los Recursos  </b> ');?>    
             </div>
         <div class="clear"></div>
             <div class="grid_12 omega espacio-arriba " >
-                <req>*</req><?php echo form_label('<b>Area de Inversión :</b>').br(1).form_dropdown('areaInversion', $areaInversion);?> 
+                <req>*</req><?php echo form_label('<b>Area de Inversión :</b>').br(1).form_dropdown('areaInversion', $areaInversion,null,"id='areaInversion'");?> 
             </div>  
             <div class="grid_12 espacio-arriba" >
                  <req>*</req><?php echo form_label('<b>Categoría:</b>').br(1).form_dropdown('categoria',$categoria);?> 
@@ -66,7 +68,7 @@
             </div> 
         <div class="clear"></div>
 
-            <div class="grid_16 prefix_8 fondo_gris_oscuro borde espacio-arriba" >
+            <div class="grid_16 prefix_8 fondo_gris_oscuro borde espacio-arriba pink" >
                 <?php echo form_label('<b> II. Responsable del Proyecto : </b>');?> 
             </div>
         <div class="clear"></div>
@@ -98,7 +100,7 @@
             </div>
         <div class="clear"></div>
             <div class="grid_6 omega espacio-arriba" >
-                <req>*</req><?php echo form_label('<b> Municipio : </b>').br(1).form_dropdown('municipio', $municipio);?> 
+                <req>*</req><?php echo form_label('<b> Municipio : </b>').br(1).form_dropdown('municipio', $municipio,null,"id='municipio'");?> 
             </div>  
             <div class="grid_9 espacio-arriba" >
                 <req>*</req><?php echo form_label('<b>Parroquia:</b>').br(1).form_dropdown('parroquia', $parroquia);?> 
@@ -121,7 +123,7 @@
         <div class="clear"></div>
 
             <div class="grid_17 espacio-arriba" >
-                <?php echo $map['html']; ?>        
+                <?php //echo $map['html']; ?>        
             </div>
             <div class="grid_7 omega alpha espacio-arriba" align="justify" >
                  <u><b>Instrucci&oacute;n:</b></u>
@@ -136,13 +138,13 @@
 
         <div class="clear"></div>
 
-        <div class="grid_16 prefix_8 fondo_gris_oscuro borde espacio-arriba" >
+        <div class="grid_16 prefix_8 fondo_gris_oscuro borde espacio-arriba pink" >
                 <?php echo form_label('<b> Área Estrategica Plan Simón Bolivar </b>');?> 
             </div>
         <div class="clear"></div>
 
             <div class="grid_24 espacio-arriba" >
-                <req>*</req><?php echo form_label('<b> Directriz :</b>').nbs(1).form_dropdown('directriz', $directriz,null,"style='max-width:870px';min-width:60px");?> 
+                <req>*</req><?php echo form_label('<b> Directriz :</b>').nbs(1).form_dropdown('directriz', $directriz,null,"style='max-width:870px';min-width:60px id ='directriz'");?> 
             </div>  
         <div class="clear"></div>
             <div class="grid_24" >
@@ -158,13 +160,13 @@
             </div> 
         <div class="clear"></div>
 
-        <div class="grid_16 prefix_8 fondo_gris_oscuro borde espacio-arriba" >
+        <div class="grid_16 prefix_8 fondo_gris_oscuro borde espacio-arriba pink" >
                 <?php  echo form_label('<b> V. Información Financiera</b>');?> 
             </div>
         <div class="clear"></div>
 
             <div class="grid_8 omega espacio-arriba" >
-                <?php echo form_label('<b> Tiempo estimado de ejecución : </b>').br(1).form_dropdown('tiempoEstimado', $tiempoEstimado);?> 
+                <?php echo form_label('<b> Tiempo estimado de ejecución : </b>').br(1).form_dropdown('tiempoEstimado', $tiempoEstimado,null,"id='tiempoEstimado'");?> 
             </div>  
             <div class="grid_8 espacio-arriba" >
                 <?php echo form_label('<b>Monto total del Proyecto en (Bs.F):</b>').br(1).form_input(array('name'=>'monto','id'=>'monto','value'=> '','maxlength'=> '100','size'=>'25'));?> 
@@ -174,7 +176,7 @@
             </div> 
         <div class="clear"></div>
 
-        <div class="grid_16 prefix_8 fondo_gris_oscuro borde espacio-arriba" >
+        <div class="grid_16 prefix_8 fondo_gris_oscuro borde espacio-arriba pink" >
                 <?php echo form_label('<b> VI.Indicadores de Impacto</b>');?> 
             </div>
         <div class="clear"></div>
@@ -199,7 +201,7 @@
                 <?php echo form_label('<b>Nº de Empleos Generados :</b>').br(1).form_label('Directos').form_input(array('name'=>'empleosDirectos','id'=>'empleosDirectos','value'=> '','maxlength'=> '100','size'=>'26')).br(1).form_label('Indirectos').form_input(array('name'=>'empleosIndirectos','id'=>'empleosIndirectos','value'=> '','maxlength'=> '100','size'=>'25'));?> 
             </div>  
         <div class="clear"></div>
-            <div class="grid_16 prefix_8 fondo_gris_oscuro borde espacio-arriba" >
+            <div class="grid_16 prefix_8 fondo_gris_oscuro borde espacio-arriba pink" >
                 <?php echo form_label('<b> VII. Articulación con otros Entes competentes</b>');?> 
             </div>
         <div class="clear"></div>

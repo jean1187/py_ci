@@ -45,8 +45,25 @@
 | the active record class
 */
 
-$active_group = 'default';
+$active_group = 'local';
 $active_record = TRUE;
+
+$db['local']['hostname'] = 'localhost';
+$db['local']['username'] = 'root';
+$db['local']['password'] = '123';
+$db['local']['database'] = 'proyectos';
+$db['local']['dbdriver'] = 'mysql';
+$db['local']['dbprefix'] = '';
+$db['local']['pconnect'] = TRUE;
+$db['local']['db_debug'] = TRUE;
+$db['local']['cache_on'] = FALSE;
+$db['local']['cachedir'] = '';
+$db['local']['char_set'] = 'utf8';
+$db['local']['dbcollat'] = 'utf8_general_ci';
+$db['local']['swap_pre'] = '';
+$db['local']['autoinit'] = TRUE;
+$db['local']['stricton'] = FALSE;
+
 
 $db['default']['hostname'] = '192.168.1.205';
 $db['default']['username'] = 'py_user';

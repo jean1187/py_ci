@@ -3,7 +3,7 @@
 	<head>
 <!-- ********************************************************************************************************** -->
                 <?php 
-                    echo link_tag('/imagenes/icons/favicon.ico', 'shortcut icon', 'image/ico');
+                    echo link_tag(base_url().'/imagenes/icons/favicon.ico', 'shortcut icon', 'image/ico');
                 ?>
 <!-- ********************************************************************************************************** -->
                 <!-- ********** Estilos y Js Generales  ***********-->
@@ -19,7 +19,7 @@
                     echo meta($meta); 
                 
                     echo link_tag(array(
-                                      'href' => '/css/style.css',
+                                      'href' => base_url().'/css/style.css',
                                       'rel' => 'stylesheet',
                                       'type' => 'text/css',
                                       'media' => 'screen'
@@ -60,7 +60,7 @@
 
                  <!-- ********** achtung ***********-->
                 <?php  echo link_tag(base_url().'/css/achtung/ui.achtung-min.css');  ?>                     
-                 <script type="text/javascript"  src='/js/achtung/ui.achtung-min.js'></script>
+                 <script type="text/javascript"  src='<?=base_url()?>/js/achtung/ui.achtung-min.js'></script>
                  
                  <!-- ********** achtung ***********-->
                  <script type="text/javascript"  src='<?=base_url()?>/js/global.js'></script>

@@ -1,8 +1,8 @@
-<?php echo $map['js']; ?>
+<?php //echo  $map['js']; ?>
 <script lang="javascript">
     $(document).ready(function(){
         $( "#dialog:ui-dialog" ).dialog( "destroy" );
-        $( "#dialog-modal" ).dialog({
+        $( "#dialog-modal,#dialog-modif" ).dialog({
 	        autoOpen: false,
 			height: 'auto',
 			width:  'auto',
@@ -19,10 +19,58 @@
 			   $( "#dialog-modal" ).dialog("open");	
               event.preventDefault();
             });
+			
+			$("#tabs-1").load("nuevo_proyecto/index/true",function(){$("#guardar").hide();$("#articulacionConOtrosEntes,#competencias,#nombre,#descripcion").attr("cols",115);$(".pink").css("width","960px");});		
+			
+		$( "#tabs" ).tabs();	
+		$( "#dialog-modif" ).dialog({ width : 1050,position: ["center", 40],buttons: {"Cerrar": function() { $(this).dialog("close"); }, "Guardar": function() { 
+                        
+                    alert($("form").serialize())
+                        }//fin guardar
+                        } });
+		$(".modal").click(function(event){
+		    
+			$( "#tabs" ).tabs("select",0);	
+			$.post("proyectos/search_py_modif",{"id_py":this.rel},function(data){
+							console.log(data)
+			   $.each(data[0],function(id,valor){
+			   //alert(id+"-"+valor);
+			  elem=document.getElementById(id);
+			//alert(elem.type+"-"+elem.tagName)
+					//switch(elem.tagName)
+                                        switch(elem.type)
+					{
+                                                case "hidden":
+                                                case "text":
+						case "textarea":
+						  elem.value=valor;
+						break;
+						case "select-one":
+                                                  $("#"+id+" option[value='"+valor+"']").attr("selected","selected");
+						  //elem.options[valor].selected=true;
+						break;
+                                                case "checkbox":
+                                                    (valor=="1")?$("#"+id).attr("checked","checked"):$("#"+id).removeAttr("checked");
+                                                break;
+					}//fin switch
+			   });//fin each
+
+			});//fin post
+				obj=$(this).parents("tr").children("td");
+				console.log($(this).parents("tr").children("td"))
+		         
+                         $( "#dialog-modif" ).dialog("open");
+
+		//	alert($(this).parent());
+			event.preventDefault();
+		});//fin modal
     });//fin document ready
     
 </script>
 <style type="text/css">
+textarea {
+	resize: none;
+}
     a{
         text-decoration:none;
     }
@@ -31,8 +79,17 @@
     text-decoration:underline;
 }
 </style>
-
-<div id="dialog-modal" title="DETALLE DEL PROYECTO">
+<div id="dialog-modif" title="MODIFICACION DEL PROYECTO" style="display:none">
+		<div id="tabs">
+			<ul>
+				<li><a href="#tabs-1">FICHA TECNICA</a></li>
+				<li><a href="#tabs-2">CONSEJO FEDEEAL DE GOBIERNO</a></li>
+			</ul>
+			<div id="tabs-1"></div>
+			<div id="tabs-2"></div>
+		</div>	
+</div>
+<div id="dialog-modal" title="DETALLE DEL PROYECTO" style="display:none">
 	<center>
 	<table width="700" border="0">
       <tr>
@@ -130,7 +187,7 @@ Ir&aacute; al formulario de modificaci&oacute;n donde cambiara los datos por cad
 
 <table width="100%" border="2">
   <tr>
-      <td><div align="center"><?php echo $map["html"]?></div></td>
+      <td><div align="center"><?php //echo $map["html"]?></div></td>
   </tr>
   
 </table>
@@ -221,7 +278,7 @@ Ir&aacute; al formulario de modificaci&oacute;n donde cambiara los datos por cad
 				   foreach ($ListaPlandeInversion_FCI as $key=>$valor) { ?> 
 									<TR>
 						<td height="99" colspan='1' ><div class="scrollv1">
-						  <div align="center"><a href="newproyectosm/resumenvista.php?id="  title="hacer clip"><span style="color:#F00"><?php echo $valor["id"]?></span></a></div>
+						  <div align="center"><a href="#" rel="<?php echo $valor["id"]?>" class="modal" title="hacer clip"><span style="color:#F00"><?php echo $valor["id"]?></span></a></div>
 						</div></td>
 						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["observa"]) ?></div></td>
 						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["nopro"] )?></div></td>

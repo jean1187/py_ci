@@ -9,12 +9,13 @@ class Proyectos extends CI_Controller {
             $this->load->model('m_'.$this->router->class,"modelo");
             $this->load->library("_global");
             $this->user=$this->session->userdata("userLogin");
+             $this->load->helper("romano");
         }
   
     
 	public function index()
 	{
-            $this->load->helper("romano");
+           
             /*funciones para google maps*/
                 $this->load->library('googlemaps');
                 $config['center'] = '10.254103525868485,-67.59247183799744';
@@ -33,6 +34,7 @@ class Proyectos extends CI_Controller {
                         $marker['position'] = $valor["norte"].','.$valor["este"];
                         $marker['draggable'] = false;
                         $marker['infowindow_content'] = "<img src='".base_url()."/imagenes/logo_gober_30X30.png'  /> ".str_replace('"','\"',cambia_char($valor["nopro"]))." <br>Cod de Proyecto:&nbsp; ".$valor["id"]."<br> <a href='#' nom_py='".str_replace('"','\"',cambia_char($valor["nopro"]))."' pquia='".str_replace('"','\"',cambia_char($valor["pquia"]))."' muni='".str_replace('"','\"',cambia_char($valor["muni"]))."'  descr_py='".str_replace('"','\"',cambia_char($valor["descr"]))."'  monto_py='".number_format($valor["monto"])."'   class='resumen_ficha_map' rel=".$valor["id"].">Resumen de la Ficha T&eacute;cnica</a>";
+                        $marker['animation']='DROP';
                         $this->googlemaps->add_marker($marker);
                         /*if($i==4)
                             break;
@@ -70,6 +72,21 @@ class Proyectos extends CI_Controller {
               echo "asasas";
            
         }
+        public function cargar_vista_proyectos()
+        {
+            $this->load->view("nuevo_proyecto/ficha_tecnica");
+        }//fin cargar_vista_proyectos
+        
+        public function search_py_modif()
+        {
+            $result=array();
+            foreach($this->modelo->buscando_py_Modif($this->input->post("id_py")) as $key=>$value)
+                    $result[$key]=cambia_char($value);
+            $this->output
+                                    ->set_content_type('application/json')
+                                    ->set_output(json_encode($result));
+        }
+                
 }//fin class
 
 /* End of file cargos.php */

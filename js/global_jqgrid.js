@@ -219,9 +219,9 @@ var buttons={
                     url: base_url+'/operacion',
                     data: "oper="+case_server+"&id="+gr,
                     success: function(data){
-                    datos=JSON.parse(data);                    
-                        $.rell_campos_global(datos);
-                        $.rell_campos_especificos(datos);
+                    //data=JSON.parse(data);                    
+                        $.rell_campos_global(data);
+                        $.rell_campos_especificos(data);
                     },
                     error:function(data){
                         $.mesages_validation(data);
@@ -275,6 +275,7 @@ var buttons={
 
 
     jQuery.fn.resetear = function(){
+        
         this.each( function(){
             switch(this.tagName)
              {
