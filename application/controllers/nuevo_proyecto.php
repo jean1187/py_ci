@@ -9,20 +9,26 @@ class Nuevo_proyecto extends CI_Controller {
             $this->load->model('m_'.$this->router->class,"modelo");
             $this->load->library("_global");
             $this->seleccione=array(""=>"- Seleccione -");
+            $this->load->helper("romano");
         }
   
        
         public function index($solo=false)
-{ 
+        { 
+            $data["datos"]=$this->search_py_modif($solo);
             /*funciones para google maps*/
                 $this->load->library('googlemaps');
-                $config['center'] = '10.254103525868485,-67.59247183799744';
+                $config['center'] = ($solo)?$data["datos"]["latitude"].','.$data["datos"]["longitude"]:'10.254103525868485,-67.59247183799744';
                 $config['zoom'] = 17;
                 $config['trafficOverlay'] = TRUE;
                 $config['map_type'] = 'HYBRID';
+                //$config['sensor'] = true
+                $config['map_name'] = "map1";
+                //map_name;
+                
                 $this->googlemaps->initialize($config);
                     $marker = array();
-                    $marker['position'] = '10.254103525868485,-67.59247183799744';
+                    $marker['position'] =  ($solo)?$data["datos"]["latitude"].','.$data["datos"]["longitude"]:'10.254103525868485,-67.59247183799744';
                     $marker['draggable'] = TRUE;
                     $marker['ondragend'] = 'var point = marker_0.getPosition();$("#latitude").val(point.lat());$("#longitude").val(point.lng());';
                     $this->googlemaps->add_marker($marker);
@@ -30,40 +36,49 @@ class Nuevo_proyecto extends CI_Controller {
                
               $lineasEstrategicas=$this->_global->array_merge_key_values($this->modelo->resultTable("lineaestada"),array("id","opcion")); $this->_global->array_unshift_assoc($lineasEstrategicas,"","- Seleccione -");
               $odm=$this->_global->array_merge_key_values($this->modelo->resultTable("odm"),array("id","opcion")); $this->_global->array_unshift_assoc($odm,"","- Seleccione -");
-              $organo=$this->_global->array_merge_key_values($this->modelo->resultTable_Where("organo",array("opcion <>"=>""),"concat( 'o_', id ) AS id, opcion"),array("id","opcion"));
-              $ente=$this->_global->array_merge_key_values($this->modelo->resultTable_Where("ente",array("opcion <>"=>"","id <>"=>0),"concat( 'e_', id ) AS id, opcion"),array("id","opcion"));
+              $organo=$this->_global->array_merge_key_values($this->modelo->resultTable_Where("organoente",array("opcion <>"=>"","tipo"=>"o"),"id, opcion"),array("id","opcion"));
+              $ente=$this->_global->array_merge_key_values($this->modelo->resultTable_Where("organoente",array("opcion <>"=>"","id <>"=>0,"tipo"=>"e"),"id, opcion"),array("id","opcion"));
               $areaInversion=$this->_global->array_merge_key_values($this->modelo->resultTable("area"),array("id","opcion")); $this->_global->array_unshift_assoc($areaInversion,"","- Seleccione -");
               //$politica=$this->_global->array_merge_key_values($this->modelo->resultTable("polidos"),array("id","opcion")); $this->_global->array_unshift_assoc($politica,"","- Seleccione -");
               $municipio=$this->_global->array_merge_key_values($this->modelo->resultTable("municipio"),array("id","opcion")); $this->_global->array_unshift_assoc($municipio,"","- Seleccione -");
               $directriz=$this->_global->array_merge_key_values($this->modelo->resultTable("lineas"),array("id","opcion")); $this->_global->array_unshift_assoc($directriz,"","- Seleccione -");
               $fases=$this->selectMesesPorcentaje(null,7,true);
                 
-            $data['map'] = $this->googlemaps->create_map();
+            $data['map'] =$this->googlemaps->create_map();//($solo)?array("js"=>"","html"=>'<iframe width="900" height="500"  src="iframe/'.$this->router->class.'/map.php?lat=10,254151034510837&lon=-67,59229481220348"></iframe>'):$this->googlemaps->create_map();
             $data['lineasEstrategicas']=$lineasEstrategicas;
             $data['odm']=$odm;
             $data['organo']=array("ORGANOS"=>$organo,"ENTES"=>$ente);
             $data['ente']=array("ORGANOS"=>$organo,"ENTES"=>$ente);
             $data['areaInversion']=$areaInversion;
-            $data['categoria']=$this->seleccione;
-            $data['tipoProyecto']=$this->seleccione;
+            $data['categoria']=($solo)?$this->_global->array_merge_key_values($this->modelo->resultTable_Where("catego",array("opcion <>"=>"","relacion"=>$data["datos"]["areaInversion"]),"id, opcion"),array("id","opcion")):$this->seleccione;
+            print_r($data['categoria']);
+            $data['tipoProyecto']=($solo)?$this->_global->array_merge_key_values($this->modelo->resultTable_Where("tipoin",array("opcion <>"=>"","relacion"=>$data["datos"]["categoria"]),"id, opcion"),array("id","opcion")):$this->seleccione;
             $data['municipio']=$municipio;
-            $data['parroquia']=$this->seleccione;
+            $data['parroquia']=($solo)?$this->_global->array_merge_key_values($this->modelo->resultTable_Where("parroquia",array("opcion <>"=>"","relacion"=>$data["datos"]["municipio"]),"id, opcion"),array("id","opcion")):$this->seleccione;
             $data['directriz']=$directriz;
-            $data['objetivo']=$this->seleccione;
-            $data['estrategia']=$this->seleccione;
-            $data['politica']=$this->seleccione;
+            $data['objetivo']=($solo)?$this->_global->array_merge_key_values($this->modelo->resultTable_Where("objedos",array("opcion <>"=>"","relacion"=>$data["datos"]["directriz"]),"id, opcion"),array("id","opcion")):$this->seleccione;
+            $data['estrategia']=($solo)?$this->_global->array_merge_key_values($this->modelo->resultTable_Where("estrados",array("opcion <>"=>"","relacion"=>$data["datos"]["directriz"]),"id, opcion"),array("id","opcion")):$this->seleccione;
+            $data['politica']=($solo)?$this->_global->array_merge_key_values($this->modelo->resultTable_Where("polidos",array("opcion <>"=>"","relacion"=>$data["datos"]["estrategia"]),"id, opcion"),array("id","opcion")):$this->seleccione;
             $data['tiempoEstimado']=$this->selectMesesPorcentaje(true,24);
             $data['fases']=$fases;
             $data['class']=$this->router->class;
-            $data['hidden'] =form_hidden("ruta_ejecutor",($solo)?base_url()."/nuevo_proyecto/operacion":current_url());
+            $data['hidden'] =form_hidden("ruta_ejecutor",($solo)?base_url().$this->router->class:base_url().$this->router->class);//current_url());
+            
             
             $this->load->vars($data);
+            $this->cargar->menu_system($this->router->class."/ficha_tecnica","Nuevo Proyecto");/*
             if(!$solo)
                 $this->cargar->menu_system($this->router->class."/ficha_tecnica","Nuevo Proyecto");
-            else $this->load->view($this->router->class."/ficha_tecnica");
+            else $this->load->view($this->router->class."/ficha_tecnica");*/
 }//fin index
         
-        
+         public function search_py_modif($id)
+        {
+            $result=array();
+            foreach($this->modelo->buscando_py_Modif($id) as $key=>$value)
+                    $result[$key]=cambia_char($value);
+            return $result;
+        }
         
         function operacion()
         {
@@ -103,14 +118,16 @@ break;*/
         
         
         function echoSelectJson($array_result,$datos=array("id","opcion"))
-        {
-                        
-            
+        {                                   
             $result=$this->_global->array_merge_key_values($array_result,$datos); $this->_global->array_unshift_assoc($result,"",$this->seleccione[""]);
-             $this->output->set_content_type('application/json')->set_output(json_encode($result));
-                    
+             $this->output->set_content_type('application/json')->set_output(json_encode($result));                    
         }//fin echoSelectJson
         
+        
+        function echoSelect()
+        {
+            $this->echoSelectJson($this->modelo->resultTable_Where($this->input->post("t"),array("relacion"=>$this->input->post("dato"))));
+        }
         
         function selectMesesPorcentaje($meses=null,$final=100,$fase=null)
         {

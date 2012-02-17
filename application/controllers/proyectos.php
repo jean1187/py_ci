@@ -9,7 +9,9 @@ class Proyectos extends CI_Controller {
             $this->load->model('m_'.$this->router->class,"modelo");
             $this->load->library("_global");
             $this->user=$this->session->userdata("userLogin");
-             $this->load->helper("romano");
+            $this->load->helper("romano");
+            $this->seleccione=array(""=>"- Seleccione -");
+            //$this->load->controller('nuevo_proyecto') ;
         }
   
     
@@ -22,6 +24,8 @@ class Proyectos extends CI_Controller {
                 $config['zoom'] = 10;
                 $config['trafficOverlay'] = TRUE;
                 $config['map_type'] = 'HYBRID';
+                $config['map_div_id'] = 'hhoho';
+                
                 $this->googlemaps->initialize($config);
                 $i=0;
                 
@@ -86,7 +90,77 @@ class Proyectos extends CI_Controller {
                                     ->set_content_type('application/json')
                                     ->set_output(json_encode($result));
         }
-                
+    
+        
+        function operacion()
+        {
+            switch ($this->input->post("oper"))
+            {
+                case "modif":
+                    if($this->validacion_form())
+                    {
+                      $this->modelo->modif($this->input->post("id_py"));
+                    }
+                break;
+                case "combo_categoria":
+                    $this->echoSelectJson($this->modelo->resultTable_Where("catego",array("relacion"=>$this->input->post("id_area"))));
+                break;
+                case "combo_tipo":
+                    $this->echoSelectJson($this->modelo->resultTable_Where("tipoin",array("relacion"=>$this->input->post("id_categoria"))));
+                break;
+                case "combo_parroquia":
+                    $this->echoSelectJson($this->modelo->resultTable_Where("parroquia",array("relacion"=>$this->input->post("id_municipio"))));
+                break;
+                case "combo_objetivo":
+                    $this->echoSelectJson($this->modelo->resultTable_Where("objedos",array("relacion"=>$this->input->post("id_directriz"))));
+                break;
+                case "combo_estrategia":
+                    $this->echoSelectJson($this->modelo->resultTable_Where("estrados",array("relacion"=>$this->input->post("id_directriz"))));
+                break;
+                case "combo_politica":
+                    $this->echoSelectJson($this->modelo->resultTable_Where("polidos",array("relacion"=>$this->input->post("id_estrategia"))));
+                break;
+            }//fin switch
+        }//fin operacion
+        
+        function echoSelectJson($array_result,$datos=array("id","opcion"))
+        {                                   
+            $result=$this->_global->array_merge_key_values($array_result,$datos); $this->_global->array_unshift_assoc($result,"",$this->seleccione[""]);
+            foreach($result as $key=>$value)
+                    $result[$key]=cambia_char($value);
+             $this->output->set_content_type('application/json')->set_output(json_encode($result));                    
+        }//fin echoSelectJson
+        
+        
+ function validacion_form()
+        {
+            
+                $this->load->library('form_validation');
+                //seteando las reglas de las validaciones
+                 $this->form_validation->set_rules('nombre', 'Nombre Proyecto', 'required');
+                 $this->form_validation->set_rules('descripcion', 'Descripción Proyecto', 'required');
+                 $this->form_validation->set_rules('lineaEstrategica', 'Linea Estrategica', 'required');
+                 $this->form_validation->set_rules('objetivosDelMileniun', 'Objetivos del Mileniun', 'required');
+                 $this->form_validation->set_rules('areaInversion', 'Area de Inversion', 'required');
+                 $this->form_validation->set_rules('categoria', 'Categoria', 'required');
+                 $this->form_validation->set_rules('tipoProyecto', 'Tipo Proyecto', 'required');
+                 $this->form_validation->set_rules('municipio', 'Municipio', 'required');
+                 $this->form_validation->set_rules('parroquia', 'Parroquia', 'required');
+                 $this->form_validation->set_rules('directriz', 'Directriz', 'required');
+                 $this->form_validation->set_rules('objetivo', 'Objetivo', 'required');
+                 $this->form_validation->set_rules('estrategia', 'Estrategia', 'required');
+                 $this->form_validation->set_rules('politica', 'Politica', 'required');
+
+                 if ($this->form_validation->run() == FALSE)
+                        {
+                            $this->output
+                                    ->set_content_type('application/json')
+                                    ->set_output(json_encode($this->form_validation->_error_array));
+                            return false;
+                        }
+                        else
+                            return true;
+        }//fin validation
 }//fin class
 
 /* End of file cargos.php */

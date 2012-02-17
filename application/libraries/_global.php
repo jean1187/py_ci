@@ -35,7 +35,7 @@ class _global{
     {
             $retorno=array();
             foreach ($array as $valor)
-                $retorno[$valor[$campos[0]]]=$valor[$campos[1]];
+                $retorno[$valor[$campos[0]]]=cambia_char($valor[$campos[1]]);
             return $retorno;
     }//fin array_merge_key_values
 

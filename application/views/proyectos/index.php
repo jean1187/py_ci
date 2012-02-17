@@ -1,7 +1,7 @@
-<?php //echo  $map['js']; ?>
+<?php echo  $map['js']; ?>
 <script lang="javascript">
     $(document).ready(function(){
-        $( "#dialog:ui-dialog" ).dialog( "destroy" );
+        //$( "#dialog:ui-dialog" ).dialog( "destroy" );
         $( "#dialog-modal,#dialog-modif" ).dialog({
 	        autoOpen: false,
 			height: 'auto',
@@ -20,7 +20,7 @@
               event.preventDefault();
             });
 			
-			$("#tabs-1").load("nuevo_proyecto/index/true",function(){$("#guardar").hide();$("#articulacionConOtrosEntes,#competencias,#nombre,#descripcion").attr("cols",115);$(".pink").css("width","960px");});		
+			//$("#tabs-1").load("nuevo_proyecto/index/true",function(){$("#guardar").hide();$("#articulacionConOtrosEntes,#competencias,#nombre,#descripcion").attr("cols",115);$(".pink").css("width","960px");});		
 			
 		$( "#tabs" ).tabs();	
 		$( "#dialog-modif" ).dialog({ width : 1050,position: ["center", 40],buttons: {"Cerrar": function() { $(this).dialog("close"); }, "Guardar": function() { 
@@ -28,7 +28,7 @@
                     alert($("form").serialize())
                         }//fin guardar
                         } });
-		$(".modal").click(function(event){
+		/*$(".modal").click(function(event){
 		    
 			$( "#tabs" ).tabs("select",0);	
 			$.post("proyectos/search_py_modif",{"id_py":this.rel},function(data){
@@ -60,10 +60,11 @@
 				console.log($(this).parents("tr").children("td"))
 		         
                          $( "#dialog-modif" ).dialog("open");
-
+$("iframe").html("aosakso");
 		//	alert($(this).parent());
 			event.preventDefault();
 		});//fin modal
+                */
     });//fin document ready
     
 </script>
@@ -187,7 +188,7 @@ Ir&aacute; al formulario de modificaci&oacute;n donde cambiara los datos por cad
 
 <table width="100%" border="2">
   <tr>
-      <td><div align="center"><?php //echo $map["html"]?></div></td>
+      <td><div align="center"><?php echo $map["html"]?></div></td>
   </tr>
   
 </table>
@@ -278,7 +279,7 @@ Ir&aacute; al formulario de modificaci&oacute;n donde cambiara los datos por cad
 				   foreach ($ListaPlandeInversion_FCI as $key=>$valor) { ?> 
 									<TR>
 						<td height="99" colspan='1' ><div class="scrollv1">
-						  <div align="center"><a href="#" rel="<?php echo $valor["id"]?>" class="modal" title="hacer clip"><span style="color:#F00"><?php echo $valor["id"]?></span></a></div>
+						  <div align="center"><a href="<?php echo site_url("nuevo_proyecto/index/".$valor["id"])?>" rel="<?php echo $valor["id"]?>" class="modal" title="hacer clip"><span style="color:#F00"><?php echo $valor["id"]?></span></a></div>
 						</div></td>
 						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["observa"]) ?></div></td>
 						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["nopro"] )?></div></td>

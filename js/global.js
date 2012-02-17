@@ -29,11 +29,14 @@ $(document).ready(function() {
 */
  
     //inicio mesages_validation
-    jQuery.mesages_validation = function(data) {
+    jQuery.mesages_validation = function(data,msj_satisfactorio) {
        /* if(data.indexOf("login-form")!=-1)
             window.locationf="";
         else*/ if(!data)
-            $.achtung({message: 'El dato fue guardado', timeout:5});
+            {
+            $.achtung({message: (msj_satisfactorio)?msj_satisfactorio:'El dato fue guardado', timeout:5});
+            return true;
+            }
         
         else
         {
@@ -46,7 +49,7 @@ $(document).ready(function() {
         
     };
     //rellenar combos select
-    jQuery.rellenar_combo = function(ruta,var_envio,select_victima) {
+    jQuery.rellenar_combo = function(ruta,var_envio,select_victima,funcion) {
       $.post(ruta,var_envio,function(data){
           //alert(data)
           $(select_victima).html("");
@@ -54,7 +57,17 @@ $(document).ready(function() {
           $.each(data,function(key,val){
               $(select_victima).append(new Option(val,key));
             });
-      });
+            /*if(funcion)
+            //$.rellenar_combo.funcion.call(this);
+                funcion();*/
+         
+
+      }); if(typeof funcion == 'function'){
+        funcion.call(this);
+       
+      }
+
+      
     };//fin rellenar_combo
     
      $.ajaxSetup({
@@ -88,7 +101,7 @@ $(document).ready(function() {
             if(xhr.responseText.indexOf('id="bd-login-form"')==1061)
                 {//return false;
                     alert(".    Su sesión ha expirado\nPor favor ingrese de nuevo  .")
-                    window.location.href="";    
+                    window.location.href="";
                     //window.location.reload();  
                 }
         }//fin complete

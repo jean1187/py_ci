@@ -35,8 +35,28 @@ $(document).ready(function() {
       $.rellenar_combo(base_url+"/operacion", {oper:"combo_entes","id_organo":this.value},"select[name='ente']");
   });//fin cambio en las entes
   */
+  //$.rellenar_combo(base_url+"/echoSelect", {dato:rel[1],t:rel[0]},"#"+id,function(){$("#"+id+" option[value='"+select+"']").attr("selected","selected");});
   
-  
+  /*$("select[sele]").each(function(i,e){//alert("")
+                                           id=$(this).attr("id");
+                                        sele=$(this).attr("sele");
+                                        rel=$(e).attr("rel").split(',');
+                                        
+                                           
+                                          //alert("1") 
+                                       });*/
+                                       
+
+                                         
+                                          
+                                          
+  $("select[rel]").each(function(i,e){
+                                        id=$(this).attr("id");
+                                        rel=$(e).attr("rel");
+                                            $("#"+id+" option[value='"+rel+"']").attr("selected","selected");
+                                       });
+                                       
+ // $("#lineaEstrategica option").each(function(i,e){alert(i+" -"+$(e).attr("selected"))});
   $("form").submit(function(event){
       $.ajax({
             type: "POST",

@@ -74,5 +74,17 @@ class M_nuevo_proyecto extends CI_Model {
        
     }//consultas_para los combos
 
+    function buscando_py_Modif($id)
+   {
+       $this->db->select("id as id_py,nopro as nombre,descr as descripcion,lineaesta as lineaEstrategica,
+                          odm as objetivosDelMileniun,norespro as nombre_responsable , cocomu as sector_comunal,organ as organo,ejecu as ente,
+                          fase as fases,etapa1 as preinversion,etapa2 as py_new,etapa3 as ampl_modif,etapa4 as cumlinacion,ti_are as areaInversion,ti_cate as categoria,
+                          unidad as unidad_abscripcion_resp,cargo as cargo_responsable,correo as email_resp,telf as telefonos_responsable,fax as fax_resp,
+                          munici as municipio,parroq as parroquia,norte as latitude,este as longitude,directriz,objetivo,estrategia,politica,tiempo as tiempoEstimado,monto,otra as otraFuente,impsoc,pobl as poblacionBeneficiada,
+                          avafisico as porcentajeAvanceF,avafinanc as porcentajeAvanceFinan,formulacion,metas,articu as articulacionConOtrosEntes,empdirec as empleosDirectos,empindi as empleosIndirectos,
+                          compone as competencias,ti_pro as tipoProyecto
+                        ");
+       return $this->db->get_where("resumen",array("id"=>$id))->row_array();
+   }
 }//fin class
 ?>

@@ -7,7 +7,41 @@ class M_proyectos extends CI_Model {
         // Call the Model constructor
         parent::__construct();
         $this->table="resumen";
-    }
+        /*
+         insert into organoente (opcion,tipo,id_table) SELECT opcion,"o",id FROM organo;
+         insert into organoente (opcion,tipo,id_table) SELECT opcion,"e",id FROM ente;
+         insert into organoente_ejecu (opcion,tipo,id_table) SELECT opcion,"o",id FROM organo;
+         insert into organoente_ejecu (opcion,tipo,id_table) SELECT opcion,"e",id FROM ente;
+         
+     DELIMITER //
+     CREATE TRIGGER  nuevoOrgano after insert on organo          
+        for each row
+            BEGIN
+                insert into organoente (opcion,tipo,id_table) values(new.opcion,"o",new.id);
+                insert into organoente_ejecu (opcion,tipo,id_table) values(new.opcion,"o",new.id);
+            END// 
+    DELIMITER ;
+
+DELIMITER |
+CREATE TRIGGER modifOrgano after update ON organo
+  FOR EACH ROW BEGIN
+     update organoente set organoente.opcion=new.opcion where organoente.id_table=new.id;    
+     update organoente_ejecu set organoente_ejecu.opcion=new.opcion where organoente_ejecu.id_table=new.id;    
+  END|
+DELIMITER ;
+
+
+DELIMITER |
+CREATE TRIGGER deleteOrgano after DELETE ON organo
+  FOR EACH ROW BEGIN
+     DELETE from  organoente where organoente.id_table=old.id;    
+     DELETE from  organoente_ejecu where organoente_ejecu.id_table=old.id;    
+  END|
+DELIMITER ;
+
+*/
+   }
+         
     
     function TotalProyectos($id)
     {
@@ -31,7 +65,14 @@ class M_proyectos extends CI_Model {
                 resumen.lineaesta=lineaestada.id and resumen.ti_pro=tipoin.id and resumen.ti_cate=catego.id and resumen.ti_are=area.id and resumen.munici=municipio.id and resumen.parroq=parroquia.id  and 
         resumen.directriz=lineas.id and resumen.objetivo=objedos.id and
         resumen.estrategia=estrados.id and resumen.politica=polidos.id  and aprobado=1 and factible=1 and fondoci!=0  and 
-        cod =".$cod." ORDER BY `resumen`.`id` ASC")->result_array();
+        cod =".$cod." ORDER BY `resumen`.`id` ASC")->result_array();/*
+       return $this->db->query("SELECT  resumen.id,nopro,lineaestada.opcion,organo.opcion as organ,ejecu,descr,etapa1,etapa2,etapa3,etapa4,fase,tipoin.opcion as tipo_py,catego.opcion as categoria,area.opcion as area,norespro,unidad,cargo,correo,telf,fax,municipio.opcion as municipio, parroquia.opcion as parroquia,cocomu,norte,este,lineas.opcion as lineas,objedos.opcion as objedos,estrados.opcion as estrados,polidos.opcion as polidos,tiempo,monto,otra,impsoc,pobl,avafisico,avafinanc,empdirec,empindi,articu,compone,observa,nota FROM resumen,lineaestada,tipoin,catego,area,municipio,parroquia,lineas,objedos,estrados,polidos,organo WHERE
+                resumen.lineaesta=lineaestada.id and resumen.ti_pro=tipoin.id and resumen.ti_cate=catego.id and resumen.ti_are=area.id and resumen.munici=municipio.id and resumen.parroq=parroquia.id  and 
+        resumen.directriz=lineas.id and resumen.objetivo=objedos.id and
+	organo.id=SUBSTRING(resumen.organ FROM 3) and
+        resumen.estrategia=estrados.id and resumen.politica=polidos.id  and aprobado=1 and factible=1 and fondoci!=0  and 
+        cod =".$cod." ORDER BY `resumen`.`id` ASC")->result_array();*/
+
    }
    
    function ListaPlandeInversion_Situado($cod)
@@ -85,15 +126,78 @@ class M_proyectos extends CI_Model {
    {
        $this->db->select("id as id_py,nopro as nombre,descr as descripcion,lineaesta as lineaEstrategica,
                           odm as objetivosDelMileniun,norespro as nombre_responsable , cocomu as sector_comunal,organ as organo,ejecu as ente,
-                          fase as fases,etapa1 as preinversion,etapa2 as py_new,etapa3 as ampl_modif,etapa4 as cumlinacion,ti_are as areaInversion,
+                          fase as fases,etapa1 as preinversion,etapa2 as py_new,etapa3 as ampl_modif,etapa4 as cumlinacion,ti_are as areaInversion,ti_cate as categoria,
                           unidad as unidad_abscripcion_resp,cargo as cargo_responsable,correo as email_resp,telf as telefonos_responsable,fax as fax_resp,
-                          munici as municipio,norte as latitude,este as longitude,directriz,tiempo as tiempoEstimado,monto,otra as otraFuente,impsoc,pobl as poblacionBeneficiada,
+                          munici as municipio,parroq as parroquia,norte as latitude,este as longitude,directriz,objetivo,estrategia,politica,tiempo as tiempoEstimado,monto,otra as otraFuente,impsoc,pobl as poblacionBeneficiada,
                           avafisico as porcentajeAvanceF,avafinanc as porcentajeAvanceFinan,formulacion,metas,articu as articulacionConOtrosEntes,empdirec as empleosDirectos,empindi as empleosIndirectos,
-                          compone as competencias
+                          compone as competencias,ti_pro as tipoProyecto
                         ");
        return $this->db->get_where("resumen",array("id"=>$id))->result_array();
    }
    
+     function resultTable_Where($table,$where,$select="*")
+    {
+        $this->db->select($select);
+        return $this->db->get_where($table,$where)->result_array();
+       
+    }//consultas_para los combos
+   
+    
+function modif($id)
+    {
+        
+        $datos=array(
+                     "nopro"=>$this->input->post("nombre"),
+                     "descr"=>$this->input->post("descripcion"),
+                     "lineaesta"=>$this->input->post("lineaEstrategica"),
+                     "odm"=>$this->input->post("objetivosDelMileniun"),
+                     "ti_are"=>$this->input->post("areaInversion"),
+                     "ti_cate"=>$this->input->post("categoria"),
+                     "ti_pro"=>$this->input->post("tipoProyecto"),
+                     "munici"=>$this->input->post("municipio"),
+                     "parroq"=>$this->input->post("parroquia"),
+                     "directriz"=>$this->input->post("directriz"),
+                     "objetivo"=>$this->input->post("objetivo"),
+                     "estrategia"=>$this->input->post("estrategia"),
+                     "politica"=>$this->input->post("politica"),
+                     "etapa1"=>$this->input->post("preinversion"),
+                     "etapa2"=>$this->input->post("py_new"),
+                     "etapa3"=>$this->input->post("ampl_modif"),
+                     "etapa4"=>$this->input->post("cumlinacion"),
+                     "fase"=>$this->input->post("fases"),
+                     "norespro"=>$this->input->post("nombre_responsable"),
+                     "unidad"=>$this->input->post("unidad_abscripcion_resp"),
+                     "cargo"=>$this->input->post("cargo_responsable"),
+                     "correo"=>$this->input->post("email_resp"),
+                     "telf"=>$this->input->post("telefonos_responsable"),
+                     "fax"=>$this->input->post("fax_resp"),
+                     "cocomu"=>$this->input->post("sector_comunal"),
+                     "norte"=>$this->input->post("latitude"),
+                     "este"=>$this->input->post("longitude"),
+                     "tiempo"=>$this->input->post("tiempoEstimado"),
+                     "monto"=>$this->input->post("monto"),
+                     "otra"=>$this->input->post("otraFuente"),
+                     "impsoc"=>$this->input->post("impsoc"),
+                     "pobl"=>$this->input->post("poblacionBeneficiada"),
+                     "avafisico"=>$this->input->post("porcentajeAvanceF"),
+                     "avafinanc"=>$this->input->post("porcentajeAvanceFinan"),
+                     "empdirec"=>$this->input->post("empleosDirectos"),
+                     "empindi"=>$this->input->post("empleosIndirectos"),
+                     "formulacion"=>$this->input->post("formulacion"),
+                     "metas"=>$this->input->post("metas"),
+                     "articu"=>$this->input->post("articulacionConOtrosEntes"),
+                     "compone"=>$this->input->post("competencias"),
+                     "organ"=>$this->input->post("organo"),
+                     "ejecu"=>$this->input->post("ente"),
+                     );
+
+        $this->db->where('id', $id);
+        $this->db->update($this->table, $datos); 
+        /// * No modificar esta linea
+        $this->bitacora->crear();
+    }//fin modif
+    
+    
    function cambio_estrados()
    {
        
@@ -152,5 +256,7 @@ class M_proyectos extends CI_Model {
              
        }
    }
+   
+   
 }//fin class
 ?>
