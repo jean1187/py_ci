@@ -10,9 +10,9 @@ class Nuevo_proyecto extends CI_Controller {
             $this->load->library("_global");
             $this->seleccione=array(""=>"- Seleccione -");
             $this->load->helper("romano");
+            $this->user=$this->session->userdata("userLogin");
         }
   
-       
         public function index($solo=false)
         { 
             $data["datos"]=$this->search_py_modif($solo);
@@ -22,10 +22,7 @@ class Nuevo_proyecto extends CI_Controller {
                 $config['zoom'] = 17;
                 $config['trafficOverlay'] = TRUE;
                 $config['map_type'] = 'HYBRID';
-                //$config['sensor'] = true
-                $config['map_name'] = "map1";
-                //map_name;
-                
+
                 $this->googlemaps->initialize($config);
                     $marker = array();
                     $marker['position'] =  ($solo)?$data["datos"]["latitude"].','.$data["datos"]["longitude"]:'10.254103525868485,-67.59247183799744';
@@ -51,7 +48,6 @@ class Nuevo_proyecto extends CI_Controller {
             $data['ente']=array("ORGANOS"=>$organo,"ENTES"=>$ente);
             $data['areaInversion']=$areaInversion;
             $data['categoria']=($solo)?$this->_global->array_merge_key_values($this->modelo->resultTable_Where("catego",array("opcion <>"=>"","relacion"=>$data["datos"]["areaInversion"]),"id, opcion"),array("id","opcion")):$this->seleccione;
-            print_r($data['categoria']);
             $data['tipoProyecto']=($solo)?$this->_global->array_merge_key_values($this->modelo->resultTable_Where("tipoin",array("opcion <>"=>"","relacion"=>$data["datos"]["categoria"]),"id, opcion"),array("id","opcion")):$this->seleccione;
             $data['municipio']=$municipio;
             $data['parroquia']=($solo)?$this->_global->array_merge_key_values($this->modelo->resultTable_Where("parroquia",array("opcion <>"=>"","relacion"=>$data["datos"]["municipio"]),"id, opcion"),array("id","opcion")):$this->seleccione;
@@ -63,10 +59,21 @@ class Nuevo_proyecto extends CI_Controller {
             $data['fases']=$fases;
             $data['class']=$this->router->class;
             $data['hidden'] =form_hidden("ruta_ejecutor",($solo)?base_url().$this->router->class:base_url().$this->router->class);//current_url());
-            
+            $data['hidden'].=($solo)?form_hidden("id_py",$solo):"";
             
             $this->load->vars($data);
-            $this->cargar->menu_system($this->router->class."/ficha_tecnica","Nuevo Proyecto");/*
+            
+            if(empty ($data["datos"]))
+                $this->cargar->menu_system($this->router->class."/ficha_tecnica","Nuevo Proyecto");
+            else 
+            {
+                $this->cargar->encabezado("Nuevo Proyecto");
+                $this->load->view($this->router->class."/ficha_tecnica");
+                $this->load->view($this->router->class."/consejo_federal");
+                $this->load->view('pie');
+            }
+            /*
+                 
             if(!$solo)
                 $this->cargar->menu_system($this->router->class."/ficha_tecnica","Nuevo Proyecto");
             else $this->load->view($this->router->class."/ficha_tecnica");*/
@@ -75,7 +82,7 @@ class Nuevo_proyecto extends CI_Controller {
          public function search_py_modif($id)
         {
             $result=array();
-            foreach($this->modelo->buscando_py_Modif($id) as $key=>$value)
+            foreach($this->modelo->buscando_py_Modif(array("resumen.id"=>$id,"cod"=>$this->user["cod"])) as $key=>$value)
                     $result[$key]=cambia_char($value);
             return $result;
         }
@@ -91,6 +98,12 @@ class Nuevo_proyecto extends CI_Controller {
                     }
                 break;
                 
+                case "edit":
+                    if($this->validacion_form())
+                    {
+                      $this->modelo->edit();
+                    }
+                break;
                 
                 case "combo_categoria":
                     $this->echoSelectJson($this->modelo->resultTable_Where("catego",array("relacion"=>$this->input->post("id_area"))));

@@ -24,7 +24,6 @@ class Proyectos extends CI_Controller {
                 $config['zoom'] = 10;
                 $config['trafficOverlay'] = TRUE;
                 $config['map_type'] = 'HYBRID';
-                $config['map_div_id'] = 'hhoho';
                 
                 $this->googlemaps->initialize($config);
                 $i=0;

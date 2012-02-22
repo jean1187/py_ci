@@ -1,10 +1,11 @@
-<?php echo form_open('email/send');?>
-        
-        <input type="hidden" name="id_py" id="id_py" />
+<?php
+$attributes["oper"]=(empty($datos))?'add':'edit';
+echo form_open('operacion',$attributes);?>
+
         <?php 
         echo $hidden;
         
-       // print_r($datos);
+        //print_r($datos);
         ?>
 
         <script type="text/javascript" src="/js/controllers/<?=$class?>/accion.js"></script>
@@ -28,20 +29,20 @@
 
         <div class="clear"></div>
             <div class="grid_24 omega fondo_gris_oscuro espacio-arriba " >
-                <req>*</req><?php echo form_label('<b>¿ Qué Área del Plan de Desarrollo se Apalancará con este Plan de Inversión ? :</b>').br(1).form_dropdown('lineaEstrategica', $lineasEstrategicas,null,"style='max-width:940px;min-width:60px' id='lineaEstrategica' rel='".$datos["lineaEstrategica"]."'");?>
+                <req>*</req><?php echo form_label('<b>¿ Qué Área del Plan de Desarrollo se Apalancará con este Plan de Inversión ? :</b>').br(1).form_dropdown('lineaEstrategica', $lineasEstrategicas,null,"style='max-width:940px;min-width:60px' id='lineaEstrategica' rel=".(isset($datos["lineaEstrategica"])?$datos["lineaEstrategica"]:""));?>
             </div>   
         <div class="clear"></div>
             <div class="grid_24 omega fondo_gris_oscuro" >
-                <req>*</req><?php echo form_label('<b>Objetivos del Milenio (ODM) :</b>').br(1).form_dropdown('objetivosDelMileniun', $odm,null,"id='objetivosDelMileniun' rel='".$datos["objetivosDelMileniun"]."'");?> 
+                <req>*</req><?php echo form_label('<b>Objetivos del Milenio (ODM) :</b>').br(1).form_dropdown('objetivosDelMileniun', $odm,null,"id='objetivosDelMileniun' rel=".(isset($datos["objetivosDelMileniun"])?$datos["objetivosDelMileniun"]:""));?>
             </div> 
         <div class="clear"></div>
 
             <div class="grid_24  fondo_gris_oscuro espacio-arriba" >
-                <?php echo form_label('<b>Organismo Responsable :</b>').br(1).form_dropdown('organo', $organo, null,"style='max-width:950px;min-width:60px' id='organo' rel='".$datos["organo"]."' ");?>  
+                <?php echo form_label('<b>Organismo Responsable :</b>').br(1).form_dropdown('organo', $organo, (isset($datos["organo"]))?array($datos["organo"]):null,"style='max-width:950px;min-width:60px' id='organo' rel=".(isset($datos["organo"])?$datos["organo"]:""));?>
             </div>  
         <div class="clear"></div>
             <div class="grid_24  fondo_gris_oscuro" >
-                <?php echo form_label('<b>Ente  Ejecutor:</b>').br(1).form_dropdown('ente', $ente, null,"style='max-width:950px;min-width:60px' id='ente' rel='".$datos["ente"]."'");?> 
+                <?php echo form_label('<b>Ente  Ejecutor:</b>').br(1).form_dropdown('ente', $ente, null,"style='max-width:950px;min-width:60px' id='ente' rel=".(isset($datos["ente"])?$datos["ente"]:""));?>
             </div> 
         <div class="clear "></div>
             <div class="grid_14 omega espacio-arriba" >
@@ -54,7 +55,7 @@
 
             </div>  
             <div class="grid_10 alpha espacio-arriba" >
-                <?php echo form_label('<b>Fase del Proyecto:</b>').br(1).form_dropdown('fases', $fases,null,"id='fases' rel='".$datos["fases"]."'").br(1);?>         
+                <?php echo form_label('<b>Fase del Proyecto:</b>').br(1).form_dropdown('fases', $fases,null,"id='fases' rel=".(isset($datos["fases"])?$datos["fases"]:"")).br(1);?>         
             </div>
         <div class="clear"></div>
             <div class="grid_16 prefix_8 fondo_gris_oscuro borde espacio-arriba pink" >
@@ -62,14 +63,14 @@
             </div>
         <div class="clear"></div>
             <div class="grid_12 omega espacio-arriba " >
-                <req>*</req><?php echo form_label('<b>Area de Inversión :</b>').br(1).form_dropdown('areaInversion', $areaInversion,null,"id='areaInversion' rel='".$datos["areaInversion"]."'");?> 
+                <req>*</req><?php echo form_label('<b>Area de Inversión :</b>').br(1).form_dropdown('areaInversion', $areaInversion,null,"id='areaInversion' rel=".(isset($datos["areaInversion"])?$datos["areaInversion"]:""));?> 
             </div>  
             <div class="grid_12 espacio-arriba" >
-                 <req>*</req><?php echo form_label('<b>Categoría:</b>').br(1).form_dropdown('categoria',$categoria,null,"id='categoria' rel='".$datos["categoria"]."' ");?> 
+                 <req>*</req><?php echo form_label('<b>Categoría:</b>').br(1).form_dropdown('categoria',$categoria,null,"id='categoria' rel=".(isset($datos["categoria"])?$datos["categoria"]:""));?>
             </div> 
         <div class="clear"></div>
             <div class="grid_24 " >
-                <req>*</req><?php echo form_label('<b>Tipo de Proyecto:</b>').br(1).form_dropdown('tipoProyecto',$tipoProyecto,null,"style='max-width:950px;min-width:60px' id='tipoProyecto' rel='".$datos["tipoProyecto"]."'");?> 
+                <req>*</req><?php echo form_label('<b>Tipo de Proyecto:</b>').br(1).form_dropdown('tipoProyecto',$tipoProyecto,null,"style='max-width:950px;min-width:60px' id='tipoProyecto' rel=".(isset($datos["tipoProyecto"])?$datos["tipoProyecto"]:""));?>
             </div> 
         <div class="clear"></div>
 
@@ -105,13 +106,13 @@
             </div>
         <div class="clear"></div>
             <div class="grid_6 omega espacio-arriba" >
-                <req>*</req><?php echo form_label('<b> Municipio : </b>').br(1).form_dropdown('municipio', $municipio,null,"id='municipio'  rel='".$datos["municipio"]."'");?> 
+                <req>*</req><?php echo form_label('<b> Municipio : </b>').br(1).form_dropdown('municipio', $municipio,null,"id='municipio' rel=".(isset($datos["municipio"])?$datos["municipio"]:""));?>
             </div>  
             <div class="grid_9 espacio-arriba" >
-                <req>*</req><?php echo form_label('<b>Parroquia:</b>').br(1).form_dropdown('parroquia', $parroquia,null,"id='parroquia' rel='".$datos["parroquia"]."'");?> 
+                <req>*</req><?php echo form_label('<b>Parroquia:</b>').br(1).form_dropdown('parroquia', $parroquia,null,"id='parroquia' rel=".(isset($datos["parroquia"])?$datos["parroquia"]:""));?>
             </div> 
             <div class="grid_9 alpha omega espacio-arriba" >
-                <?php echo form_label('<b>Sector Comunal:</b>').br(1).form_textarea(array('name'=> 'sector_comunal','id'=> 'sector_comunal','value'=>'','rows'=>'1',"cols"=>45));?>
+                <?php echo form_label('<b>Sector Comunal:</b>').br(1).form_textarea(array('name'=> 'sector_comunal','id'=> 'sector_comunal','value'=>(isset($datos["sector_comunal"]))?$datos["sector_comunal"]:"",'rows'=>'1',"cols"=>45));?>
             </div> 
         <div class="clear"></div>
             <div class="grid_16 prefix_8" >
@@ -150,19 +151,19 @@
         <div class="clear"></div>
 
             <div class="grid_24 espacio-arriba" >
-                <req>*</req><?php echo form_label('<b> Directriz :</b>').nbs(1).form_dropdown('directriz', $directriz,null,"style='max-width:870px';min-width:60px id ='directriz' rel='".$datos["directriz"]."'");?> 
+                <req>*</req><?php echo form_label('<b> Directriz :</b>').nbs(1).form_dropdown('directriz', $directriz,null,"style='max-width:870px';min-width:60px id ='directriz' rel=".(isset($datos["directriz"])?$datos["directriz"]:""));?>
             </div>  
         <div class="clear"></div>
             <div class="grid_24" >
-                <req>*</req><?php echo form_label('<b>Objetivo:</b>').nbs(3).form_dropdown('objetivo', $objetivo,null,"style='max-width:870px;min-width:60px' id='objetivo' rel='".$datos["objetivo"]."'");?> 
+                <req>*</req><?php echo form_label('<b>Objetivo:</b>').nbs(3).form_dropdown('objetivo', $objetivo,null,"style='max-width:870px;min-width:60px' id='objetivo' rel=".(isset($datos["objetivo"])?$datos["objetivo"]:""));?> 
             </div> 
         <div class="clear"></div>
             <div class="grid_24 " >
-                <req>*</req><?php echo form_label('<b>Estrategia:</b>').form_dropdown('estrategia', $estrategia,null,"style='max-width:870px;min-width:60px' id='estrategia' rel='".$datos["estrategia"]."'");?> 
+                <req>*</req><?php echo form_label('<b>Estrategia:</b>').form_dropdown('estrategia', $estrategia,null,"style='max-width:870px;min-width:60px' id='estrategia' rel=".(isset($datos["estrategia"])?$datos["estrategia"]:""));?>
             </div> 
         <div class="clear"></div>
             <div class="grid_24" >
-                <req>*</req><?php echo form_label('<b>Politica:</b>').nbs(4).form_dropdown('politica', $politica,null,"style='max-width:870px;min-width:60px' id='politica'  rel='".$datos["politica"]."' ");?> 
+                <req>*</req><?php echo form_label('<b>Politica:</b>').nbs(4).form_dropdown('politica', $politica,null,"style='max-width:870px;min-width:60px' id='politica' rel=".(isset($datos["politica"])?$datos["politica"]:""));?>
             </div> 
         <div class="clear"></div>
 
@@ -172,13 +173,13 @@
         <div class="clear"></div>
 
             <div class="grid_8 omega espacio-arriba" >
-                <?php echo form_label('<b> Tiempo estimado de ejecución : </b>').br(1).form_dropdown('tiempoEstimado', $tiempoEstimado,null,"id='tiempoEstimado' rel='null,".$datos["tiempoEstimado"]."'");?> 
+                <?php echo form_label('<b> Tiempo estimado de ejecución : </b>').br(1).form_dropdown('tiempoEstimado', $tiempoEstimado,null,"id='tiempoEstimado'  rel=".(isset($datos["tiempoEstimado"])?$datos["tiempoEstimado"]:""));?>
             </div>  
             <div class="grid_8 espacio-arriba" >
-                <?php echo form_label('<b>Monto total del Proyecto en (Bs.F):</b>').br(1).form_input(array('name'=>'monto','id'=>'monto','value'=> '','maxlength'=> '100','size'=>'25'));?> 
+                <?php echo form_label('<b>Monto total del Proyecto en (Bs.F):</b>').br(1).form_input(array('name'=>'monto','id'=>'monto','value'=> (isset($datos["monto"]))?$datos["monto"]:"",'maxlength'=> '100','size'=>'25'));?> 
             </div> 
             <div class="grid_8 alpha omega espacio-arriba" >
-                <?php echo form_label('<b>Otras Fuentes de financiamiento:</b>').br(1).form_input(array('name'=>'otraFuente','id'=>'otraFuente','value'=> '','maxlength'=> '100','size'=>'25'));?> 
+                <?php echo form_label('<b>Otras Fuentes de financiamiento:</b>').br(1).form_input(array('name'=>'otraFuente','id'=>'otraFuente','value'=>(isset($datos["otraFuente"]))?$datos["otraFuente"]:"",'maxlength'=> '100','size'=>'25'));?> 
             </div> 
         <div class="clear"></div>
 
@@ -188,23 +189,23 @@
         <div class="clear"></div>
 
             <div class="grid_6 fondo_gris_oscuro espacio-arriba" >
-                <?php echo form_label('<b>Impacto Social :</b>').br(1).form_textarea(array('name'=> 'impsoc','id'=> 'impsoc','value'=>'','rows'=>'1',"cols"=>30));?>
+                <?php echo form_label('<b>Impacto Social :</b>').br(1).form_textarea(array('name'=> 'impsoc','id'=> 'impsoc','value'=>(isset($datos["impsoc"]))?$datos["impsoc"]:"",'rows'=>'1',"cols"=>30));?>
             </div>    
             <div class="grid_6 fondo_gris_oscuro espacio-arriba" >
-                <?php echo form_label('<b>Poblacion Beneficiada :</b>').br(1).form_input(array('name'=>'poblacionBeneficiada','id'=>'poblacionBeneficiada','value'=> '','maxlength'=> '10','size'=>'19'));?> 
+                <?php echo form_label('<b>Poblacion Beneficiada :</b>').br(1).form_input(array('name'=>'poblacionBeneficiada','id'=>'poblacionBeneficiada','value'=> (isset($datos["poblacionBeneficiada"]))?$datos["poblacionBeneficiada"]:"",'maxlength'=> '10','size'=>'19'));?> 
             </div>  
             <div class="grid_6   fondo_gris_oscuro espacio-arriba" >
-                <?php echo form_label('<b>Avance Fisico :</b>').br(1).form_input(array('name'=>'porcentajeAvanceF','id'=>'porcentajeAvanceF','value'=> '','maxlength'=> '5','size'=>'10'));?>%
+                <?php echo form_label('<b>Avance Fisico :</b>').br(1).form_input(array('name'=>'porcentajeAvanceF','id'=>'porcentajeAvanceF','value'=>(isset($datos["porcentajeAvanceF"]))?$datos["porcentajeAvanceF"]:"",'maxlength'=> '5','size'=>'10'));?>%
             </div> 
             <div class="grid_6   fondo_gris_oscuro espacio-arriba" >
-                <?php echo form_label('<b>Avance Financiero :</b>').br(1).form_input(array('name'=>'porcentajeAvanceFinan','id'=>'porcentajeAvanceFinan','value'=> '','maxlength'=> '5','size'=>'10'))?>%
+                <?php echo form_label('<b>Avance Financiero :</b>').br(1).form_input(array('name'=>'porcentajeAvanceFinan','id'=>'porcentajeAvanceFinan','value'=> (isset($datos["porcentajeAvanceFinan"]))?$datos["porcentajeAvanceFinan"]:"",'maxlength'=> '5','size'=>'10'))?>%
             </div> 
         <div class="clear"></div>
             <div class="grid_12  fondo_gris_oscuro" >
-                <?php echo form_label('<b>Indicador :</b>').br(1).form_label('Formulacion ').form_textarea(array('name'=> 'formulacion','id'=> 'formulacion','value'=>'','rows'=>'1',"cols"=>52)).br(1).form_label('Metas ').form_textarea(array('name'=> 'metas','id'=> 'metas','value'=>'','rows'=>'1',"cols"=>57));?>
+                <?php echo form_label('<b>Indicador :</b>').br(1).form_label('Formulacion ').form_textarea(array('name'=> 'formulacion','id'=> 'formulacion','value'=>(isset($datos["formulacion"]))?$datos["formulacion"]:"",'rows'=>'1',"cols"=>52)).br(1).form_label('Metas ').form_textarea(array('name'=> 'metas','id'=> 'metas','value'=>'','rows'=>'1',"cols"=>57));?>
             </div>    
             <div class="grid_12   fondo_gris_oscuro" >
-                <?php echo form_label('<b>Nº de Empleos Generados :</b>').br(1).form_label('Directos').form_input(array('name'=>'empleosDirectos','id'=>'empleosDirectos','value'=> '','maxlength'=> '100','size'=>'26')).br(1).form_label('Indirectos').form_input(array('name'=>'empleosIndirectos','id'=>'empleosIndirectos','value'=> '','maxlength'=> '100','size'=>'25'));?> 
+                <?php echo form_label('<b>Nº de Empleos Generados :</b>').br(1).form_label('Directos').form_input(array('name'=>'empleosDirectos','id'=>'empleosDirectos','value'=> (isset($datos["empleosDirectos"]))?$datos["empleosDirectos"]:"",'maxlength'=> '100','size'=>'26')).br(1).form_label('Indirectos').form_input(array('name'=>'empleosIndirectos','id'=>'empleosIndirectos','value'=> '','maxlength'=> '100','size'=>'25'));?> 
             </div>  
         <div class="clear"></div>
             <div class="grid_16 prefix_8 fondo_gris_oscuro borde espacio-arriba pink" >
@@ -212,7 +213,7 @@
             </div>
         <div class="clear"></div>
             <div class="grid_24" >
-                <?php echo br(1).form_textarea(array('name'=> 'articulacionConOtrosEntes','id'=> 'articulacionConOtrosEntes','value'=>'','rows'=>'2',"cols"=>132));?> 
+                <?php echo br(1).form_textarea(array('name'=> 'articulacionConOtrosEntes','id'=> 'articulacionConOtrosEntes','value'=>(isset($datos["articulacionConOtrosEntes"]))?$datos["articulacionConOtrosEntes"]:"",'rows'=>'2',"cols"=>132));?> 
             </div>
         <div class="clear"></div>
 
@@ -221,12 +222,15 @@
             </div>
         <div class="clear"></div>
           <div class="grid_24" >
-                <?php echo br(1).form_textarea(array('name'=> 'competencias','id'=> 'competencias','value'=>'','rows'=>'2',"cols"=>132));?> 
+                <?php echo br(1).form_textarea(array('name'=> 'competencias','id'=> 'competencias','value'=>(isset($datos["competencias"]))?$datos["competencias"]:"",'rows'=>'2',"cols"=>132));?> 
             </div>
         <div class="clear"></div>
-        
+    <?php if(empty ($datos)) {?>
       <div class="grid_12 prefix_9 espacio-arriba" >
           <button id="guardar">Guardar Proyecto!</button>
       </div>
         
 <?php echo form_close();?>
+    <?php }?>
+
+        

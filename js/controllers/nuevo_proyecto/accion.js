@@ -22,48 +22,21 @@ $(document).ready(function() {
       $.rellenar_combo(base_url+"/operacion", {oper:"combo_objetivo","id_directriz":this.value},"select[name='objetivo']");
       $.rellenar_combo(base_url+"/operacion", {oper:"combo_estrategia","id_directriz":this.value},"select[name='estrategia']");
   });//fin cambio en los objetivos 
-  
- /* $("select[name='objetivo']").change(function(){
-    $.rellenar_combo(base_url+"/operacion", {oper:"combo_estrategia","id_objetivo":this.value},"select[name='estrategia']");
-  });//fin cambio en  estrategias
-  */
+
   $("select[name='estrategia']").change(function(){
       $.rellenar_combo(base_url+"/operacion", {oper:"combo_politica","id_estrategia":this.value},"select[name='politica']");
   });//fin cambio en las politicas
 
-  /*$("select[name='organo']").change(function(){
-      $.rellenar_combo(base_url+"/operacion", {oper:"combo_entes","id_organo":this.value},"select[name='ente']");
-  });//fin cambio en las entes
-  */
-  //$.rellenar_combo(base_url+"/echoSelect", {dato:rel[1],t:rel[0]},"#"+id,function(){$("#"+id+" option[value='"+select+"']").attr("selected","selected");});
-  
-  /*$("select[sele]").each(function(i,e){//alert("")
-                                           id=$(this).attr("id");
-                                        sele=$(this).attr("sele");
-                                        rel=$(e).attr("rel").split(',');
-                                        
-                                           
-                                          //alert("1") 
-                                       });*/
-                                       
+  $("select[rel]").each(function(i,e){id=$(this).attr("id"); rel=$(e).attr("rel"); $("#"+id+" option[value='"+rel+"']").attr("selected","selected");});
 
-                                         
-                                          
-                                          
-  $("select[rel]").each(function(i,e){
-                                        id=$(this).attr("id");
-                                        rel=$(e).attr("rel");
-                                            $("#"+id+" option[value='"+rel+"']").attr("selected","selected");
-                                       });
-                                       
- // $("#lineaEstrategica option").each(function(i,e){alert(i+" -"+$(e).attr("selected"))});
   $("form").submit(function(event){
+      $msj=($(this).attr("oper")=="edit")?"Modificado":"Guardado";
       $.ajax({
             type: "POST",
             url: base_url+'/operacion',
-            data: $("form").serialize()+"&oper=add",
+            data: $("form").serialize()+"&oper="+$(this).attr("oper"),
             success: function(data){
-               $.mesages_validation(data);
+               $.mesages_validation(data,"Su Proyecto ha sido "+$msj);
                 //    $.msj_success(data,"");
             },//fin success
             error:function(data){
