@@ -148,10 +148,11 @@ class M_nuevo_proyecto extends CI_Model {
                      "consolidacion103"=>$this->input->post("consolidacion103"),
                      "insfraestructura"=>$this->input->post("insfraestructura"),
                      "explique111"=>$this->input->post("explique111"),
+                     "explique112"=>$this->input->post("explique112"),
                      "productiva112"=>$this->input->post("productiva112"),
                      "descripcion122"=>$this->input->post("descripcion122"),
                      "insfraestructura"=>$this->input->post("insfraestructura"),
-                     "insfraestructura"=>$this->input->post("insfraestructura"),
+                     "titularidad127"=>$this->input->post("titularidad127"),
                      );
         $this->db->where(array("id"=>$this->input->post("id_py")));
         $this->db->update($this->table,$datos);
@@ -184,7 +185,9 @@ class M_nuevo_proyecto extends CI_Model {
                           admateria as cf_admateria,adinsumo as cf_adinsumo,transtecnologia cf_transtecnologia,armonizacion as cf_armonizacion,eficiencia as cf_eficiencia,plasimon as cf_plasimon,
                           plancomunal as cf_plancomunal,planmunicipal as cf_planmunicipal,planestadal as cf_planestadal,integracion as cf_integracion,explique7 as cf_explique7,ubica71 as cf_ubica71,explique72 as cf_explique72,poblacion72 as cf_poblacion72,indigena73 as cf_indigena73,
                           explique73 as cf_explique73,servicios74 as cf_servicios74,explique74 as cf_explique74,integar75 as cf_integar75,productiva81 as cf_productiva81,explique8 as cf_explique8,parlaboral91 as cf_parlaboral91,pardireccion92 as cf_pardireccion92,transferencia101 as cf_transferencia101,
-                          explique10 as cf_explique10,validaconsejo as cf_validaconsejo,consolidacion103 as cf_consolidacion103,insfraestructura as cf_insfraestructura,explique111 as cf_explique111,productiva112 as cf_productiva112,explique112 as cf_explique112,descripcion122 as cf_descripcion122
+                          explique10 as cf_explique10,validaconsejo as cf_validaconsejo,consolidacion103 as cf_consolidacion103,insfraestructura as cf_insfraestructura,explique111 as cf_explique111,productiva112 as cf_productiva112,explique112 as cf_explique112,descripcion122 as cf_descripcion122,
+                          presupuesto121 as cf_presupuesto121,cronograma as cf_cronograma,memoria122 as cf_memoria122,perspectiva122 as cf_perspectiva122,calculos122 as cf_calculos122,fotografias122 as cf_fotografias122,plano122 as cf_plano122,croquis122 as cf_croquis122,
+                          titularidad127 as cf_titularidad127,cronograma128 as cf_cronograma128,permisos129 as cf_permisos129
                           
                         ");
        $this->db->where($where);
@@ -196,5 +199,14 @@ class M_nuevo_proyecto extends CI_Model {
       return  $this->db->get()->row_array();
        //return $this->db->get_where("resumen",$where)->row_array();
    }
+
+   function add_files($campo,$value,$id)
+     {
+       $this->db->where(array("id"=>$id));
+        $this->db->update($this->table,array($campo=>$value));
+        /// * No modificar esta linea
+        $this->bitacora->crear();
+     }//fin add_files
+   
 }//fin class
 ?>

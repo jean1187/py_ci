@@ -1,13 +1,13 @@
 <!-- Bootstrap CSS Toolkit styles -->
-<link rel="stylesheet" href="/css/jquery.fileupload/bootstrap_jean.css"/>
+<link rel="stylesheet" href="/css/controllers/nuevo_proyecto/bootstrap_jean.css"/>
 <link rel="stylesheet" href="/css/jquery.fileupload/jquery.fileupload-ui.css"/>
 
 <div class="container">
     <div class="page-header">
-        <h1>jQuery File Upload Demo</h1>
+        <h1>Lista de Archivos para este Proyecto</h1>
     </div>
     <!-- The file upload form used as target for the file upload widget -->
-    <form id="fileupload" action="<?php echo site_url("nuevo_proyecto/do_upload_")?>" method="POST" enctype="multipart/form-data">
+    <form id="fileupload" action="<?php echo site_url("nuevo_proyecto/do_upload")?>" method="POST" enctype="multipart/form-data">
         <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
         <div class="row fileupload-buttonbar">
             <div class="span7">
@@ -22,10 +22,6 @@
                 <button type="reset" class="btn btn-warning cancel">
                     <i class="icon-ban-circle icon-white"></i> Cancelar
                 </button>
-                <button type="button" class="btn btn-danger delete">
-                    <i class="icon-trash icon-white"></i> Eliminar
-                </button>
-                <input type="checkbox" class="toggle">
             </div>
             <div class="span5">
                 <!-- The global progress bar -->
@@ -45,7 +41,7 @@
 <!-- Error messages for the upload/download templates -->
 <script>
 var fileUploadErrors = {
-    maxFileSize: 'Archivo muy Pesado (maximo 2 MB)',
+    maxFileSize: 'Archivo muy Pesado (maximo 8 MB)',
     minFileSize: 'Archivo muy pequeño',
     acceptFileTypes: 'Tipo de Archivo no Permitido',
     maxNumberOfFiles: 'Maximo numero de Archivos Permitidos',
@@ -68,7 +64,7 @@ var fileUploadErrors = {
             </td>
             <td class="start">{% if (!o.options.autoUpload) { %}
                 <button class="btn btn-primary">
-                    <i class="icon-upload icon-white"></i> Start
+                    <i class="icon-upload icon-white"></i> Comenzar
                 </button>
             {% } %}</td>
         {% } else { %}
@@ -76,7 +72,7 @@ var fileUploadErrors = {
         {% } %}
         <td class="cancel">{% if (!i) { %}
             <button class="btn btn-warning">
-                <i class="icon-ban-circle icon-white"></i> Cancel
+                <i class="icon-ban-circle icon-white"></i> Cancelar
             </button>
         {% } %}</td>
     </tr>
@@ -101,12 +97,6 @@ var fileUploadErrors = {
             <td class="size">{%=o.formatFileSize(file.size)%}</td>
             <td colspan="2"></td>
         {% } %}
-        <td class="delete">
-            <button class="btn btn-danger" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}">
-                <i class="icon-trash icon-white"></i> Delete
-            </button>
-            <input type="checkbox" name="delete" value="1">
-        </td>
     </tr>
 {% } %}
 </script>
@@ -116,6 +106,7 @@ var fileUploadErrors = {
 <!-- The Templates plugin is included to render the upload/download listings -->
 <script src="/js/jquery.fileupload/tmpl.min.js"></script>
 <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+<script src="/js/jquery.fileupload/load-image.min.js"></script>
 <!-- The Canvas to Blob plugin is included for image resizing functionality -->
 <script src="/js/jquery.fileupload/canvas-to-blob.min.js"></script>
 <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
@@ -127,6 +118,6 @@ var fileUploadErrors = {
 <!-- The File Upload user interface plugin -->
 <script src="/js/jquery.fileupload/jquery.fileupload-ui.js"></script>
 <!-- The main application script -->
-<script src="/js/jquery.fileupload/main.js"></script>
+<script src="/js/controllers/nuevo_proyecto/main.fileupload.js"></script>
 <!-- The XDomainRequest Transport is included for cross-domain file deletion for IE8+ -->
 <!--[if gte IE 8]><script src="/js1/cors/jquery.xdr-transport.js"></script><![endif]-->

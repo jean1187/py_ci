@@ -1,7 +1,4 @@
 <?php echo br(2)?>
-
-<script type="text/javascript" src="/js/controllers/<?=$class?>/accion_consejo_federal.js"></script>
-
 <table width="100%" border="0">
   <tr>
     <td><img src="<?php echo base_url()?>/imagenes/bicentenario.png" width="100%" height="68" /></td>
@@ -682,11 +679,18 @@
     <td ><div align="left"><strong>12.1 ASPECTOS FINANCIEROS </strong></div></td>
   </tr>
 </table>
+
+
 <hr width="100%" />
 <table width="100%" border="0">
   <tr>
     <td><strong>12.1.1 Presupuesto: </strong><br />
-   Anexo ( La carga maxima del servidor es 2 MB en formato PDF ) <br /> <div align="left"> <spam class="button">Añadir Archivo</spam> <a href=<?php /* echo "../uploads/".$sum."/".$row['73'];*/ ?> >---------</a></div>
+   Anexo ( La carga maxima del servidor es 2 MB en formato PDF ) <br /> <spam class="button" tittle="Presupuesto" campo="presupuesto">Añadir Archivo</spam> 
+   <lista_title><?php echo ($datos["cf_presupuesto121"]!="")?"<br/><strong>Lista de Archivos : <br/></strong>":""?></lista_title>
+   <archivos><?php 
+		   $ruta=base_url().'uploads/files_proyectos/'.$datos["id_py"]."/";
+		   echo (isset($datos["cf_presupuesto121"]))?"<a href='".$ruta.rawurlencode($datos["cf_presupuesto121"])."' target='_blank'>".$datos["cf_presupuesto121"]."</a>":""?>
+   </archivos>
       <p>(Consiste en establecer el costo total necesario para cumplir con los objetivos fijados, mediante la cuantificaci&oacute;n y caracter&iacute;sticas t&eacute;cnicas de las compras a realizar, asociados a un costo unitario y codificado por las normas COVENIN para obras, seg&uacute;n lo establecido en la Ley de Contrataciones P&uacute;blicas y su Reglamento Art. 150). Se requiere incluir en el presupuesto la imputaci&oacute;n a las partidas presupuestarias.</p>
   </tr>
 </table>
@@ -702,11 +706,14 @@
 </table>
 
 <hr width="100%" />
-<!--
+
 <table width="100%" border="0">
   <tr>
     <td><strong>12.1.3 Cronograma de desembolsos: </strong><br />
-    Anexo ( La carga maxima del servidor es 2 MB en formato PDF )  <br /> <a href=<?php /* echo "../uploads/".$sum."/".$row['75'];*/ ?> ><?=""/*$row['75']*/ ?></a>
+    Anexo ( La carga maxima del servidor es 2 MB en formato PDF )  <br /><spam class="button" tittle="Cronograma de desembolsos" campo="crono">Añadir Archivo</spam> 
+   <lista_title><?php echo ($datos["cf_presupuesto121"]!="")?"<br/><strong>Lista de Archivos : <br/></strong>":""?></lista_title>
+   <archivos><?php    echo (isset($datos["cf_cronograma"]))?"<a href='".$ruta.rawurlencode($datos["cf_cronograma"])."' target='_blank'>".$datos["cf_cronograma"]."</a>":""?>
+   </archivos>
       <P>(Se refiere a la cuantificaci&oacute;n de los recursos financieros que en la ejecuci&oacute;n del proyecto se tienen que desembolsar a fin de alcanzar los objetivos planteados, establecidos en un lapso de tiempo determinado, seg&uacute;n lo se&ntilde;alado en la Ley de Contrataciones P&uacute;blicas Art. 93)</P>
   </tr>
 </table>
@@ -722,7 +729,11 @@
 <table width="100%" border="0">
   <tr>
     <td><strong>12.2.1 Memoria Descriptiva Detallada:</strong><br />
-       Anexo ( La carga maxima del servidor es 2 MB en formato PDF )   <br /> <a href=<?php /* echo "../uploads/".$sum."/".$row['76'];*/ ?> ><?=""/*$row['76']*/ ?></a>
+       Anexo ( La carga maxima del servidor es 2 MB en formato PDF )   <br /> <spam class="button" tittle=" Para la Memoria Descriptiva Detallada" campo="mem_des">Añadir Archivo</spam> 
+   <lista_title><?php echo ($datos["cf_memoria122"]!="")?"<br/><strong>Lista de Archivos : <br/></strong>":""?></lista_title>
+   <archivos><?php    echo (isset($datos["cf_memoria122"]))?"<a href='".$ruta.rawurlencode($datos["cf_memoria122"])."' target='_blank'>".$datos["cf_memoria122"]."</a>":""?>
+   </archivos>
+   
       <P>(Se refiere a la memoria t&eacute;cnica de las diferentes disciplinas de la ingenier&iacute;a y arquitectura que describen los procesos de dise&ntilde;o, variables,&iacute;ndices, entre otros, utilizados para el desarrollo de la soluci&oacute;n adoptada, seg&uacute;n lo establecido en la Ley de Contrataciones P&uacute;blicas)</P>
   </tr>
 </table>
@@ -730,35 +741,45 @@
 <table width="100%" border="0">
   <tr>
     <td><strong>12.2.2 Formulaci&oacute;n del proyecto desde una perspectiva integral: </strong><br />
-     Anexo ( La carga maxima del servidor es 2 MB en formato PDF ) <br /> <a href=<?php /* echo "../uploads/".$sum."/".$row['77'];*/ ?> ><?=""/*$row['77']*/ ?></a>
+     Anexo ( La carga maxima del servidor es 2 MB en formato PDF ) <br /> <spam class="button" tittle=" Para la Formulaci&oacute;n del proyecto desde una perspectiva integral" campo="form">Añadir Archivo</spam> 
+   <lista_title><?php echo ($datos["cf_perspectiva122"]!="")?"<br/><strong>Lista de Archivos : <br/></strong>":""?></lista_title>
+   <archivos><?php    echo (isset($datos["cf_perspectiva122"]))?"<a href='".$ruta.rawurlencode($datos["cf_perspectiva122"])."' target='_blank'>".$datos["cf_perspectiva122"]."</a>":""?>
+   </archivos>
       <P>(Se refiere a la formulaci&oacute;n de proyectos, desde una perspectiva integral, que permita visualizar claramente la situaci&oacute;n a resolver, las actividades que ello implica y los beneficios a lograr)</P>
   </tr>
 </table>
 <hr width="100%" />
-<div align="right"><a href="../planillam/planilla1223.php?id=<?php /* echo $sum*/ ?>">Actualizar</a></div>
+
 <table width="100%" border="0">
   <tr>
     <td><strong>12.2.3 Memoria de dise&ntilde;o y c&aacute;lculos de los c&oacute;mputos m&eacute;tricos:</strong><br />
-      Anexo ( La carga maxima del servidor es 2 MB en formato PDF ) <br /> <a href=<?php /* echo "../uploads/".$sum."/".$row['78'];*/ ?> ><?=""/*$row['78']*/ ?></a>
+      Anexo ( La carga maxima del servidor es 2 MB en formato PDF ) <br /><spam class="button" tittle=" Para la  Memoria de dise&ntilde;o y c&aacute;lculos de los c&oacute;mputos m&eacute;tricos" campo="met">Añadir Archivo</spam> 
+   <lista_title><?php echo ($datos["cf_calculos122"]!="")?"<br/><strong>Lista de Archivos : <br/></strong>":""?></lista_title>
+   <archivos><?php    echo (isset($datos["cf_calculos122"]))?"<a href='".$ruta.rawurlencode($datos["cf_calculos122"])."' target='_blank'>".$datos["cf_calculos122"]."</a>":""?>
+   </archivos>
       <p>(Se refiere al c&aacute;lculo de cantidades de cada actividad, necesarias para la construcci&oacute;n, tomando en cuenta su unidad de medida (m, m2, m3, lt, Km, entre otros), seg&uacute;n lo se&ntilde;alado en la Ley de Contrataciones P&uacute;blicas)</p>
   </tr>
 </table>
 <hr width="100%" />
-<div align="right"><a href="../planillam/planilla1224.php?id=<?php /* echo $sum*/ ?>">Actualizar</a></div>
 <table width="100%" border="0">
   <tr>
     <td><strong>12.2.4 Memoria fotogr&aacute;fica con su respectiva leyenda: </strong><br />
-      Anexo ( La carga maxima del servidor es 2 MB en formato PDF )  <br /> <a href=<?php /* echo "../uploads/".$sum."/".$row['79'];*/ ?> ><?=""/*$row['79']*/ ?></a>
+      Anexo ( La carga maxima del servidor es 2 MB en formato PDF )  <br /><spam class="button" tittle=" Para la  Memoria fotogr&aacute;fica" campo="fot">Añadir Archivo</spam> 
+   <lista_title><?php echo ($datos["cf_fotografias122"]!="")?"<br/><strong>Lista de Archivos : <br/></strong>":""?></lista_title>
+   <archivos><?php    echo (isset($datos["cf_fotografias122"]))?"<a href='".$ruta.rawurlencode($datos["cf_fotografias122"])."' target='_blank'>".$datos["cf_fotografias122"]."</a>":""?>
+   </archivos>
        <p>Se requiere detallar los tramos a atender. (Conjunto de fotos que describen la situaci&oacute;n actual del espacio donde se  desarrollar&aacute; el proyecto con su respectiva leyenda, seg&uacute;n lo se&ntilde;alado en la Ley de Contrataciones P&uacute;blicas y su Reglamento)</p>
   </tr>
 </table>
 <hr width="100%" />
-
 <br class="saltopagina" />
 <table width="100%" border="0">
   <tr>
     <td><strong>12.2.5 Planos seg&uacute;n tipolog&iacute;a del proyecto, a escala o acotados, firmados y sellados por profesional responsable: </strong><br />
-       Anexo ( La carga maxima del servidor es 2 MB en formato PDF )   <br /> <a href=<?php /* echo "../uploads/".$sum."/".$row['80'];*/ ?> ><?=""/*$row['80']*/ ?></a>
+       Anexo ( La carga maxima del servidor es 2 MB en formato PDF )   <br /><spam class="button" tittle=" Para los   Planos seg&uacute;n tipolog&iacute;a del proyecto, a escala o acotados" campo="plam">Añadir Archivo</spam> 
+   <lista_title><?php echo ($datos["cf_plano122"]!="")?"<br/><strong>Lista de Archivos : <br/></strong>":""?></lista_title>
+   <archivos><?php    echo (isset($datos["cf_plano122"]))?"<a href='".$ruta.rawurlencode($datos["cf_plano122"])."' target='_blank'>".$datos["cf_plano122"]."</a>":""?>
+   </archivos>
       <p>(Se refiere al apoyo gr&aacute;fico necesario para describir, construir y evaluar correctamente el proyecto que se va a realizar, seg&uacute;n lo establecido en el Reglamento de Contrataciones P&uacute;blicas Art. 150)</p>
   </tr>
 </table>
@@ -766,7 +787,10 @@
 <table width="100%" border="0">
   <tr>
     <td><strong>12.2.6 Croquis de Ubicaci&oacute;n Geogr&aacute;fica:</strong><br />
-       Anexo ( La carga maxima del servidor es 2 MB )  <br /> <a href=<?php /* echo "../uploads/".$sum."/".$row['81'];*/ ?> ><?=""/*$row['81']*/ ?></a>
+       Anexo ( La carga maxima del servidor es 8 MB )  <br /><spam class="button" tittle=" Para el Croquis de Ubicaci&oacute;n Geogr&aacute;fica" campo="cro">Añadir Archivo</spam> 
+   <lista_title><?php echo ($datos["cf_croquis122"]!="")?"<br/><strong>Lista de Archivos : <br/></strong>":""?></lista_title>
+   <archivos><?php    echo (isset($datos["cf_croquis122"]))?"<a href='".$ruta.rawurlencode($datos["cf_croquis122"])."' target='_blank'>".$datos["cf_croquis122"]."</a>":""?>
+   </archivos>
       <p>(Se refiere a la ubicaci&oacute;n del proyecto dentro del &aacute;mbito geogr&aacute;fico de la comunidad proponente)</p>
   </tr>
 </table>
@@ -774,14 +798,17 @@
 <table width="100%" border="0">
   <tr>
     <td><strong>12.2.7 Titularidad del Terreno: </strong><br />
-      <textarea name="titularidad127"  cols="80" rows="4" readonly="readonly"><?php /* echo $row['82'];*/ ?></textarea>
+      <textarea name="titularidad127"  cols="110" rows="4"  ><?php echo (isset($datos["cf_titularidad127"]))?$datos["cf_titularidad127"]:""?></textarea>
       <p> (Se refiere a los documentos que respalden la propiedad del terreno)</p>
   </tr>
 </table><hr width="100%" />
 <table width="100%" border="0">
   <tr>
     <td><strong>12.2.8 Cronograma de Ejecuci&oacute;n:</strong><br />
-    Anexo ( La carga maxima del servidor es 2 MB )  <br /> <a href=<?php /* echo "../uploads/".$sum."/".$row['83'];*/ ?> ><?=""/*$row['83']*/ ?></a>
+    Anexo ( La carga maxima del servidor es 8 MB )  <br /> <spam class="button" tittle=" Para el  Cronograma de Ejecuci&oacute;n" campo="cro_ej">Añadir Archivo</spam> 
+   <lista_title><?php echo ($datos["cf_cronograma128"]!="")?"<br/><strong>Lista de Archivos : <br/></strong>":""?></lista_title>
+   <archivos><?php    echo (isset($datos["cf_cronograma128"]))?"<a href='".$ruta.rawurlencode($datos["cf_cronograma128"])."' target='_blank'>".$datos["cf_cronograma128"]."</a>":""?>
+   </archivos>
       <p>(Se refiere a las actividades que se tienen que desarrollar en la ejecuci&oacute;n del proyecto, a fin de alcanzar los objetivos planteados, establecidos en un lapso de tiempo y montos determinados, seg&uacute;n lo se&ntilde;alado en la Ley de Contrataciones P&uacute;blicas y su Reglamento)</p>
   </tr>
 </table>
@@ -789,17 +816,19 @@
 <table width="100%" border="0">
   <tr>
     <td><strong>12.2.9 Permisos establecidos en la CRBV, las leyes, reglamentos y ordenanzas: </strong><br />
-      Anexo ( La carga maxima del servidor es 2 MB )  <br /> <a href=<?php /* echo "../uploads/".$sum."/".$row['84'];*/ ?> ><?=""/*$row['84']*/ ?></a>
+      Anexo ( La carga maxima del servidor es 8 MB )  <br /> <spam class="button" tittle=" Para el  Cronograma de Ejecuci&oacute;n" campo="per">Añadir Archivo</spam> 
+   <lista_title><?php echo ($datos["cf_permisos129"]!="")?"<br/><strong>Lista de Archivos : <br/></strong>":""?></lista_title>
+   <archivos><?php    echo (isset($datos["cf_permisos129"]))?"<a href='".$ruta.rawurlencode($datos["cf_permisos129"])."' target='_blank'>".$datos["cf_permisos129"]."</a>":""?>
+   </archivos>
       <p>(Consiste en consignar los permisos requeridos por el proyecto para su viabilidad, (en caso de poseerlos), de lo contrario debe consignar Acta Compromiso y su incumplimiento, generar&aacute; sanciones penales)</p></td>
   </tr>
 </table>  
 
--->
 <div id="modal_archivo"></div>
         <div class="clear"></div>
       <div class="grid_12 prefix_9 espacio-arriba" >
           <button id="guardar">Modificar Proyecto!</button>
       </div>
-        
+<script type="text/javascript" src="/js/controllers/<?=$class?>/accion_consejo_federal.js"></script>        
 <?php echo form_close();?>
    

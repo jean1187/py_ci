@@ -69,8 +69,9 @@ class Uploads
     }
     
     protected function set_file_delete_url($file) {
+        $conector=(strpos($this->options['script_url'],"?"))?'&':'?';
         $file->delete_url = $this->options['script_url']
-            .'?file='.rawurlencode($file->name);
+            .$conector.'file='.rawurlencode($file->name);
         $file->delete_type = $this->options['delete_type'];
         if ($file->delete_type !== 'DELETE') {
             $file->delete_url .= '&_method=DELETE';
@@ -234,11 +235,18 @@ class Uploads
       	return $success;
     }
     
-    protected function handle_file_upload($uploaded_file, $name, $size, $type, $error) {
+    protected function handle_file_upload($uploaded_file, $name, $size, $type, $error,$py) {
         $file = new stdClass();
-        $file->name =$this->trim_file_name($name, $type);
-        $file->size = intval($size);
+        if($py!==false)
+        {
+            $tipo=explode("/", $type);
+                $file->name =$py["id"]."_".substr(md5(uniqid(rand())),0,6).".".$tipo[1];
+        
+        }
+        else 
+            $file->name =$this->trim_file_name($name, $type);
         $file->type = $type;
+        $file->size = intval($size);
         $error = $this->has_error($uploaded_file, $file, $error);
         if (!$error && $file->name) {
             $file_path = $this->options['upload_dir'].$file->name;
@@ -306,7 +314,7 @@ class Uploads
         echo json_encode($info);
     }
     
-    public function post() {
+    public function post($return=false,$py=false) {
         if (isset($_REQUEST['_method']) && $_REQUEST['_method'] === 'DELETE') {
             return $this->delete();
         }
@@ -323,7 +331,7 @@ class Uploads
                         $_SERVER['HTTP_X_FILE_SIZE'] : $upload['size'][$index],
                     isset($_SERVER['HTTP_X_FILE_TYPE']) ?
                         $_SERVER['HTTP_X_FILE_TYPE'] : $upload['type'][$index],
-                    $upload['error'][$index]
+                    $upload['error'][$index],$py
                 );
             }
         } elseif ($upload || isset($_SERVER['HTTP_X_FILE_NAME'])) {
@@ -338,7 +346,7 @@ class Uploads
                 isset($_SERVER['HTTP_X_FILE_TYPE']) ?
                     $_SERVER['HTTP_X_FILE_TYPE'] : (isset($upload['type']) ?
                         isset($upload['type']) : null),
-                isset($upload['error']) ? $upload['error'] : null
+                isset($upload['error']) ? $upload['error'] : null,$py
             );
         }
         header('Vary: Accept');
@@ -355,6 +363,8 @@ class Uploads
         } else {
             header('Content-type: text/plain');
         }
+        if($return)
+            return $info;
         echo $json;
     }
     

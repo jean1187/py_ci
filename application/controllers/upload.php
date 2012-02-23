@@ -36,7 +36,7 @@ public function index()
 //$upload_path_url = base_url().'uploads/';
 	
 		$config['upload_path'] = FCPATH.'uploads/';
-		$config['allowed_types'] = 'jpg|png';
+		$config['accept_file_types'] = '(jpg|JPG)';
 		$config['max_size'] = '30000';
                 $config['script_url'] = current_url();
                 //$config['max_number_of_files'] = 2;

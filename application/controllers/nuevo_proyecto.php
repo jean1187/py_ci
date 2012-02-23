@@ -168,19 +168,73 @@ break;*/
 	{
                 $this->load->view($this->router->class."/subir_archivos");
 	}
-        public function do_upload_()
+        public function do_upload()
 	{
            
+            $id=(isset($_POST["id"]))?$this->input->post("id"):$this->input->get("id");
+            $campo=(isset($_POST["campo"]))?$this->input->post("campo"):$this->input->get("campo");
+           if($campo!="")
+           {
+               
+               switch($campo)
+               {
+                   case "presupuesto":
+                       $campo="presupuesto121";
+                        //presupuesto121  //cronograma  // 	memoria122 //  perspectiva122 // fotografias122 	 // croquis122  //permisos129
+                   break;
+                   case "crono":
+                       $campo="cronograma";
+                   break;
+                   case "mem_des":
+                       $campo="memoria122";
+                   break;
+                   case "form":
+                       $campo="perspectiva122";
+                   break;
+                   case "met":
+                       $campo="calculos122";
+                   break;
+                   case "fot":
+                       $campo="fotografias122";
+                   break;
+                   case "plam":
+                       $campo="plano122";
+                   break;
+                   case "cro":
+                       $campo="croquis122";
+                   break;
+                   case "cro_ej":
+                       $campo="cronograma128";
+                   break;
+                   case "per":
+                       $campo="permisos129";
+                   break;
+               
+               
+               
+               
+               
+               
+               	
+               }//fin switch
+               if((isset($_GET["campo"])))
+               {
+                   $resultado=$this->modelo->resultTable_Where("resumen",array("id"=>$id),$campo);
+                    header('Content-type: application/json');
+                    echo json_encode(array("text"=>$resultado[0][$campo],"ruta"=>base_url().'uploads/files_proyectos/'.$id."/".rawurlencode($resultado[0][$campo])));
+                   exit;
+               }
+           }
 //$upload_path_url = base_url().'uploads/';
-	echo dirname($_SERVER['SCRIPT_FILENAME']).'/uploads/files_proyectos/';
-		$config['upload_path'] = FCPATH.'uploads/';
-		$config['allowed_types'] = 'jpg|png';
-		$config['max_size'] = '30000';
-                $config['script_url'] = current_url();
-                $config['upload_dir'] = dirname($_SERVER['SCRIPT_FILENAME']).'/uploads/files_proyectos/';
-                $config['upload_url'] = base_url().'/uploads/files_proyectos/';
+	//echo dirname($_SERVER['SCRIPT_FILENAME']).'/uploads/files_proyectos/';
+		
                 //$config['max_number_of_files'] = 2;
-                
+                $config['upload_path'] = FCPATH.'uploads/';
+		//$config['accept_file_types'] = '/(\.|\/)(pdf|PDF)$/i';
+		$config['max_size'] = '30000';
+                $config['script_url'] = current_url()."?id=".$id;
+                $config['upload_dir'] = dirname($_SERVER['SCRIPT_FILENAME']).'/uploads/files_proyectos/'.$id."/";
+                $config['upload_url'] = base_url().'/uploads/files_proyectos/'.$id."/";
 		
 	  	$this->load->library('uploads', $config);
                 //echo $_REQUEST['_method']." - ".$_SERVER['REQUEST_METHOD'];
@@ -192,14 +246,10 @@ break;*/
                     $this->uploads->get();
                     break;
                 case 'POST':
-                            
-                    $this->uploads->post();
-                
+                    $return=$this->uploads->post(true,array("id"=>$id));
+                    $this->modelo-> add_files($campo,$return[0]->name,$id);
+                    echo json_encode($return);
                 break;
-                 
-                case 'DELETE':
-                    $this->uploads->delete();
-                    break;
                 default:
                     header('HTTP/1.1 405 Method Not Allowed');
             }
