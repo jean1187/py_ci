@@ -696,7 +696,7 @@
 <table width="100%" border="0">
   <tr>
     <td><strong>12.1.2 Descripci&oacute;n del  costo de Inversi&oacute;n:</strong><br />
-      <textarea name="descripcion122"  cols="130" rows="4"  ><?php echo (isset($datos["cf_descripcion122"]))?$datos["cf_descripcion122"]:""?></textarea>
+      <textarea name="descripcion122"  cols="110" rows="4"  ><?php echo (isset($datos["cf_descripcion122"]))?$datos["cf_descripcion122"]:""?></textarea>
       <P>(Cuantificaci&oacute;n de todos los presupuestos descritos, para arrojar el monto total de la inversi&oacute;n a requerir, seg&uacute;n lo establecido en la Ley de Contrataciones P&uacute;blicas Art. 111)</P>
   </tr>
 </table>

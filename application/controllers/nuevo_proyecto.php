@@ -163,6 +163,50 @@ break;*/
         }//fin selectMesesPorcentaje
         
         
+        
+        public function view_file()
+	{
+                $this->load->view($this->router->class."/subir_archivos");
+	}
+        public function do_upload_()
+	{
+           
+//$upload_path_url = base_url().'uploads/';
+	echo dirname($_SERVER['SCRIPT_FILENAME']).'/uploads/files_proyectos/';
+		$config['upload_path'] = FCPATH.'uploads/';
+		$config['allowed_types'] = 'jpg|png';
+		$config['max_size'] = '30000';
+                $config['script_url'] = current_url();
+                $config['upload_dir'] = dirname($_SERVER['SCRIPT_FILENAME']).'/uploads/files_proyectos/';
+                $config['upload_url'] = base_url().'/uploads/files_proyectos/';
+                //$config['max_number_of_files'] = 2;
+                
+		
+	  	$this->load->library('uploads', $config);
+                //echo $_REQUEST['_method']." - ".$_SERVER['REQUEST_METHOD'];
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'OPTIONS':
+                    break;
+                case 'HEAD':
+                case 'GET':
+                    $this->uploads->get();
+                    break;
+                case 'POST':
+                            
+                    $this->uploads->post();
+                
+                break;
+                 
+                case 'DELETE':
+                    $this->uploads->delete();
+                    break;
+                default:
+                    header('HTTP/1.1 405 Method Not Allowed');
+            }
+
+        }
+
+        
         function validacion_form()
         {
             
