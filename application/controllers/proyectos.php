@@ -72,7 +72,7 @@ class Proyectos extends CI_Controller {
         function cambio_estados()
         {
             $this->modelo->cambio_estrados();
-              echo "asasas";
+              echo "relaciones de la politica con la estrategia, y esto tiene efecto en la tabla resumen";
            
         }
         public function cargar_vista_proyectos()

@@ -22,12 +22,12 @@
 			
 			//$("#tabs-1").load("nuevo_proyecto/index/true",function(){$("#guardar").hide();$("#articulacionConOtrosEntes,#competencias,#nombre,#descripcion").attr("cols",115);$(".pink").css("width","960px");});		
 			
-		$( "#tabs" ).tabs();	
+		/*$( "#tabs" ).tabs();	
 		$( "#dialog-modif" ).dialog({ width : 1050,position: ["center", 40],buttons: {"Cerrar": function() { $(this).dialog("close"); }, "Guardar": function() { 
                         
                     alert($("form").serialize())
                         }//fin guardar
-                        } });
+                        } });*/
 		/*$(".modal").click(function(event){
 		    
 			$( "#tabs" ).tabs("select",0);	
@@ -157,7 +157,7 @@ Ir&aacute; al formulario de modificaci&oacute;n donde cambiara los datos por cad
 </div></td>
   </tr>
 </table>
-
+<!--
 <table width="100%" border="1">
   <tr>
     <td>
@@ -166,26 +166,18 @@ Ir&aacute; al formulario de modificaci&oacute;n donde cambiara los datos por cad
     </td>
   </tr>
 </table>
-
+-->
 <table width="100%" border="1">
   <tr>
     <td><a href="planinversion/planinv.php"><span style="color:#000"><div align="center"><strong>Plan de Inversi&oacute;n</strong></div></span> <span style="color:#000">Nota: El Plan de Inversi&oacute;n deben ser registrado por est&eacute; formato una sola vez.  </span><span style="color:#F00">haga clic</span></a>
     <br />
     <a href="planinversion/planinmod.php"><span style="color:#000">Para modificar el plan de inversi&oacute;n. </span><span style="color:#F00">haga clic</span></a>
-    <br />
-    <a href="planinversion/planinvista.php"  target="_new"><span style="color:#000">Si desea visualizar el plan de inversi&oacute;n. </span><span style="color:#F00">haga clic</span></a></td>
+    <!--<br />
+    <a href="planinversion/planinvista.php"  target="_new"><span style="color:#000">Si desea visualizar el plan de inversi&oacute;n. </span><span style="color:#F00">haga clic</span></a>
+	-->
+	</td>
   </tr>
 </table>
-<table width="100%" border="1">
-  <tr>
-    <td>
-
-    <a href="planillav/planillalistaimpr.php?cod=" target="_new"><span style="color:#000">Para imprimir el Proyecto. </span><span style="color:#F00">haga clic</span></a>
-</td>
-  </tr>
-</table>
-
-
 <table width="100%" border="2">
   <tr>
       <td><div align="center"><?php echo $map["html"]?></div></td>

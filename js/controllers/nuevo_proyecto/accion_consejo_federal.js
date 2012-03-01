@@ -26,8 +26,7 @@ $(document).ready(function() {
       //limpiando la lista de archivos
       campo=$(this).attr("campo");
      //alert($("#campo").val())
-     zona_file=$(this).siblings("archivos");
-      
+     zona_file=$(this).siblings("archivos");    
      $(".template-download").remove();
      $("#modal_archivo").dialog('open').dialog({title: "Subir Archivos "+$(this).attr("tittle")});
      $('#fileupload').each(function () {
@@ -47,4 +46,23 @@ $(document).ready(function() {
                 });
         });
   });
+  
+  $(".help:first").button({
+            icons: {
+                primary: "ui-icon-arrowreturnthick-1-w"
+            },text:false
+  }).next().button({
+            icons: {
+                primary: "ui-icon-refresh"
+            },text:false
+  });//fin botonoes de recarga y atras
+      
+  $(".help").click(function(){
+        window.location.href=$(this).attr("href");
+    });
+      
+  $("#guardar").click(function(){
+     $( ".help" ).show();
+  });
+  
 });//fin $(document).ready(function() {

@@ -31,11 +31,11 @@ class _global{
         
     }
   
-    function array_merge_key_values($array,$campos)
+    function array_merge_key_values($array,$campos,$cambia_char=true)
     {
             $retorno=array();
             foreach ($array as $valor)
-                $retorno[$valor[$campos[0]]]=cambia_char($valor[$campos[1]]);
+                $retorno[$valor[$campos[0]]]=($cambia_char)?cambia_char($valor[$campos[1]]):$valor[$campos[1]];
             return $retorno;
     }//fin array_merge_key_values
 

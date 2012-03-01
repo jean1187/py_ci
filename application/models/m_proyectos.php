@@ -8,6 +8,18 @@ class M_proyectos extends CI_Model {
         parent::__construct();
         $this->table="resumen";
         /*
+         * 
+         ALTER TABLE `seguimiento`.`aprobado11` DROP FOREIGN KEY `aprobado11_ibfk_12`;
+         
+         CREATE TABLE IF NOT EXISTS `organoente` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `opcion` varchar(250) NOT NULL,
+  `tipo` char(1) NOT NULL,
+  `id_table` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+         
+         
          insert into organoente (opcion,tipo,id_table) SELECT opcion,"o",id FROM organo;
          insert into organoente (opcion,tipo,id_table) SELECT opcion,"e",id FROM ente;
          insert into organoente_ejecu (opcion,tipo,id_table) SELECT opcion,"o",id FROM organo;

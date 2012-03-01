@@ -73,7 +73,7 @@ class Menu extends CI_Controller {
    
             function grid_form() 
             {
-                     $data["grupos"]=$this->_global->array_merge_key_values($this->modelo->Grupos(),array("id","nombre"));
+                     $data["grupos"]=$this->_global->array_merge_key_values($this->modelo->Grupos(),array("id","nombre"),false);
                      $this->load->vars($data);
                      //$this->cargar->menu_system("menu/form","Configuración del Menu");
                      $this->load->view("menu/form");

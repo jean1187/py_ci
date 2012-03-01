@@ -38,8 +38,7 @@ class Cargar{
                           $this->encabezado($title);
                           if(!is_null($medio))
                             $this->CI->load->view($medio);
-                          $this->CI->load->view('pie');
-                          
+                          $this->CI->load->view('pie');                    
       }//fin menu_system
 
       public function encabezado($title=null){

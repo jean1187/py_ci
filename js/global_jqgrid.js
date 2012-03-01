@@ -18,24 +18,7 @@ function formulario(clase,form,base_url,nombre_programa,width,heigth,position){
         oper="add";
     });
 
-var date_options={
-    changeMonth:true,
-    closeText: 'Cerrar',
-    prevText: '&#x3c;Ant',
-    nextText: 'Sig&#x3e;',
-    currentText: 'Hoy',
-    monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
-    'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
-    monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun',
-    'Jul','Ago','Sep','Oct','Nov','Dic'],
-    dayNames: ['Domingo','Lunes','Martes','Mi&eacute;rcoles','Jueves','Viernes','S&aacute;bado'],
-    dayNamesShort: ['Dom','Lun','Mar','Mi&eacute;','Juv','Vie','S&aacute;b'],
-    dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','S&aacute;'],
-    dateFormat: 'dd-mm-yy',
-    firstDay: 0,
-    changeYear:true,
-    yearRange: '1900:2020',
-};
+
 
 var buttons={
                 "Cerrar": function(){$(form).dialog("close");},
@@ -59,10 +42,7 @@ var buttons={
             width: w,
             height: h,
             open: function(){
-                $('input').each(function(index){
-                    if ($(this)[0].id.match(/fecha/i))
-                        $("#"+$(this)[0].id).datepicker(date_options);
-                });
+                $.fecha();
             }
         });
 
@@ -71,6 +51,7 @@ var buttons={
     $("input[id*='eliminar']").click(function(){
         $.peticion_delete("#"+clase+"_grid",base_url,"");
     });
+
 
     jQuery.peticion_delete = function(grid,base_url,datos) {
             var gr = $(grid).jqGrid('getGridParam','selrow');

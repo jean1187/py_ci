@@ -816,7 +816,7 @@
 <table width="100%" border="0">
   <tr>
     <td><strong>12.2.9 Permisos establecidos en la CRBV, las leyes, reglamentos y ordenanzas: </strong><br />
-      Anexo ( La carga maxima del servidor es 8 MB )  <br /> <spam class="button" tittle=" Para el  Cronograma de Ejecuci&oacute;n" campo="per">Añadir Archivo</spam> 
+      Anexo ( La carga maxima del servidor es 8 MB )  <br /> <spam class="button" tittle=" Para los Permisos establecidos en la CRBV, las leyes, reglamentos y ordenanzas" campo="per">Añadir Archivo</spam> 
    <lista_title><?php echo ($datos["cf_permisos129"]!="")?"<br/><strong>Lista de Archivos : <br/></strong>":""?></lista_title>
    <archivos><?php    echo (isset($datos["cf_permisos129"]))?"<a href='".$ruta.rawurlencode($datos["cf_permisos129"])."' target='_blank'>".$datos["cf_permisos129"]."</a>":""?>
    </archivos>
@@ -827,7 +827,7 @@
 <div id="modal_archivo"></div>
         <div class="clear"></div>
       <div class="grid_12 prefix_9 espacio-arriba" >
-          <button id="guardar">Modificar Proyecto!</button>
+          <button class="help"  href="<?php echo base_url()?>proyectos" style="display:none" title="Regresar a la lista de Proyectos">&nbsp;</button> <button  href="" title="Actualizar esta Página"class="help" style="display:none">&nbsp;</button>  <button id="guardar">Modificar Proyecto!</button>
       </div>
 <script type="text/javascript" src="/js/controllers/<?=$class?>/accion_consejo_federal.js"></script>        
 <?php echo form_close();?>

@@ -28,10 +28,37 @@ $(document).ready(function() {
  }//fin botones
 */
  
+     jQuery.fecha = function() {         
+      var date_options={
+            changeMonth:true,
+            closeText: 'Cerrar',
+            prevText: '&#x3c;Ant',
+            nextText: 'Sig&#x3e;',
+            currentText: 'Hoy',
+            monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+            'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+            monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun',
+            'Jul','Ago','Sep','Oct','Nov','Dic'],
+            dayNames: ['Domingo','Lunes','Martes','Mi&eacute;rcoles','Jueves','Viernes','S&aacute;bado'],
+            dayNamesShort: ['Dom','Lun','Mar','Mi&eacute;','Juv','Vie','S&aacute;b'],
+            dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','S&aacute;'],
+            dateFormat: 'dd-mm-yy',
+            firstDay: 0,
+            changeYear:true,
+            yearRange: '1900:2020'
+        };
+        $('input').each(function(index){
+                    if ($(this)[0].id.match(/fecha/i))
+                        $("#"+$(this)[0].id).datepicker(date_options);
+                });
+    }
     //inicio mesages_validation
-    jQuery.mesages_validation = function(data,msj_satisfactorio) {
+    jQuery.mesages_validation = function(data,msj_satisfactorio,div_destino,achtungMO) {
+        if(div_destino!=undefined)
+            $(div_destino).html("");
        /* if(data.indexOf("login-form")!=-1)
             window.locationf="";
+        
         else*/ if(!data)
             {
             $.achtung({message: (msj_satisfactorio)?msj_satisfactorio:'El dato fue guardado', timeout:5});
@@ -40,9 +67,19 @@ $(document).ready(function() {
         
         else
         {
+            
             //data=JSON.parse(data);
             $.each(data,function(key,val){
-                $.achtung({message: val, timeout:5});
+                if(div_destino!=undefined)
+                    $(div_destino).append(
+                        '\
+        <div style="margin-top: 5px;margin-bottom: 5px;" class="ui-state-error ui-corner-all"> \
+                                        <span style="float: left; margin-right: .3em;" class="ui-icon ui-icon-alert"></span> \
+                                        <strong>'+val+'</strong>\
+                                </div>'
+                        );
+                  if(achtungMO!=undefined && achtungMO!=false)
+                   $.achtung({message: val, timeout:5});
             });
         }
        //return data.code;
@@ -62,7 +99,7 @@ $(document).ready(function() {
                 funcion();*/
          
 
-      }); if(typeof funcion == 'function'){
+      });if(typeof funcion == 'function'){
         funcion.call(this);
        
       }
