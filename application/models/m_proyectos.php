@@ -9,48 +9,20 @@ class M_proyectos extends CI_Model {
         $this->table="resumen";
         /*
          * 
-         ALTER TABLE `seguimiento`.`aprobado11` DROP FOREIGN KEY `aprobado11_ibfk_12`;
+         *  eliminar los triggers 
+          DROP TRIGGER nuevoEnte;
+         DROP TRIGGER modifEnte;
+         DROP TRIGGER deleteEnte;
+         DROP TRIGGER nuevoOrgano;
+         DROP TRIGGER modifOrgano;
+         DROP TRIGGER deleteOrgano;
          
-         CREATE TABLE IF NOT EXISTS `organoente` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `opcion` varchar(250) NOT NULL,
-  `tipo` char(1) NOT NULL,
-  `id_table` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
-         
-         
-         insert into organoente (opcion,tipo,id_table) SELECT opcion,"o",id FROM organo;
-         insert into organoente (opcion,tipo,id_table) SELECT opcion,"e",id FROM ente;
-         insert into organoente_ejecu (opcion,tipo,id_table) SELECT opcion,"o",id FROM organo;
-         insert into organoente_ejecu (opcion,tipo,id_table) SELECT opcion,"e",id FROM ente;
-         
-     DELIMITER //
-     CREATE TRIGGER  nuevoOrgano after insert on organo          
-        for each row
-            BEGIN
-                insert into organoente (opcion,tipo,id_table) values(new.opcion,"o",new.id);
-                insert into organoente_ejecu (opcion,tipo,id_table) values(new.opcion,"o",new.id);
-            END// 
-    DELIMITER ;
-
-DELIMITER |
-CREATE TRIGGER modifOrgano after update ON organo
-  FOR EACH ROW BEGIN
-     update organoente set organoente.opcion=new.opcion where organoente.id_table=new.id;    
-     update organoente_ejecu set organoente_ejecu.opcion=new.opcion where organoente_ejecu.id_table=new.id;    
-  END|
-DELIMITER ;
-
-
-DELIMITER |
-CREATE TRIGGER deleteOrgano after DELETE ON organo
-  FOR EACH ROW BEGIN
-     DELETE from  organoente where organoente.id_table=old.id;    
-     DELETE from  organoente_ejecu where organoente_ejecu.id_table=old.id;    
-  END|
-DELIMITER ;
-
+         */
+        /*
+         * 
+         * 
+        
+        
 */
    }
          
@@ -73,10 +45,11 @@ DELIMITER ;
     
    function ListaPlandeInversion_FCI($cod)
    {
-            return $this->db->query("SELECT  resumen.id,nopro,lineaestada.opcion,organ,ejecu,descr,etapa1,etapa2,etapa3,etapa4,fase,tipoin.opcion as tipo_py,catego.opcion as categoria,area.opcion as area,norespro,unidad,cargo,correo,telf,fax,municipio.opcion as municipio, parroquia.opcion as parroquia,cocomu,norte,este,lineas.opcion as lineas,objedos.opcion as objedos,estrados.opcion as estrados,polidos.opcion as polidos,tiempo,monto,otra,impsoc,pobl,avafisico,avafinanc,empdirec,empindi,articu,compone,observa,nota FROM resumen,lineaestada,tipoin,catego,area,municipio,parroquia,lineas,objedos,estrados,polidos WHERE
+            return $this->db->query("SELECT  resumen.id,nopro,lineaestada.opcion as lineaestada,organoente.opcion as organ,organoente_ejecu.opcion as ejecu,descr,etapa1,etapa2,etapa3,etapa4,fase,tipoin.opcion as tipo_py,catego.opcion as categoria,area.opcion as area,norespro,unidad,cargo,correo,telf,fax,municipio.opcion as municipio, parroquia.opcion as parroquia,cocomu,norte,este,lineas.opcion as lineas,objedos.opcion as objedos,estrados.opcion as estrados,polidos.opcion as polidos,tiempo,monto,otra,impsoc,pobl,avafisico,avafinanc,empdirec,empindi,articu,compone,observa,nota FROM resumen,lineaestada,tipoin,catego,area,municipio,parroquia,lineas,objedos,estrados,polidos,organoente,organoente_ejecu WHERE
                 resumen.lineaesta=lineaestada.id and resumen.ti_pro=tipoin.id and resumen.ti_cate=catego.id and resumen.ti_are=area.id and resumen.munici=municipio.id and resumen.parroq=parroquia.id  and 
-        resumen.directriz=lineas.id and resumen.objetivo=objedos.id and
-        resumen.estrategia=estrados.id and resumen.politica=polidos.id  and aprobado=1 and factible=1 and fondoci!=0  and 
+        resumen.directriz=lineas.id and resumen.objetivo=objedos.id and organoente_ejecu.id=resumen.ejecu  and
+        resumen.estrategia=estrados.id and organoente.id=resumen.organ
+        and resumen.politica=polidos.id  and aprobado=1 and factible=1 and fondoci!=0  and 
         cod =".$cod." ORDER BY `resumen`.`id` ASC")->result_array();/*
        return $this->db->query("SELECT  resumen.id,nopro,lineaestada.opcion,organo.opcion as organ,ejecu,descr,etapa1,etapa2,etapa3,etapa4,fase,tipoin.opcion as tipo_py,catego.opcion as categoria,area.opcion as area,norespro,unidad,cargo,correo,telf,fax,municipio.opcion as municipio, parroquia.opcion as parroquia,cocomu,norte,este,lineas.opcion as lineas,objedos.opcion as objedos,estrados.opcion as estrados,polidos.opcion as polidos,tiempo,monto,otra,impsoc,pobl,avafisico,avafinanc,empdirec,empindi,articu,compone,observa,nota FROM resumen,lineaestada,tipoin,catego,area,municipio,parroquia,lineas,objedos,estrados,polidos,organo WHERE
                 resumen.lineaesta=lineaestada.id and resumen.ti_pro=tipoin.id and resumen.ti_cate=catego.id and resumen.ti_are=area.id and resumen.munici=municipio.id and resumen.parroq=parroquia.id  and 
@@ -89,24 +62,24 @@ DELIMITER ;
    
    function ListaPlandeInversion_Situado($cod)
    {
-            return $this->db->query("SELECT  resumen.id,nopro,lineaestada.opcion,organ,ejecu,descr,etapa1,etapa2,etapa3,etapa4,fase,tipoin.opcion as tipo_py,catego.opcion as categoria,area.opcion as area,norespro,unidad,cargo,correo,telf,fax,municipio.opcion as municipio, parroquia.opcion as parroquia,cocomu,norte,este,lineas.opcion as lineas,objedos.opcion as objedos,estrados.opcion as estrados,polidos.opcion as polidos,tiempo,monto,otra,impsoc,pobl,avafisico,avafinanc,empdirec,empindi,articu,compone,observa,nota FROM resumen,lineaestada,tipoin,catego,area,municipio,parroquia,lineas,objedos,estrados,polidos WHERE  resumen.lineaesta=lineaestada.id and resumen.ti_pro=tipoin.id and resumen.ti_cate=catego.id and resumen.ti_are=area.id and resumen.munici=municipio.id and resumen.parroq=parroquia.id  and 
-        resumen.directriz=lineas.id and resumen.objetivo=objedos.id and
+            return $this->db->query("SELECT  resumen.id,nopro,lineaestada.opcion as lineaestada,organoente.opcion as organ,organoente_ejecu.opcion as ejecu,descr,etapa1,etapa2,etapa3,etapa4,fase,tipoin.opcion as tipo_py,catego.opcion as categoria,area.opcion as area,norespro,unidad,cargo,correo,telf,fax,municipio.opcion as municipio, parroquia.opcion as parroquia,cocomu,norte,este,lineas.opcion as lineas,objedos.opcion as objedos,estrados.opcion as estrados,polidos.opcion as polidos,tiempo,monto,otra,impsoc,pobl,avafisico,avafinanc,empdirec,empindi,articu,compone,observa,nota FROM resumen,lineaestada,tipoin,catego,area,municipio,parroquia,lineas,objedos,estrados,polidos,organoente,organoente_ejecu WHERE  resumen.lineaesta=lineaestada.id and resumen.ti_pro=tipoin.id and resumen.ti_cate=catego.id and resumen.ti_are=area.id and resumen.munici=municipio.id and resumen.parroq=parroquia.id  and 
+        resumen.directriz=lineas.id and resumen.objetivo=objedos.id and organoente_ejecu.id=resumen.ejecu  and organoente.id=resumen.organ and
         resumen.estrategia=estrados.id and resumen.politica=polidos.id  and aprobado=1 and factible=1 and situadoc!=0 and  
         cod =".$cod." ORDER BY `resumen`.`id` ASC")->result_array();
    }
    
    function ListaPlandeInversion_OtraFuente($cod)
    {
-            return $this->db->query("SELECT  resumen.id,nopro,lineaestada.opcion,organ,ejecu,descr,etapa1,etapa2,etapa3,etapa4,fase,tipoin.opcion as tipo_py,catego.opcion as categoria,area.opcion as area,norespro,unidad,cargo,correo,telf,fax,municipio.opcion as municipio, parroquia.opcion as parroquia,cocomu,norte,este,lineas.opcion as lineas,objedos.opcion as objedos,estrados.opcion as estrados,polidos.opcion as polidos,tiempo,monto,otra,impsoc,pobl,avafisico,avafinanc,empdirec,empindi,articu,compone,observa,nota FROM resumen,lineaestada,tipoin,catego,area,municipio,parroquia,lineas,objedos,estrados,polidos WHERE  resumen.lineaesta=lineaestada.id and resumen.ti_pro=tipoin.id and resumen.ti_cate=catego.id and resumen.ti_are=area.id and resumen.munici=municipio.id and resumen.parroq=parroquia.id  and 
-        resumen.directriz=lineas.id and resumen.objetivo=objedos.id and
+            return $this->db->query("SELECT  resumen.id,nopro,lineaestada.opcion as lineaestada,organoente.opcion as organ,organoente_ejecu.opcion as ejecu,descr,etapa1,etapa2,etapa3,etapa4,fase,tipoin.opcion as tipo_py,catego.opcion as categoria,area.opcion as area,norespro,unidad,cargo,correo,telf,fax,municipio.opcion as municipio, parroquia.opcion as parroquia,cocomu,norte,este,lineas.opcion as lineas,objedos.opcion as objedos,estrados.opcion as estrados,polidos.opcion as polidos,tiempo,monto,otra,impsoc,pobl,avafisico,avafinanc,empdirec,empindi,articu,compone,observa,nota FROM resumen,lineaestada,tipoin,catego,area,municipio,parroquia,lineas,objedos,estrados,polidos,organoente,organoente_ejecu WHERE  resumen.lineaesta=lineaestada.id and resumen.ti_pro=tipoin.id and resumen.ti_cate=catego.id and resumen.ti_are=area.id and resumen.munici=municipio.id and resumen.parroq=parroquia.id  and 
+        resumen.directriz=lineas.id and resumen.objetivo=objedos.id and organoente_ejecu.id=resumen.ejecu  and organoente.id=resumen.organ and
         resumen.estrategia=estrados.id and resumen.politica=polidos.id  and aprobado=1 and factible=1 and otrafuente!=0 and  
         cod =".$cod." ORDER BY `resumen`.`id` ASC")->result_array();
    }
    
    function ListaPlandeInversion_SinPropuesta($cod)
    {
-            return $this->db->query("SELECT  resumen.id,nopro,lineaestada.opcion,organ,ejecu,descr,etapa1,etapa2,etapa3,etapa4,fase,tipoin.opcion as tipo_py,catego.opcion as categoria,area.opcion as area,norespro,unidad,cargo,correo,telf,fax,municipio.opcion as municipio, parroquia.opcion as parroquia,cocomu,norte,este,lineas.opcion as lineas,objedos.opcion as objedos,estrados.opcion as estrados,polidos.opcion as polidos,tiempo,monto,otra,impsoc,pobl,avafisico,avafinanc,empdirec,empindi,articu,compone,observa,nota FROM resumen,lineaestada,tipoin,catego,area,municipio,parroquia,lineas,objedos,estrados,polidos WHERE  resumen.lineaesta=lineaestada.id and resumen.ti_pro=tipoin.id and resumen.ti_cate=catego.id and resumen.ti_are=area.id and resumen.munici=municipio.id and resumen.parroq=parroquia.id  and 
-        resumen.directriz=lineas.id and resumen.objetivo=objedos.id and
+            return $this->db->query("SELECT  resumen.id,nopro,lineaestada.opcion as lineaestada,organoente.opcion as organ,organoente_ejecu.opcion as ejecu,descr,etapa1,etapa2,etapa3,etapa4,fase,tipoin.opcion as tipo_py,catego.opcion as categoria,area.opcion as area,norespro,unidad,cargo,correo,telf,fax,municipio.opcion as municipio, parroquia.opcion as parroquia,cocomu,norte,este,lineas.opcion as lineas,objedos.opcion as objedos,estrados.opcion as estrados,polidos.opcion as polidos,tiempo,monto,otra,impsoc,pobl,avafisico,avafinanc,empdirec,empindi,articu,compone,observa,nota FROM resumen,lineaestada,tipoin,catego,area,municipio,parroquia,lineas,objedos,estrados,polidos,organoente,organoente_ejecu WHERE  resumen.lineaesta=lineaestada.id and resumen.ti_pro=tipoin.id and resumen.ti_cate=catego.id and resumen.ti_are=area.id and resumen.munici=municipio.id and resumen.parroq=parroquia.id  and 
+        resumen.directriz=lineas.id and resumen.objetivo=objedos.id and organoente_ejecu.id=resumen.ejecu  and organoente.id=resumen.organ and
         resumen.estrategia=estrados.id and resumen.politica=polidos.id  and aprobado=0 and
         cod =".$cod." ORDER BY `resumen`.`id` ASC")->result_array();
    }
@@ -209,6 +182,133 @@ function modif($id)
         $this->bitacora->crear();
     }//fin modif
     
+    
+   function cambio_organo_ente()
+    {
+        
+               $this->buscar();
+               $this->valores();
+    }
+    
+    function buscar()
+    {
+        foreach ($this->db->get("resumen")->result_array() as $key=>$valor)
+        {
+            if($valor["organ"]<1 or $valor["organ"]>60 or $valor["ejecu"]<1 or $valor["ejecu"]>60)
+            echo "<h6> Numero = ".$key."  Id = ".$valor["id"]."   el organo es = ".$valor["organ"]."    el ejecutor es = ".$valor["ejecu"]." </h6><br/>";
+            //comparando con el campo organo de resumen
+             /*  $this->db->like('opcion',$valor["organ"]); 
+               $this->db->from('organoente');
+               $organ_ente=$this->db->get()->row_array();
+               if(count($organ_ente))
+               {
+                   
+                   $this->db->where('id', $valor["id"]);
+                   $this->db->update('resumen', array("organ"=>$organ_ente["id"])); 
+                   echo "Cambie Organ =".$valor["organ"]." por el idOrganoEnte =".$organ_ente["id"]."  id del py ".$valor["id"]."<br/>";
+               }
+                   
+               
+               $this->db->like('opcion',$valor["ejecu"]); 
+               $this->db->from('organoente_ejecu');
+               $organ_ente=$this->db->get()->row_array();
+               
+               if(count($organ_ente))
+               {
+                   //$organ_ente=$this->db->row_array();
+                   $this->db->where('id', $valor["id"]);
+                   $this->db->update('resumen', array("ejecu"=>$organ_ente["id"])); 
+                   echo "Cambie Ejecu =".$valor["ejecu"]." por el idEjecu =".$organ_ente["id"]." id del py ".$valor["id"]."<br/>";
+               }
+               */
+               }//fin foreach
+    }
+    
+    function valores()
+    {
+        $valores=array(
+                            array("comparar"=>"EDU%CI%N","id"=>5),//SECTORIAL DEL PODER POPULAR PARA LA EDUCACI
+                            array("comparar"=>"ARROLLO%URBAN", "id"=>13),
+                            array("comparar"=>"LLO SOCIAL","id"=>8),
+                            array("comparar"=>"ARAGUA%(FRNSA)","id"=>34),
+                            array("comparar"=>"REGIONAL%NI%N%ARAGUA","id"=>34),
+                            array("comparar"=>"trimonio%Hist","id"=>14),
+                            array("comparar"=>"ARATUR","id"=>35),
+                            array("comparar"=>"Vivienda","id"=>36),
+                            array("comparar"=>"ORDENAMIENTO%TERRITORIA","id"=>7),
+                            array("comparar"=>"de%Parques%de%Aragua","id"=>47),//**INSERT INTO `ente` (`id` ,`opcion` ,`relacion`)VALUES (NULL , 'Fundacón de Parques de Aragua ', '7');
+                            array("comparar"=>"del%Poder%Popular%para%la%Infraestructura","id"=>13),
+                            array("comparar"=>"ALIMENTOS%ARAGUA%SOCIALISTA","id"=>48),//**INSERT INTO `ente` (`id` ,`opcion` ,`relacion`)VALUES (NULL , 'ALIMENTOS ARAGUA SOCIALISTA, S.A.', '10')
+                            array("comparar"=>"LLO%AGRARIO","id"=>10),
+                            array("comparar"=>"INSTITUTO%DE%LA%MUJER%DE%ARAGUA","id"=>49),//**INSERT INTO `proyectos_server`.`ente` (`id` ,`opcion` ,`relacion`)VALUES (NULL , 'INSTITUTO DE LA MUJER DE ARAGUA (IMA)', '8');
+                            array("comparar"=>"Tecnologia%y%Sistema","id"=>18),
+                            array("comparar"=>"GOBIERNO%BOLIVARIANO%DE%ARAGUA","id"=>1),//**UPDATE `proyectos_server`.`organo` SET `opcion` = 'GOBIERNO BOLIVARIANO DE ARAGUA' WHERE `organo`.`id` =1;
+                            array("comparar"=>"SARROLLO%ECON%MICO","id"=>11),
+                            array("comparar"=>"Fortalecimiento%Poder%Popular","id"=>2),
+                            array("comparar"=>"DEL%PODER%POPULAR%PARA%LA%SALUD","id"=>9),
+                            array("comparar"=>"n%de%Salud%del%Estado%Aragua","id"=>19),
+                             array("comparar"=>"CORPOSALUD","id"=>19),
+                             array("comparar"=>"SECTORIAL%CULTURA","id"=>4),
+                             array("comparar"=>"INSTITUTO%CULTURA","id"=>50),//**INSERT INTO `proyectos_server`.`ente` (`id`, `opcion`, `relacion`) VALUES (NULL, 'INSTITUTO DE CULTURA DE ARAGUA', '4');
+                            array("comparar"=>"ateneo","id"=>51),//**INSERT INTO `proyectos_server`.`ente` (`id`, `opcion`, `relacion`) VALUES (NULL, 'ATENEO DE MARACAY ', '4');
+                            array("comparar"=>"Adolescentes","id"=>33),
+                            array("comparar"=>"(Inpo","id"=>45),
+                            array("comparar"=>"TRASARAGUA","id"=>52),//**INSERT INTO `proyectos_server`.`ente` (`id`, `opcion`, `relacion`) VALUES (NULL, 'TRASARAGUA, S.A', '1');
+                          /* array("comparar"=>"REGIONAL%DEPORTE%ARAGUA","id"=>21),
+                           
+                           array("comparar"=>"INSTITUTO%CULTURA","id"=>50),
+                           array("comparar"=>"SECTORIAL%CULTURA","id"=>4),
+                           array("comparar"=>"CORASA","id"=>51),
+                            
+                            
+                            
+                            array("comparar"=>"Protecci%Civil","id"=>38),
+                            array("comparar"=>"PREFECTURAS","id"=>43),
+                            array("comparar"=>"S.I.A.E%171%","id"=>54),
+                             array("comparar"=>"BIBLIOTECAS","id"=>30),
+                            array("comparar"=>"MARCHA%BICENTENARIA","id"=>25),
+                            array("comparar"=>"ARAGUA%MARCHA","id"=>25),
+                            array("comparar"=>"EMERGENCIAS%171","id"=>54),
+                            array("comparar"=>"EMERGENCIAS%171","id"=>54),
+                            array("comparar"=>"SEGURIDAD%CIUDADANA","id"=>6),      */             
+               );
+               
+               foreach ($valores as $key=>$valore)
+               {    
+                        /*$this->db->like('organ',$valor["comparar"]);
+                        $this->db->from('resumen');*/
+                        //$py_afectados=$this->db->get()->result_array();
+                        $py_afectados=$this->db->query("select *from resumen where organ like '%".$valore["comparar"]."%'")->result_array();
+                       if(count($py_afectados))
+                       {
+                         foreach($py_afectados as $valor_py)
+                         {
+                             $this->db->where('id', $valor_py["id"]);
+                             $this->db->update('resumen', array("organ"=>$valore["id"])); 
+                             echo "Cambie Organ =".$valore["comparar"]." por el idOrganoEnte =".$valore["id"]."  del Proyecto =".$valor_py["id"]."<br/>";
+                         }
+                       }
+                   /*
+                       echo $this->db->last_query();
+                       exit;*/
+                        /*$this->db->like('ejecu',$valor["comparar"]);
+                        $this->db->from('resumen');*/
+                        //$py_afectados=$this->db->get()->result_array();
+                        $py_afectados=$this->db->query("select *from resumen where ejecu like '%".$valore["comparar"]."%'")->result_array();
+                       if(count($py_afectados))
+                       {
+                         foreach($py_afectados as $valor_py)
+                         {
+                             $this->db->where('id', $valor_py["id"]);
+                             $this->db->update('resumen', array("ejecu"=>$valore["id"])); 
+                             echo "Cambie Ejecu =".$valore["comparar"]." por el idOrganoEnte =".$valore["id"]."  del Proyecto =".$valor_py["id"]."<br/>";
+                         }
+                       }
+                       
+                        
+                        
+               }//fin for
+    }
     
    function cambio_estrados()
    {

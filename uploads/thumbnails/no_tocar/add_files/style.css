@@ -1,0 +1,86 @@
+/******************************************GENERAL*********************************************/
+.espacio-arriba{margin-top: 20px;}
+ req{ color: red; }
+    * {
+    margin: 0;
+    }
+    html, body {
+    height: 100%;
+    }
+    .container_principal 
+    {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        margin: 0 auto -4em;
+    }    
+
+    #copyright{ display: none;}
+    #menu {
+        top: 40px;
+        left:0px;
+        width:100%;
+    }
+    .oculto
+    {
+            display: none;
+    }
+    
+    /* Enlaces
+   ------------------------------------------------------------------------- */
+    a {
+      color: #1148A6;
+    }
+    a:active {
+      position: relative;
+      top: 1px;
+    }
+    
+    /* Header // encabezado
+   ------------------------------------------------------------------------- */    
+    header, header a {
+      /*color: #778;*/
+      padding-right: 1em;
+      text-decoration: none;
+    }
+    
+    header:hover a {
+      color: #1148A6;
+    }
+    header a:hover {
+      text-decoration: underline;
+    }    
+/******************************************Fin Header*********************************************/
+
+
+/******************************************Cuerpo**********************************************/
+#inicio {
+    width:532px; 
+    height:379px;
+    background-image:url(../../imagenes/inicio.png);
+    background-repeat:no-repeat;
+    margin : 7% 0 0 25%;
+}
+/******************************************footter*********************************************/
+.push
+{
+    height: 6em;
+}
+footer
+{
+        background-color:#999998;
+        color:#FFFFFF;
+        text-align: center;
+        height: 4em;
+}
+
+/******************************************clases para simular tablas con colores alternos*********************************************/
+
+.fondo_gris{ background-color: #F4F4F4;}
+.fondo_gris_oscuro{ background-color: #E3E3E6; } 
+.borde{
+        border-width:1px;
+        border-style:dotted solid;
+        border-color: #999998;
+       }
+

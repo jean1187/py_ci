@@ -500,12 +500,12 @@
         },
 
         _onDone: function (result, textStatus, jqXHR, options) {
-		if(jqXHR.responseText.indexOf("login-form")!=-1)
+		/*if(jqXHR.responseText.indexOf("login-form")!=-1)
                 {
                     alert("    Su sesión ha expirado\nPor favor ingrese de nuevo")
                     window.location.href="";    
                     //window.location.reload();  
-                }
+                }*/
             if (!this._isXHRUpload(options)) {
                 // Create a progress event for each iframe load:
                 this._onProgress($.Event('progress', {

@@ -1,6 +1,6 @@
 <!-- Bootstrap CSS Toolkit styles -->
-<link rel="stylesheet" href="/css/controllers/nuevo_proyecto/bootstrap_jean.css"/>
-<link rel="stylesheet" href="/css/jquery.fileupload/jquery.fileupload-ui.css"/>
+<link rel="stylesheet" href="<?php echo base_url()?>css/controllers/nuevo_proyecto/bootstrap_jean.css"/>
+<link rel="stylesheet" href="<?php echo base_url()?>css/jquery.fileupload/jquery.fileupload-ui.css"/>
 
 <div class="container">
     <div class="page-header">
@@ -104,20 +104,20 @@ var fileUploadErrors = {
 <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
 
 <!-- The Templates plugin is included to render the upload/download listings -->
-<script src="/js/jquery.fileupload/tmpl.min.js"></script>
+<script src="<?php echo base_url()?>js/jquery.fileupload/tmpl.min.js"></script>
 <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
-<script src="/js/jquery.fileupload/load-image.min.js"></script>
+<script src="<?php echo base_url()?>js/jquery.fileupload/load-image.min.js"></script>
 <!-- The Canvas to Blob plugin is included for image resizing functionality -->
-<script src="/js/jquery.fileupload/canvas-to-blob.min.js"></script>
+<script src="<?php echo base_url()?>js/jquery.fileupload/canvas-to-blob.min.js"></script>
 <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-<script src="/js/jquery.fileupload/jquery.iframe-transport.js"></script>
+<script src="<?php echo base_url()?>js/jquery.fileupload/jquery.iframe-transport.js"></script>
 <!-- The basic File Upload plugin -->
-<script src="/js/jquery.fileupload/jquery.fileupload.js"></script>
+<script src="<?php echo base_url()?>js/jquery.fileupload/jquery.fileupload.js"></script>
 <!-- The File Upload image processing plugin -->
-<script src="/js/jquery.fileupload/jquery.fileupload-ip.js"></script>
+<script src="<?php echo base_url()?>js/jquery.fileupload/jquery.fileupload-ip.js"></script>
 <!-- The File Upload user interface plugin -->
-<script src="/js/jquery.fileupload/jquery.fileupload-ui.js"></script>
+<script src="<?php echo base_url()?>js/jquery.fileupload/jquery.fileupload-ui.js"></script>
 <!-- The main application script -->
-<script src="/js/controllers/nuevo_proyecto/main.fileupload.js"></script>
+<script src="<?php echo base_url()?>js/controllers/nuevo_proyecto/main.fileupload.js"></script>
 <!-- The XDomainRequest Transport is included for cross-domain file deletion for IE8+ -->
 <!--[if gte IE 8]><script src="/js1/cors/jquery.xdr-transport.js"></script><![endif]-->

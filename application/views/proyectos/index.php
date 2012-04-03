@@ -79,6 +79,14 @@ textarea {
     color: #000;
     text-decoration:underline;
 }
+
+BODY{font-size:12px; font-family:arial; color:#000;} 
+.tabla{border-color:#666 ; background-color: #E3E3E6; font-family: arial; color:#000;} 
+.titulo{font-size: 18px; border-width: 0px;border-color: ;  font-family:	Arial, Helvetica, sans-serif, Gadget, sans-serif; color:#000;}
+.titulogris{border-color: #000; font-size: 15px; border-width: 1px; background-color: #999 ; font-family: arial; color:#000;}
+.etiqueta{ background-color:#CCC; font: Arial Black;}
+
+
 </style>
 <div id="dialog-modif" title="MODIFICACION DEL PROYECTO" style="display:none">
 		<div id="tabs">
@@ -202,7 +210,7 @@ Ir&aacute; al formulario de modificaci&oacute;n donde cambiara los datos por cad
 	    $total_py_fci=0;$monto_total_fci=0;
 	        foreach ($PlandeInversion_FCI as $key=>$valor){ ?>
 						  <tr>
-							<td style="background-color:#F2F2F2"><div align="left"><?php echo  $key?></div></td>
+							<td style="background-color:#F2F2F2"><div align="left"><?php echo  cambia_char($key)?></div></td>
 							<td><div align="center">
 							   <?php $total_py_fci+=$valor["total_py"]; echo $valor["total_py"]?>
 							</div></td>
@@ -224,95 +232,102 @@ Ir&aacute; al formulario de modificaci&oacute;n donde cambiara los datos por cad
       </div></td>
   </tr>
 </table>
-      <TABLE border="">
-          <TR class="tabla">
-                <td><div align="center">N&deg; de Proyecto</div></td>
-                <td><div align="center"><span style="color:#F00">Observaci&oacute;n de la Direcci&oacute;n de Proyectos</span></div></td>
-                <td><div align="center">Nombre del Proyecto</div></td>
-                <td><div align="center">&iquest; Qu&eacute; &Aacute;rea del Plan de Desarrollo se Apalancar&aacute; con este Plan de Inversi&oacute;n ?</div></td>
-                <td><div align="center">Organismo Responsable</div></td>
-                <td><div align="center">Ente Ejecutor</div></td>
-                <td><div align="center">Descripci&oacute;n del Proyecto</div></td>
-                <td><div align="center">Etapa del Proyecto</div></td>
-                <td><div align="center">Fase del Proyecto</div></td>
-                <td><div align="center">Tipo de Proyecto</div></td>
-                <td><div align="center">Categoria</div></td>
-				<td><div align="center">Area de Inversi&oacute;n</div></td>
-                <td><div align="center">Nombre del Responsable</div></td>
-                <td><div align="center">Unidad de Adscripci&oacute;n</div></td>
-                <td><div align="center">Cargo</div></td>
-                <td><div align="center">Correo Electr&oacute;nico</div></td>
-                <td><div align="center">Tel&eacute;fono</div></td>
-                <td><div align="center">Fax</div></td>
-                <td><div align="center">Municipio</div></td>
-                <td><div align="center">Parroquia</div></td>
-                <td><div align="center">Sector o Consejo Comunal</div></td>
-                <td><div align="center">Norte</div></td>
-                <td><div align="center">Este</div></td>
-                <td><div align="center">Directriz</div></td>
-                <td><div align="center">Objetivo</div></td>
-                <td><div align="center">Estrategia</div></td>
-                <td><div align="center">Pol&iacute;tica</div></td>
-                <td><div align="center">Tiempo estimado de Ejecuci&oacute;n</div></td>
-                <td><div align="center">Monto total del Proyecto</div></td>
-                <td><div align="center">Otras Fuentes de Financiamiento</div></td>
-                <td><div align="center">Impacto Social</div></td>
-                <td><div align="center">Poblaci&oacute;n Beneficiada</div></td>
-                <td><div align="center">Avance F&iacute;sico</div></td>
-                <td><div align="center">Avance Financiero</div></td>
-                <td><div align="center">Empleos Directos</div></td>
-                <td><div align="center">Empleos Indirectos</div></td>
-                <td><div align="center">Articulaci&oacute;n con otros Entes</div></td>
-                <td><div align="center">Competencias a Transferir</div></td>
-                <td><div align="center">Observaciones</div></td>
-  </TR>
-                   <?php  
+
+<TABLE width="2053" border="">
+<TR class="tabla">
+                <td width="50"><div align="center">N&deg; de Proyecto</div></td>
+                <td width="122"><div align="center"><span style="color:#F00">Observaci&oacute;n de la Direcci&oacute;n de Proyectos</span></div></td>
+                <td width="126"><div align="center">Nombre del Proyecto</div></td>
+                <td width="120"><div align="center">&iquest; Qu&eacute; &Aacute;rea del Plan de Desarrollo se Apalancar&aacute; con este Plan de Inversi&oacute;n ?</div></td>
+                <td width="152"><div align="center"> Responsable</div></td>
+                <td width="111"><div align="center">Descripci&oacute;n del Proyecto</div></td>
+                <td width="77"><div align="center">Etapa del Proyecto</div></td>
+                <td width="109"><div align="center">Area de Inversi&oacute;n</div></td>
+                <td width="122"><div align="center"> Responsable</div></td>
+                <td width="100"><div align="center">Contactos</div></td>
+                <td width="125"><div align="center">Localizaci&oacute;n</div></td>
+                <td width="453"><div align="center">Estrategias</div></td>
+                <td width="66"><div align="center">Impacto Social</div></td>
+                <td width="75"><div align="center">Avance </div></td>
+                <td width="126"><div align="center">Articulaci&oacute;n con otros Entes</div></td>
+        </TR>
+      
+          
+
+        <?php  
 				   
 				   foreach ($ListaPlandeInversion_FCI as $key=>$valor) { ?> 
-									<TR>
-						<td height="99" colspan='1' ><div class="scrollv1">
-						  <div align="center"><a href="<?php echo site_url("nuevo_proyecto/index/".$valor["id"])?>" rel="<?php echo $valor["id"]?>" class="modal" title="hacer clip"><span style="color:#F00"><?php echo $valor["id"]?></span></a></div>
-						</div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["observa"]) ?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["nopro"] )?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["area"] ?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["organ"]) ?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["ejecu"]) ?></div></td> 
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["descr"]) ?></div></td> 
-						<td colspan='1' ><div class="scrollv1"><?php if($valor["etapa1"]) echo "Preinversi&oacute;n<br>";if($valor["etapa2"]) echo "Proyecto Nuevo<br>";if($valor["etapa3"]) echo "Ampliaci&oacute;n o Modificaci&oacute;n<br>";if($valor["etapa4"]) echo "Culminaci&oacute;n<br>"; ?></div></td> 
-						<td colspan='1' ><div class="scrollv1"><?php echo arabigo2romano($valor["fase"])?></div></td> 
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["tipo_py"]?></div></td> 
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["categoria"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["area"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["norespro"])?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["unidad"])?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["cargo"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["correo"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["telf"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["fax"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["municipio"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["parroquia"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["cocomu"])?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["norte"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["este"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["lineas"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["objedos"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["estrados"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["polidos"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["tiempo"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["monto"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["otra"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["impsoc"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["pobl"]?></div></td> 
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["avafisico"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["avafinanc"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["empdirec"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["empindi"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["articu"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["compone"])?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["observa"])?></div></td>
-						</TR>
-
+					 <TR valign="top">
+								<td height="99" colspan='1' ><div class="scrollv1">
+									  <div align="center"><a href="<?php echo site_url("modificarProyecto/".$valor["id"])?>" rel="<?php echo $valor["id"]?>" class="modal" title="hacer clip"><span style="color:#F00"><?php echo $valor["id"]?></span></a></div>
+									</div></td>
+								<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["nota"]) ?></div></td>
+								<td colspan='1' ><div class="etiqueta">Nombre:</div>  <div class="scrollv"><?php echo cambia_char($valor["nopro"] )?></div><hr /><div class="etiqueta">Monto:</div>
+								  <div class="scrollv1">
+								<?php echo number_format($valor["monto"], 2, ',', '.'); ?>
+								  </div><hr />
+								  <div class="etiqueta">Tiempo de<br />Ejecuci&oacute;n:</div>
+								  <div class="scrollv"><?php echo $valor["tiempo"]?> meses</div><hr />
+								  <div class="etiqueta">Poblaci&oacute;n<br /> Beneficiada</div>
+								  <div class="scrollv"><?php echo $valor["pobl"]?></div></td>
+								<td colspan='1' ><div class="scrollv"><?php echo $valor["lineaestada"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">Organismo:</div>
+								  <div class="scrollv"><?php echo cambia_char($valor["organ"]) ?></div><hr />
+								<div class="etiqueta">Ente Ejecutor:</div><div class="scrollv"><?php echo cambia_char($valor["ejecu"]) ?></div></td>
+								<td colspan='1' ><div class="scrollv"><?php echo cambia_char($valor["descr"]) ?></div></td> 
+								<td colspan='1' ><div class="etiqueta">Etapa:</div>
+								  <div class="scrollv">
+								  <?php if($valor["etapa1"]) echo "Preinversi&oacute;n<br>";if($valor["etapa2"]) echo "Proyecto Nuevo<br>";if($valor["etapa3"]) echo "Ampliaci&oacute;n o Modificaci&oacute;n<br>";if($valor["etapa4"]) echo "Culminaci&oacute;n<br>"; ?></div>
+								  <hr /><div class="etiqueta">Fase:</div><div class="scrollv">
+									<?php echo arabigo2romano($valor["fase"])?></div></td> 
+								<td colspan='1' ><div class="etiqueta">Area:</div>
+								  <div class="scrollv"><?php echo $valor["area"]?></div><hr />
+								  <div class="etiqueta">Categoria:</div>
+								  <div class="scrollv"><?php echo $valor["categoria"]?></div><hr />
+								  <div class="etiqueta">Tipo:</div>
+								  <div class="scrollv"><?php echo $valor["tipo_py"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">Nombre:</div>
+								  <div class="scrollv"><?php echo cambia_char($valor["norespro"])?></div><hr />
+								  <div class="etiqueta">Unidad:</div>
+								  <div class="scrollv"><?php echo cambia_char($valor["unidad"])?></div><hr />
+								  <div class="etiqueta">Cargo:</div>
+								  <div class="scrollv"><?php echo $valor["cargo"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">Correo:</div>
+								  <div class="scrollv"><?php echo $valor["correo"]?></div><hr />
+								  <div class="etiqueta">Tel&eacute;fono:</div>
+								  <div class="scrollv"><?php echo $valor["telf"]?></div><hr />
+								  <div class="etiqueta">Fax:</div>
+								  <div class="scrollv"><?php echo $valor["fax"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">Municipio:</div>
+								  <div class="scrollv"><?php echo $valor["municipio"]?></div><hr />
+								  <div class="etiqueta">Parroquia:</div>
+								  <div class="scrollv"><?php echo $valor["parroquia"]?></div><hr />
+								  <div class="etiqueta">Comunidad:</div>
+								  <div class="scrollv"><?php echo cambia_char($valor["cocomu"])?></div></td>
+								<td colspan='1' ><div class="etiqueta">Directriz</div>
+								  <div class="scrollv"><?php echo $valor["lineas"]?></div><hr />
+								  <div class="etiqueta">Objetivo:</div>
+								  <div class="scrollv"><?php echo $valor["objedos"]?></div><hr />
+								  <div class="etiqueta">Estrategia:</div>
+								  <div class="scrollv"><?php echo $valor["estrados"]?></div><hr />
+								  <div class="etiqueta">Pol&iacute;tica</div>
+								  <div class="scrollv"><?php echo $valor["polidos"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">Impacto</div>
+								<div class="scrollv"><?php echo $valor["impsoc"]?></div><hr />
+								<div class="etiqueta">Empleos<br />Directos</div>
+								<div class="scrollv"><?php echo $valor["empdirec"]?></div>
+								<hr />
+								<div class="etiqueta">Empleos<br />Indirectos</div>
+								<div class="scrollv"><?php echo $valor["empindi"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">F&iacute;sico</div>
+								  <div class="scrollv"><?php echo $valor["avafisico"]?></div><hr />
+								  <div class="etiqueta">Financiero:</div>
+								  <div class="scrollv"><?php echo $valor["avafinanc"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">Articulaci&oacute;n:</div>
+								  <div class="scrollv"><?php echo $valor["articu"]?></div><hr />
+								  <div class="etiqueta">Competencias a<br />Transferir</div>
+								  <div class="scrollv1"><?php echo cambia_char($valor["compone"])?></div></td>
+					</TR>
            <?php }    ?> 
                     
 </TABLE>
@@ -340,101 +355,97 @@ Ir&aacute; al formulario de modificaci&oacute;n donde cambiara los datos por cad
   <?php if($m_situado["total"]!=0){?>
 </table>
       <TABLE border="">
-          <TR class="tabla">
-                <td><div align="center">N&deg; de Proyecto</div></td>
-                <td><div align="center">Nombre del Proyecto</div></td>
-                <td><div align="center">&iquest; Qu&eacute; &Aacute;rea del Plan de Desarrollo se Apalancar&aacute; con este Plan de Inversi&oacute;n ?</div></td>
-                <td><div align="center">Organismo Responsable</div></td>
-                <td><div align="center">Ente Ejecutor</div></td>
-                <td><div align="center">Descripci&oacute;n del Proyecto</div></td>
-                <td><div align="center">Etapa del Proyecto</div></td>
-                <td><div align="center">Fase del Proyecto</div></td>
-                <td><div align="center">Tipo de Proyecto</div></td>
-                <td><div align="center">Categoria</div></td>
-				<td><div align="center">Area de Inversi&oacute;n</div></td>
-                <td><div align="center">Nombre del Responsable</div></td>
-                <td><div align="center">Unidad de Adscripci&oacute;n</div></td>
-                <td><div align="center">Cargo</div></td>
-                <td><div align="center">Correo Electr&oacute;nico</div></td>
-                <td><div align="center">Tel&eacute;fono</div></td>
-                <td><div align="center">Fax</div></td>
-                <td><div align="center">Municipio</div></td>
-                <td><div align="center">Parroquia</div></td>
-                <td><div align="center">Sector o Consejo Comunal</div></td>
-                <td><div align="center">Norte</div></td>
-                <td><div align="center">Este</div></td>
-                <td><div align="center">Directriz</div></td>
-                <td><div align="center">Objetivo</div></td>
-                <td><div align="center">Estrategia</div></td>
-                <td><div align="center">Pol&iacute;tica</div></td>
-                <td><div align="center">Tiempo estimado de Ejecuci&oacute;n</div></td>
-                <td><div align="center">Monto total del Proyecto</div></td>
-                <td><div align="center">Otras Fuentes de Financiamiento</div></td>
-                <td><div align="center">Impacto Social</div></td>
-                <td><div align="center">Poblaci&oacute;n Beneficiada</div></td>
-                <td><div align="center">Avance F&iacute;sico</div></td>
-                <td><div align="center">Avance Financiero</div></td>
-                <td><div align="center">Empleos Directos</div></td>
-                <td><div align="center">Empleos Indirectos</div></td>
-                <td><div align="center">Articulaci&oacute;n con otros Entes</div></td>
-                <td><div align="center">Competencias a Transferir</div></td>
-                <td><div align="center">Observaciones</div></td>
-  </TR>
-        <?php /* 
-		
- $result = mysql_query("SELECT  resumen. id,nopro,lineaestada.opcion,organ,ejecu,descr,etapa1,etapa2,etapa3,etapa4,fase,tipoin.opcion,catego.opcion,area.opcion,norespro,unidad,cargo,correo,telf,fax,municipio.opcion, parroquia.opcion,cocomu,norte,este,lineas.opcion,objedos.opcion,estrados.opcion,polidos.opcion,tiempo,monto,otra,impsoc,pobl,avafisico,avafinanc,empdirec,empindi,articu,compone,observa FROM resumen,lineaestada,tipoin,catego,area,municipio,parroquia,lineas,objedos,estrados,polidos WHERE  resumen.lineaesta=lineaestada.id and resumen.ti_pro=tipoin.id and resumen.ti_cate=catego.id and resumen.ti_are=area.id and resumen.munici=municipio.id and resumen.parroq=parroquia.id  and 
-resumen.directriz=lineas.id and resumen.objetivo=objedos.id and
-resumen.estrategia=estrados.id and resumen.politica=polidos.id and aprobado=1 and factible=1 and situadoc!=0 and
-cod like '$sum' ORDER BY `resumen`.`id` ASC");*/ ?>
-         
-		 
+<TR class="tabla">
+                <td width="50"><div align="center">N&deg; de Proyecto</div></td>
+                <td width="122"><div align="center"><span style="color:#F00">Observaci&oacute;n de la Direcci&oacute;n de Proyectos</span></div></td>
+                <td width="126"><div align="center">Nombre del Proyecto</div></td>
+                <td width="120"><div align="center">&iquest; Qu&eacute; &Aacute;rea del Plan de Desarrollo se Apalancar&aacute; con este Plan de Inversi&oacute;n ?</div></td>
+                <td width="152"><div align="center"> Responsable</div></td>
+                <td width="111"><div align="center">Descripci&oacute;n del Proyecto</div></td>
+                <td width="77"><div align="center">Etapa del Proyecto</div></td>
+                <td width="109"><div align="center">Area de Inversi&oacute;n</div></td>
+                <td width="122"><div align="center"> Responsable</div></td>
+                <td width="100"><div align="center">Contactos</div></td>
+                <td width="125"><div align="center">Localizaci&oacute;n</div></td>
+                <td width="453"><div align="center">Estrategias</div></td>
+                <td width="66"><div align="center">Impacto Social</div></td>
+                <td width="75"><div align="center">Avance </div></td>
+                <td width="126"><div align="center">Articulaci&oacute;n con otros Entes</div></td>
+        </TR>
 		                   <?php  
 				   
 				   foreach ($ListaPlandeInversion_Situado as $key=>$valor) { ?> 
-									<TR>
-						<td height="99" colspan='1' ><div class="scrollv1">
-						  <div align="center"><a href="newproyectosm/resumenvista.php?id="  title="hacer clip"><span style="color:#F00"><?php echo $valor["id"]?></span></a></div>
-						</div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["observa"]) ?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["nopro"] )?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["area"] ?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["organ"]) ?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["ejecu"]) ?></div></td> 
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["descr"]) ?></div></td> 
-						<td colspan='1' ><div class="scrollv1"><?php if($valor["etapa1"]) echo "Preinversi&oacute;n<br>";if($valor["etapa2"]) echo "Proyecto Nuevo<br>";if($valor["etapa3"]) echo "Ampliaci&oacute;n o Modificaci&oacute;n<br>";if($valor["etapa4"]) echo "Culminaci&oacute;n<br>"; ?></div></td> 
-						<td colspan='1' ><div class="scrollv1"><?php echo arabigo2romano($valor["fase"])?></div></td> 
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["tipo_py"]?></div></td> 
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["categoria"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["area"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["norespro"])?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["unidad"])?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["cargo"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["correo"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["telf"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["fax"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["municipio"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["parroquia"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["cocomu"])?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["norte"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["este"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["lineas"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["objedos"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["estrados"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["polidos"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["tiempo"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["monto"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["otra"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["impsoc"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["pobl"]?></div></td> 
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["avafisico"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["avafinanc"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["empdirec"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["empindi"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["articu"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["compone"])?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["observa"])?></div></td>
-						</TR>
-
+					 <TR valign="top">
+								<td height="99" colspan='1' ><div class="scrollv1">
+									  <div align="center"><a href="<?php echo site_url("modificarProyecto/".$valor["id"])?>" rel="<?php echo $valor["id"]?>" class="modal" title="hacer clip"><span style="color:#F00"><?php echo $valor["id"]?></span></a></div>
+									</div></td>
+								<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["nota"]) ?></div></td>
+								<td colspan='1' ><div class="etiqueta">Nombre:</div>  <div class="scrollv"><?php echo cambia_char($valor["nopro"] )?></div><hr /><div class="etiqueta">Monto:</div>
+								  <div class="scrollv1">
+								<?php echo number_format($valor["monto"], 2, ',', '.'); ?>
+								  </div><hr />
+								  <div class="etiqueta">Tiempo de<br />Ejecuci&oacute;n:</div>
+								  <div class="scrollv"><?php echo $valor["tiempo"]?> meses</div><hr />
+								  <div class="etiqueta">Poblaci&oacute;n<br /> Beneficiada</div>
+								  <div class="scrollv"><?php echo $valor["pobl"]?></div></td>
+								<td colspan='1' ><div class="scrollv"><?php echo $valor["lineaestada"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">Organismo:</div>
+								  <div class="scrollv"><?php echo cambia_char($valor["organ"]) ?></div><hr />
+								<div class="etiqueta">Ente Ejecutor:</div><div class="scrollv"><?php echo cambia_char($valor["ejecu"]) ?></div></td>
+								<td colspan='1' ><div class="scrollv"><?php echo cambia_char($valor["descr"]) ?></div></td> 
+								<td colspan='1' ><div class="etiqueta">Etapa:</div>
+								  <div class="scrollv">
+								  <?php if($valor["etapa1"]) echo "Preinversi&oacute;n<br>";if($valor["etapa2"]) echo "Proyecto Nuevo<br>";if($valor["etapa3"]) echo "Ampliaci&oacute;n o Modificaci&oacute;n<br>";if($valor["etapa4"]) echo "Culminaci&oacute;n<br>"; ?></div>
+								  <hr /><div class="etiqueta">Fase:</div><div class="scrollv">
+									<?php echo arabigo2romano($valor["fase"])?></div></td> 
+								<td colspan='1' ><div class="etiqueta">Area:</div>
+								  <div class="scrollv"><?php echo $valor["area"]?></div><hr />
+								  <div class="etiqueta">Categoria:</div>
+								  <div class="scrollv"><?php echo $valor["categoria"]?></div><hr />
+								  <div class="etiqueta">Tipo:</div>
+								  <div class="scrollv"><?php echo $valor["tipo_py"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">Nombre:</div>
+								  <div class="scrollv"><?php echo cambia_char($valor["norespro"])?></div><hr />
+								  <div class="etiqueta">Unidad:</div>
+								  <div class="scrollv"><?php echo cambia_char($valor["unidad"])?></div><hr />
+								  <div class="etiqueta">Cargo:</div>
+								  <div class="scrollv"><?php echo $valor["cargo"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">Correo:</div>
+								  <div class="scrollv"><?php echo $valor["correo"]?></div><hr />
+								  <div class="etiqueta">Tel&eacute;fono:</div>
+								  <div class="scrollv"><?php echo $valor["telf"]?></div><hr />
+								  <div class="etiqueta">Fax:</div>
+								  <div class="scrollv"><?php echo $valor["fax"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">Municipio:</div>
+								  <div class="scrollv"><?php echo $valor["municipio"]?></div><hr />
+								  <div class="etiqueta">Parroquia:</div>
+								  <div class="scrollv"><?php echo $valor["parroquia"]?></div><hr />
+								  <div class="etiqueta">Comunidad:</div>
+								  <div class="scrollv"><?php echo cambia_char($valor["cocomu"])?></div></td>
+								<td colspan='1' ><div class="etiqueta">Directriz</div>
+								  <div class="scrollv"><?php echo $valor["lineas"]?></div><hr />
+								  <div class="etiqueta">Objetivo:</div>
+								  <div class="scrollv"><?php echo $valor["objedos"]?></div><hr />
+								  <div class="etiqueta">Estrategia:</div>
+								  <div class="scrollv"><?php echo $valor["estrados"]?></div><hr />
+								  <div class="etiqueta">Pol&iacute;tica</div>
+								  <div class="scrollv"><?php echo $valor["polidos"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">Impacto</div>
+								<div class="scrollv"><?php echo $valor["impsoc"]?></div><hr />
+								<div class="etiqueta">Empleos<br />Directos</div>
+								<div class="scrollv"><?php echo $valor["empdirec"]?></div>
+								<hr />
+								<div class="etiqueta">Empleos<br />Indirectos</div>
+								<div class="scrollv"><?php echo $valor["empindi"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">F&iacute;sico</div>
+								  <div class="scrollv"><?php echo $valor["avafisico"]?></div><hr />
+								  <div class="etiqueta">Financiero:</div>
+								  <div class="scrollv"><?php echo $valor["avafinanc"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">Articulaci&oacute;n:</div>
+								  <div class="scrollv"><?php echo $valor["articu"]?></div><hr />
+								  <div class="etiqueta">Competencias a<br />Transferir</div>
+								  <div class="scrollv1"><?php echo cambia_char($valor["compone"])?></div></td>
+					</TR>
            <?php }    ?> 
 </TABLE>
 <?php } //fin if   ?> 
@@ -463,93 +474,97 @@ cod like '$sum' ORDER BY `resumen`.`id` ASC");*/ ?>
 <?php if($otra_fuente["total"]!=0){?>
 </table>
       <TABLE border="">
-          <TR class="tabla">
-                <td><div align="center">N&deg; de Proyecto</div></td>
-                <td><div align="center">Nombre del Proyecto</div></td>
-                <td><div align="center">&iquest; Qu&eacute; &Aacute;rea del Plan de Desarrollo se Apalancar&aacute; con este Plan de Inversi&oacute;n ?</div></td>
-                <td><div align="center">Organismo Responsable</div></td>
-                <td><div align="center">Ente Ejecutor</div></td>
-                <td><div align="center">Descripci&oacute;n del Proyecto</div></td>
-                <td><div align="center">Etapa del Proyecto</div></td>
-                <td><div align="center">Fase del Proyecto</div></td>
-                <td><div align="center">Tipo de Proyecto</div></td>
-                <td><div align="center">Categoria</div></td>
-				<td><div align="center">Area de Inversi&oacute;n</div></td>
-                <td><div align="center">Nombre del Responsable</div></td>
-                <td><div align="center">Unidad de Adscripci&oacute;n</div></td>
-                <td><div align="center">Cargo</div></td>
-                <td><div align="center">Correo Electr&oacute;nico</div></td>
-                <td><div align="center">Tel&eacute;fono</div></td>
-                <td><div align="center">Fax</div></td>
-                <td><div align="center">Municipio</div></td>
-                <td><div align="center">Parroquia</div></td>
-                <td><div align="center">Sector o Consejo Comunal</div></td>
-                <td><div align="center">Norte</div></td>
-                <td><div align="center">Este</div></td>
-                <td><div align="center">Directriz</div></td>
-                <td><div align="center">Objetivo</div></td>
-                <td><div align="center">Estrategia</div></td>
-                <td><div align="center">Pol&iacute;tica</div></td>
-                <td><div align="center">Tiempo estimado de Ejecuci&oacute;n</div></td>
-                <td><div align="center">Monto total del Proyecto</div></td>
-                <td><div align="center">Otras Fuentes de Financiamiento</div></td>
-                <td><div align="center">Impacto Social</div></td>
-                <td><div align="center">Poblaci&oacute;n Beneficiada</div></td>
-                <td><div align="center">Avance F&iacute;sico</div></td>
-                <td><div align="center">Avance Financiero</div></td>
-                <td><div align="center">Empleos Directos</div></td>
-                <td><div align="center">Empleos Indirectos</div></td>
-                <td><div align="center">Articulaci&oacute;n con otros Entes</div></td>
-                <td><div align="center">Competencias a Transferir</div></td>
-                <td><div align="center">Observaciones</div></td>
-  </TR>
+<TR class="tabla">
+                <td width="50"><div align="center">N&deg; de Proyecto</div></td>
+                <td width="122"><div align="center"><span style="color:#F00">Observaci&oacute;n de la Direcci&oacute;n de Proyectos</span></div></td>
+                <td width="126"><div align="center">Nombre del Proyecto</div></td>
+                <td width="120"><div align="center">&iquest; Qu&eacute; &Aacute;rea del Plan de Desarrollo se Apalancar&aacute; con este Plan de Inversi&oacute;n ?</div></td>
+                <td width="152"><div align="center"> Responsable</div></td>
+                <td width="111"><div align="center">Descripci&oacute;n del Proyecto</div></td>
+                <td width="77"><div align="center">Etapa del Proyecto</div></td>
+                <td width="109"><div align="center">Area de Inversi&oacute;n</div></td>
+                <td width="122"><div align="center"> Responsable</div></td>
+                <td width="100"><div align="center">Contactos</div></td>
+                <td width="125"><div align="center">Localizaci&oacute;n</div></td>
+                <td width="453"><div align="center">Estrategias</div></td>
+                <td width="66"><div align="center">Impacto Social</div></td>
+                <td width="75"><div align="center">Avance </div></td>
+                <td width="126"><div align="center">Articulaci&oacute;n con otros Entes</div></td>
+        </TR>
        <?php  
 				   
 				   foreach ($ListaPlandeInversion_OtraFuente as $key=>$valor) { ?> 
-									<TR>
-						<td height="99" colspan='1' ><div class="scrollv1">
-						  <div align="center"><a href="newproyectosm/resumenvista.php?id="  title="hacer clip"><span style="color:#F00"><?php echo $valor["id"]?></span></a></div>
-						</div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["observa"]) ?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["nopro"] )?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["area"] ?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["organ"]) ?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["ejecu"]) ?></div></td> 
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["descr"]) ?></div></td> 
-						<td colspan='1' ><div class="scrollv1"><?php if($valor["etapa1"]) echo "Preinversi&oacute;n<br>";if($valor["etapa2"]) echo "Proyecto Nuevo<br>";if($valor["etapa3"]) echo "Ampliaci&oacute;n o Modificaci&oacute;n<br>";if($valor["etapa4"]) echo "Culminaci&oacute;n<br>"; ?></div></td> 
-						<td colspan='1' ><div class="scrollv1"><?php echo arabigo2romano($valor["fase"])?></div></td> 
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["tipo_py"]?></div></td> 
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["categoria"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["area"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["norespro"])?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["unidad"])?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["cargo"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["correo"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["telf"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["fax"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["municipio"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["parroquia"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["cocomu"])?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["norte"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["este"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["lineas"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["objedos"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["estrados"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["polidos"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["tiempo"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["monto"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["otra"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["impsoc"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["pobl"]?></div></td> 
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["avafisico"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["avafinanc"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["empdirec"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["empindi"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["articu"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["compone"])?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["observa"])?></div></td>
-						</TR>
-
+					 <TR valign="top">
+								<td height="99" colspan='1' ><div class="scrollv1">
+									  <div align="center"><a href="<?php echo site_url("modificarProyecto/".$valor["id"])?>" rel="<?php echo $valor["id"]?>" class="modal" title="hacer clip"><span style="color:#F00"><?php echo $valor["id"]?></span></a></div>
+									</div></td>
+								<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["nota"]) ?></div></td>
+								<td colspan='1' ><div class="etiqueta">Nombre:</div>  <div class="scrollv"><?php echo cambia_char($valor["nopro"] )?></div><hr /><div class="etiqueta">Monto:</div>
+								  <div class="scrollv1">
+								<?php echo number_format($valor["monto"], 2, ',', '.'); ?>
+								  </div><hr />
+								  <div class="etiqueta">Tiempo de<br />Ejecuci&oacute;n:</div>
+								  <div class="scrollv"><?php echo $valor["tiempo"]?> meses</div><hr />
+								  <div class="etiqueta">Poblaci&oacute;n<br /> Beneficiada</div>
+								  <div class="scrollv"><?php echo $valor["pobl"]?></div></td>
+								<td colspan='1' ><div class="scrollv"><?php echo $valor["lineaestada"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">Organismo:</div>
+								  <div class="scrollv"><?php echo cambia_char($valor["organ"]) ?></div><hr />
+								<div class="etiqueta">Ente Ejecutor:</div><div class="scrollv"><?php echo cambia_char($valor["ejecu"]) ?></div></td>
+								<td colspan='1' ><div class="scrollv"><?php echo cambia_char($valor["descr"]) ?></div></td> 
+								<td colspan='1' ><div class="etiqueta">Etapa:</div>
+								  <div class="scrollv">
+								  <?php if($valor["etapa1"]) echo "Preinversi&oacute;n<br>";if($valor["etapa2"]) echo "Proyecto Nuevo<br>";if($valor["etapa3"]) echo "Ampliaci&oacute;n o Modificaci&oacute;n<br>";if($valor["etapa4"]) echo "Culminaci&oacute;n<br>"; ?></div>
+								  <hr /><div class="etiqueta">Fase:</div><div class="scrollv">
+									<?php echo arabigo2romano($valor["fase"])?></div></td> 
+								<td colspan='1' ><div class="etiqueta">Area:</div>
+								  <div class="scrollv"><?php echo $valor["area"]?></div><hr />
+								  <div class="etiqueta">Categoria:</div>
+								  <div class="scrollv"><?php echo $valor["categoria"]?></div><hr />
+								  <div class="etiqueta">Tipo:</div>
+								  <div class="scrollv"><?php echo $valor["tipo_py"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">Nombre:</div>
+								  <div class="scrollv"><?php echo cambia_char($valor["norespro"])?></div><hr />
+								  <div class="etiqueta">Unidad:</div>
+								  <div class="scrollv"><?php echo cambia_char($valor["unidad"])?></div><hr />
+								  <div class="etiqueta">Cargo:</div>
+								  <div class="scrollv"><?php echo $valor["cargo"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">Correo:</div>
+								  <div class="scrollv"><?php echo $valor["correo"]?></div><hr />
+								  <div class="etiqueta">Tel&eacute;fono:</div>
+								  <div class="scrollv"><?php echo $valor["telf"]?></div><hr />
+								  <div class="etiqueta">Fax:</div>
+								  <div class="scrollv"><?php echo $valor["fax"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">Municipio:</div>
+								  <div class="scrollv"><?php echo $valor["municipio"]?></div><hr />
+								  <div class="etiqueta">Parroquia:</div>
+								  <div class="scrollv"><?php echo $valor["parroquia"]?></div><hr />
+								  <div class="etiqueta">Comunidad:</div>
+								  <div class="scrollv"><?php echo cambia_char($valor["cocomu"])?></div></td>
+								<td colspan='1' ><div class="etiqueta">Directriz</div>
+								  <div class="scrollv"><?php echo $valor["lineas"]?></div><hr />
+								  <div class="etiqueta">Objetivo:</div>
+								  <div class="scrollv"><?php echo $valor["objedos"]?></div><hr />
+								  <div class="etiqueta">Estrategia:</div>
+								  <div class="scrollv"><?php echo $valor["estrados"]?></div><hr />
+								  <div class="etiqueta">Pol&iacute;tica</div>
+								  <div class="scrollv"><?php echo $valor["polidos"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">Impacto</div>
+								<div class="scrollv"><?php echo $valor["impsoc"]?></div><hr />
+								<div class="etiqueta">Empleos<br />Directos</div>
+								<div class="scrollv"><?php echo $valor["empdirec"]?></div>
+								<hr />
+								<div class="etiqueta">Empleos<br />Indirectos</div>
+								<div class="scrollv"><?php echo $valor["empindi"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">F&iacute;sico</div>
+								  <div class="scrollv"><?php echo $valor["avafisico"]?></div><hr />
+								  <div class="etiqueta">Financiero:</div>
+								  <div class="scrollv"><?php echo $valor["avafinanc"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">Articulaci&oacute;n:</div>
+								  <div class="scrollv"><?php echo $valor["articu"]?></div><hr />
+								  <div class="etiqueta">Competencias a<br />Transferir</div>
+								  <div class="scrollv1"><?php echo cambia_char($valor["compone"])?></div></td>
+					</TR>
            <?php }    ?> 
            
                     
@@ -580,92 +595,97 @@ cod like '$sum' ORDER BY `resumen`.`id` ASC");*/ ?>
   
 </table>
       <TABLE border="">
-          <TR class="tabla">
-                <td><div align="center">N&deg; de Proyecto</div></td>
-                <td><div align="center">Nombre del Proyecto</div></td>
-                <td><div align="center">&iquest; Qu&eacute; &Aacute;rea del Plan de Desarrollo se Apalancar&aacute; con este Plan de Inversi&oacute;n ?</div></td>
-                <td><div align="center">Organismo Responsable</div></td>
-                <td><div align="center">Ente Ejecutor</div></td>
-                <td><div align="center">Descripci&oacute;n del Proyecto</div></td>
-                <td><div align="center">Etapa del Proyecto</div></td>
-                <td><div align="center">Fase del Proyecto</div></td>
-                <td><div align="center">Tipo de Proyecto</div></td>
-                <td><div align="center">Categoria</div></td>
-				<td><div align="center">Area de Inversi&oacute;n</div></td>
-                <td><div align="center">Nombre del Responsable</div></td>
-                <td><div align="center">Unidad de Adscripci&oacute;n</div></td>
-                <td><div align="center">Cargo</div></td>
-                <td><div align="center">Correo Electr&oacute;nico</div></td>
-                <td><div align="center">Tel&eacute;fono</div></td>
-                <td><div align="center">Fax</div></td>
-                <td><div align="center">Municipio</div></td>
-                <td><div align="center">Parroquia</div></td>
-                <td><div align="center">Sector o Consejo Comunal</div></td>
-                <td><div align="center">Norte</div></td>
-                <td><div align="center">Este</div></td>
-                <td><div align="center">Directriz</div></td>
-                <td><div align="center">Objetivo</div></td>
-                <td><div align="center">Estrategia</div></td>
-                <td><div align="center">Pol&iacute;tica</div></td>
-                <td><div align="center">Tiempo estimado de Ejecuci&oacute;n</div></td>
-                <td><div align="center">Monto total del Proyecto</div></td>
-                <td><div align="center">Otras Fuentes de Financiamiento</div></td>
-                <td><div align="center">Impacto Social</div></td>
-                <td><div align="center">Poblaci&oacute;n Beneficiada</div></td>
-                <td><div align="center">Avance F&iacute;sico</div></td>
-                <td><div align="center">Avance Financiero</div></td>
-                <td><div align="center">Empleos Directos</div></td>
-                <td><div align="center">Empleos Indirectos</div></td>
-                <td><div align="center">Articulaci&oacute;n con otros Entes</div></td>
-                <td><div align="center">Competencias a Transferir</div></td>
-                <td><div align="center">Observaciones</div></td>
-  </TR>
+<TR class="tabla">
+                <td width="50"><div align="center">N&deg; de Proyecto</div></td>
+                <td width="122"><div align="center"><span style="color:#F00">Observaci&oacute;n de la Direcci&oacute;n de Proyectos</span></div></td>
+                <td width="126"><div align="center">Nombre del Proyecto</div></td>
+                <td width="120"><div align="center">&iquest; Qu&eacute; &Aacute;rea del Plan de Desarrollo se Apalancar&aacute; con este Plan de Inversi&oacute;n ?</div></td>
+                <td width="152"><div align="center"> Responsable</div></td>
+                <td width="111"><div align="center">Descripci&oacute;n del Proyecto</div></td>
+                <td width="77"><div align="center">Etapa del Proyecto</div></td>
+                <td width="109"><div align="center">Area de Inversi&oacute;n</div></td>
+                <td width="122"><div align="center"> Responsable</div></td>
+                <td width="100"><div align="center">Contactos</div></td>
+                <td width="125"><div align="center">Localizaci&oacute;n</div></td>
+                <td width="453"><div align="center">Estrategias</div></td>
+                <td width="66"><div align="center">Impacto Social</div></td>
+                <td width="75"><div align="center">Avance </div></td>
+                <td width="126"><div align="center">Articulaci&oacute;n con otros Entes</div></td>
+        </TR>
         <?php  
 				   
-				   foreach ($ListaPlandeInversion_OtraFuente as $key=>$valor) { ?> 
-									<TR>
-						<td height="99" colspan='1' ><div class="scrollv1">
-						  <div align="center"><a href="newproyectosm/resumenvista.php?id="  title="hacer clip"><span style="color:#F00"><?php echo $valor["id"]?></span></a></div>
-						</div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["observa"]) ?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["nopro"] )?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["area"] ?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["organ"]) ?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["ejecu"]) ?></div></td> 
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["descr"]) ?></div></td> 
-						<td colspan='1' ><div class="scrollv1"><?php if($valor["etapa1"]) echo "Preinversi&oacute;n<br>";if($valor["etapa2"]) echo "Proyecto Nuevo<br>";if($valor["etapa3"]) echo "Ampliaci&oacute;n o Modificaci&oacute;n<br>";if($valor["etapa4"]) echo "Culminaci&oacute;n<br>"; ?></div></td> 
-						<td colspan='1' ><div class="scrollv1"><?php echo arabigo2romano($valor["fase"])?></div></td> 
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["tipo_py"]?></div></td> 
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["categoria"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["area"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["norespro"])?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["unidad"])?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["cargo"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["correo"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["telf"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["fax"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["municipio"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["parroquia"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["cocomu"])?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["norte"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["este"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["lineas"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["objedos"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["estrados"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["polidos"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["tiempo"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["monto"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["otra"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["impsoc"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["pobl"]?></div></td> 
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["avafisico"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["avafinanc"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["empdirec"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["empindi"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo $valor["articu"]?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["compone"])?></div></td>
-						<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["observa"])?></div></td>
-						</TR>
+		foreach ($ListaPlandeInversion_SinPropuesta as $key=>$valor) { ?> 
+					 <TR valign="top">
+								<td height="99" colspan='1' ><div class="scrollv1">
+									  <div align="center"><a href="<?php echo site_url("modificarProyecto/".$valor["id"])?>" rel="<?php echo $valor["id"]?>" class="modal" title="hacer clip"><span style="color:#F00"><?php echo $valor["id"]?></span></a></div>
+									</div></td>
+								<td colspan='1' ><div class="scrollv1"><?php echo cambia_char($valor["nota"]) ?></div></td>
+								<td colspan='1' ><div class="etiqueta">Nombre:</div>  <div class="scrollv"><?php echo cambia_char($valor["nopro"] )?></div><hr /><div class="etiqueta">Monto:</div>
+								  <div class="scrollv1">
+								<?php echo number_format($valor["monto"], 2, ',', '.'); ?>
+								  </div><hr />
+								  <div class="etiqueta">Tiempo de<br />Ejecuci&oacute;n:</div>
+								  <div class="scrollv"><?php echo $valor["tiempo"]?> meses</div><hr />
+								  <div class="etiqueta">Poblaci&oacute;n<br /> Beneficiada</div>
+								  <div class="scrollv"><?php echo $valor["pobl"]?></div></td>
+								<td colspan='1' ><div class="scrollv"><?php echo $valor["lineaestada"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">Organismo:</div>
+								  <div class="scrollv"><?php echo cambia_char($valor["organ"]) ?></div><hr />
+								<div class="etiqueta">Ente Ejecutor:</div><div class="scrollv"><?php echo cambia_char($valor["ejecu"]) ?></div></td>
+								<td colspan='1' ><div class="scrollv"><?php echo cambia_char($valor["descr"]) ?></div></td> 
+								<td colspan='1' ><div class="etiqueta">Etapa:</div>
+								  <div class="scrollv">
+								  <?php if($valor["etapa1"]) echo "Preinversi&oacute;n<br>";if($valor["etapa2"]) echo "Proyecto Nuevo<br>";if($valor["etapa3"]) echo "Ampliaci&oacute;n o Modificaci&oacute;n<br>";if($valor["etapa4"]) echo "Culminaci&oacute;n<br>"; ?></div>
+								  <hr /><div class="etiqueta">Fase:</div><div class="scrollv">
+									<?php echo arabigo2romano($valor["fase"])?></div></td> 
+								<td colspan='1' ><div class="etiqueta">Area:</div>
+								  <div class="scrollv"><?php echo $valor["area"]?></div><hr />
+								  <div class="etiqueta">Categoria:</div>
+								  <div class="scrollv"><?php echo $valor["categoria"]?></div><hr />
+								  <div class="etiqueta">Tipo:</div>
+								  <div class="scrollv"><?php echo $valor["tipo_py"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">Nombre:</div>
+								  <div class="scrollv"><?php echo cambia_char($valor["norespro"])?></div><hr />
+								  <div class="etiqueta">Unidad:</div>
+								  <div class="scrollv"><?php echo cambia_char($valor["unidad"])?></div><hr />
+								  <div class="etiqueta">Cargo:</div>
+								  <div class="scrollv"><?php echo $valor["cargo"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">Correo:</div>
+								  <div class="scrollv"><?php echo $valor["correo"]?></div><hr />
+								  <div class="etiqueta">Tel&eacute;fono:</div>
+								  <div class="scrollv"><?php echo $valor["telf"]?></div><hr />
+								  <div class="etiqueta">Fax:</div>
+								  <div class="scrollv"><?php echo $valor["fax"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">Municipio:</div>
+								  <div class="scrollv"><?php echo $valor["municipio"]?></div><hr />
+								  <div class="etiqueta">Parroquia:</div>
+								  <div class="scrollv"><?php echo $valor["parroquia"]?></div><hr />
+								  <div class="etiqueta">Comunidad:</div>
+								  <div class="scrollv"><?php echo cambia_char($valor["cocomu"])?></div></td>
+								<td colspan='1' ><div class="etiqueta">Directriz</div>
+								  <div class="scrollv"><?php echo $valor["lineas"]?></div><hr />
+								  <div class="etiqueta">Objetivo:</div>
+								  <div class="scrollv"><?php echo $valor["objedos"]?></div><hr />
+								  <div class="etiqueta">Estrategia:</div>
+								  <div class="scrollv"><?php echo $valor["estrados"]?></div><hr />
+								  <div class="etiqueta">Pol&iacute;tica</div>
+								  <div class="scrollv"><?php echo $valor["polidos"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">Impacto</div>
+								<div class="scrollv"><?php echo $valor["impsoc"]?></div><hr />
+								<div class="etiqueta">Empleos<br />Directos</div>
+								<div class="scrollv"><?php echo $valor["empdirec"]?></div>
+								<hr />
+								<div class="etiqueta">Empleos<br />Indirectos</div>
+								<div class="scrollv"><?php echo $valor["empindi"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">F&iacute;sico</div>
+								  <div class="scrollv"><?php echo $valor["avafisico"]?></div><hr />
+								  <div class="etiqueta">Financiero:</div>
+								  <div class="scrollv"><?php echo $valor["avafinanc"]?></div></td>
+								<td colspan='1' ><div class="etiqueta">Articulaci&oacute;n:</div>
+								  <div class="scrollv"><?php echo $valor["articu"]?></div><hr />
+								  <div class="etiqueta">Competencias a<br />Transferir</div>
+								  <div class="scrollv1"><?php echo cambia_char($valor["compone"])?></div></td>
+					</TR>
 
            <?php }    ?> 
            

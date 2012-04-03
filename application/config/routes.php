@@ -39,6 +39,9 @@
 */
 
 $route['default_controller'] = "login";
+$route['desarrolloweb'] = "proyectos"; 
+$route['modificarProyecto/(:num)'] = "nuevo_proyecto/index/$1";
+$route['desarrolloweb'] = "proyectos"; 
 $route['404_override'] = '';
 
 

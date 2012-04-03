@@ -1,0 +1,100 @@
+ALTER TABLE `users` ADD `url_index` VARCHAR( 60 ) NULL ;
+ALTER TABLE `grupo` ADD `url_index` VARCHAR( 60 ) NULL ;
+
+
+ ALTER TABLE `aprobado11` DROP FOREIGN KEY `aprobado11_ibfk_12`;
+         
+         CREATE TABLE IF NOT EXISTS `organoente` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `opcion` varchar(250) NOT NULL,
+  `tipo` char(1) NOT NULL,
+  `id_table` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+         
+CREATE TABLE IF NOT EXISTS `organoente_ejecu` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `opcion` varchar(250) NOT NULL,
+  `tipo` char(1) NOT NULL,
+  `id_table` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+         
+         
+         insert into organoente (opcion,tipo,id_table) SELECT opcion,"o",id FROM organo;
+         insert into organoente (opcion,tipo,id_table) SELECT opcion,"e",id FROM ente;
+         insert into organoente_ejecu (opcion,tipo,id_table) SELECT opcion,"o",id FROM organo;
+         insert into organoente_ejecu (opcion,tipo,id_table) SELECT opcion,"e",id FROM ente;
+  
+
+        DROP TRIGGER nuevoEnte;
+         DROP TRIGGER modifEnte;
+         DROP TRIGGER deleteEnte;
+         DROP TRIGGER nuevoOrgano;
+         DROP TRIGGER modifOrgano;
+         DROP TRIGGER deleteOrgano;
+
+
+       
+     DELIMITER //
+     CREATE TRIGGER  nuevoOrgano after insert on organo          
+        for each row
+            BEGIN
+                insert into organoente (opcion,tipo,id_table) values(new.opcion,"o",new.id);
+                insert into organoente_ejecu (opcion,tipo,id_table) values(new.opcion,"o",new.id);
+            END// 
+    DELIMITER ;
+
+DELIMITER |
+CREATE TRIGGER modifOrgano after update ON organo
+  FOR EACH ROW BEGIN
+     update organoente set organoente.opcion=new.opcion where organoente.id_table=new.id;    
+     update organoente_ejecu set organoente_ejecu.opcion=new.opcion where organoente_ejecu.id_table=new.id;    
+  END|
+DELIMITER ;
+
+
+DELIMITER |
+CREATE TRIGGER deleteOrgano after DELETE ON organo
+  FOR EACH ROW BEGIN
+     DELETE from  organoente where organoente.id_table=old.id;    
+     DELETE from  organoente_ejecu where organoente_ejecu.id_table=old.id;    
+  END|
+DELIMITER ;
+         
+
+DELIMITER //
+     CREATE TRIGGER  nuevoEnte after insert on ente          
+        for each row
+            BEGIN
+                insert into organoente (opcion,tipo,id_table) values(new.opcion,"e",new.id);
+                insert into organoente_ejecu (opcion,tipo,id_table) values(new.opcion,"e",new.id);
+            END// 
+    DELIMITER ;
+
+DELIMITER |
+CREATE TRIGGER modifEnte after update ON ente
+  FOR EACH ROW BEGIN
+     update organoente set organoente.opcion=new.opcion where organoente.id_table=new.id;    
+     update organoente_ejecu set organoente_ejecu.opcion=new.opcion where organoente_ejecu.id_table=new.id;    
+  END|
+DELIMITER ;
+
+
+DELIMITER |
+CREATE TRIGGER deleteEnte after DELETE ON ente
+  FOR EACH ROW BEGIN
+     DELETE from  organoente where organoente.id_table=old.id;    
+     DELETE from  organoente_ejecu where organoente_ejecu.id_table=old.id;    
+  END|
+DELIMITER ;      
+
+delete from  `organo` where id=35 or id=36;
+
+INSERT INTO `ente` (`id` ,`opcion` ,`relacion`)VALUES (NULL , 'Fundacón de Parques de Aragua ', '7');
+INSERT INTO `ente` (`id` ,`opcion` ,`relacion`)VALUES (NULL , 'ALIMENTOS ARAGUA SOCIALISTA, S.A.', '10');
+INSERT INTO `ente` (`id` ,`opcion` ,`relacion`)VALUES (NULL , 'INSTITUTO DE LA MUJER DE ARAGUA (IMA)', '8');
+UPDATE `organo` SET `opcion` = 'GOBIERNO BOLIVARIANO DE ARAGUA' WHERE `organo`.`id` =1;
+INSERT INTO `ente` (`id`, `opcion`, `relacion`) VALUES (NULL, 'INSTITUTO DE CULTURA DE ARAGUA', '4');
+INSERT INTO `ente` (`id`, `opcion`, `relacion`) VALUES (NULL, 'ATENEO DE MARACAY ', '4');
+INSERT INTO `ente` (`id`, `opcion`, `relacion`) VALUES (NULL, 'TRASARAGUA, S.A', '1');

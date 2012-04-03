@@ -8,7 +8,7 @@ echo form_open('operacion',$attributes);?>
         //print_r($datos);
         ?>
 
-        <script type="text/javascript" src="/js/controllers/<?=$class?>/accion.js"></script>
+        <script type="text/javascript" src="<?php echo base_url()?>js/controllers/<?=$class?>/accion.js"></script>
         
         <?php echo $map['js']; ?>   
     

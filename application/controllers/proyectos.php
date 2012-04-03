@@ -75,6 +75,14 @@ class Proyectos extends CI_Controller {
               echo "relaciones de la politica con la estrategia, y esto tiene efecto en la tabla resumen";
            
         }
+        
+        function cambio_organo_ente()
+        {
+            $this->modelo->cambio_organo_ente();
+              echo "Cambiando organo ente";
+           
+        }
+        
         public function cargar_vista_proyectos()
         {
             $this->load->view("nuevo_proyecto/ficha_tecnica");

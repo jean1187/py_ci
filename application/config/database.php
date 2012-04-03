@@ -51,7 +51,7 @@ $active_record = TRUE;
 $db['local']['hostname'] = 'localhost';
 $db['local']['username'] = 'root';
 $db['local']['password'] = '123';
-$db['local']['database'] = 'proyectos';
+$db['local']['database'] = 'proyectos_server';
 $db['local']['dbdriver'] = 'mysql';
 $db['local']['dbprefix'] = '';
 $db['local']['pconnect'] = TRUE;
@@ -64,7 +64,7 @@ $db['local']['swap_pre'] = '';
 $db['local']['autoinit'] = TRUE;
 $db['local']['stricton'] = FALSE;
 
-
+/*
 $db['default']['hostname'] = '192.168.1.205';
 $db['default']['username'] = 'py_user';
 $db['default']['password'] = 'py*_2012full.';
@@ -80,7 +80,7 @@ $db['default']['dbcollat'] = 'utf8_general_ci';
 $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
-
+*/
 
 $db['prueba']['hostname'] = '192.168.1.205';
 $db['prueba']['username'] = 'py_user';

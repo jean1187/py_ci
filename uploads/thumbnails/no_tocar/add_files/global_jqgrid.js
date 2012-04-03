@@ -220,7 +220,6 @@ var buttons={
     };//fin busqueda
 
     jQuery.rell_campos_global = function(datos) {
-        datos=JSON.parse(datos);
         $("input").each(function(i,valor){
              if (datos[0][valor.name]!=undefined && !valor.name.match(/contrasena/i) && valor.type!='submit') {
                          valor.value=datos[0][valor.name];

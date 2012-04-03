@@ -829,6 +829,6 @@
       <div class="grid_12 prefix_9 espacio-arriba" >
           <button class="help"  href="<?php echo base_url()?>proyectos" style="display:none" title="Regresar a la lista de Proyectos">&nbsp;</button> <button  href="" title="Actualizar esta Página"class="help" style="display:none">&nbsp;</button>  <button id="guardar">Modificar Proyecto!</button>
       </div>
-<script type="text/javascript" src="/js/controllers/<?=$class?>/accion_consejo_federal.js"></script>        
+<script type="text/javascript" src="<?php echo base_url()?>js/controllers/<?=$class?>/accion_consejo_federal.js"></script>        
 <?php echo form_close();?>
    
